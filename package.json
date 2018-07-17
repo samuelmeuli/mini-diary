@@ -1,0 +1,45 @@
+{
+	"name": "mini-diary",
+	"version": "0.1.0",
+	"main": "index.js",
+	"private": true,
+	"scripts": {
+		"start": "npm-run-all build:webpack --parallel start:*",
+		"start:webpack": "webpack --mode development --watch",
+		"start:electron": "electron .",
+		"build": "run-s build:*",
+		"build:webpack": "webpack --mode production",
+		"build:electron": "electron-packager . --out=dist --all --asar --overwrite",
+		"lint": "eslint src",
+		"precommit": "yarn lint",
+		"prepush": "yarn lint"
+	},
+	"dependencies": {
+		"electron-debug": "^2.0.0",
+		"prop-types": "^15.6.2",
+		"react": "^16.4.1",
+		"react-dom": "^16.4.1"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-loader": "^7.1.5",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react": "^6.24.1",
+		"css-loader": "^1.0.0",
+		"electron": "^2.0.5",
+		"electron-packager": "^12.1.0",
+		"eslint": "^4.19.1",
+		"eslint-config-airbnb": "^17.0.0",
+		"eslint-plugin-import": "^2.13.0",
+		"eslint-plugin-jsx-a11y": "^6.1.1",
+		"eslint-plugin-react": "^7.10.0",
+		"html-webpack-plugin": "^3.2.0",
+		"husky": "^0.14.3",
+		"node-sass": "^4.9.2",
+		"npm-run-all": "^4.1.3",
+		"sass-loader": "^7.0.3",
+		"style-loader": "^0.21.0",
+		"webpack": "^4.16.1",
+		"webpack-cli": "^3.0.8"
+	}
+}

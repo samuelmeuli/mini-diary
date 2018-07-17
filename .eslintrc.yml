@@ -1,0 +1,34 @@
+extends: airbnb
+
+env:
+  browser: true
+  node: true
+
+rules:
+  # Default rules
+  comma-dangle:
+    - 2
+    - never
+  indent:
+    - 2
+    - tab
+  no-tabs: 0
+  object-curly-newline: 0
+  object-curly-spacing:
+    - 2
+    - always
+    - objectsInObjects: false
+
+  # Default React rules
+  react/button-has-type: 2
+  react/jsx-filename-extension:
+    - 2
+    - extensions:
+      - .js
+  react/jsx-indent:
+    - 2
+    - tab
+  react/jsx-indent-props:
+    - 2
+    - tab
+  react/jsx-one-expression-per-line: 0
