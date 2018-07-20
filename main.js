@@ -1,7 +1,4 @@
-const electron = require('electron');
-
-const app = electron.app;
-
+const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
 
 // Prevent window from being garbage collected
@@ -13,7 +10,7 @@ function onClosed() {
 }
 
 function createMainWindow() {
-	const window = new electron.BrowserWindow({
+	const window = new BrowserWindow({
 		width: 600,
 		height: 400
 	});

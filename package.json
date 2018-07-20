@@ -1,7 +1,7 @@
 {
 	"name": "mini-diary",
 	"version": "0.1.0",
-	"main": "index.js",
+	"main": "main.js",
 	"private": true,
 	"scripts": {
 		"start": "npm-run-all build:webpack --parallel start:*",
