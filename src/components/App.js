@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import Diary from './Diary/Diary';
 import PasswordPrompt from './PasswordPrompt/PasswordPrompt';
+
+import Day from '../helpers/Day';
 
 
 export default class App extends Component {
@@ -10,7 +13,7 @@ export default class App extends Component {
 		// TODO FileSaver init
 
 		this.state = {
-			date: '01.01.1980',
+			date: new Day(1980, 1, 1), // TODO default to today after testing
 			entries: {},
 			isLocked: true
 		};
@@ -49,7 +52,7 @@ export default class App extends Component {
 		// TODO FileSaver decrypt, load JSON
 		// Test entry:
 		const entries = {
-			'01.01.1980': 'Test'
+			'1980-01-01': 'Test'
 		};
 		this.setState({
 			entries,
@@ -73,7 +76,7 @@ export default class App extends Component {
 			<div>
 				<Diary
 					date={date}
-					entry={entries[date]}
+					entry={entries[date.toString()]}
 					entryDates={entryDates}
 					lock={this.lock}
 					setDate={this.setDate}

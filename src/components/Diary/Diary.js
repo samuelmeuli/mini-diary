@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Calendar from './Calendar';
 import Editor from './Editor';
 
+import Day from '../../helpers/Day';
+
 
 const propTypes = {
-	date: PropTypes.string.isRequired,
+	date: PropTypes.instanceOf(Day).isRequired,
 	entryDates: PropTypes.arrayOf(PropTypes.string).isRequired,
 	entry: PropTypes.string.isRequired,
 	lock: PropTypes.func.isRequired,
