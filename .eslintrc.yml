@@ -12,6 +12,7 @@ rules:
   indent:
     - 2
     - tab
+    - SwitchCase: 1
   no-tabs: 0
   object-curly-newline: 0
   object-curly-spacing:
