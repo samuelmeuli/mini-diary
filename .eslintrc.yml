@@ -33,3 +33,6 @@ rules:
     - 2
     - tab
   react/jsx-one-expression-per-line: 0
+
+  # Project-specific rules
+  no-console: 0
