@@ -1,15 +1,6 @@
 {
 	"presets": [
-		"env",
-		"react"
-	],
-	"plugins": [
-		[
-			"transform-runtime", {
-				"polyfill": false,
-				"regenerator": true
-			}
-		],
-		"transform-object-rest-spread"
+		"@babel/preset-env",
+		"@babel/preset-react"
 	]
 }
