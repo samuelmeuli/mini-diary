@@ -28,5 +28,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'Mini Diary'
 		})
-	]
+	],
+	target: 'node'
 };

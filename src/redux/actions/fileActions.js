@@ -73,8 +73,11 @@ export function decryptFile(filePath, password) {
 			// On success, load diary entries and save password
 			dispatch(setDecryptSuccess(entries, password));
 		} catch (err) {
-			// Error reading diary file (probably incorrect password)
-			console.error(err);
+			// Error reading diary file
+			if (!err.message.endsWith('bad decrypt')) {
+				// Other error (not incorrect password error)
+				console.error(err);
+			}
 			dispatch(setDecryptError());
 		}
 	};

@@ -1,88 +1,59 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Diary from './Diary/Diary';
-import PasswordPrompt from './PasswordPrompt/PasswordPrompt';
+import { getFilePath } from '../helpers/preferences';
+import PasswordCreationContainer from './PasswordCreation/PasswordCreationContainer';
+import PasswordPromptContainer from './PasswordPrompt/PasswordPromptContainer';
 
-import Day from '../helpers/Day';
 
+const propTypes = {
+	fileExists: PropTypes.bool.isRequired,
+	password: PropTypes.string.isRequired,
+	testFileExists: PropTypes.func.isRequired
+};
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-
-		// TODO FileSaver init
+	constructor() {
+		super();
 
 		this.state = {
-			date: new Day(1980, 1, 1), // TODO default to today after testing
-			entries: {},
-			isLocked: true
+			isLoading: true
 		};
-
-		// Function bindings
-		this.setDate = this.setDate.bind(this);
-		this.setEntry = this.setEntry.bind(this);
-		this.lock = this.lock.bind(this);
-		this.unlock = this.unlock.bind(this);
 	}
 
-	setEntry(date, entry) {
-		const { entries } = this.state;
-		const entriesUpdated = Object.assign({ [date]: entry }, entries);
-		this.setState({
-			entries: entriesUpdated
-		});
-		// TODO FileSaver save
-	}
+	componentDidMount() {
+		const { testFileExists } = this.props;
+		const filePath = getFilePath();
 
-	setDate(date) {
+		testFileExists(filePath);
 		this.setState({
-			date
-		});
-	}
-
-	lock() {
-		// Clear diary entries from state and set app to locked
-		this.setState({
-			entries: {},
-			isLocked: true
-		});
-	}
-
-	unlock(password) {
-		// TODO FileSaver decrypt, load JSON
-		// Test entry:
-		const entries = {
-			'1980-01-01': 'Test'
-		};
-		this.setState({
-			entries,
-			isLocked: false
+			isLoading: false
 		});
 	}
 
 	render() {
-		const { entries, isLocked, date } = this.state;
-		const entryDates = Object.keys(entries);
+		const { fileExists, password } = this.props;
+		const { isLoading } = this.state;
 
-		if (isLocked === true) {
-			return (
-				<PasswordPrompt
-					unlock={this.unlock}
-				/>
-			);
+		// Looking for diary file
+		if (isLoading === true) {
+			return <p>Loading...</p>;
 		}
 
-		return (
-			<div>
-				<Diary
-					date={date}
-					entry={entries[date.toString()]}
-					entryDates={entryDates}
-					lock={this.lock}
-					setDate={this.setDate}
-					setEntry={this.setEntry}
-				/>
-			</div>
-		);
+		// Diary file has not yet been created
+		if (fileExists === false) {
+			return <PasswordCreationContainer />;
+		}
+
+		// Diary is locked
+		if (password === '') {
+			return <PasswordPromptContainer />;
+		}
+
+		// Diary is unlocked
+		return <Diary />;
 	}
 }
+
+App.propTypes = propTypes;

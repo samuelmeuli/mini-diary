@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Day from '../../helpers/Day';
 
 
 const propTypes = {
-	entry: PropTypes.string.isRequired,
-	setEntry: PropTypes.func.isRequired
+	date: PropTypes.instanceOf(Day).isRequired
 };
 
-export default class Editor extends Component {
-	render() {
-		const { entry } = this.props;
+export default function Editor(props) {
+	const { date } = props;
 
-		return (
-			<p>Entry: {entry}</p>
-		);
-	}
+	return (
+		<p>Diary entry for {date.toString()}</p>
+	);
 }
 
 Editor.propTypes = propTypes;
