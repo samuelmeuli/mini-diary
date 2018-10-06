@@ -5,12 +5,14 @@ import Diary from './Diary/Diary';
 import { getFilePath } from '../helpers/preferences';
 import PasswordCreationContainer from './PasswordCreation/PasswordCreationContainer';
 import PasswordPromptContainer from './PasswordPrompt/PasswordPromptContainer';
+import ThemeContext from './ThemeContext';
 
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
 	password: PropTypes.string.isRequired,
-	testFileExists: PropTypes.func.isRequired
+	testFileExists: PropTypes.func.isRequired,
+	theme: PropTypes.string.isRequired
 };
 
 export default class App extends Component {
@@ -33,26 +35,31 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { fileExists, password } = this.props;
+		const { fileExists, password, theme } = this.props;
 		const { isLoading } = this.state;
+		let page;
 
-		// Looking for diary file
 		if (isLoading === true) {
-			return <p>Loading...</p>;
+			// Looking for diary file
+			page = <p>Loading...</p>;
+		} else if (fileExists === false) {
+			// Diary file has not yet been created
+			page = <PasswordCreationContainer />;
+		} else if (password === '') {
+			// Diary is locked
+			page = <PasswordPromptContainer />;
+		} else {
+			// Diary is unlocked
+			page = <Diary />;
 		}
 
-		// Diary file has not yet been created
-		if (fileExists === false) {
-			return <PasswordCreationContainer />;
-		}
-
-		// Diary is locked
-		if (password === '') {
-			return <PasswordPromptContainer />;
-		}
-
-		// Diary is unlocked
-		return <Diary />;
+		return (
+			<ThemeContext.Provider value={theme}>
+				<div className={`app theme-${theme}`}>
+					{page}
+				</div>
+			</ThemeContext.Provider>
+		);
 	}
 }
 

@@ -1,0 +1,10 @@
+html,
+body,
+#root,
+.app {
+	height: 100%;
+}
+
+.app {
+	@include background-color("background");
+}

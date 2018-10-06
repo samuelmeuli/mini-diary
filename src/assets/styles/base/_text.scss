@@ -1,0 +1,18 @@
+.app {
+	font-family: $font-family;
+	font-size: $font-size;
+	font-weight: $font-weight-normal;
+	line-height: $line-height;
+	@include color("text");
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+input,
+textarea {
+	font: inherit;
+}

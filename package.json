@@ -4,7 +4,7 @@
 	"main": "main.js",
 	"private": true,
 	"scripts": {
-		"start": "npm-run-all build:webpack --parallel start:*",
+		"start": "run-p start:*",
 		"start:webpack": "webpack --mode development --watch",
 		"start:electron": "electron .",
 		"build": "run-s build:*",
@@ -15,6 +15,7 @@
 	"dependencies": {
 		"electron-debug": "^2.0.0",
 		"electron-settings": "^3.2.0",
+		"minireset.css": "^0.0.3",
 		"prop-types": "^15.6.2",
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1",

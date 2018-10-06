@@ -1,0 +1,26 @@
+@mixin themify($property, $key, $themes: $themes) {
+  // Loop over themes
+  @each $theme, $colors in $themes {
+    // Create selector for all themes
+    &.theme-#{$theme},
+    .theme-#{$theme} & {
+      #{$property}: map-get($colors, $key);
+    }
+  }
+}
+
+@mixin background-color($arguments...) {
+  @include themify("background-color", $arguments...);
+}
+
+@mixin border-color($arguments...) {
+  @include themify("border-color", $arguments...);
+}
+
+@mixin box-shadow($arguments...) {
+  @include themify("box-shadow", $arguments...);
+}
+
+@mixin color($arguments...) {
+  @include themify("color", $arguments...);
+}

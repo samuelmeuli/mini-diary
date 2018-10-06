@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
 import store from './redux/store';
-import './styles/styles.scss';
+import './assets/styles/styles.scss';
 
 
 // Create 'root' div

@@ -7,7 +7,8 @@ import { testFileExists } from '../redux/actions/fileActions';
 function mapStateToProps(state) {
 	return {
 		fileExists: state.file.fileExists,
-		password: state.file.password
+		password: state.file.password,
+		theme: state.app.theme
 	};
 }
 
