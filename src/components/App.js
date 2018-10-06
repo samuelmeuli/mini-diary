@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Diary from './Diary/Diary';
+import Diary from './views/Diary/Diary';
 import { getFilePath } from '../helpers/preferences';
-import PasswordCreationContainer from './PasswordCreation/PasswordCreationContainer';
-import PasswordPromptContainer from './PasswordPrompt/PasswordPromptContainer';
+import PasswordCreationContainer from './views/PasswordCreation/PasswordCreationContainer';
+import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
 import ThemeContext from './ThemeContext';
 
 

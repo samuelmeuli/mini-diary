@@ -8,3 +8,18 @@ body,
 .app {
 	@include background-color("background");
 }
+
+.page-centered-outer {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page-centered-inner {
+	text-align: center;
+}
+
+.page-centered-content {
+	margin-top: $spacing-large;
+}

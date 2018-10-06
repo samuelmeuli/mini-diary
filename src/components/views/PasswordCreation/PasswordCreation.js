@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFilePath } from '../../helpers/preferences';
+import { getFilePath } from '../../../helpers/preferences';
+import PageCentered from '../PageCentered';
 
 
 const propTypes = {
@@ -65,7 +66,7 @@ export default class PasswordCreation extends Component {
 		const { passwordsMatch, password1, password2 } = this.state;
 
 		return (
-			<div>
+			<PageCentered>
 				<p>Please choose a password for your diary.</p>
 				<p>
 					Make sure to write this password down. If you forget it, you will no longer be able to
@@ -92,7 +93,7 @@ export default class PasswordCreation extends Component {
 					}
 					<button type="submit" disabled={!passwordsMatch}>Save</button>
 				</form>
-			</div>
+			</PageCentered>
 		);
 	}
 }

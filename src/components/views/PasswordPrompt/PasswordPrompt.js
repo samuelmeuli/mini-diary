@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { getFilePath } from '../../helpers/preferences';
+import { getFilePath } from '../../../helpers/preferences';
+import PageCentered from '../PageCentered';
 
 
 const propTypes = {
@@ -47,7 +48,7 @@ export default class PasswordPrompt extends Component {
 		const { password } = this.state;
 
 		return (
-			<div>
+			<PageCentered>
 				<form onSubmit={this.onSubmit}>
 					<input
 						type="password"
@@ -62,7 +63,7 @@ export default class PasswordPrompt extends Component {
 					decryptStatus === 'error'
 					&& <p>Incorrect password</p>
 				}
-			</div>
+			</PageCentered>
 		);
 	}
 }

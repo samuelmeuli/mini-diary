@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import PasswordCreation from './PasswordCreation';
-import { encryptFile, setPassword, testFileExists } from '../../redux/actions/fileActions';
+import { encryptFile, setPassword, testFileExists } from '../../../redux/actions/fileActions';
 
 
 function mapDispatchToProps(dispatch) {
