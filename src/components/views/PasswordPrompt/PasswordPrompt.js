@@ -55,6 +55,7 @@ export default class PasswordPrompt extends Component {
 						value={password}
 						onChange={this.onChange}
 						placeholder="password"
+						autoFocus
 						required
 					/>
 					<button type="submit">Unlock</button>

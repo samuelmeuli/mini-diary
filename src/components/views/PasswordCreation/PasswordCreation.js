@@ -78,6 +78,7 @@ export default class PasswordCreation extends Component {
 						value={password1}
 						onChange={this.onChangePassword1}
 						placeholder="password"
+						autoFocus
 						required
 					/>
 					<input
