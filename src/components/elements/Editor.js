@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Day from '../../helpers/Day';
 
 
 const propTypes = {
-	date: PropTypes.instanceOf(Day).isRequired
+	date: PropTypes.instanceOf(Date).isRequired
 };
 
 export default function Editor(props) {

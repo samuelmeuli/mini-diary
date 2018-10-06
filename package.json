@@ -18,10 +18,13 @@
 		"electron-debug": "^2.0.0",
 		"electron-settings": "^3.2.0",
 		"minireset.css": "^0.0.3",
+		"moment": "^2.22.2",
 		"prop-types": "^15.6.2",
 		"react": "^16.4.1",
+		"react-day-picker": "^7.2.4",
 		"react-dom": "^16.4.1",
 		"react-redux": "^5.0.7",
+		"react-simple-svg": "^1.0.2",
 		"redux": "^4.0.0",
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0"
@@ -47,6 +50,7 @@
 		"style-loader": "^0.23.0",
 		"stylelint": "^9.6.0",
 		"stylelint-config-primer": "^2.2.10",
+		"svg-inline-loader": "^0.8.0",
 		"url-loader": "^1.1.1",
 		"webpack": "^4.16.1",
 		"webpack-cli": "^3.0.8"

@@ -1,8 +1,5 @@
-import Day from '../../helpers/Day';
-
-
 function diary(state = {
-	date: new Day()
+	date: new Date()
 }, action) {
 	switch (action.type) {
 		case 'SET_DATE': {

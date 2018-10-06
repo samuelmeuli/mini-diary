@@ -1,6 +1,6 @@
 // Action creators
 
-export function setDate(theme) {
+export function setTheme(theme) {
 	return {
 		type: 'SET_THEME',
 		payload: {

@@ -1,6 +1,21 @@
 button,
 input,
 textarea {
+	height: $input-height;
 	border: 0;
 	outline: none;
+}
+
+button {
+	padding: 5px;
+
+	&:not([disabled]) {
+		cursor: pointer;
+	}
+}
+
+.button-invisible {
+	width: $input-height;
+	padding: 0;
+	background: none;
 }

@@ -16,3 +16,20 @@ input,
 textarea {
 	font: inherit;
 }
+
+button {
+	line-height: 1;
+}
+
+h1 {
+	font-size: 160%;
+}
+
+.DayPicker-Day--today {
+	color: inherit;
+}
+
+:disabled,
+.DayPicker-Day--disabled {
+	@include color("text-disabled");
+}

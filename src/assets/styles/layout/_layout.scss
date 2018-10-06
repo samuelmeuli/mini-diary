@@ -10,9 +10,13 @@ body,
 	@include background-color("background");
 }
 
+.page-centered-outer,
+.diary {
+	height: 100%;
+}
+
 .page-centered-outer {
 	display: flex;
-	height: 100%;
 	justify-content: center;
 	align-items: center;
 }
@@ -23,4 +27,11 @@ body,
 
 .page-centered-content {
 	margin-top: $spacing-large;
+}
+
+.diary {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	padding: $spacing-large;
 }

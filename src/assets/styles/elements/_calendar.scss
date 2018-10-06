@@ -1,0 +1,25 @@
+.DayPicker * {
+	outline: none;
+}
+
+.calendar-nav {
+	display: flex;
+	align-items: center;
+}
+
+.month-name {
+	flex: 1;
+}
+
+.DayPicker-Month {
+	margin: 0;
+}
+
+.DayPicker-Week {
+	margin-bottom: $spacing-small;
+}
+
+.DayPicker-Day {
+	height: $input-height;
+	line-height: 1;
+}

@@ -2,11 +2,13 @@
 $themes: (
 	"light": (
 		"background": #F0F0F0,
-		"text": #353535
+		"text": #353535,
+		"text-disabled": #CBCBCB
 	),
 	"dark": (
 		"background": #242326,
-		"text": #D0D0D0
+		"text": #D0D0D0,
+		"text-disabled": #CBCBCB
 	)
 ) !default;
 
@@ -18,5 +20,8 @@ $font-weight-bold: 900;
 $line-height: 2;
 
 // Spacing
-$spacing-small: 20px;
-$spacing-large: 40px;
+$spacing-small: 30px;
+$spacing-large: 60px;
+
+// Other
+$input-height: 36px;

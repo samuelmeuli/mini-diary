@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import Calendar from './Calendar';
+import { setDate } from '../../redux/actions/diaryActions';
 
 
 function mapStateToProps(state) {
@@ -9,4 +10,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, null)(Calendar);
+function mapDispatchToProps(dispatch) {
+	return {
+		setDate: day => dispatch(setDate(day))
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

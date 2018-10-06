@@ -6,10 +6,7 @@ import EditorContainer from '../../elements/EditorContainer';
 
 export default function Diary() {
 	return (
-		<div>
-			<button type="submit">
-				TODO Lock
-			</button>
+		<div className="diary">
 			<CalendarContainer />
 			<EditorContainer />
 		</div>
