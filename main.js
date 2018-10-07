@@ -1,8 +1,15 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
 const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
+const {
+	default: installExtension,
+	REACT_DEVELOPER_TOOLS,
+	REDUX_DEVTOOLS
+} = require('electron-devtools-installer');
 
-// Prevent window from being garbage collected
-let mainWindow;
+let mainWindow; // prevent window from being garbage collected
+const extensions = [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS];
 
 function onClosed() {
 	// Dereference the window
@@ -35,4 +42,11 @@ app.on('activate', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
+
+	// Install dev tools
+	extensions.forEach((extension) => {
+		installExtension(extension)
+			.then(name => console.log(`Added extension "${name}"`))
+			.catch(err => console.error('Error installing extension: ', err));
+	});
 });
