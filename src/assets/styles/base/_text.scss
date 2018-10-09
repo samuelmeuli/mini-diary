@@ -15,21 +15,47 @@ button,
 input,
 textarea {
 	font: inherit;
+	line-height: 1;
+	color: inherit;
 }
 
 button {
-	line-height: 1;
+	font-weight: $font-weight-bold;
+
+	&:not(.button-invisible) {
+		color: #FFFFFF;
+	}
 }
 
 h1 {
 	font-size: 160%;
+	font-weight: $font-weight-bold;
 }
 
-.DayPicker-Day--today {
-	color: inherit;
+abbr {
+	text-decoration: none;
+}
+
+.month-name {
+	padding-left: 10px;
+}
+
+.text-faded,
+.DayPicker-Weekday {
+	font-size: 80%;
+	@include color("text-faded");
 }
 
 :disabled,
 .DayPicker-Day--disabled {
 	@include color("text-disabled");
+}
+
+.DayPicker-Day--hasEntry {
+	font-weight: 700;
+	@include color("button");
+}
+
+.DayPicker-Day--selected {
+	color: #FFFFFF !important;
 }

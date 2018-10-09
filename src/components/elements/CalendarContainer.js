@@ -6,7 +6,8 @@ import { setDate } from '../../redux/actions/diaryActions';
 
 function mapStateToProps(state) {
 	return {
-		date: state.diary.date
+		date: state.diary.date,
+		entries: state.file.entries
 	};
 }
 

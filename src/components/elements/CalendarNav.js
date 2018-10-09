@@ -32,7 +32,7 @@ export default function CalendarNav(props) {
 
 	// Determine name of current month
 	const months = localeUtils.getMonths();
-	const monthStr = months[previousMonth.getMonth() + 1];
+	const monthStr = months[(previousMonth.getMonth() + 1) % 12];
 
 	// Disable "next" button if current month is reached
 	const firstDayOfCurrentMonth = moment().startOf('month');

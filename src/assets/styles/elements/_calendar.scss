@@ -5,21 +5,56 @@
 .calendar-nav {
 	display: flex;
 	align-items: center;
+
+	.month-name {
+		flex: 1;
+	}
 }
 
-.month-name {
-	flex: 1;
+.DayPicker-Body {
+	display: grid;
+	grid-template-rows: repeat(6, $calendar-cell-size);
 }
 
-.DayPicker-Month {
-	margin: 0;
+.DayPicker-Week,
+.DayPicker-WeekdaysRow {
+	display: grid;
+	grid-template-columns: repeat(7, $calendar-cell-size);
 }
 
-.DayPicker-Week {
-	margin-bottom: $spacing-small;
+.DayPicker-Day,
+.DayPicker-Weekday {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.DayPicker-WeekdaysRow {
+	height: $calendar-cell-size;
 }
 
 .DayPicker-Day {
-	height: $input-height;
-	line-height: 1;
+	margin: 1px;
+	border-radius: 50%;
+	transition: $transition;
+
+	&:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):not(.DayPicker-Day--selected) {
+		&:hover {
+			@include background-color("background-hover");
+		}
+	}
+
+	&.DayPicker-Day--selected {
+		@include background-color("button");
+
+		&:hover {
+			@include background-color("button-hover");
+		}
+	}
 }

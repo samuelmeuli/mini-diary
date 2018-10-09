@@ -1,13 +1,22 @@
 button,
 input,
 textarea {
-	height: $input-height;
+	padding: (0.75 * $spacing-small) $spacing-small;
 	border: 0;
+	border-radius: $border-radius;
 	outline: none;
 }
 
 button {
-	padding: 5px;
+	transition: $transition;
+
+	&:not(.button-invisible) {
+		@include background-color("button");
+
+		&:hover {
+			@include background-color("button-hover");
+		}
+	}
 
 	&:not([disabled]) {
 		cursor: pointer;
@@ -18,4 +27,8 @@ button {
 	width: $input-height;
 	padding: 0;
 	background: none;
+
+	&:not([disabled]):hover {
+		@include color("text-faded");
+	}
 }

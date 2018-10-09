@@ -6,3 +6,4 @@ rules:
   max-empty-lines: 2
   plugin/no-unsupported-browser-features: null
   selector-max-type: null
+  selector-max-specificity: null

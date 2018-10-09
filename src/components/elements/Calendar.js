@@ -8,6 +8,10 @@ import CalendarNav from './CalendarNav';
 
 const propTypes = {
 	date: PropTypes.instanceOf(Date).isRequired,
+	entries: PropTypes.objectOf(PropTypes.shape({
+		dateUpdated: PropTypes.string.isRequired,
+		text: PropTypes.string.isRequired
+	})).isRequired,
 	setDate: PropTypes.func.isRequired
 };
 
@@ -35,8 +39,11 @@ export default class Calendar extends Component {
 	}
 
 	render() {
-		const { date } = this.props;
+		const { date, entries } = this.props;
 		const today = new Date();
+
+		const daysWithEntries = Object.keys(entries).map(entry => moment(entry).format('YYYY-MM-DD'));
+		const hasEntry = day => daysWithEntries.includes(moment(day).format('YYYY-MM-DD'));
 
 		return (
 			<div className="calendar">
@@ -46,6 +53,7 @@ export default class Calendar extends Component {
 					}}
 					captionElement={() => null}
 					disabledDays={{ after: today }}
+					modifiers={{ hasEntry }}
 					navbarElement={(
 						<CalendarNav
 							date={date}

@@ -2,13 +2,21 @@
 $themes: (
 	"light": (
 		"background": #F0F0F0,
+		"background-hover": #E2E2E2,
+		"button": #4E8BD2,
+		"button-hover": #447AB8,
 		"text": #353535,
-		"text-disabled": #CBCBCB
+		"text-disabled": #CBCBCB,
+		"text-faded": #727272
 	),
 	"dark": (
 		"background": #242326,
+		"background-hover": #3F3F41,
+		"button": #4C81BF,
+		"button-hover": #4371A7,
 		"text": #D0D0D0,
-		"text-disabled": #CBCBCB
+		"text-disabled": #4E4E4E,
+		"text-faded": #BDBDBD
 	)
 ) !default;
 
@@ -16,12 +24,16 @@ $themes: (
 $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-size: 16px;
 $font-weight-normal: 300;
-$font-weight-bold: 900;
+$font-weight-bold: 500;
 $line-height: 2;
 
 // Spacing
-$spacing-small: 30px;
+$spacing-small: 15px;
+$spacing-medium: 30px;
 $spacing-large: 60px;
 
 // Other
+$border-radius: 5px;
+$calendar-cell-size: 37px;
 $input-height: 36px;
+$transition: 0.2s;
