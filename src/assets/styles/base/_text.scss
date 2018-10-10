@@ -15,8 +15,12 @@ button,
 input,
 textarea {
 	font: inherit;
-	line-height: 1;
 	color: inherit;
+}
+
+button,
+input {
+	line-height: 1;
 }
 
 button {

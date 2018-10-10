@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import TextareaAutosize from 'react-autosize-textarea';
 
 import { getFilePath } from '../../helpers/preferences';
 
@@ -19,6 +20,15 @@ const propTypes = {
 export default class Editor extends Component {
 	static formatDate(date) {
 		return moment(date).format('YYYY-MM-DD');
+	}
+
+	static onTitleEnterKey(e) {
+		// On typing "enter" in the title textarea, do not insert a newline character and jump to
+		// the next form element
+		if (e.which === 13) {
+			e.preventDefault();
+			e.target.nextElementSibling.focus();
+		}
 	}
 
 	static getDerivedStateFromProps(props, state) {
@@ -112,18 +122,18 @@ export default class Editor extends Component {
 		const dateFormatted = moment(date).format('dddd, D MMMM YYYY');
 
 		// TODO save input when quitting app
-		// TODO auto-resize textareas
 		return (
 			<form className="editor">
 				<p className="text-faded">{dateFormatted}</p>
-				<textarea
+				<TextareaAutosize
 					className="editor-title"
 					value={title}
 					onChange={this.onTitleChange}
 					onBlur={this.saveEntry}
+					onKeyPress={Editor.onTitleEnterKey}
 					placeholder="Add a title"
 				/>
-				<textarea
+				<TextareaAutosize
 					className="editor-text"
 					value={text}
 					onChange={this.onTextChange}
