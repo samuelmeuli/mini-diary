@@ -1,6 +1,6 @@
 function file(state = {
-	decryptStatus: 'idle', // one of ['idle', 'inProgress', 'error', 'success']
-	encryptStatus: 'idle', // one of ['idle', 'inProgress', 'error', 'success']
+	decryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
+	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
 	entries: [],
 	fileExists: false,
 	password: ''

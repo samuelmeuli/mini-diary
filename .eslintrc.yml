@@ -6,6 +6,10 @@ env:
 
 rules:
   # Default rules
+  capitalized-comments:
+    - 2
+    - always
+    - ignoreConsecutiveComments: true
   comma-dangle:
     - 2
     - never

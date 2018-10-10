@@ -8,7 +8,7 @@ const {
 	REDUX_DEVTOOLS
 } = require('electron-devtools-installer');
 
-let mainWindow; // prevent window from being garbage collected
+let mainWindow; // Prevent window from being garbage collected
 const extensions = [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS];
 
 function onClosed() {
