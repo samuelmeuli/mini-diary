@@ -32,3 +32,9 @@ button {
 		@include color("text-faded");
 	}
 }
+
+textarea {
+	width: 100%;
+	height: auto;
+	resize: none;
+}

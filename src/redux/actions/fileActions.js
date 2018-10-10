@@ -37,9 +37,12 @@ function setEncryptError() {
 	};
 }
 
-function setEncryptSuccess() {
+function setEncryptSuccess(entries) {
 	return {
-		type: 'ENCRYPT_SUCCESS'
+		type: 'ENCRYPT_SUCCESS',
+		payload: {
+			entries
+		}
 	};
 }
 
@@ -83,12 +86,20 @@ export function decryptFile(filePath, password) {
 	};
 }
 
-export function encryptFile(filePath, password, content) {
+export function encryptFile(filePath, password, entries) {
+	console.log(entries);
+	const content = {
+		metadata: {
+			application: 'application', // TODO get app name
+			version: 'version' // TODO get version
+		},
+		entries
+	};
 	return (dispatch) => {
 		dispatch(setEncryptInProgress());
 		try {
 			writeFile(filePath, password, content);
-			dispatch(setEncryptSuccess());
+			dispatch(setEncryptSuccess(entries));
 		} catch (err) {
 			console.error(err);
 			dispatch(setEncryptError());

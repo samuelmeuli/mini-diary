@@ -30,8 +30,12 @@ body,
 }
 
 .diary {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
 	align-items: center;
 	padding: $spacing-large;
+
+	.editor {
+		flex: 1;
+		margin-left: $spacing-large;
+	}
 }

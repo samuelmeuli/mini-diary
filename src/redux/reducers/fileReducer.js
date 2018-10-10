@@ -41,7 +41,8 @@ function file(state = {
 		case 'ENCRYPT_SUCCESS': {
 			return {
 				...state,
-				encryptStatus: 'success'
+				encryptStatus: 'success',
+				entries: action.payload.entries
 			};
 		}
 		case 'SET_FILE_EXISTS': {

@@ -54,7 +54,7 @@ export default class PasswordPrompt extends Component {
 						type="password"
 						value={password}
 						onChange={this.onChange}
-						placeholder="password"
+						placeholder="Password"
 						autoFocus
 						required
 					/>

@@ -54,7 +54,8 @@ export default class PasswordCreation extends Component {
 		const filePath = getFilePath();
 
 		if (password1 === password2) {
-			encryptFile(filePath, password1, {});
+			const entries = {};
+			encryptFile(filePath, password1, entries);
 			setPassword(password1);
 			testFileExists(filePath);
 		} else {
