@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 
 import PasswordCreation from './PasswordCreation';
-import { encryptFile, setPassword, testFileExists } from '../../../redux/actions/fileActions';
+import { createEncryptedFile, testFileExists } from '../../../redux/actions/fileActions';
 
 
 function mapDispatchToProps(dispatch) {
 	return {
-		encryptFile: (filePath, password, content) => (
-			dispatch(encryptFile(filePath, password, content))
-		),
-		setPassword: password => dispatch(setPassword(password)),
+		createEncryptedFile: (filePath, password) => dispatch(createEncryptedFile(filePath, password)),
 		testFileExists: filePath => dispatch(testFileExists(filePath))
 	};
 }

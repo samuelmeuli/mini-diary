@@ -3,7 +3,7 @@ function file(state = {
 	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
 	entries: [],
 	fileExists: false,
-	password: ''
+	hashedPassword: ''
 }, action) {
 	switch (action.type) {
 		case 'DECRYPT_IN_PROGRESS': {
@@ -22,8 +22,7 @@ function file(state = {
 			return {
 				...state,
 				decryptStatus: 'success',
-				entries: action.payload.entries,
-				password: action.payload.password
+				entries: action.payload.entries
 			};
 		}
 		case 'ENCRYPT_IN_PROGRESS': {
@@ -51,10 +50,10 @@ function file(state = {
 				fileExists: action.payload.fileExists
 			};
 		}
-		case 'SET_PASSWORD': {
+		case 'SET_HASHED_PASSWORD': {
 			return {
 				...state,
-				password: action.payload.password
+				hashedPassword: action.payload.hashedPassword
 			};
 		}
 		default:

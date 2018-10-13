@@ -8,14 +8,14 @@ function mapStateToProps(state) {
 	return {
 		date: state.diary.date,
 		entries: state.file.entries,
-		password: state.file.password
+		hashedPassword: state.file.hashedPassword
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		encryptFile: (filePath, password, content) => (
-			dispatch(encryptFile(filePath, password, content))
+		encryptFile: (filePath, hashedPassword, content) => (
+			dispatch(encryptFile(filePath, hashedPassword, content))
 		)
 	};
 }

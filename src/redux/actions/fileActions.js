@@ -1,4 +1,5 @@
 import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
+import hashPassword from '../../helpers/hashPassword';
 
 
 // Action creators
@@ -15,12 +16,11 @@ function setDecryptError() {
 	};
 }
 
-function setDecryptSuccess(entries, password) {
+function setDecryptSuccess(entries) {
 	return {
 		type: 'DECRYPT_SUCCESS',
 		payload: {
-			entries,
-			password
+			entries
 		}
 	};
 }
@@ -55,11 +55,11 @@ function setFileExists(exists) {
 	};
 }
 
-export function setPassword(password) {
+function setHashedPassword(hashedPassword) {
 	return {
-		type: 'SET_PASSWORD',
+		type: 'SET_HASHED_PASSWORD',
 		payload: {
-			password
+			hashedPassword
 		}
 	};
 }
@@ -67,14 +67,39 @@ export function setPassword(password) {
 
 // Thunks
 
+export function createEncryptedFile(filePath, password) {
+	const entries = {};
+	const content = {
+		metadata: {
+			application: 'application', // TODO get app name
+			version: 'version' // TODO get version
+		},
+		entries
+	};
+	return (dispatch) => {
+		dispatch(setEncryptInProgress());
+		const hashedPassword = hashPassword(password);
+		try {
+			writeFile(filePath, hashedPassword, content);
+			dispatch(setEncryptSuccess(entries));
+			dispatch(setHashedPassword(hashedPassword));
+		} catch (err) {
+			console.error(err);
+			dispatch(setEncryptError());
+		}
+	};
+}
+
 export function decryptFile(filePath, password) {
 	return (dispatch) => {
 		dispatch(setDecryptInProgress());
+		const hashedPassword = hashPassword(password);
 		try {
-			const fileContent = readFile(filePath, password);
+			const fileContent = readFile(filePath, hashedPassword);
 			const { entries } = fileContent;
 			// On success, load diary entries and save password
-			dispatch(setDecryptSuccess(entries, password));
+			dispatch(setDecryptSuccess(entries));
+			dispatch(setHashedPassword(hashedPassword));
 		} catch (err) {
 			// Error reading diary file
 			if (!err.message.endsWith('bad decrypt')) {
@@ -86,8 +111,7 @@ export function decryptFile(filePath, password) {
 	};
 }
 
-export function encryptFile(filePath, password, entries) {
-	console.log(entries);
+export function encryptFile(filePath, hashedPassword, entries) {
 	const content = {
 		metadata: {
 			application: 'application', // TODO get app name
@@ -98,7 +122,7 @@ export function encryptFile(filePath, password, entries) {
 	return (dispatch) => {
 		dispatch(setEncryptInProgress());
 		try {
-			writeFile(filePath, password, content);
+			writeFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
 		} catch (err) {
 			console.error(err);

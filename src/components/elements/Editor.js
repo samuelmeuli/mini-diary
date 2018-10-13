@@ -14,7 +14,7 @@ const propTypes = {
 		text: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired
 	})).isRequired,
-	password: PropTypes.string.isRequired
+	hashedPassword: PropTypes.string.isRequired
 };
 
 export default class Editor extends Component {
@@ -87,7 +87,7 @@ export default class Editor extends Component {
 	}
 
 	saveEntry() {
-		const { date, encryptFile, entries, password } = this.props;
+		const { date, encryptFile, entries, hashedPassword } = this.props;
 		const { text, title } = this.state;
 		const dateFormatted = Editor.formatDate(date);
 		const filePath = getFilePath();
@@ -97,7 +97,7 @@ export default class Editor extends Component {
 			if (dateFormatted in entries) {
 				const entriesUpdated = entries;
 				delete entriesUpdated[dateFormatted];
-				encryptFile(filePath, password, entriesUpdated);
+				encryptFile(filePath, hashedPassword, entriesUpdated);
 			}
 		} else if (
 			!(dateFormatted in entries)
@@ -113,7 +113,7 @@ export default class Editor extends Component {
 					title
 				}
 			};
-			encryptFile(filePath, password, entriesUpdated);
+			encryptFile(filePath, hashedPassword, entriesUpdated);
 		}
 	}
 

@@ -6,8 +6,7 @@ import PageCentered from '../PageCentered';
 
 
 const propTypes = {
-	encryptFile: PropTypes.func.isRequired,
-	setPassword: PropTypes.func.isRequired,
+	createEncryptedFile: PropTypes.func.isRequired,
 	testFileExists: PropTypes.func.isRequired
 };
 
@@ -49,14 +48,12 @@ export default class PasswordCreation extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const { encryptFile, setPassword, testFileExists } = this.props;
+		const { createEncryptedFile, testFileExists } = this.props;
 		const { password1, password2 } = this.state;
 		const filePath = getFilePath();
 
 		if (password1 === password2) {
-			const entries = {};
-			encryptFile(filePath, password1, entries);
-			setPassword(password1);
+			createEncryptedFile(filePath, password1);
 			testFileExists(filePath);
 		} else {
 			throw Error('Passwords do not match');

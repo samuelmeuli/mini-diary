@@ -10,7 +10,7 @@ import ThemeContext from './ThemeContext';
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
-	password: PropTypes.string.isRequired,
+	hashedPassword: PropTypes.string.isRequired,
 	testFileExists: PropTypes.func.isRequired,
 	theme: PropTypes.string.isRequired
 };
@@ -35,7 +35,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { fileExists, password, theme } = this.props;
+		const { fileExists, hashedPassword, theme } = this.props;
 		const { isLoading } = this.state;
 		let page;
 
@@ -45,7 +45,7 @@ export default class App extends Component {
 		} else if (fileExists === false) {
 			// Diary file has not yet been created
 			page = <PasswordCreationContainer />;
-		} else if (password === '') {
+		} else if (hashedPassword === '') {
 			// Diary is locked
 			page = <PasswordPromptContainer />;
 		} else {

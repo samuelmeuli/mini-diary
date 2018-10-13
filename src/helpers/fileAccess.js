@@ -19,25 +19,25 @@ export function moveFile(oldFilePath, newFilePath) {
 	fs.renameSync(oldFilePath, newFilePath);
 }
 
-export function readFile(filePath, password) {
+export function readFile(filePath, hashedPassword) {
 	if (!filePath) {
 		throw Error('filePath not specified');
 	}
-	if (!password) {
-		throw Error('password not specified');
+	if (!hashedPassword) {
+		throw Error('hashedPassword not specified');
 	}
 	const data = fs.readFileSync(filePath);
-	const decipher = crypto.createDecipher('aes192', password);
+	const decipher = crypto.createDecipher('aes192', hashedPassword);
 	const fileContent = Buffer.concat([decipher.update(data), decipher.final()]);
 	return JSON.parse(fileContent.toString());
 }
 
-export function writeFile(filePath, password, content) {
+export function writeFile(filePath, hashedPassword, content) {
 	if (!filePath) {
 		throw Error('filePath not specified');
 	}
-	if (!password) {
-		throw Error('password not specified');
+	if (!hashedPassword) {
+		throw Error('hashedPassword not specified');
 	}
 	if (!content) {
 		throw Error('content not specified');
@@ -45,7 +45,7 @@ export function writeFile(filePath, password, content) {
 	if (content === null || typeof content !== 'object') {
 		throw Error('content is not an object');
 	}
-	const cipher = crypto.createCipher('aes192', password);
+	const cipher = crypto.createCipher('aes192', hashedPassword);
 	const encrypted = Buffer.concat([
 		cipher.update(Buffer.from(JSON.stringify(content), 'utf8')), cipher.final()
 	]);
