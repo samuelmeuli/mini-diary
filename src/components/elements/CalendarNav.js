@@ -12,31 +12,29 @@ import iconToday from '../../assets/icons/calendar.svg';
 
 
 const propTypes = {
-	localeUtils: PropTypes.object,
 	month: PropTypes.instanceOf(Date),
 	onPreviousClick: PropTypes.func,
 	onNextClick: PropTypes.func,
-	onTodaySelection: PropTypes.func.isRequired,
-	previousMonth: PropTypes.instanceOf(Date)
+	onTodaySelection: PropTypes.func.isRequired
 };
 
 export default function CalendarNav(props) {
 	const {
-		localeUtils,
-		month,
+		month: monthDate,
 		onPreviousClick,
 		onNextClick,
-		onTodaySelection,
-		previousMonth
+		onTodaySelection
 	} = props;
 
+	const today = moment();
+	const month = moment(monthDate);
+
 	// Determine name of current month
-	const months = localeUtils.getMonths();
-	const monthStr = months[(previousMonth.getMonth() + 1) % 12];
+	const monthStr = month.format('MMMM YYYY');
 
 	// Disable "next" button if current month is reached
-	const firstDayOfCurrentMonth = moment().startOf('month');
-	const disableNextButton = moment(month).isSameOrAfter(firstDayOfCurrentMonth);
+	const firstDayOfCurrentMonth = today.startOf('month');
+	const disableNextButton = month.isSameOrAfter(firstDayOfCurrentMonth);
 
 	return (
 		<div className="calendar-nav">
