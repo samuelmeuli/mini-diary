@@ -17,8 +17,8 @@ export default function PageCentered(props) {
 				<SimpleSvg
 					src={appIcon}
 					className="app-icon"
-					width={100}
-					height={100}
+					width={140}
+					height={140}
 				/>
 				<div className="page-centered-content">
 					{children}

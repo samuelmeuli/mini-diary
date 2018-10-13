@@ -4,6 +4,7 @@
 	font-weight: $font-weight-normal;
 	line-height: $line-height;
 	@include color("text");
+	user-select: none;
 }
 
 a {
@@ -33,7 +34,7 @@ button {
 
 h1,
 .editor-title {
-	font-size: 160%;
+	font-size: 150%;
 	font-weight: $font-weight-bold;
 }
 

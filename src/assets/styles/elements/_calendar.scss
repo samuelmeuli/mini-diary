@@ -9,6 +9,10 @@
 	.month-name {
 		flex: 1;
 	}
+
+	.button-today {
+		width: $calendar-cell-size;
+	}
 }
 
 .DayPicker-Body {

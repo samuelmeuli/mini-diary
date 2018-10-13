@@ -56,7 +56,7 @@ export default function CalendarNav(props) {
 			</button>
 			<button
 				type="button"
-				className="button-invisible"
+				className="button-invisible button-today"
 				onClick={() => onTodaySelection()}
 			>
 				<SimpleSvg

@@ -26,16 +26,16 @@ body,
 }
 
 .page-centered-content {
-	margin-top: $spacing-large;
+	margin-top: $spacing-rel-large;
 }
 
 .diary {
 	display: flex;
 	align-items: center;
-	padding: $spacing-large;
+	padding: $spacing-rel-large;
 
 	.editor {
 		flex: 1;
-		margin-left: $spacing-large;
+		margin-left: $spacing-rel-large;
 	}
 }
