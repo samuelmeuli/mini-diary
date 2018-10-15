@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"main": "main.js",
 	"private": true,
+	"license": "MIT",
 	"scripts": {
 		"start": "run-p start:*",
 		"start:webpack": "webpack --mode development --watch",
