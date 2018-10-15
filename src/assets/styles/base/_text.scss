@@ -42,8 +42,12 @@ abbr {
 	text-decoration: none;
 }
 
+.DayPicker-Months {
+	line-height: 1;
+}
+
 .month-name {
-	padding-left: 10px;
+	text-align: center;
 }
 
 .text-faded,

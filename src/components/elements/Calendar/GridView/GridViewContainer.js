@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Calendar from './Calendar';
-import { setDate } from '../../redux/actions/diaryActions';
+import GridView from './GridView';
+import { setDate } from '../../../../redux/actions/diaryActions';
 
 
 function mapStateToProps(state) {
@@ -17,4 +17,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(GridView);

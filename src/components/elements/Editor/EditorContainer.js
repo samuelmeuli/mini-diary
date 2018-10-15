@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Editor from './Editor';
-import { encryptFile } from '../../redux/actions/fileActions';
+import { encryptFile } from '../../../redux/actions/fileActions';
 
 
 function mapStateToProps(state) {

@@ -28,6 +28,8 @@ button {
 }
 
 .button-invisible {
+	width: $calendar-cell-size;
+	height: $calendar-cell-size;
 	padding: 0;
 	background: none;
 

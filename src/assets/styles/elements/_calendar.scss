@@ -1,3 +1,15 @@
+.calendar {
+	width: 7 * $calendar-cell-size;
+}
+
+.view-selector {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: $spacing-large;
+	border-bottom: 0.5px solid;
+	@include border-color("text-disabled");
+}
+
 .DayPicker * {
 	outline: none;
 }

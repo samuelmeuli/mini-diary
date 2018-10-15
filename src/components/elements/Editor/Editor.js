@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import { getFilePath } from '../../helpers/preferences';
+import { getFilePath } from '../../../helpers/preferences';
 
 
 const propTypes = {

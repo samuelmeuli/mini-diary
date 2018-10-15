@@ -6,24 +6,21 @@ import PropTypes from 'prop-types';
 import SimpleSvg from 'react-simple-svg';
 import moment from 'moment';
 
-import iconNext from '../../assets/icons/chevron-right.svg';
-import iconPrev from '../../assets/icons/chevron-left.svg';
-import iconToday from '../../assets/icons/calendar.svg';
+import iconNext from '../../../../assets/icons/arrow-right.svg';
+import iconPrev from '../../../../assets/icons/arrow-left.svg';
 
 
 const propTypes = {
 	month: PropTypes.instanceOf(Date),
 	onPreviousClick: PropTypes.func,
-	onNextClick: PropTypes.func,
-	onTodaySelection: PropTypes.func.isRequired
+	onNextClick: PropTypes.func
 };
 
-export default function CalendarNav(props) {
+export default function GridNav(props) {
 	const {
 		month: monthDate,
 		onPreviousClick,
-		onNextClick,
-		onTodaySelection
+		onNextClick
 	} = props;
 
 	const today = moment();
@@ -38,48 +35,24 @@ export default function CalendarNav(props) {
 
 	return (
 		<div className="calendar-nav">
+			<button
+				type="button"
+				className="button-invisible"
+				onClick={() => onPreviousClick()}
+			>
+				<SimpleSvg src={iconPrev} title="Prev. month" height={20} width={20} />
+			</button>
 			<h1 className="month-name">{monthStr}</h1>
 			<button
 				type="button"
 				className="button-invisible"
-				style={{ float: 'left' }}
-				onClick={() => onPreviousClick()}
-			>
-				<SimpleSvg
-					src={iconPrev}
-					title="Prev. month"
-					height={20}
-					width={20}
-				/>
-			</button>
-			<button
-				type="button"
-				className="button-invisible button-today"
-				onClick={() => onTodaySelection()}
-			>
-				<SimpleSvg
-					src={iconToday}
-					title="Today"
-					height={20}
-					width={20}
-				/>
-			</button>
-			<button
-				type="button"
-				className="button-invisible"
 				disabled={disableNextButton}
-				style={{ float: 'right' }}
 				onClick={() => onNextClick()}
 			>
-				<SimpleSvg
-					src={iconNext}
-					title="Next month"
-					height={20}
-					width={20}
-				/>
+				<SimpleSvg src={iconNext} title="Next month" height={20} width={20} />
 			</button>
 		</div>
 	);
 }
 
-CalendarNav.propTypes = propTypes;
+GridNav.propTypes = propTypes;
