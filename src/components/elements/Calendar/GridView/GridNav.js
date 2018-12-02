@@ -37,7 +37,7 @@ export default function GridNav(props) {
 		<div className="calendar-nav">
 			<button
 				type="button"
-				className="button-invisible"
+				className="button button-invisible"
 				onClick={() => onPreviousClick()}
 			>
 				<SimpleSvg src={iconPrev} title="Prev. month" height={20} width={20} />
@@ -45,7 +45,7 @@ export default function GridNav(props) {
 			<h1 className="month-name">{monthStr}</h1>
 			<button
 				type="button"
-				className="button-invisible"
+				className="button button-invisible"
 				disabled={disableNextButton}
 				onClick={() => onNextClick()}
 			>

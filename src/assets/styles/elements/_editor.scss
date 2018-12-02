@@ -6,6 +6,10 @@
 	overflow-y: auto;
 	border-radius: $border-radius;
 	@include background-color("background-editor");
+
+	textarea {
+		background: none;
+	}
 }
 
 .editor-title {

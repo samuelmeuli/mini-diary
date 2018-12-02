@@ -90,7 +90,13 @@ export default class PasswordCreation extends Component {
 						password1 && password2 && !passwordsMatch
 						&& <p>Passwords do not match</p>
 					}
-					<button type="submit" disabled={!passwordsMatch}>Save</button>
+					<button
+						type="submit"
+						disabled={!passwordsMatch}
+						className="button"
+					>
+						Save
+					</button>
 				</form>
 			</PageCentered>
 		);

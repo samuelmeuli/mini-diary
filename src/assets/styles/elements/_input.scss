@@ -1,17 +1,18 @@
 button,
 input,
 textarea {
+	background: none;
 	border: 0;
 	outline: none;
 }
 
-button,
+.button,
 input {
 	padding: (0.75 * $spacing-small) $spacing-small;
 	border-radius: $border-radius;
 }
 
-button {
+.button {
 	transition: $transition;
 
 	&:not(.button-invisible) {
@@ -20,10 +21,6 @@ button {
 		&:hover {
 			@include background-color("button-hover");
 		}
-	}
-
-	&:not([disabled]) {
-		cursor: pointer;
 	}
 }
 
@@ -36,6 +33,11 @@ button {
 	&:not([disabled]):hover {
 		@include color("text-faded");
 	}
+}
+
+input,
+textarea {
+	@include background-color("background-editor");
 }
 
 textarea {

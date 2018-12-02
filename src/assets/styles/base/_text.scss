@@ -19,12 +19,12 @@ textarea {
 	color: inherit;
 }
 
-button,
+.button,
 input {
 	line-height: 1;
 }
 
-button {
+.button {
 	font-weight: $font-weight-bold;
 
 	&:not(.button-invisible) {

@@ -34,7 +34,7 @@ export default class ViewSelector extends PureComponent {
 				<div>
 					<button
 						type="button"
-						className="button-invisible"
+						className="button button-invisible"
 						onClick={() => setView('grid')}
 						disabled={view === 'grid'}
 					>
@@ -42,7 +42,7 @@ export default class ViewSelector extends PureComponent {
 					</button>
 					<button
 						type="button"
-						className="button-invisible"
+						className="button button-invisible"
 						onClick={() => setView('list')}
 						disabled={view === 'list'}
 					>
@@ -51,7 +51,7 @@ export default class ViewSelector extends PureComponent {
 				</div>
 				<button
 					type="button"
-					className="button-invisible button-today"
+					className="button button-invisible button-today"
 					onClick={this.onTodaySelection}
 				>
 					<SimpleSvg src={iconToday} title="Today" height={20} width={20} />

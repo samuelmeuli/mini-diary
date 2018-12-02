@@ -58,7 +58,7 @@ export default class PasswordPrompt extends Component {
 						autoFocus
 						required
 					/>
-					<button type="submit">Unlock</button>
+					<button type="submit" className="button">Unlock</button>
 				</form>
 				{
 					decryptStatus === 'error'

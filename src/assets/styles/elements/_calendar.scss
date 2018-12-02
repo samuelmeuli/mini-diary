@@ -54,12 +54,6 @@
 	border-radius: 50%;
 	transition: $transition;
 
-	&:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-		&:hover {
-			cursor: pointer;
-		}
-	}
-
 	&:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):not(.DayPicker-Day--selected) {
 		&:hover {
 			@include background-color("background-hover");
