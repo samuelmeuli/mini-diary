@@ -16,8 +16,10 @@
 		"lint:js": "eslint ."
 	},
 	"dependencies": {
+		"elasticlunr": "^0.9.5",
 		"electron-debug": "^2.0.0",
 		"electron-settings": "^3.2.0",
+		"lodash.debounce": "^4.0.8",
 		"minireset.css": "^0.0.3",
 		"moment": "^2.22.2",
 		"prop-types": "^15.6.2",

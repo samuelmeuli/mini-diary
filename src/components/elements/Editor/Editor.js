@@ -7,7 +7,7 @@ import { getFilePath } from '../../../helpers/preferences';
 
 
 const propTypes = {
-	date: PropTypes.instanceOf(Date).isRequired,
+	dateSelected: PropTypes.instanceOf(Date).isRequired,
 	encryptFile: PropTypes.func.isRequired,
 	entries: PropTypes.objectOf(PropTypes.shape({
 		dateUpdated: PropTypes.string.isRequired,
@@ -32,8 +32,8 @@ export default class Editor extends Component {
 	}
 
 	static getDerivedStateFromProps(props, state) {
-		const { date: dateProps, entries } = props;
-		const { date: dateState } = state;
+		const { dateSelected: dateProps, entries } = props;
+		const { dateSelected: dateState } = state;
 		if (dateProps === dateState) {
 			return null;
 		}
@@ -44,7 +44,7 @@ export default class Editor extends Component {
 			({ text, title } = entries[dateFormatted]);
 		}
 		return {
-			date: dateProps,
+			dateSelected: dateProps,
 			text,
 			title
 		};
@@ -53,15 +53,15 @@ export default class Editor extends Component {
 	constructor(props) {
 		super(props);
 
-		const { date, entries } = props;
-		const dateFormatted = Editor.formatDate(date);
+		const { dateSelected, entries } = props;
+		const dateFormatted = Editor.formatDate(dateSelected);
 		let text = '';
 		let title = '';
 		if (entries[dateFormatted]) {
 			({ text, title } = entries[dateFormatted]);
 		}
 		this.state = {
-			date,
+			dateSelected,
 			text,
 			title
 		};
@@ -87,9 +87,9 @@ export default class Editor extends Component {
 	}
 
 	saveEntry() {
-		const { date, encryptFile, entries, hashedPassword } = this.props;
+		const { dateSelected, encryptFile, entries, hashedPassword } = this.props;
 		const { text, title } = this.state;
-		const dateFormatted = Editor.formatDate(date);
+		const dateFormatted = Editor.formatDate(dateSelected);
 		const filePath = getFilePath();
 
 		if (title === '' && text === '') {
@@ -118,8 +118,8 @@ export default class Editor extends Component {
 	}
 
 	render() {
-		const { date, text, title } = this.state;
-		const dateFormatted = moment(date).format('dddd, D MMMM YYYY');
+		const { dateSelected, text, title } = this.state;
+		const dateFormatted = moment(dateSelected).format('dddd, D MMMM YYYY');
 
 		// TODO save input when quitting app
 		return (

@@ -6,7 +6,7 @@ import { encryptFile } from '../../../redux/actions/fileActions';
 
 function mapStateToProps(state) {
 	return {
-		date: state.diary.date,
+		dateSelected: state.diary.dateSelected,
 		entries: state.file.entries,
 		hashedPassword: state.file.hashedPassword
 	};

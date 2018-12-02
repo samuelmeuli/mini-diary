@@ -17,6 +17,7 @@ input,
 textarea {
 	font: inherit;
 	color: inherit;
+	text-align: left;
 }
 
 .button,
@@ -30,6 +31,10 @@ input {
 	&:not(.button-invisible) {
 		color: #FFFFFF;
 	}
+}
+
+.button-invisible {
+	text-align: center;
 }
 
 h1,

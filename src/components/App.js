@@ -41,7 +41,7 @@ export default class App extends Component {
 
 		if (isLoading === true) {
 			// Looking for diary file
-			page = <p>Loading...</p>;
+			page = <p>Loading…</p>;
 		} else if (fileExists === false) {
 			// Diary file has not yet been created
 			page = <PasswordCreationContainer />;

@@ -4,11 +4,15 @@
 	height: 100%;
 	padding: $spacing-rel-small;
 	overflow-y: auto;
-	border-radius: $border-radius;
+	border-radius: $border-radius-input;
 	@include background-color("background-editor");
 
 	textarea {
 		background: none;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 

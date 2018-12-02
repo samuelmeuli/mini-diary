@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
-import GridNav from './GridNav';
+import CalendarNav from './CalendarNav';
 
 
 const propTypes = {
-	date: PropTypes.instanceOf(Date).isRequired,
+	dateSelected: PropTypes.instanceOf(Date).isRequired,
 	entries: PropTypes.objectOf(PropTypes.shape({
 		dateUpdated: PropTypes.string.isRequired,
 		text: PropTypes.string.isRequired
 	})).isRequired,
-	setDate: PropTypes.func.isRequired
+	setDateSelected: PropTypes.func.isRequired
 };
 
-export default class GridView extends PureComponent {
+export default class Calendar extends PureComponent {
 	constructor() {
 		super();
 
@@ -24,8 +24,8 @@ export default class GridView extends PureComponent {
 	}
 
 	componentDidUpdate() {
-		const { date } = this.props;
-		const newDate = moment(date);
+		const { dateSelected } = this.props;
+		const newDate = moment(dateSelected);
 		const today = moment();
 
 		if (newDate.isSame(today, 'day')) {
@@ -34,15 +34,15 @@ export default class GridView extends PureComponent {
 	}
 
 	onDateSelection(date) {
-		const { setDate } = this.props;
+		const { setDateSelected } = this.props;
 
 		if (moment(date).isSameOrBefore(moment(), 'day')) {
-			setDate(date);
+			setDateSelected(date);
 		}
 	}
 
 	render() {
-		const { date, entries } = this.props;
+		const { dateSelected, entries } = this.props;
 
 		const today = new Date();
 		const daysWithEntries = Object.keys(entries).map(entry => moment(entry).format('YYYY-MM-DD'));
@@ -56,13 +56,13 @@ export default class GridView extends PureComponent {
 				captionElement={() => null}
 				disabledDays={{ after: today }}
 				modifiers={{ hasEntry }}
-				navbarElement={<GridNav date={date} />}
+				navbarElement={<CalendarNav date={dateSelected} />}
 				onDayClick={this.onDateSelection}
-				selectedDays={date}
+				selectedDays={dateSelected}
 				toMonth={today}
 			/>
 		);
 	}
 }
 
-GridView.propTypes = propTypes;
+Calendar.propTypes = propTypes;

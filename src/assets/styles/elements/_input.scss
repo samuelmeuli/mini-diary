@@ -9,13 +9,19 @@ textarea {
 .button,
 input {
 	padding: (0.75 * $spacing-small) $spacing-small;
-	border-radius: $border-radius;
+}
+
+input {
+	border-radius: $border-radius-input;
 }
 
 .button {
 	transition: $transition;
 
 	&:not(.button-invisible) {
+		border-radius: $border-radius-button;
+		box-shadow: $box-shadow;
+
 		@include background-color("button");
 
 		&:hover {
@@ -46,8 +52,4 @@ textarea {
 	overflow: hidden;
 	resize: none;
 	background: none;
-}
-
-::-webkit-scrollbar {
-	display: none;
 }

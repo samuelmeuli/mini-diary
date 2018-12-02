@@ -16,7 +16,7 @@ const propTypes = {
 	onNextClick: PropTypes.func
 };
 
-export default function GridNav(props) {
+export default function CalendarNav(props) {
 	const {
 		month: monthDate,
 		onPreviousClick,
@@ -55,4 +55,4 @@ export default function GridNav(props) {
 	);
 }
 
-GridNav.propTypes = propTypes;
+CalendarNav.propTypes = propTypes;

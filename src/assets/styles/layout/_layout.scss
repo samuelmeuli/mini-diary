@@ -34,6 +34,13 @@ body,
 	align-items: center;
 	padding: $spacing-rel-large;
 
+	.sidebar {
+		display: flex;
+		width: 7 * $calendar-cell-size;
+		height: 100%;
+		flex-direction: column;
+	}
+
 	.editor {
 		flex: 1;
 		margin-left: $spacing-rel-large;

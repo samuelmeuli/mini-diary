@@ -46,7 +46,6 @@ app.on('ready', () => {
 	// Install dev tools
 	extensions.forEach((extension) => {
 		installExtension(extension)
-			.then(name => console.log(`Added extension "${name}"`))
 			.catch(err => console.error('Error installing extension: ', err));
 	});
 });

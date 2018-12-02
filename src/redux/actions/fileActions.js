@@ -1,5 +1,6 @@
 import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
 import hashPassword from '../../helpers/hashPassword';
+import { createIndex, readIndex, writeIndex } from '../../helpers/searchIndex';
 
 
 // Action creators
@@ -83,6 +84,7 @@ export function createEncryptedFile(filePath, password) {
 			writeFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
+			createIndex(entries, hashedPassword);
 		} catch (err) {
 			console.error(err);
 			dispatch(setEncryptError());
@@ -100,6 +102,7 @@ export function decryptFile(filePath, password) {
 			// On success, load diary entries and save password
 			dispatch(setDecryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
+			readIndex(entries, hashedPassword);
 		} catch (err) {
 			// Error reading diary file
 			if (!err.message.endsWith('bad decrypt')) {
@@ -124,6 +127,7 @@ export function encryptFile(filePath, hashedPassword, entries) {
 		try {
 			writeFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
+			writeIndex(hashedPassword); // TODO update index first
 		} catch (err) {
 			console.error(err);
 			dispatch(setEncryptError());

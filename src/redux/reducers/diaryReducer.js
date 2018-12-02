@@ -1,18 +1,25 @@
 function diary(state = {
-	date: new Date(),
-	view: 'grid'
+	dateSelected: new Date(),
+	searchKey: '',
+	searchResults: []
 }, action) {
 	switch (action.type) {
-		case 'SET_DATE': {
+		case 'SET_SELECTED_DATE': {
 			return {
 				...state,
-				date: action.payload.date
+				dateSelected: action.payload.dateSelected
 			};
 		}
-		case 'SET_VIEW': {
+		case 'SET_SEARCH_KEY': {
 			return {
 				...state,
-				view: action.payload.view
+				searchKey: action.payload.searchKey
+			};
+		}
+		case 'SET_SEARCH_RESULTS': {
+			return {
+				...state,
+				searchResults: action.payload.searchResults
 			};
 		}
 		default:
