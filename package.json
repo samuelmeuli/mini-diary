@@ -52,7 +52,7 @@
 		"sass-loader": "^7.0.3",
 		"style-loader": "^0.23.0",
 		"stylelint": "^9.6.0",
-		"stylelint-config-primer": "^2.2.10",
+		"stylelint-config-primer": "^3.0.1",
 		"svg-inline-loader": "^0.8.0",
 		"url-loader": "^1.1.1",
 		"webpack": "^4.16.1",
