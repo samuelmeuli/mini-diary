@@ -1,3 +1,5 @@
+root: true
+
 extends: airbnb
 
 env:
@@ -5,40 +7,43 @@ env:
   node: true
 
 rules:
-  # Default rules
+  # General rules
   capitalized-comments:
-    - 2
+    - error
     - always
     - ignoreConsecutiveComments: true
   comma-dangle:
-    - 2
+    - error
     - never
   indent:
-    - 2
+    - error
     - tab
     - SwitchCase: 1
-  no-tabs: 0
-  object-curly-newline: 0
+  no-console:
+    - error
+    - allow:
+        - error
+  no-tabs: off
+  object-curly-newline: off
   object-curly-spacing:
-    - 2
+    - error
     - always
     - objectsInObjects: false
 
-  # Default React rules
-  react/button-has-type: 2
+  # React rules
+  react/button-has-type: error
   react/jsx-filename-extension:
-    - 2
+    - error
     - extensions:
-      - .js
+        - .js
   react/jsx-indent:
-    - 2
+    - error
     - tab
   react/jsx-indent-props:
-    - 2
+    - error
     - tab
-  react/jsx-one-expression-per-line: 0
+  react/jsx-one-expression-per-line: off
 
   # Project-specific rules
-  import/prefer-default-export: 0
-  jsx-a11y/no-autofocus: 0
-  no-console: 0
+  import/prefer-default-export: off
+  jsx-a11y/no-autofocus: off
