@@ -26,7 +26,7 @@ input {
 }
 
 .button {
-	font-weight: $font-weight-bold;
+	font-weight: $font-weight-semibold;
 
 	&:not(.button-invisible) {
 		color: #FFFFFF;
@@ -40,7 +40,7 @@ input {
 h1,
 .editor-title {
 	font-size: 150%;
-	font-weight: $font-weight-bold;
+	font-weight: $font-weight-semibold;
 }
 
 abbr {
@@ -55,6 +55,10 @@ abbr {
 	text-align: center;
 }
 
+.date-selected p {
+	color: #FFFFFF !important;
+}
+
 .text-faded,
 .DayPicker-Weekday {
 	font-size: 80%;
@@ -67,7 +71,7 @@ abbr {
 }
 
 .DayPicker-Day--hasEntry {
-	font-weight: 700;
+	font-weight: $font-weight-bold;
 	@include color("button");
 }
 

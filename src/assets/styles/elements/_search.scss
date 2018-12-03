@@ -19,9 +19,4 @@
 
 .date-selected {
 	@include background-color("button");
-
-	p {
-		font-weight: $font-weight-bold;
-		color: #FFFFFF !important;
-	}
 }
