@@ -19,7 +19,8 @@ function onClosed() {
 function createMainWindow() {
 	const window = new BrowserWindow({
 		width: 1100,
-		height: 600
+		height: 600,
+		titleBarStyle: 'hiddenInset'
 	});
 
 	window.loadURL(`file://${__dirname}/dist/index.html`);

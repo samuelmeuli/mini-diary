@@ -56,6 +56,7 @@ export default class App extends Component {
 		return (
 			<ThemeContext.Provider value={theme}>
 				<div className={`app theme-${theme}`}>
+					<header />
 					{page}
 				</div>
 			</ThemeContext.Provider>
