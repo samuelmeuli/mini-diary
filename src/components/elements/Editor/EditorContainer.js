@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Editor from './Editor';
-import { encryptFile } from '../../../redux/actions/fileActions';
+import { updateFile } from '../../../redux/actions/fileActions';
 
 
 function mapStateToProps(state) {
@@ -14,8 +14,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		encryptFile: (filePath, hashedPassword, content) => (
-			dispatch(encryptFile(filePath, hashedPassword, content))
+		updateFile: (filePath, hashedPassword, dateFormatted, title, text) => (
+			dispatch(updateFile(filePath, hashedPassword, dateFormatted, title, text))
 		)
 	};
 }

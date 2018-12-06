@@ -64,13 +64,12 @@ export function readIndex(entries, hashedPassword) {
  * Update the specified index entry
  */
 export function updateIndex(date, entry) {
-	// TODO use this function
 	const doc = {
 		date,
 		title: entry.title,
-		entry: entry.text
+		text: entry.text
 	};
-	index.update(doc);
+	index.updateDoc(doc);
 }
 
 

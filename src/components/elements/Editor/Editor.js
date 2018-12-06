@@ -8,13 +8,13 @@ import { getFilePath } from '../../../helpers/preferences';
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
-	encryptFile: PropTypes.func.isRequired,
 	entries: PropTypes.objectOf(PropTypes.shape({
 		dateUpdated: PropTypes.string.isRequired,
 		text: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired
 	})).isRequired,
-	hashedPassword: PropTypes.string.isRequired
+	hashedPassword: PropTypes.string.isRequired,
+	updateFile: PropTypes.func.isRequired
 };
 
 export default class Editor extends Component {
@@ -87,34 +87,12 @@ export default class Editor extends Component {
 	}
 
 	saveEntry() {
-		const { dateSelected, encryptFile, entries, hashedPassword } = this.props;
+		const { dateSelected, hashedPassword, updateFile } = this.props;
 		const { text, title } = this.state;
 		const dateFormatted = Editor.formatDate(dateSelected);
 		const filePath = getFilePath();
 
-		if (title === '' && text === '') {
-			// Empty entry: Delete entry from file if it exists
-			if (dateFormatted in entries) {
-				const entriesUpdated = entries;
-				delete entriesUpdated[dateFormatted];
-				encryptFile(filePath, hashedPassword, entriesUpdated);
-			}
-		} else if (
-			!(dateFormatted in entries)
-			|| text !== entries[dateFormatted].text
-			|| title !== entries[dateFormatted].title
-		) {
-			// Non-empty and changed/missing entry: Write to file
-			const entriesUpdated = {
-				...entries,
-				[dateFormatted]: {
-					dateUpdated: new Date().toString(),
-					text,
-					title
-				}
-			};
-			encryptFile(filePath, hashedPassword, entriesUpdated);
-		}
+		updateFile(filePath, hashedPassword, dateFormatted, title, text);
 	}
 
 	render() {
