@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 
 import SimpleSvg from 'react-simple-svg';
+import iconClear from '../../../assets/icons/clear.svg';
 import iconToday from '../../../assets/icons/today.svg';
 
 
@@ -23,6 +24,7 @@ export default class Toolbar extends PureComponent {
 		// Function bindings
 		this.onChange = this.onChange.bind(this);
 		this.onTodaySelection = this.onTodaySelection.bind(this);
+		this.clearSearchKey = this.clearSearchKey.bind(this);
 		this.updateSearchKey = this.updateSearchKey.bind(this);
 		this.updateSearchKeyDebounced = debounce(this.updateSearchKey, 500);
 	}
@@ -44,6 +46,13 @@ export default class Toolbar extends PureComponent {
 		setDateSelected(today);
 	}
 
+	clearSearchKey() {
+		this.setState({
+			newSearchKey: ''
+		});
+		this.updateSearchKey('');
+	}
+
 	updateSearchKey(newSearchKey) {
 		const { search } = this.props;
 		search(newSearchKey);
@@ -53,12 +62,29 @@ export default class Toolbar extends PureComponent {
 		const { newSearchKey } = this.state;
 		return (
 			<div className="view-selector">
-				<input
-					type="search"
-					placeholder="Search…"
-					value={newSearchKey}
-					onChange={this.onChange}
-				/>
+				<div className="search-input-wrapper">
+					<input
+						type="search"
+						className="search-input"
+						placeholder="Search…"
+						value={newSearchKey}
+						onChange={this.onChange}
+					/>
+					{
+						newSearchKey !== ''
+							&& (
+								<span className="search-input-clear">
+									<button
+										type="button"
+										className="button button-invisible"
+										onClick={this.clearSearchKey}
+									>
+										<SimpleSvg src={iconClear} height={20} width={20} />
+									</button>
+								</span>
+							)
+					}
+				</div>
 				<button
 					type="button"
 					className="button button-invisible button-today"

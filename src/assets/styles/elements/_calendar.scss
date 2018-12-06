@@ -1,9 +1,7 @@
 .view-selector {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: $spacing-large;
-	border-bottom: 0.5px solid;
-	@include border-color("text-disabled");
+	margin-bottom: 1.5 * $spacing-large;
 }
 
 .DayPicker * {
