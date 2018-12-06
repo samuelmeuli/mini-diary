@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -17,7 +17,7 @@ const propTypes = {
 	updateFile: PropTypes.func.isRequired
 };
 
-export default class Editor extends Component {
+export default class Editor extends PureComponent {
 	static formatDate(date) {
 		return moment(date).format('YYYY-MM-DD');
 	}

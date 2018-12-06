@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { getFilePath } from '../../../helpers/preferences';
 import PageCentered from '../PageCentered';
@@ -10,7 +10,7 @@ const propTypes = {
 	decryptStatus: PropTypes.string.isRequired
 };
 
-export default class PasswordPrompt extends Component {
+export default class PasswordPrompt extends PureComponent {
 	constructor() {
 		super();
 
