@@ -1,21 +1,27 @@
 // Colors
 $themes: (
 	"light": (
-		"background": #F0F0F0,
-		"background-hover": #E2E2E2,
+		"background": #E7E7E7,
+		"background-hover": #DDDDDD,
 		"background-editor": #F9F9F9,
-		"button": #4E8BD2,
-		"button-hover": #447AB8,
+		"background-editor-hover": #F0F0F0,
+		"button-disabled": #E0E0E0,
+		"error": #D23939,
+		"main": #4E8BD2,
+		"main-hover": #447AB8,
 		"text": #353535,
-		"text-disabled": #CBCBCB,
+		"text-disabled": #C2C2C2,
 		"text-faded": #727272
 	),
 	"dark": (
 		"background": #242326,
 		"background-hover": #3F3F41,
 		"background-editor": #373739,
-		"button": #4C81BF,
-		"button-hover": #4371A7,
+		"background-editor-hover": #323234,
+		"button-disabled": #1D1D1D,
+		"error": #D23939,
+		"main": #4C81BF,
+		"main-hover": #4371A7,
 		"text": #D0D0D0,
 		"text-disabled": #4E4E4E,
 		"text-faded": #BDBDBD

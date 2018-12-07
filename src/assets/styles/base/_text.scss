@@ -12,6 +12,33 @@ a {
 	text-decoration: none;
 }
 
+h1,
+.editor-title {
+	font-size: 150%;
+	font-weight: $font-weight-semibold;
+}
+
+.banner {
+	font-weight: $font-weight-semibold;
+
+	.svg-wrapper {
+		line-height: 0;
+	}
+
+	&.banner-error {
+		@include color("error");
+	}
+}
+
+abbr {
+	text-decoration: none;
+}
+
+.text-faded {
+	font-size: 80%;
+	@include color("text-faded");
+}
+
 button,
 input,
 textarea {
@@ -28,24 +55,26 @@ input {
 .button {
 	font-weight: $font-weight-semibold;
 
-	&:not(.button-invisible) {
+	&.button-main {
 		color: #FFFFFF;
+	}
+
+	&.button-invisible {
+		line-height: 0;
+		text-align: center;
+	}
+
+	&:disabled {
+		@include color("text-disabled");
 	}
 }
 
-.button-invisible {
-	line-height: 0;
-	text-align: center;
+.search-result .button {
+	line-height: $line-height;
 }
 
-h1,
-.editor-title {
-	font-size: 150%;
-	font-weight: $font-weight-semibold;
-}
-
-abbr {
-	text-decoration: none;
+.search-result .button-main * {
+	color: #FFFFFF;
 }
 
 .DayPicker-Months {
@@ -56,24 +85,18 @@ abbr {
 	text-align: center;
 }
 
-.date-selected p {
-	color: #FFFFFF !important;
-}
-
-.text-faded,
 .DayPicker-Weekday {
 	font-size: 80%;
 	@include color("text-faded");
 }
 
-:disabled,
 .DayPicker-Day--disabled {
 	@include color("text-disabled");
 }
 
 .DayPicker-Day--hasEntry {
 	font-weight: $font-weight-bold;
-	@include color("button");
+	@include color("main");
 }
 
 .DayPicker-Day--selected {

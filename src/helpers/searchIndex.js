@@ -30,7 +30,7 @@ export function createIndex(entries, hashedPassword) {
 	index.addField('title');
 	index.addField('text');
 	index.setRef('date');
-	index.saveDocument(false);
+	index.saveDocument(true);
 
 	// Index all existing diary entries
 	Object.entries(entries).forEach(([date, entry]) => {

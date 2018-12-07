@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
 import { getFilePath } from '../../../helpers/preferences';
+import Banner from '../../elements/Banner';
 import PageCentered from '../PageCentered';
 
 
@@ -49,7 +50,7 @@ export default class PasswordPrompt extends PureComponent {
 
 		return (
 			<PageCentered>
-				<form onSubmit={this.onSubmit}>
+				<form className="password-prompt-form" onSubmit={this.onSubmit}>
 					<input
 						type="password"
 						value={password}
@@ -58,11 +59,13 @@ export default class PasswordPrompt extends PureComponent {
 						autoFocus
 						required
 					/>
-					<button type="submit" className="button">Unlock</button>
+					<button type="submit" className="button button-main">
+						Unlock
+					</button>
 				</form>
 				{
 					decryptStatus === 'error'
-					&& <p>Incorrect password</p>
+						&& <Banner type="error" message="Incorrect password" />
 				}
 			</PageCentered>
 		);

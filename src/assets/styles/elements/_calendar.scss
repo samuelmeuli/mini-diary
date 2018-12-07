@@ -55,10 +55,10 @@
 	}
 
 	&.DayPicker-Day--selected:not(.DayPicker-Day--outside) {
-		@include background-color("button");
+		@include background-color("main");
 
 		&:hover {
-			@include background-color("button-hover");
+			@include background-color("main-hover");
 		}
 	}
 }

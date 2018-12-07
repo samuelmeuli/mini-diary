@@ -16,28 +16,41 @@ input {
 }
 
 .button {
+	border-radius: $border-radius-button;
+	box-shadow: $box-shadow;
 	transition: $transition;
+	@include background-color("background-editor");
 
-	&:not(.button-invisible) {
-		border-radius: $border-radius-button;
-		box-shadow: $box-shadow;
+	&:not(.button-invisible):hover {
+		@include background-color("background-editor-hover");
+	}
 
-		@include background-color("button");
+	&.button-main {
+		&:not([disabled]) {
+			@include background-color("main");
 
-		&:hover {
-			@include background-color("button-hover");
+			&:hover {
+				@include background-color("main-hover");
+			}
+		}
+
+		&:disabled {
+			box-shadow: none;
+			@include background-color("button-disabled");
 		}
 	}
-}
 
-.button-invisible {
-	width: $calendar-cell-size;
-	height: $calendar-cell-size;
-	padding: 0;
-	background: none;
+	&.button-invisible {
+		width: $calendar-cell-size;
+		height: $calendar-cell-size;
+		padding: 0;
+		background: none;
+		border-radius: 0;
+		box-shadow: none;
 
-	&:not([disabled]):hover {
-		@include color("text-faded");
+		&:not([disabled]):hover {
+			@include color("text-faded");
+		}
 	}
 }
 
@@ -52,4 +65,9 @@ textarea {
 	overflow: hidden;
 	resize: none;
 	background: none;
+}
+
+.password-creation-form input,
+.password-prompt-form input {
+	margin: $spacing-large $spacing-small 0 0;
 }

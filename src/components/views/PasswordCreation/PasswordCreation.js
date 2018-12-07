@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { getFilePath } from '../../../helpers/preferences';
+import Banner from '../../elements/Banner';
 import PageCentered from '../PageCentered';
 
 
@@ -56,7 +57,7 @@ export default class PasswordCreation extends PureComponent {
 			createEncryptedFile(filePath, password1);
 			testFileExists(filePath);
 		} else {
-			throw Error('Passwords do not match');
+			throw Banner('Passwords do not match');
 		}
 	}
 
@@ -66,38 +67,34 @@ export default class PasswordCreation extends PureComponent {
 		return (
 			<PageCentered>
 				<p>Please choose a password for your diary.</p>
-				<p>
-					Make sure to write this password down. If you forget it, you will no longer be able to
-					access your diary entries.
-				</p>
-				<form onSubmit={this.onSubmit}>
+				<form className="password-creation-form" onSubmit={this.onSubmit}>
 					<input
 						type="password"
 						value={password1}
-						onChange={this.onChangePassword1}
-						placeholder="password"
+						placeholder="Password"
 						autoFocus
 						required
+						onChange={this.onChangePassword1}
 					/>
 					<input
 						type="password"
 						value={password2}
-						onChange={this.onChangePassword2}
-						placeholder="password"
+						placeholder="Repeat password"
 						required
+						onChange={this.onChangePassword2}
 					/>
-					{
-						password1 && password2 && !passwordsMatch
-						&& <p>Passwords do not match</p>
-					}
 					<button
 						type="submit"
-						disabled={!passwordsMatch}
-						className="button"
+						disabled={!password1 || !password2 || !passwordsMatch}
+						className="button button-main"
 					>
-						Save
+						Create diary
 					</button>
 				</form>
+				{
+					password1 && password2 && !passwordsMatch
+						&& <Banner type="error" message="Passwords do not match" />
+				}
 			</PageCentered>
 		);
 	}

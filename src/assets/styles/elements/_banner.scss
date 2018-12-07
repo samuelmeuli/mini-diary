@@ -1,0 +1,12 @@
+.banner {
+	display: inline-flex;
+	align-items: center;
+
+	.svg-wrapper {
+		margin-right: 8px;
+	}
+}
+
+.banner-error {
+	margin-top: $spacing-large;
+}

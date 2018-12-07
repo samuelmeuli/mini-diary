@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import Banner from '../../Banner';
+
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
@@ -19,7 +21,7 @@ export default class Search extends PureComponent {
 
 		let resultsEl;
 		if (searchResults.length === 0) {
-			resultsEl = <p>No results</p>;
+			resultsEl = <Banner type="info" message="No results" className="banner-no-results" />;
 		} else {
 			resultsEl = searchResults.map((result) => {
 				const dateFormatted = result.ref;
@@ -28,8 +30,12 @@ export default class Search extends PureComponent {
 				const { title } = entries[dateFormatted];
 				const isSelected = date.isSame(dateSelected, 'day');
 				return (
-					<li key={result.ref} className={`search-result ${isSelected ? 'date-selected' : ''}`}>
-						<button type="button" onClick={() => setDateSelected(date.toDate())}>
+					<li key={result.ref} className="search-result">
+						<button
+							type="button"
+							className={`button ${isSelected ? 'button-main' : ''}`}
+							onClick={() => setDateSelected(date.toDate())}
+						>
 							<p className="search-date text-faded">
 								{dateText}
 							</p>
