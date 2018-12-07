@@ -1,5 +1,6 @@
 import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
 import hashPassword from '../../helpers/hashPassword';
+import { getMetadata } from '../../helpers/metadata';
 import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/searchIndex';
 
 
@@ -77,10 +78,7 @@ export function testFileExists(filePath) {
 export function createEncryptedFile(filePath, password) {
 	const entries = {};
 	const content = {
-		metadata: {
-			application: 'application', // TODO get app name
-			version: 'version' // TODO get version
-		},
+		metadata: getMetadata(),
 		entries
 	};
 	return (dispatch) => {
@@ -122,10 +120,7 @@ export function decryptFile(filePath, password) {
 
 function encryptFile(filePath, hashedPassword, entries) {
 	const content = {
-		metadata: {
-			application: 'application', // TODO get app name
-			version: 'version' // TODO get version
-		},
+		metadata: getMetadata(),
 		entries
 	};
 	return (dispatch) => {
