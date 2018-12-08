@@ -26,6 +26,7 @@ export default class PasswordPrompt extends PureComponent {
 
 	onChange(e) {
 		this.setState({
+			isSubmitted: false,
 			password: e.target.value
 		});
 	}
@@ -36,17 +37,26 @@ export default class PasswordPrompt extends PureComponent {
 	 */
 	onSubmit(e) {
 		e.preventDefault();
-
 		const { decrypt } = this.props;
 		const { password } = this.state;
 		const filePath = getFilePath();
 
+		// Try to decrypt the diary file - this.props.decryptStatus will be updated depending on whether
+		// decryption was successful or unsuccessful
 		decrypt(filePath, password);
+
+		// Display error if password is incorrect
+		this.setState({
+			isSubmitted: true
+		});
+
+		// Select entered password if it is incorrect
+		this.input.select();
 	}
 
 	render() {
 		const { decryptStatus } = this.props;
-		const { password } = this.state;
+		const { isSubmitted, password } = this.state;
 
 		return (
 			<PageCentered>
@@ -58,15 +68,20 @@ export default class PasswordPrompt extends PureComponent {
 						placeholder="Password"
 						autoFocus
 						required
+						ref={(i) => {
+							this.input = i;
+						}}
 					/>
 					<button type="submit" className="button button-main">
 						Unlock
 					</button>
 				</form>
-				{
-					decryptStatus === 'error'
-						&& <Banner type="error" message="Incorrect password" />
-				}
+				<div className="password-prompt-banner">
+					{
+						isSubmitted && decryptStatus === 'error'
+							&& <Banner type="error" message="Incorrect password" />
+					}
+				</div>
 			</PageCentered>
 		);
 	}

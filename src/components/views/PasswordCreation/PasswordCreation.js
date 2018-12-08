@@ -57,7 +57,7 @@ export default class PasswordCreation extends PureComponent {
 			createEncryptedFile(filePath, password1);
 			testFileExists(filePath);
 		} else {
-			throw Banner('Passwords do not match');
+			throw Error('Passwords do not match');
 		}
 	}
 
@@ -91,10 +91,12 @@ export default class PasswordCreation extends PureComponent {
 						Create diary
 					</button>
 				</form>
-				{
-					password1 && password2 && !passwordsMatch
-						&& <Banner type="error" message="Passwords do not match" />
-				}
+				<div className="password-creation-banner">
+					{
+						password1 && password2 && !passwordsMatch
+							&& <Banner type="error" message="Passwords do not match" />
+					}
+				</div>
 			</PageCentered>
 		);
 	}

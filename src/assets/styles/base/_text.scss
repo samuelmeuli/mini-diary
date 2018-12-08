@@ -28,6 +28,10 @@ h1,
 	&.banner-error {
 		@include color("error");
 	}
+
+	&.banner-no-results {
+		@include color("text-faded");
+	}
 }
 
 abbr {

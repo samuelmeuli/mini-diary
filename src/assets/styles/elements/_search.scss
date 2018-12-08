@@ -30,12 +30,6 @@
 	margin-top: $spacing-small;
 }
 
-.banner-no-results {
-	width: 100%;
-	justify-content: center;
-	@include color("text-faded");
-}
-
 ::-webkit-search-cancel-button {
 	-webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
 }
