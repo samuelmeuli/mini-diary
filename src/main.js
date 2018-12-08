@@ -1,13 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
-const {
-	default: installExtension,
-	REACT_DEVELOPER_TOOLS,
-	REDUX_DEVTOOLS
-} = require('electron-devtools-installer');
 const { getWindow, setWindow } = require('./main/window');
-
-const extensions = [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS];
 
 function onClosed() {
 	// Dereference the window
@@ -18,9 +11,13 @@ function createMainWindow() {
 	const window = new BrowserWindow({
 		width: 1100,
 		height: 600,
+		show: false,
 		titleBarStyle: 'hiddenInset'
 	});
-	window.loadURL(`file://${__dirname}/../dist/index.html`);
+	window.loadURL(`file://${__dirname}/index.html`);
+	window.once('ready-to-show', () => {
+		window.show();
+	});
 	window.on('closed', onClosed);
 
 	// Load menu items
@@ -45,10 +42,4 @@ app.on('activate', () => {
 app.on('ready', () => {
 	const window = createMainWindow();
 	setWindow(window);
-
-	// Install dev tools
-	extensions.forEach((extension) => {
-		installExtension(extension)
-			.catch(err => console.error('Error installing extension: ', err));
-	});
 });

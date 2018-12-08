@@ -4,5 +4,8 @@
 # Node
 node_modules/
 
-# Webpack
+# Webpack (React bundle)
+bundle/
+
+# electron-builder
 dist/

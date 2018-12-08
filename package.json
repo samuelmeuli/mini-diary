@@ -1,18 +1,23 @@
 {
 	"name": "mini-diary",
-	"productName": "Mini Diary",
 	"version": "0.1.0",
-	"main": "src/main.js",
-	"private": true,
+	"description": "TODO",
+	"main": "bundle/main.js",
+	"author": "Samuel Meuli <me@samuelmeuli.com>",
+	"repository": "github:samuelmeuli/mini-diary",
+	"homepage": "https://minidiary.app",
 	"license": "MIT",
+	"private": true,
 	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
 		"start": "npm-run-all start:webpack --parallel start:webpack-watch start:electron",
 		"start:webpack": "webpack --mode development",
 		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
+		"pack": "electron-builder --dir",
 		"build": "run-s build:*",
 		"build:webpack": "webpack --mode production",
-		"build:electron": "electron-packager . --out=build --all --asar --overwrite",
+		"build:electron": "electron-builder",
 		"lint": "run-s lint:*",
 		"lint:css": "stylelint '**/*.scss' --syntax scss",
 		"lint:js": "eslint ."
@@ -40,10 +45,10 @@
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.0.0",
 		"babel-loader": "^8.0.4",
+		"copy-webpack-plugin": "^4.6.0",
 		"css-loader": "^1.0.0",
 		"electron": "^3.0.2",
-		"electron-devtools-installer": "^2.2.4",
-		"electron-packager": "^12.1.0",
+		"electron-builder": "^20.38.2",
 		"eslint": "^5.6.1",
 		"eslint-config-airbnb": "^17.0.0",
 		"eslint-plugin-import": "^2.13.0",
@@ -61,6 +66,10 @@
 		"url-loader": "^1.1.1",
 		"webpack": "^4.16.1",
 		"webpack-cli": "^3.0.8"
+	},
+	"build": {
+		"appId": "com.samuelmeuli.minidiary",
+		"productName": "Mini Diary"
 	},
 	"husky": {
 		"hooks": {
