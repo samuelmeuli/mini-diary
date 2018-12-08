@@ -9,16 +9,6 @@ export function fileExists(filePath) {
 	return fs.existsSync(filePath);
 }
 
-export function moveFile(oldFilePath, newFilePath) {
-	if (!oldFilePath) {
-		throw Error('oldFilePath not specified');
-	}
-	if (!newFilePath) {
-		throw Error('newFilePath not specified');
-	}
-	fs.renameSync(oldFilePath, newFilePath);
-}
-
 export function readFile(filePath, hashedPassword) {
 	if (!filePath) {
 		throw Error('filePath not specified');
