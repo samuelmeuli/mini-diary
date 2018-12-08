@@ -73,6 +73,10 @@ input {
 	}
 }
 
+legend {
+	font-weight: $font-weight-bold;
+}
+
 .search-result .button {
 	line-height: $line-height;
 }

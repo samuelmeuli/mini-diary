@@ -5,14 +5,16 @@ import Diary from './views/Diary/Diary';
 import { getFilePath } from '../helpers/preferences';
 import PasswordCreationContainer from './views/PasswordCreation/PasswordCreationContainer';
 import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
+import Preferences from './views/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
 
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
 	hashedPassword: PropTypes.string.isRequired,
+	showPreferences: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.string.isRequired
+	theme: PropTypes.oneOf(['light', 'dark']).isRequired
 };
 
 export default class App extends Component {
@@ -35,7 +37,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { fileExists, hashedPassword, theme } = this.props;
+		const { fileExists, hashedPassword, showPreferences, theme } = this.props;
 		const { isLoading } = this.state;
 		let page;
 
@@ -58,6 +60,10 @@ export default class App extends Component {
 				<div className={`app theme-${theme}`}>
 					<header />
 					{page}
+					{
+						showPreferences
+							&& <Preferences isLocked={fileExists === false || hashedPassword === ''} />
+					}
 				</div>
 			</ThemeContext.Provider>
 		);

@@ -9,6 +9,12 @@
 	}
 }
 
-.banner-error {
+.password-creation-banner,
+.password-prompt-banner {
 	margin-top: $spacing-large;
+}
+
+.password-update-banner {
+	height: 1em;
+	margin-top: $spacing-small;
 }

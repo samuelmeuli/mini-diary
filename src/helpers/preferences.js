@@ -3,7 +3,7 @@ const settings = window.require('electron-settings');
 const path = require('path');
 
 
-const FILE_NAME = 'minidiary.txt';
+const FILE_NAME = 'mini-diary.txt';
 
 
 export function getFilePath() {
@@ -19,7 +19,7 @@ export function getFilePath() {
 	return path.resolve(fileDir, FILE_NAME);
 }
 
-export function setFilePath(filePath) {
+export function setFileDir(filePath) {
 	settings.set('filePath', filePath);
 }
 

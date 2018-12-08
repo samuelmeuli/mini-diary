@@ -8,6 +8,7 @@ function mapStateToProps(state) {
 	return {
 		fileExists: state.file.fileExists,
 		hashedPassword: state.file.hashedPassword,
+		showPreferences: state.app.showPreferences,
 		theme: state.app.theme
 	};
 }

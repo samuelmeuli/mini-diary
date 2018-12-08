@@ -7,6 +7,7 @@ body,
 }
 
 .app {
+	position: relative;
 	@include background-color("background");
 }
 

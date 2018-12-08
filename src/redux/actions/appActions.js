@@ -8,3 +8,12 @@ export function setTheme(theme) {
 		}
 	};
 }
+
+export function setPreferencesVisibility(showPreferences) {
+	return {
+		type: 'SET_PREFERENCES_VISIBILITY',
+		payload: {
+			showPreferences
+		}
+	};
+}

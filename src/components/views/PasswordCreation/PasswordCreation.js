@@ -17,8 +17,7 @@ export default class PasswordCreation extends PureComponent {
 
 		this.state = {
 			password1: '',
-			password2: '',
-			passwordsMatch: false
+			password2: ''
 		};
 
 		// Function bindings
@@ -29,21 +28,17 @@ export default class PasswordCreation extends PureComponent {
 
 	onChangePassword1(e) {
 		const password1 = e.target.value;
-		const { password2 } = this.state;
 
 		this.setState({
-			password1,
-			passwordsMatch: password1 === password2
+			password1
 		});
 	}
 
 	onChangePassword2(e) {
 		const password2 = e.target.value;
-		const { password1 } = this.state;
 
 		this.setState({
-			password2,
-			passwordsMatch: password1 === password2
+			password2
 		});
 	}
 
@@ -62,7 +57,9 @@ export default class PasswordCreation extends PureComponent {
 	}
 
 	render() {
-		const { passwordsMatch, password1, password2 } = this.state;
+		const { password1, password2 } = this.state;
+
+		const passwordsMatch = password1 === password2;
 
 		return (
 			<PageCentered>
@@ -88,7 +85,7 @@ export default class PasswordCreation extends PureComponent {
 						disabled={!password1 || !password2 || !passwordsMatch}
 						className="button button-main"
 					>
-						Create diary
+						Set password
 					</button>
 				</form>
 				<div className="password-creation-banner">

@@ -1,0 +1,50 @@
+fieldset {
+	margin-top: $spacing-large;
+	border: 0;
+}
+
+legend {
+	margin-bottom: $spacing-small / 2;
+}
+
+.radio {
+	margin-right: 8px;
+}
+
+
+// Start screens
+
+.password-creation-form input,
+.password-prompt-form input {
+	margin: $spacing-large $spacing-small 0 0;
+}
+
+.password-creation-banner,
+.password-prompt-banner {
+	position: relative;
+
+	.banner {
+		position: absolute;
+	}
+}
+
+
+// Preferences
+
+.fieldset-theme label {
+	margin-right: $spacing-small;
+}
+
+.fieldset-file-dir button {
+	margin-top: $spacing-small / 2;
+}
+
+.fieldset-password {
+	input {
+		margin-right: $spacing-small / 2;
+	}
+
+	button {
+		margin-top: $spacing-small / 2;
+	}
+}
