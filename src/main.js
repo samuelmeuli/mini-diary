@@ -5,13 +5,13 @@ const {
 	REACT_DEVELOPER_TOOLS,
 	REDUX_DEVTOOLS
 } = require('electron-devtools-installer');
+const { getWindow, setWindow } = require('./main/window');
 
-let mainWindow; // Prevent window from being garbage collected
 const extensions = [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS];
 
 function onClosed() {
 	// Dereference the window
-	mainWindow = null;
+	setWindow(null);
 }
 
 function createMainWindow() {
@@ -25,6 +25,7 @@ function createMainWindow() {
 
 	// Load menu items
 	require('./main/menu');
+
 	return window;
 }
 
@@ -35,13 +36,15 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
+	if (!getWindow()) {
+		const window = createMainWindow();
+		setWindow(window);
 	}
 });
 
 app.on('ready', () => {
-	mainWindow = createMainWindow();
+	const window = createMainWindow();
+	setWindow(window);
 
 	// Install dev tools
 	extensions.forEach((extension) => {

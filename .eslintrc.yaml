@@ -45,5 +45,7 @@ rules:
   react/jsx-one-expression-per-line: off
 
   # Project-specific rules
+  global-require: off
+  import/no-extraneous-dependencies: off
   import/prefer-default-export: off
   jsx-a11y/no-autofocus: off

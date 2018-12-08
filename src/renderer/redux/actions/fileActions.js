@@ -66,6 +66,12 @@ function setHashedPassword(hashedPassword) {
 	};
 }
 
+export function lock() {
+	return {
+		type: 'LOCK'
+	};
+}
+
 
 // Thunks
 

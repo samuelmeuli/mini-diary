@@ -1,7 +1,7 @@
 function file(state = {
 	decryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
 	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
-	entries: [],
+	entries: {},
 	fileExists: false,
 	hashedPassword: ''
 }, action) {
@@ -42,6 +42,15 @@ function file(state = {
 				...state,
 				encryptStatus: 'success',
 				entries: action.payload.entries
+			};
+		}
+		case 'LOCK': {
+			return {
+				...state,
+				decryptStatus: 'idle',
+				encryptStatus: 'idle',
+				entries: {},
+				hashedPassword: ''
 			};
 		}
 		case 'SET_FILE_EXISTS': {
