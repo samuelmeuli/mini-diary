@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
 
 import { getFilePath } from '../../../helpers/preferences';
+
+const AUTOSAVE_INTERVAL = 500;
 
 
 const propTypes = {
@@ -70,6 +73,7 @@ export default class Editor extends PureComponent {
 		this.onTextChange = this.onTextChange.bind(this);
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
+		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
 	}
 
 	onTextChange(e) {
@@ -77,6 +81,7 @@ export default class Editor extends PureComponent {
 		this.setState({
 			text
 		});
+		this.saveEntryDebounced();
 	}
 
 	onTitleChange(e) {
@@ -84,6 +89,7 @@ export default class Editor extends PureComponent {
 		this.setState({
 			title
 		});
+		this.saveEntryDebounced();
 	}
 
 	saveEntry() {
@@ -99,7 +105,6 @@ export default class Editor extends PureComponent {
 		const { dateSelected, text, title } = this.state;
 		const dateFormatted = moment(dateSelected).format('dddd, D MMMM YYYY');
 
-		// TODO save input when quitting app
 		return (
 			<form className="editor">
 				<p className="text-faded">{dateFormatted}</p>
