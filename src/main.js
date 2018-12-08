@@ -1,5 +1,3 @@
-/* eslint import/no-extraneous-dependencies: 0 */
-
 const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
 const {
@@ -22,10 +20,11 @@ function createMainWindow() {
 		height: 600,
 		titleBarStyle: 'hiddenInset'
 	});
-
-	window.loadURL(`file://${__dirname}/dist/index.html`);
+	window.loadURL(`file://${__dirname}/../dist/index.html`);
 	window.on('closed', onClosed);
 
+	// Load menu items
+	require('./main/menu');
 	return window;
 }
 

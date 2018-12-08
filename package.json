@@ -1,16 +1,18 @@
 {
 	"name": "mini-diary",
+	"productName": "Mini Diary",
 	"version": "0.1.0",
-	"main": "main.js",
+	"main": "src/main.js",
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"start": "run-p start:*",
-		"start:webpack": "webpack --mode development --watch",
+		"start": "npm-run-all start:webpack --parallel start:webpack-watch start:electron",
+		"start:webpack": "webpack --mode development",
+		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
 		"build": "run-s build:*",
 		"build:webpack": "webpack --mode production",
-		"build:electron": "electron-packager . --out=dist --all --asar --overwrite",
+		"build:electron": "electron-packager . --out=build --all --asar --overwrite",
 		"lint": "run-s lint:*",
 		"lint:css": "stylelint '**/*.scss' --syntax scss",
 		"lint:js": "eslint ."
