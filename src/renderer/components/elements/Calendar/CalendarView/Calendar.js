@@ -4,6 +4,7 @@ import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
 import CalendarNav from './CalendarNav';
+import { getFirstDayOfWeek } from '../../../../helpers/dateUtils';
 
 
 const propTypes = {
@@ -18,6 +19,9 @@ const propTypes = {
 export default class Calendar extends PureComponent {
 	constructor() {
 		super();
+
+		// Determine first day of the week for calendar view
+		this.firstDayOfWeek = getFirstDayOfWeek();
 
 		// Function bindings
 		this.onDateSelection = this.onDateSelection.bind(this);
@@ -55,6 +59,7 @@ export default class Calendar extends PureComponent {
 				}}
 				captionElement={() => null}
 				disabledDays={{ after: today }}
+				firstDayOfWeek={this.firstDayOfWeek}
 				modifiers={{ hasEntry }}
 				navbarElement={<CalendarNav date={dateSelected} />}
 				onDayClick={this.onDateSelection}
