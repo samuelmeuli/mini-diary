@@ -5,6 +5,8 @@ import store from '../redux/store';
 const { ipcRenderer } = window.require('electron');
 
 
+// Listeners
+
 ipcRenderer.on('lock', () => {
 	store.dispatch(lock());
 });
@@ -12,3 +14,10 @@ ipcRenderer.on('lock', () => {
 ipcRenderer.on('showPreferences', () => {
 	store.dispatch(setPreferencesVisibility(true));
 });
+
+
+// Senders
+
+export function toggleWindowSize() {
+	ipcRenderer.send('toggleWindowSize');
+}

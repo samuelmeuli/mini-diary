@@ -7,6 +7,7 @@ import PasswordCreationContainer from './views/PasswordCreation/PasswordCreation
 import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
 import Preferences from './views/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
+import { toggleWindowSize } from '../electron/rendererIpc';
 import { getSystemTheme } from '../electron/systemTheme';
 
 
@@ -61,7 +62,7 @@ export default class App extends Component {
 
 		return (
 			<ThemeContext.Provider value={theme}>
-				<div className={`app theme-${theme}`}>
+				<div className={`app theme-${theme}`} onDoubleClick={toggleWindowSize}>
 					<header />
 					{page}
 					{
