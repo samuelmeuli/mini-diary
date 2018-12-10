@@ -1,6 +1,9 @@
 # OS
 .DS_Store
 
+# Logs
+*.log
+
 # Node
 node_modules/
 
