@@ -1,6 +1,6 @@
-import { setPreferencesVisibility } from './redux/actions/appActions';
-import { lock } from './redux/actions/fileActions';
-import store from './redux/store';
+import { setPreferencesVisibility } from '../redux/actions/appActions';
+import { lock } from '../redux/actions/fileActions';
+import store from '../redux/store';
 
 const { ipcRenderer } = window.require('electron');
 

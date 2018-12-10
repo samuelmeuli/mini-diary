@@ -69,7 +69,10 @@
 	},
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
-		"productName": "Mini Diary"
+		"productName": "Mini Diary",
+		"mac": {
+			"darkModeSupport": true
+		}
 	},
 	"husky": {
 		"hooks": {

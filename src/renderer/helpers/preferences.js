@@ -1,10 +1,15 @@
+import path from 'path';
+import { supportsSystemTheme } from '../electron/systemTheme';
+
 const { app } = window.require('electron').remote;
 const settings = window.require('electron-settings');
-const path = require('path');
 
-
+const DEFAULT_THEME = 'light';
 const FILE_NAME = 'mini-diary.txt';
+const THEMES = ['auto', 'light', 'dark'];
 
+
+// Path to diary file
 
 export function getFilePath() {
 	// Get path of file directory (or set it to default)
@@ -23,20 +28,23 @@ export function setFileDir(filePath) {
 	settings.set('filePath', filePath);
 }
 
+
+// Theme
+
 export function getTheme() {
 	let theme;
 	if (settings.has('theme')) {
 		theme = settings.get('theme');
 	} else {
-		theme = 'dark';
-		settings.set('theme', 'dark');
+		theme = supportsSystemTheme() ? 'auto' : DEFAULT_THEME;
+		settings.set('theme', theme);
 	}
 	return theme;
 }
 
 export function setTheme(theme) {
-	if (theme !== 'light' && theme !== 'dark') {
-		throw Error('Theme setting must either be "light" or "dark');
+	if (!THEMES.includes(theme)) {
+		throw Error(`Theme setting must be one of ${THEMES}`);
 	}
 	settings.set('theme', theme);
 }

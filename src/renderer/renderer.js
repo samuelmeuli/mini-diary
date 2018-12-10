@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import AppContainer from './components/AppContainer';
 import store from './redux/store';
 import './assets/styles/styles.scss';
-import './rendererIpc';
+
+// Listen to OS events and messages from main process
+import './electron/listeners';
+import './electron/rendererIpc';
 
 
 // Create 'root' div

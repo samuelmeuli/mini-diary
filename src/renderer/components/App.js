@@ -7,6 +7,7 @@ import PasswordCreationContainer from './views/PasswordCreation/PasswordCreation
 import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
 import Preferences from './views/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
+import { getSystemTheme } from '../electron/systemTheme';
 
 
 const propTypes = {
@@ -14,7 +15,7 @@ const propTypes = {
 	hashedPassword: PropTypes.string.isRequired,
 	showPreferences: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.oneOf(['light', 'dark']).isRequired
+	theme: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired
 };
 
 export default class App extends Component {
@@ -37,7 +38,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { fileExists, hashedPassword, showPreferences, theme } = this.props;
+		const { fileExists, hashedPassword, showPreferences, theme: themePref } = this.props;
 		const { isLoading } = this.state;
 		let page;
 
@@ -54,6 +55,9 @@ export default class App extends Component {
 			// Diary is unlocked
 			page = <Diary />;
 		}
+
+		// Determine theme ('light', 'dark', or system theme if 'auto')
+		const theme = themePref === 'auto' ? getSystemTheme() : themePref;
 
 		return (
 			<ThemeContext.Provider value={theme}>

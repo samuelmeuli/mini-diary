@@ -8,6 +8,7 @@ import {
 } from '../../../helpers/preferences';
 import Banner from '../../elements/Banner';
 import Overlay from '../Overlay';
+import { supportsSystemTheme } from '../../../electron/systemTheme';
 
 const { dialog } = window.require('electron').remote;
 
@@ -16,7 +17,7 @@ const propTypes = {
 	createEncryptedFile: PropTypes.func.isRequired,
 	isLocked: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+	theme: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired,
 	setPreferencesVisibility: PropTypes.func.isRequired,
 	setTheme: PropTypes.func.isRequired
 };
@@ -38,6 +39,7 @@ export default class Preferences extends PureComponent {
 		this.updatePassword = this.updatePassword.bind(this);
 		this.selectFileDir = this.selectFileDir.bind(this);
 		this.setTheme = this.setTheme.bind(this);
+		this.setThemeAuto = this.setThemeAuto.bind(this);
 		this.setThemeDark = this.setThemeDark.bind(this);
 		this.setThemeLight = this.setThemeLight.bind(this);
 	}
@@ -63,6 +65,10 @@ export default class Preferences extends PureComponent {
 
 		setThemePref(theme);
 		setTheme(theme);
+	}
+
+	setThemeAuto() {
+		this.setTheme('auto');
 	}
 
 	setThemeDark() {
@@ -124,6 +130,22 @@ export default class Preferences extends PureComponent {
 					{/* Theme */}
 					<fieldset className="fieldset-theme">
 						<legend>Theme</legend>
+						{
+							supportsSystemTheme()
+								&& (
+									<label htmlFor="radio-theme-auto">
+										<input
+											type="radio"
+											name="radio-theme-auto"
+											id="radio-theme-auto"
+											className="radio"
+											checked={theme === 'auto'}
+											onChange={this.setThemeAuto}
+										/>
+										Auto
+									</label>
+								)
+						}
 						<label htmlFor="radio-theme-light">
 							<input
 								type="radio"
