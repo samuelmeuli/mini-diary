@@ -14,13 +14,15 @@
 		"start:webpack": "webpack --mode development",
 		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
-		"pack": "electron-builder --dir",
-		"build": "run-s build:*",
-		"build:webpack": "webpack --mode production",
-		"build:electron": "electron-builder",
 		"lint": "run-s lint:*",
 		"lint:css": "stylelint '**/*.scss' --syntax scss",
-		"lint:js": "eslint ."
+		"lint:js": "eslint .",
+		"pack": "electron-builder --dir",
+		"build": "run-s build:*",
+		"build:clean": "rm -rf bundle dist",
+		"build:webpack": "webpack --mode production",
+		"build:electron": "electron-builder -mwl",
+		"release": "run-s build:clean build:webpack \"build:electron --publish always\""
 	},
 	"dependencies": {
 		"elasticlunr": "^0.9.5",
