@@ -121,7 +121,7 @@ export default class Editor extends PureComponent {
 					value={text}
 					onChange={this.onTextChange}
 					onBlur={this.saveEntry}
-					placeholder="Write something..."
+					placeholder="Write something…"
 				/>
 			</form>
 		);
