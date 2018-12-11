@@ -62,8 +62,8 @@ export default class App extends Component {
 
 		return (
 			<ThemeContext.Provider value={theme}>
-				<div className={`app theme-${theme}`} onDoubleClick={toggleWindowSize}>
-					<header />
+				<div className={`app theme-${theme}`}>
+					<header onDoubleClick={toggleWindowSize} />
 					{page}
 					{
 						showPreferences
