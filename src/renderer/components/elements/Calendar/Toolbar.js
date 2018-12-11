@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import iconClear from 'feather-icons/dist/icons/x.svg';
 import debounce from 'lodash.debounce';
-
 import SimpleSvg from 'react-simple-svg';
-import iconClear from '../../../assets/icons/clear.svg';
+
 import iconToday from '../../../assets/icons/today.svg';
 
 

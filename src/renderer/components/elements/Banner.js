@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import iconError from 'feather-icons/dist/icons/alert-triangle.svg';
+import iconInfo from 'feather-icons/dist/icons/info.svg';
 import SimpleSvg from 'react-simple-svg';
-
-import iconError from '../../assets/icons/error.svg';
-import iconInfo from '../../assets/icons/info.svg';
 
 
 const propTypes = {

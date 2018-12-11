@@ -28,6 +28,7 @@
 		"elasticlunr": "^0.9.5",
 		"electron-debug": "^2.0.0",
 		"electron-settings": "^3.2.0",
+		"feather-icons": "^4.9.0",
 		"lodash.debounce": "^4.0.8",
 		"minireset.css": "^0.0.3",
 		"moment": "^2.22.2",

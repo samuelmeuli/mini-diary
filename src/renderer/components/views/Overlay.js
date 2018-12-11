@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import iconClear from 'feather-icons/dist/icons/x.svg';
 import SimpleSvg from 'react-simple-svg';
-import iconClear from '../../assets/icons/clear.svg';
 
 
 const propTypes = {

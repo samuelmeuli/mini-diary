@@ -3,11 +3,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleSvg from 'react-simple-svg';
+import iconNext from 'feather-icons/dist/icons/chevron-right.svg';
+import iconPrev from 'feather-icons/dist/icons/chevron-left.svg';
 import moment from 'moment';
-
-import iconNext from '../../../../assets/icons/arrow-right.svg';
-import iconPrev from '../../../../assets/icons/arrow-left.svg';
+import SimpleSvg from 'react-simple-svg';
 
 
 const propTypes = {
