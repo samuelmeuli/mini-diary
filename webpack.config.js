@@ -34,8 +34,10 @@ module.exports = {
 			'src/main.js',
 			{
 				from: 'src/main/**/*',
-				to: 'main/',
-				flatten: true
+				transformPath: (targetPath, absolutePath) => {
+					const mainPath = absolutePath.split('main/')[1];
+					return `main/${mainPath}`;
+				}
 			}
 		]),
 		new HtmlWebpackPlugin({

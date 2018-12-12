@@ -2,9 +2,16 @@ import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
 import hashPassword from '../../helpers/hashPassword';
 import { getMetadata } from '../../helpers/metadata';
 import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/searchIndex';
+import { disableMenuItems, enableMenuItems } from '../../electron/ipcRenderer/senders';
 
 
 // Action creators
+
+function setDecryptReset() {
+	return {
+		type: 'DECRYPT_RESET'
+	};
+}
 
 function setDecryptInProgress() {
 	return {
@@ -66,12 +73,6 @@ function setHashedPassword(hashedPassword) {
 	};
 }
 
-export function lock() {
-	return {
-		type: 'LOCK'
-	};
-}
-
 
 // Thunks
 
@@ -95,6 +96,7 @@ export function createEncryptedFile(filePath, password) {
 			dispatch(setEncryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
 			createIndex(entries, hashedPassword);
+			enableMenuItems();
 		} catch (err) {
 			console.error(err);
 			dispatch(setEncryptError());
@@ -113,6 +115,7 @@ export function decryptFile(filePath, password) {
 			dispatch(setDecryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
 			readIndex(entries, hashedPassword);
+			enableMenuItems();
 		} catch (err) {
 			// Error reading diary file
 			if (!err.message.endsWith('bad decrypt')) {
@@ -171,5 +174,13 @@ export function updateFile(filePath, hashedPassword, dateFormatted, title, text)
 			dispatch(encryptFile(filePath, hashedPassword, entriesUpdated));
 			updateIndex(dateFormatted, entryUpdated);
 		}
+	};
+}
+
+export function lock() {
+	return (dispatch) => {
+		dispatch(setDecryptReset());
+		dispatch(setHashedPassword(''));
+		disableMenuItems();
 	};
 }

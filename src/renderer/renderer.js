@@ -7,8 +7,7 @@ import store from './redux/store';
 import './assets/styles/styles.scss';
 
 // Listen to OS events and messages from main process
-import './electron/listeners';
-import './electron/rendererIpc';
+import './electron/ipcRenderer/listeners';
 
 
 // Create 'root' div

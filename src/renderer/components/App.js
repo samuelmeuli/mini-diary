@@ -7,7 +7,7 @@ import PasswordCreationContainer from './views/PasswordCreation/PasswordCreation
 import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
 import Preferences from './views/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
-import { toggleWindowSize } from '../electron/rendererIpc';
+import { toggleWindowSize } from '../electron/ipcRenderer/senders';
 import { getSystemTheme } from '../electron/systemTheme';
 
 

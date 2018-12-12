@@ -1,6 +1,8 @@
 const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
+
 const { getWindow, setWindow } = require('./main/window');
+
 
 function onClosed() {
 	// Dereference the window
@@ -20,8 +22,9 @@ function createMainWindow() {
 	});
 	window.on('closed', onClosed);
 
-	// Load menu items
-	require('./main/menu');
+	// Load listeners and menu items
+	require('./main/ipcMain/listeners');
+	require('./main/menu/menu');
 
 	return window;
 }

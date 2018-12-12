@@ -6,6 +6,13 @@ function file(state = {
 	hashedPassword: ''
 }, action) {
 	switch (action.type) {
+		case 'DECRYPT_RESET': {
+			return {
+				...state,
+				decryptStatus: 'idle',
+				entries: {}
+			};
+		}
 		case 'DECRYPT_IN_PROGRESS': {
 			return {
 				...state,
@@ -42,15 +49,6 @@ function file(state = {
 				...state,
 				encryptStatus: 'success',
 				entries: action.payload.entries
-			};
-		}
-		case 'LOCK': {
-			return {
-				...state,
-				decryptStatus: 'idle',
-				encryptStatus: 'idle',
-				entries: {},
-				hashedPassword: ''
 			};
 		}
 		case 'SET_FILE_EXISTS': {
