@@ -2,12 +2,15 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import iconClear from 'feather-icons/dist/icons/x.svg';
 import debounce from 'lodash.debounce';
+import moment from 'moment';
 import SimpleSvg from 'react-simple-svg';
 
 import iconToday from '../../../assets/icons/today.svg';
 
 
 const propTypes = {
+	dateSelected: PropTypes.instanceOf(Date).isRequired,
+	monthSelected: PropTypes.instanceOf(Date).isRequired,
 	search: PropTypes.func.isRequired,
 	searchKey: PropTypes.string.isRequired,
 	setDateSelected: PropTypes.func.isRequired
@@ -59,7 +62,13 @@ export default class Toolbar extends PureComponent {
 	}
 
 	render() {
+		const { dateSelected, monthSelected } = this.props;
 		const { newSearchKey } = this.state;
+
+		const today = moment();
+		const isToday = moment(dateSelected).isSame(today, 'day');
+		const isCurrentMonth = moment(monthSelected).isSame(today, 'month');
+
 		return (
 			<div className="view-selector">
 				<div className="search-input-wrapper">
@@ -88,6 +97,7 @@ export default class Toolbar extends PureComponent {
 				<button
 					type="button"
 					className="button button-invisible button-today"
+					disabled={isToday && isCurrentMonth}
 					onClick={this.onTodaySelection}
 				>
 					<SimpleSvg src={iconToday} title="Today" height={20} width={20} />
