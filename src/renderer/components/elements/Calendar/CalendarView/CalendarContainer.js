@@ -7,6 +7,7 @@ import { setDateSelected } from '../../../../redux/actions/diaryActions';
 function mapStateToProps(state) {
 	return {
 		dateSelected: state.diary.dateSelected,
+		monthSelected: state.diary.monthSelected,
 		entries: state.file.entries
 	};
 }

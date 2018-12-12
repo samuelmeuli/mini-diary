@@ -1,6 +1,13 @@
 const { app, Menu } = require('electron');
 
-const { sendLock, showPreferences } = require('./mainIpc');
+const {
+	lock,
+	setDaySelectedNext,
+	setDaySelectedPrevious,
+	setMonthSelectedNext,
+	setMonthSelectedPrevious,
+	showPreferences
+} = require('./mainIpc');
 
 
 const template = [
@@ -11,7 +18,7 @@ const template = [
 				label: 'Lock diary',
 				accelerator: 'CmdOrCtrl+L',
 				click() {
-					sendLock();
+					lock();
 				}
 			},
 			{
@@ -57,6 +64,40 @@ const template = [
 			{ role: 'copy' },
 			{ role: 'paste' },
 			{ role: 'selectall' }
+		]
+	},
+	{
+		label: 'View',
+		submenu: [
+			{
+				label: 'Previous day',
+				accelerator: 'Left',
+				click() {
+					setDaySelectedPrevious();
+				}
+			},
+			{
+				label: 'Next day',
+				accelerator: 'Right',
+				click() {
+					setDaySelectedNext();
+				}
+			},
+			{ type: 'separator' },
+			{
+				label: 'Previous month',
+				accelerator: 'CmdOrCtrl+Left',
+				click() {
+					setMonthSelectedPrevious();
+				}
+			},
+			{
+				label: 'Next month',
+				accelerator: 'CmdOrCtrl+Right',
+				click() {
+					setMonthSelectedNext();
+				}
+			}
 		]
 	},
 	{
@@ -116,7 +157,7 @@ if (process.platform === 'darwin') {
 	);
 
 	// Window menu
-	template[3].submenu = [
+	template[4].submenu = [
 		{ role: 'close' },
 		{ role: 'minimize' },
 		{ role: 'zoom' },

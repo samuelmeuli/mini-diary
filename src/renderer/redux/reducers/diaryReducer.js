@@ -1,5 +1,8 @@
+const today = new Date();
+
 function diary(state = {
-	dateSelected: new Date(),
+	dateSelected: today,
+	monthSelected: today,
 	searchKey: '',
 	searchResults: []
 }, action) {
@@ -7,7 +10,14 @@ function diary(state = {
 		case 'SET_SELECTED_DATE': {
 			return {
 				...state,
-				dateSelected: action.payload.dateSelected
+				dateSelected: action.payload.dateSelected,
+				monthSelected: action.payload.dateSelected
+			};
+		}
+		case 'SET_SELECTED_MONTH': {
+			return {
+				...state,
+				monthSelected: action.payload.monthSelected
 			};
 		}
 		case 'SET_SEARCH_KEY': {
