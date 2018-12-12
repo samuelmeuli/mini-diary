@@ -7,18 +7,9 @@ import { searchIndex } from '../../helpers/searchIndex';
 
 export function setDateSelected(dateSelected) {
 	return {
-		type: 'SET_SELECTED_DATE',
+		type: 'SET_DATE_SELECTED',
 		payload: {
 			dateSelected
-		}
-	};
-}
-
-export function setMonthSelected(monthSelected) {
-	return {
-		type: 'SET_SELECTED_MONTH',
-		payload: {
-			monthSelected
 		}
 	};
 }
@@ -73,9 +64,9 @@ export function setDateSelectedPrevious() {
 export function setMonthSelectedNext() {
 	return (dispatch, getState) => {
 		const { monthSelected } = getState().diary;
-		const nextMonth = moment(monthSelected).add(1, 'months');
+		const nextMonth = moment(monthSelected).add(1, 'months').startOf('month');
 		if (nextMonth.isSameOrBefore(moment(), 'month')) {
-			dispatch(setMonthSelected(nextMonth.toDate()));
+			dispatch(setDateSelected(nextMonth.toDate()));
 		}
 	};
 }
@@ -83,7 +74,7 @@ export function setMonthSelectedNext() {
 export function setMonthSelectedPrevious() {
 	return (dispatch, getState) => {
 		const { monthSelected } = getState().diary;
-		const previousMonth = moment(monthSelected).subtract(1, 'months');
-		dispatch(setMonthSelected(previousMonth.toDate()));
+		const previousMonth = moment(monthSelected).subtract(1, 'months').startOf('month');
+		dispatch(setDateSelected(previousMonth.toDate()));
 	};
 }

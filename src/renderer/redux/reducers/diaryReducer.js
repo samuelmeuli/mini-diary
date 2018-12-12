@@ -7,17 +7,11 @@ function diary(state = {
 	searchResults: []
 }, action) {
 	switch (action.type) {
-		case 'SET_SELECTED_DATE': {
+		case 'SET_DATE_SELECTED': {
 			return {
 				...state,
 				dateSelected: action.payload.dateSelected,
 				monthSelected: action.payload.dateSelected
-			};
-		}
-		case 'SET_SELECTED_MONTH': {
-			return {
-				...state,
-				monthSelected: action.payload.monthSelected
 			};
 		}
 		case 'SET_SEARCH_KEY': {
