@@ -35,7 +35,7 @@
 		"prop-types": "^15.6.2",
 		"react": "^16.4.1",
 		"react-autosize-textarea": "^6.0.0",
-		"react-day-picker": "^7.2.4",
+		"react-day-picker": "https://github.com/samuelmeuli/react-day-picker",
 		"react-dom": "^16.4.1",
 		"react-redux": "^6.0.0",
 		"react-simple-svg": "^1.0.2",
