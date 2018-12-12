@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
-import CalendarNav from './CalendarNav';
+import CalendarNavContainer from './CalendarNavContainer';
 import { getFirstDayOfWeek } from '../../../../helpers/dateUtils';
 
 
@@ -52,7 +52,7 @@ export default class Calendar extends PureComponent {
 				captionElement={() => null}
 				firstDayOfWeek={this.firstDayOfWeek}
 				modifiers={{ hasEntry }}
-				navbarElement={<CalendarNav date={dateSelected} />}
+				navbarElement={<CalendarNavContainer />}
 				onDayClick={this.onDateSelection}
 			/>
 		);

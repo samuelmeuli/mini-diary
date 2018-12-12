@@ -10,34 +10,29 @@ import SimpleSvg from 'react-simple-svg';
 
 
 const propTypes = {
-	month: PropTypes.instanceOf(Date),
-	onPreviousClick: PropTypes.func,
-	onNextClick: PropTypes.func
+	monthSelected: PropTypes.instanceOf(Date).isRequired,
+	setMonthSelectedNext: PropTypes.func.isRequired,
+	setMonthSelectedPrevious: PropTypes.func.isRequired
 };
 
 export default function CalendarNav(props) {
-	const {
-		month: monthDate,
-		onPreviousClick,
-		onNextClick
-	} = props;
+	const { monthSelected, setMonthSelectedNext, setMonthSelectedPrevious } = props;
 
+	const month = moment(monthSelected);
+
+	// Disable "next" button if current month is reached
 	const today = moment();
-	const month = moment(monthDate);
+	const disableNextButton = month.isSame(today, 'month');
 
 	// Determine name of current month
 	const monthStr = month.format('MMMM YYYY');
-
-	// Disable "next" button if current month is reached
-	const firstDayOfCurrentMonth = today.startOf('month');
-	const disableNextButton = month.isSameOrAfter(firstDayOfCurrentMonth);
 
 	return (
 		<div className="calendar-nav">
 			<button
 				type="button"
 				className="button button-invisible"
-				onClick={() => onPreviousClick()}
+				onClick={setMonthSelectedPrevious}
 			>
 				<SimpleSvg src={iconPrev} title="Prev. month" height={20} width={20} />
 			</button>
@@ -46,7 +41,7 @@ export default function CalendarNav(props) {
 				type="button"
 				className="button button-invisible"
 				disabled={disableNextButton}
-				onClick={() => onNextClick()}
+				onClick={setMonthSelectedNext}
 			>
 				<SimpleSvg src={iconNext} title="Next month" height={20} width={20} />
 			</button>
