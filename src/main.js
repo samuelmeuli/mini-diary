@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 require('electron-debug')();
+const { autoUpdater } = require('electron-updater');
 
 const { getWindow, setWindow } = require('./main/window');
 
@@ -29,18 +30,22 @@ function createMainWindow() {
 	return window;
 }
 
+function run() {
+	const window = createMainWindow();
+	setWindow(window);
+	autoUpdater.checkForUpdatesAndNotify();
+}
+
 app.on('window-all-closed', () => {
 	app.quit();
 });
 
 app.on('activate', () => {
 	if (!getWindow()) {
-		const window = createMainWindow();
-		setWindow(window);
+		run();
 	}
 });
 
 app.on('ready', () => {
-	const window = createMainWindow();
-	setWindow(window);
+	run();
 });
