@@ -14,7 +14,7 @@ body,
 header {
 	position: absolute;
 	width: 100%;
-	height: 37px;
+	height: $height-header;
 	-webkit-app-region: drag;
 }
 
@@ -40,17 +40,43 @@ header {
 .diary {
 	display: flex;
 	align-items: center;
-	padding: $spacing-rel-large;
+
+	@media (max-width: 650px) {
+		padding: 2 * $spacing-large;
+		margin: 0 auto;
+		overflow-y: scroll;
+		flex-direction: column;
+
+		.sidebar {
+			margin: 0 auto (1.5 * $spacing-large);
+			flex-shrink: 0;
+		}
+
+		.editor {
+			min-height: 300px;
+		}
+	}
+
+	@media (min-width: 651px) {
+		padding: $spacing-rel-large;
+
+		.sidebar {
+			height: 100%;
+		}
+
+		.editor {
+			height: 100%;
+			margin-left: $spacing-rel-large;
+		}
+	}
 
 	.sidebar {
 		display: flex;
 		width: 7 * $calendar-cell-size;
-		height: 100%;
 		flex-direction: column;
 	}
 
 	.editor {
 		flex: 1;
-		margin-left: $spacing-rel-large;
 	}
 }

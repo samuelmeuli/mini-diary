@@ -1,7 +1,6 @@
 .editor {
 	display: grid;
 	grid-template-rows: auto auto 1fr;
-	height: 100%;
 	padding: $spacing-rel-small;
 	overflow-y: auto;
 	border-radius: $border-radius-input;
