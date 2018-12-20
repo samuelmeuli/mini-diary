@@ -75,7 +75,11 @@
 		"appId": "com.samuelmeuli.minidiary",
 		"productName": "Mini Diary",
 		"mac": {
+			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true
+		},
+		"linux": {
+			"category": "Office"
 		}
 	},
 	"husky": {
