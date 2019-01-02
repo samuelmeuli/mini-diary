@@ -3,9 +3,19 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	font-weight: $font-weight-semibold;
 
 	.svg-wrapper {
 		margin-right: 8px;
+		line-height: 0;
+	}
+
+	&.banner-error {
+		@include color("error");
+	}
+
+	&.banner-no-results {
+		@include color("text-faded");
 	}
 }
 

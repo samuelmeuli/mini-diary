@@ -1,0 +1,19 @@
+/* stylelint-disable-next-line */
+html,
+body,
+#root,
+.app {
+	height: 100%;
+}
+
+.app {
+	position: relative;
+	@include background-color("background");
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	height: $height-header;
+	-webkit-app-region: drag;
+}

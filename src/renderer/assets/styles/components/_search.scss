@@ -20,10 +20,17 @@
 	overflow-y: auto;
 }
 
-.search-result .button {
-	width: 100%;
-	height: 100%;
-	padding: ($spacing-small / 2) $spacing-small;
+.search-result {
+	.button {
+		width: 100%;
+		height: 100%;
+		padding: ($spacing-small / 2) $spacing-small;
+		line-height: $line-height;
+	}
+
+	.button-main * {
+		color: #FFFFFF;
+	}
 }
 
 .search-result + .search-result {

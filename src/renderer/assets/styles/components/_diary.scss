@@ -1,45 +1,7 @@
-/* stylelint-disable-next-line */
-html,
-body,
-#root,
-.app {
-	height: 100%;
-}
-
-.app {
-	position: relative;
-	@include background-color("background");
-}
-
-header {
-	position: absolute;
-	width: 100%;
-	height: $height-header;
-	-webkit-app-region: drag;
-}
-
-.page-centered-outer,
-.diary {
-	height: 100%;
-}
-
-.page-centered-outer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.page-centered-inner {
-	text-align: center;
-}
-
-.page-centered-content {
-	margin-top: $spacing-rel-large;
-}
-
 .diary {
 	display: flex;
 	align-items: center;
+	height: 100%;
 
 	@media (max-width: 650px) {
 		padding: 2 * $spacing-large;

@@ -1,14 +1,23 @@
 button,
 input,
 textarea {
+	font: inherit;
+	color: inherit;
+	text-align: left;
 	background: none;
 	border: 0;
 	outline: none;
 }
 
+input,
+textarea {
+	@include background-color("background-editor");
+}
+
 .button,
 input {
 	padding: (0.75 * $spacing-small) $spacing-small;
+	line-height: 1;
 }
 
 input {
@@ -16,6 +25,7 @@ input {
 }
 
 .button {
+	font-weight: $font-weight-semibold;
 	border-radius: $border-radius-button;
 	box-shadow: $box-shadow;
 	transition: $transition;
@@ -26,6 +36,8 @@ input {
 	}
 
 	&.button-main {
+		color: #FFFFFF;
+
 		&:not([disabled]) {
 			@include background-color("main");
 
@@ -44,6 +56,8 @@ input {
 		width: $calendar-cell-size;
 		height: $calendar-cell-size;
 		padding: 0;
+		line-height: 0;
+		text-align: center;
 		background: none;
 		border-radius: 0;
 		box-shadow: none;
@@ -52,11 +66,14 @@ input {
 			@include color("text-faded");
 		}
 	}
+
+	&:disabled {
+		@include color("text-disabled");
+	}
 }
 
-input,
-textarea {
-	@include background-color("background-editor");
+.radio {
+	margin-right: 8px;
 }
 
 textarea {

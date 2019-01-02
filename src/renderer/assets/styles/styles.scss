@@ -6,14 +6,18 @@
 @import "base/mixins";
 @import "base/text";
 
-// Layout
-@import "layout/layout";
-@import "layout/overlay";
-
 // Elements
-@import "elements/banner";
-@import "elements/input";
-@import "elements/calendar";
-@import "elements/editor";
 @import "elements/form";
-@import "elements/search";
+@import "elements/input";
+
+// Components
+@import "components/app";
+@import "components/banner";
+@import "components/calendar";
+@import "components/diary";
+@import "components/editor";
+@import "components/overlay";
+@import "components/page-centered";
+@import "components/password-views";
+@import "components/preferences";
+@import "components/search";

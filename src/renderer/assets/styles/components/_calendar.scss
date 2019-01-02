@@ -14,6 +14,7 @@
 
 	.month-name {
 		flex: 1;
+		text-align: center;
 	}
 
 	.button-today {
@@ -24,6 +25,10 @@
 .DayPicker-Body {
 	display: grid;
 	grid-template-rows: repeat(6, $calendar-cell-size);
+}
+
+.DayPicker-Months {
+	line-height: 1;
 }
 
 .DayPicker-Week,
@@ -41,6 +46,11 @@
 
 .DayPicker-WeekdaysRow {
 	height: $calendar-cell-size;
+}
+
+.DayPicker-Weekday {
+	font-size: 80%;
+	@include color("text-faded");
 }
 
 .DayPicker-Day {
@@ -61,4 +71,17 @@
 			@include background-color("main-hover");
 		}
 	}
+}
+
+.DayPicker-Day--disabled {
+	@include color("text-disabled");
+}
+
+.DayPicker-Day--hasEntry {
+	font-weight: $font-weight-bold;
+	@include color("main");
+}
+
+.DayPicker-Day--selected {
+	color: #FFFFFF !important;
 }

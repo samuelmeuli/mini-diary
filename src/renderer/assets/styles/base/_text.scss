@@ -12,26 +12,9 @@ a {
 	text-decoration: none;
 }
 
-h1,
-.editor-title {
+h1 {
 	font-size: 150%;
 	font-weight: $font-weight-semibold;
-}
-
-.banner {
-	font-weight: $font-weight-semibold;
-
-	.svg-wrapper {
-		line-height: 0;
-	}
-
-	&.banner-error {
-		@include color("error");
-	}
-
-	&.banner-no-results {
-		@include color("text-faded");
-	}
 }
 
 abbr {
@@ -41,72 +24,4 @@ abbr {
 .text-faded {
 	font-size: 80%;
 	@include color("text-faded");
-}
-
-button,
-input,
-textarea {
-	font: inherit;
-	color: inherit;
-	text-align: left;
-}
-
-.button,
-input {
-	line-height: 1;
-}
-
-.button {
-	font-weight: $font-weight-semibold;
-
-	&.button-main {
-		color: #FFFFFF;
-	}
-
-	&.button-invisible {
-		line-height: 0;
-		text-align: center;
-	}
-
-	&:disabled {
-		@include color("text-disabled");
-	}
-}
-
-legend {
-	font-weight: $font-weight-bold;
-}
-
-.search-result .button {
-	line-height: $line-height;
-}
-
-.search-result .button-main * {
-	color: #FFFFFF;
-}
-
-.DayPicker-Months {
-	line-height: 1;
-}
-
-.month-name {
-	text-align: center;
-}
-
-.DayPicker-Weekday {
-	font-size: 80%;
-	@include color("text-faded");
-}
-
-.DayPicker-Day--disabled {
-	@include color("text-disabled");
-}
-
-.DayPicker-Day--hasEntry {
-	font-weight: $font-weight-bold;
-	@include color("main");
-}
-
-.DayPicker-Day--selected {
-	color: #FFFFFF !important;
 }
