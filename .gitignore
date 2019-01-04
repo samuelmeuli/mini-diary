@@ -12,3 +12,6 @@ bundle/
 
 # electron-builder
 dist/
+
+# Website
+minireset.*
