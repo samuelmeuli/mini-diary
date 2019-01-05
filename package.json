@@ -1,7 +1,7 @@
 {
 	"name": "mini-diary",
 	"version": "0.2.0",
-	"description": "TODO",
+	"description": "Simple and secure journal app",
 	"main": "bundle/main.js",
 	"author": "Samuel Meuli <me@samuelmeuli.com>",
 	"repository": "github:samuelmeuli/mini-diary",
@@ -15,7 +15,7 @@
 		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
 		"lint": "run-s lint:*",
-		"lint:css": "stylelint website/styles.css",
+		"lint:css": "stylelint website/styles/styles.css",
 		"lint:scss": "stylelint '**/*.scss' --syntax scss",
 		"lint:js": "eslint . --ext .html,.js",
 		"pack": "electron-builder --dir",
@@ -25,7 +25,7 @@
 		"build:electron": "electron-builder -mwl",
 		"release": "run-s build:clean build:webpack \"build:electron --publish always\"",
 		"website": "run-s website:*",
-		"website:build": "cp node_modules/minireset.css/minireset.min.css website/",
+		"website:build": "cp node_modules/minireset.css/minireset.min.css website/styles/",
 		"website:serve": "serve website --listen 3000"
 	},
 	"dependencies": {
