@@ -7,16 +7,15 @@
 
 body {
 	/* Variables */
-	--color-background-header-dark: #6B91BF;
-	--color-background-header-light: #B4CCE8;
-	--color-background-main: #E7E7E7;
-	--color-background-footer: #242326;
+	--color-background-grey: #242326;
+	--color-background-white: #E7E7E7;
 	--color-main: #4E8BD2;
 	--color-main-hover: #447AB8;
 	--color-selection: #B7CBE4;
 	--color-text: #4E4E4E;
 	--color-text-button: #F1F1F1;
 	--color-text-dark: #212121;
+	--color-text-header: #D0D0D0;
 	--color-text-footer: #939EA7;
 	--color-text-footer-hover: #B7BEC5;
 	--spacing-abs-medium: 35px;
@@ -39,7 +38,7 @@ body {
 		"Segoe UI Symbol";
 	line-height: 1.7;
 	color: var(--color-text);
-	background: var(--color-background-main);
+	background: var(--color-background-white);
 }
 
 
@@ -60,8 +59,8 @@ body {
 header {
 	padding: var(--spacing-rel-medium) 0;
 	text-align: center;
-	background: var(--color-background-header-light);
-	background: linear-gradient(335deg, var(--color-background-header-dark) 0%, var(--color-background-header-light) 100%);
+	background: var(--color-background-grey);
+	background: linear-gradient(335deg, var(--color-background-grey) 0%, var(--color-main) 100%);
 	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -72,7 +71,7 @@ main {
 footer {
 	padding: var(--spacing-rel-medium) 0;
 	text-align: center;
-	background: var(--color-background-footer);
+	background: var(--color-background-grey);
 }
 
 .centered {
@@ -86,16 +85,23 @@ footer {
 
 /* Text */
 
+h1,
+.tagline {
+	color: var(--color-text-header);
+}
+
 h1 {
 	font-size: 250%;
 	font-weight: 700;
-	color: var(--color-text-dark);
 }
 
 h2,
 .tagline {
 	font-size: 120%;
 	font-weight: 500;
+}
+
+h2 {
 	color: var(--color-text-dark);
 }
 
