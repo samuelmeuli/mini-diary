@@ -79,7 +79,9 @@ export function updateIndex(date, entry) {
  * Search index for the provided key and return the results
  */
 export function searchIndex(key) {
-	const results = index.search(key);
+	const results = index.search(key, {
+		expand: true
+	});
 	results.sort((a, b) => b.ref.localeCompare(a.ref));
 	return results;
 }
