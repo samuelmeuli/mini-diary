@@ -1,18 +1,11 @@
 function file(state = {
-	decryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
-	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error', 'success']
+	decryptStatus: 'idle', // One of ['idle', 'inProgress', 'error']
+	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error']
 	entries: {},
 	fileExists: false,
 	hashedPassword: ''
 }, action) {
 	switch (action.type) {
-		case 'DECRYPT_RESET': {
-			return {
-				...state,
-				decryptStatus: 'idle',
-				entries: {}
-			};
-		}
 		case 'DECRYPT_IN_PROGRESS': {
 			return {
 				...state,
@@ -28,7 +21,7 @@ function file(state = {
 		case 'DECRYPT_SUCCESS': {
 			return {
 				...state,
-				decryptStatus: 'success',
+				decryptStatus: 'idle',
 				entries: action.payload.entries
 			};
 		}
@@ -47,7 +40,7 @@ function file(state = {
 		case 'ENCRYPT_SUCCESS': {
 			return {
 				...state,
-				encryptStatus: 'success',
+				encryptStatus: 'idle',
 				entries: action.payload.entries
 			};
 		}
