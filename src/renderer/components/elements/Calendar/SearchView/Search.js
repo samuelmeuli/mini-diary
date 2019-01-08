@@ -39,7 +39,9 @@ export default class Search extends PureComponent {
 							<p className="search-date text-faded">
 								{dateText}
 							</p>
-							<p className="search-title">{title}</p>
+							<p className={`search-title ${!title ? 'text-faded' : ''}`}>
+								{title || 'No title'}
+							</p>
 						</button>
 					</li>
 				);

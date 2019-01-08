@@ -25,6 +25,7 @@
 		width: 100%;
 		height: 100%;
 		padding: ($spacing-small / 2) $spacing-small;
+		font-weight: $font-weight-normal;
 		line-height: $line-height;
 	}
 
@@ -35,6 +36,10 @@
 
 .search-result + .search-result {
 	margin-top: $spacing-small;
+}
+
+.search-title:not(.text-faded) {
+	font-weight: $font-weight-semibold;
 }
 
 ::-webkit-search-cancel-button {
