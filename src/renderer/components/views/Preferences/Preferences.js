@@ -80,6 +80,8 @@ export default class Preferences extends PureComponent {
 	}
 
 	selectFileDir() {
+		const { testFileExists } = this.props;
+
 		// Show dialog for selecting directory
 		const fileDirArray = dialog.showOpenDialog({
 			properties: ['openDirectory']
@@ -88,6 +90,7 @@ export default class Preferences extends PureComponent {
 		if (fileDirArray && fileDirArray.length === 1) {
 			// Use mini-diary.txt file from selected directory
 			setFileDirPref(fileDirArray[0]);
+			testFileExists();
 			this.setState({
 				fileDir: getFilePathPref()
 			});
