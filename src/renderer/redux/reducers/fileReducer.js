@@ -1,4 +1,5 @@
 function file(state = {
+	decryptErrorMsg: '',
 	decryptStatus: 'idle', // One of ['idle', 'inProgress', 'error']
 	encryptStatus: 'idle', // One of ['idle', 'inProgress', 'error']
 	entries: {},
@@ -9,18 +10,21 @@ function file(state = {
 		case 'DECRYPT_IN_PROGRESS': {
 			return {
 				...state,
+				decryptErrorMsg: '',
 				decryptStatus: 'inProgress'
 			};
 		}
 		case 'DECRYPT_ERROR': {
 			return {
 				...state,
+				decryptErrorMsg: action.payload.decryptErrorMsg,
 				decryptStatus: 'error'
 			};
 		}
 		case 'DECRYPT_SUCCESS': {
 			return {
 				...state,
+				decryptErrorMsg: '',
 				decryptStatus: 'idle',
 				entries: action.payload.entries
 			};

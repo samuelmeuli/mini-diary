@@ -20,9 +20,12 @@ function setDecryptInProgress() {
 	};
 }
 
-function setDecryptError() {
+function setDecryptError(decryptErrorMsg) {
 	return {
-		type: 'DECRYPT_ERROR'
+		type: 'DECRYPT_ERROR',
+		payload: {
+			decryptErrorMsg
+		}
 	};
 }
 
@@ -122,11 +125,13 @@ export function decryptFile(password) {
 			enableMenuItems();
 		} catch (err) {
 			// Error reading diary file
-			if (!err.message.endsWith('bad decrypt')) {
-				// Other error (not incorrect password error)
-				console.error(err);
+			let errorMsg;
+			if (err.message.endsWith('bad decrypt')) {
+				errorMsg = 'Incorrect password';
+			} else {
+				errorMsg = 'Error while decrypting diary file';
 			}
-			dispatch(setDecryptError());
+			dispatch(setDecryptError(errorMsg));
 		}
 	};
 }

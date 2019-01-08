@@ -6,6 +6,7 @@ import PageCentered from '../PageCentered';
 
 
 const propTypes = {
+	decryptErrorMsg: PropTypes.string.isRequired,
 	decryptFile: PropTypes.func.isRequired,
 	decryptStatus: PropTypes.string.isRequired
 };
@@ -53,7 +54,7 @@ export default class PasswordPrompt extends PureComponent {
 	}
 
 	render() {
-		const { decryptStatus } = this.props;
+		const { decryptErrorMsg, decryptStatus } = this.props;
 		const { isSubmitted, password } = this.state;
 
 		return (
@@ -77,7 +78,7 @@ export default class PasswordPrompt extends PureComponent {
 				<div className="password-prompt-banner">
 					{
 						isSubmitted && decryptStatus === 'error'
-							&& <Banner type="error" message="Incorrect password" />
+							&& <Banner type="error" message={decryptErrorMsg} />
 					}
 				</div>
 			</PageCentered>

@@ -6,6 +6,7 @@ import { decryptFile } from '../../../redux/actions/fileActions';
 
 function mapStateToProps(state) {
 	return {
+		decryptErrorMsg: state.file.decryptErrorMsg,
 		decryptStatus: state.file.decryptStatus
 	};
 }
