@@ -1,8 +1,9 @@
+import { disableMenuItems, enableMenuItems } from '../../electron/ipcRenderer/senders';
 import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
 import hashPassword from '../../helpers/hashPassword';
 import { getMetadata } from '../../helpers/metadata';
+import { getFilePath } from '../../helpers/preferences';
 import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/searchIndex';
-import { disableMenuItems, enableMenuItems } from '../../electron/ipcRenderer/senders';
 
 
 // Action creators
@@ -76,14 +77,16 @@ function setHashedPassword(hashedPassword) {
 
 // Thunks
 
-export function testFileExists(filePath) {
+export function testFileExists() {
+	const filePath = getFilePath();
 	return (dispatch) => {
 		dispatch(setFileExists(fileExists(filePath)));
 	};
 }
 
-export function createEncryptedFile(filePath, password) {
+export function createEncryptedFile(password) {
 	const entries = {};
+	const filePath = getFilePath();
 	const content = {
 		metadata: getMetadata(),
 		entries
@@ -104,7 +107,8 @@ export function createEncryptedFile(filePath, password) {
 	};
 }
 
-export function decryptFile(filePath, password) {
+export function decryptFile(password) {
+	const filePath = getFilePath();
 	return (dispatch) => {
 		dispatch(setDecryptInProgress());
 		const hashedPassword = hashPassword(password);
@@ -127,12 +131,14 @@ export function decryptFile(filePath, password) {
 	};
 }
 
-function encryptFile(filePath, hashedPassword, entries) {
+function encryptFile(entries) {
+	const filePath = getFilePath();
 	const content = {
 		metadata: getMetadata(),
 		entries
 	};
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { hashedPassword } = getState().file;
 		dispatch(setEncryptInProgress());
 		try {
 			writeFile(filePath, hashedPassword, content);
@@ -145,7 +151,7 @@ function encryptFile(filePath, hashedPassword, entries) {
 	};
 }
 
-export function updateFile(filePath, hashedPassword, dateFormatted, title, text) {
+export function updateFile(dateFormatted, title, text) {
 	return (dispatch, getState) => {
 		const { entries } = getState().file;
 
@@ -154,7 +160,7 @@ export function updateFile(filePath, hashedPassword, dateFormatted, title, text)
 			if (dateFormatted in entries) {
 				const entriesUpdated = entries;
 				delete entriesUpdated[dateFormatted];
-				dispatch(encryptFile(filePath, hashedPassword, entriesUpdated));
+				dispatch(encryptFile(entriesUpdated));
 			}
 		} else if (
 			!(dateFormatted in entries)
@@ -171,7 +177,7 @@ export function updateFile(filePath, hashedPassword, dateFormatted, title, text)
 				...entries,
 				[dateFormatted]: entryUpdated
 			};
-			dispatch(encryptFile(filePath, hashedPassword, entriesUpdated));
+			dispatch(encryptFile(entriesUpdated));
 			updateIndex(dateFormatted, entryUpdated);
 		}
 	};

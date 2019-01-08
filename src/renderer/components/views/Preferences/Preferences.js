@@ -97,11 +97,10 @@ export default class Preferences extends PureComponent {
 	updatePassword() {
 		const { createEncryptedFile, testFileExists } = this.props;
 		const { password1, password2 } = this.state;
-		const filePath = getFilePathPref();
 
 		if (password1 === password2) {
-			createEncryptedFile(filePath, password1);
-			testFileExists(filePath);
+			createEncryptedFile(password1);
+			testFileExists();
 			this.setState({
 				password1: '',
 				password2: ''

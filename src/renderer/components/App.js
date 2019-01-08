@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Diary from './views/Diary/Diary';
-import { getFilePath } from '../helpers/preferences';
 import PasswordCreationContainer from './views/PasswordCreation/PasswordCreationContainer';
 import PasswordPromptContainer from './views/PasswordPrompt/PasswordPromptContainer';
 import Preferences from './views/Preferences/PreferencesContainer';
@@ -30,9 +29,8 @@ export default class App extends Component {
 
 	componentDidMount() {
 		const { testFileExists } = this.props;
-		const filePath = getFilePath();
 
-		testFileExists(filePath);
+		testFileExists();
 		this.setState({
 			isLoading: false
 		});

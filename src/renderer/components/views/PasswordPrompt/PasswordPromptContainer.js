@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		decrypt: (entries, password) => dispatch(decryptFile(entries, password))
+		decryptFile: password => dispatch(decryptFile(password))
 	};
 }
 

@@ -6,8 +6,8 @@ import { createEncryptedFile, testFileExists } from '../../../redux/actions/file
 
 function mapDispatchToProps(dispatch) {
 	return {
-		createEncryptedFile: (filePath, password) => dispatch(createEncryptedFile(filePath, password)),
-		testFileExists: filePath => dispatch(testFileExists(filePath))
+		createEncryptedFile: password => dispatch(createEncryptedFile(password)),
+		testFileExists: () => dispatch(testFileExists())
 	};
 }
 

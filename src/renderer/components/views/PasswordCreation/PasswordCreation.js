@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFilePath } from '../../../helpers/preferences';
 import Banner from '../../elements/Banner';
 import PageCentered from '../PageCentered';
 
@@ -46,11 +45,10 @@ export default class PasswordCreation extends PureComponent {
 		e.preventDefault();
 		const { createEncryptedFile, testFileExists } = this.props;
 		const { password1, password2 } = this.state;
-		const filePath = getFilePath();
 
 		if (password1 === password2) {
-			createEncryptedFile(filePath, password1);
-			testFileExists(filePath);
+			createEncryptedFile(password1);
+			testFileExists();
 		} else {
 			throw Error('Passwords do not match');
 		}

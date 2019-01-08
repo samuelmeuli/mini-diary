@@ -13,12 +13,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		createEncryptedFile: (filePath, password) => dispatch(createEncryptedFile(filePath, password)),
+		createEncryptedFile: password => dispatch(createEncryptedFile(password)),
 		setPreferencesVisibility: showPreferences => (
 			dispatch(setPreferencesVisibility(showPreferences))
 		),
 		setTheme: theme => dispatch(setTheme(theme)),
-		testFileExists: filePath => dispatch(testFileExists(filePath))
+		testFileExists: () => dispatch(testFileExists())
 	};
 }
 

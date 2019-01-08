@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		testFileExists: filePath => dispatch(testFileExists(filePath))
+		testFileExists: () => dispatch(testFileExists())
 	};
 }
 

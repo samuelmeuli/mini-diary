@@ -4,8 +4,6 @@ import debounce from 'lodash.debounce';
 import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import { getFilePath } from '../../../helpers/preferences';
-
 const AUTOSAVE_INTERVAL = 500;
 
 
@@ -16,7 +14,6 @@ const propTypes = {
 		text: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired
 	})).isRequired,
-	hashedPassword: PropTypes.string.isRequired,
 	updateFile: PropTypes.func.isRequired
 };
 
@@ -93,12 +90,11 @@ export default class Editor extends PureComponent {
 	}
 
 	saveEntry() {
-		const { dateSelected, hashedPassword, updateFile } = this.props;
+		const { dateSelected, updateFile } = this.props;
 		const { text, title } = this.state;
 		const dateFormatted = Editor.formatDate(dateSelected);
-		const filePath = getFilePath();
 
-		updateFile(filePath, hashedPassword, dateFormatted, title, text);
+		updateFile(dateFormatted, title, text);
 	}
 
 	render() {

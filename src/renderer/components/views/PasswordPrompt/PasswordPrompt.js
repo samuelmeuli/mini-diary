@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
-import { getFilePath } from '../../../helpers/preferences';
 import Banner from '../../elements/Banner';
 import PageCentered from '../PageCentered';
 
 
 const propTypes = {
-	decrypt: PropTypes.func.isRequired,
+	decryptFile: PropTypes.func.isRequired,
 	decryptStatus: PropTypes.string.isRequired
 };
 
@@ -37,13 +36,12 @@ export default class PasswordPrompt extends PureComponent {
 	 */
 	onSubmit(e) {
 		e.preventDefault();
-		const { decrypt } = this.props;
+		const { decryptFile } = this.props;
 		const { password } = this.state;
-		const filePath = getFilePath();
 
 		// Try to decrypt the diary file - this.props.decryptStatus will be updated depending on whether
 		// decryption was successful or unsuccessful
-		decrypt(filePath, password);
+		decryptFile(password);
 
 		// Display error if password is incorrect
 		this.setState({

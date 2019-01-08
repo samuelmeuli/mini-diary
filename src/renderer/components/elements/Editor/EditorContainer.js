@@ -7,16 +7,13 @@ import { updateFile } from '../../../redux/actions/fileActions';
 function mapStateToProps(state) {
 	return {
 		dateSelected: state.diary.dateSelected,
-		entries: state.file.entries,
-		hashedPassword: state.file.hashedPassword
+		entries: state.file.entries
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		updateFile: (filePath, hashedPassword, dateFormatted, title, text) => (
-			dispatch(updateFile(filePath, hashedPassword, dateFormatted, title, text))
-		)
+		updateFile: (dateFormatted, title, text) => dispatch(updateFile(dateFormatted, title, text))
 	};
 }
 
