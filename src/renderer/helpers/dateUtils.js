@@ -9,14 +9,6 @@ const locale = app.getLocale();
 
 
 /**
- * Format Date as diary object index (YYYY-MM-DD)
- */
-export function formatDate(date) {
-	return moment(date).format('YYYY-MM-DD');
-}
-
-
-/**
  * Get first day of the week according to locale
  */
 export function getFirstDayOfWeek() {
@@ -24,4 +16,20 @@ export function getFirstDayOfWeek() {
 		return 0;
 	}
 	return 1;
+}
+
+
+/**
+ * Format Date as diary object index
+ */
+export function toIndexDate(date) {
+	return moment(date).format('YYYY-MM-DD');
+}
+
+
+/**
+ * Format Date as a string with weekday
+ */
+export function toDateString(date) {
+	return moment(date).format('dddd, D MMMM YYYY');
 }

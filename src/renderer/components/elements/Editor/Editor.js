@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
-import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import { formatDate } from '../../../helpers/dateUtils';
+import { toDateString, toIndexDate } from '../../../helpers/dateUtils';
 
 const AUTOSAVE_INTERVAL = 500;
 
@@ -35,11 +34,11 @@ export default class Editor extends PureComponent {
 		if (dateProps === dateState) {
 			return null;
 		}
-		const dateFormatted = formatDate(dateProps);
+		const indexDate = toIndexDate(dateProps);
 		let text = '';
 		let title = '';
-		if (entries[dateFormatted]) {
-			({ text, title } = entries[dateFormatted]);
+		if (entries[indexDate]) {
+			({ text, title } = entries[indexDate]);
 		}
 		return {
 			dateSelected: dateProps,
@@ -52,11 +51,11 @@ export default class Editor extends PureComponent {
 		super(props);
 
 		const { dateSelected, entries } = props;
-		const dateFormatted = formatDate(dateSelected);
+		const indexDate = toIndexDate(dateSelected);
 		let text = '';
 		let title = '';
-		if (entries[dateFormatted]) {
-			({ text, title } = entries[dateFormatted]);
+		if (entries[indexDate]) {
+			({ text, title } = entries[indexDate]);
 		}
 		this.state = {
 			dateSelected,
@@ -90,18 +89,18 @@ export default class Editor extends PureComponent {
 	saveEntry() {
 		const { dateSelected, updateEntry } = this.props;
 		const { text, title } = this.state;
-		const dateFormatted = formatDate(dateSelected);
+		const indexDate = toIndexDate(dateSelected);
 
-		updateEntry(dateFormatted, title, text);
+		updateEntry(indexDate, title, text);
 	}
 
 	render() {
 		const { dateSelected, text, title } = this.state;
-		const dateFormatted = moment(dateSelected).format('dddd, D MMMM YYYY');
+		const indexDate = toDateString(dateSelected);
 
 		return (
 			<form className="editor">
-				<p className="text-faded">{dateFormatted}</p>
+				<p className="text-faded">{indexDate}</p>
 				<TextareaAutosize
 					className="editor-title"
 					value={title}

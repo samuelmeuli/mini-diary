@@ -1,4 +1,4 @@
-import { formatDate } from '../dateUtils';
+import { toIndexDate } from '../dateUtils';
 
 
 /**
@@ -11,13 +11,13 @@ export function parseJrnlJson(jrnlJsonStr) {
 
 	const importObj = {};
 	entries.forEach((entry) => {
-		const dateFormatted = formatDate(entry.date);
+		const indexDate = toIndexDate(entry.date);
 		let title = entry.title.trim();
 		let text = entry.body.trim();
 
 		// Add title and text to existing entry if already is one for the same day
-		if (dateFormatted in importObj) {
-			const existingEntry = { ...importObj[dateFormatted] };
+		if (indexDate in importObj) {
+			const existingEntry = { ...importObj[indexDate] };
 			if (existingEntry.title) {
 				title = `${existingEntry.text} | ${title}`;
 			}
@@ -26,7 +26,7 @@ export function parseJrnlJson(jrnlJsonStr) {
 			}
 		}
 
-		importObj[dateFormatted] = {
+		importObj[indexDate] = {
 			dateUpdated: now,
 			title,
 			text

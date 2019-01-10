@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		updateEntry: (dateFormatted, title, text) => dispatch(updateEntry(dateFormatted, title, text))
+		updateEntry: (indexDate, title, text) => dispatch(updateEntry(indexDate, title, text))
 	};
 }
 

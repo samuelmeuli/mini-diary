@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { formatDate } from '../dateUtils';
+import { toIndexDate } from '../dateUtils';
 
 
 /**
@@ -36,7 +36,7 @@ export function parseDayOneTxt(dayOneTxt) {
 			if (!dateMoment.isValid()) {
 				throw Error(`Invalid date: "${dateStr}"`);
 			}
-			const dateFormatted = formatDate(dateMoment);
+			const indexDate = toIndexDate(dateMoment);
 
 			// Use first line as title
 			lines = removeEmptyLinesFromStart(lines);
@@ -46,8 +46,8 @@ export function parseDayOneTxt(dayOneTxt) {
 			let text = lines.join('\n').trim();
 
 			// Add title and text to existing entry if already is one for the same day
-			if (dateFormatted in importObj) {
-				const existingEntry = { ...importObj[dateFormatted] };
+			if (indexDate in importObj) {
+				const existingEntry = { ...importObj[indexDate] };
 				if (existingEntry.title) {
 					title = `${existingEntry.title} | ${title}`;
 				}
@@ -56,7 +56,7 @@ export function parseDayOneTxt(dayOneTxt) {
 				}
 			}
 
-			importObj[dateFormatted] = {
+			importObj[indexDate] = {
 				dateUpdated: now,
 				title,
 				text

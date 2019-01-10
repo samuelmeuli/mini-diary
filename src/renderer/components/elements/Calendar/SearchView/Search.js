@@ -24,10 +24,10 @@ export default class Search extends PureComponent {
 			resultsEl = <Banner type="info" message="No results" className="banner-no-results" />;
 		} else {
 			resultsEl = searchResults.map((result) => {
-				const dateFormatted = result.ref;
-				const date = moment(dateFormatted);
+				const indexDate = result.ref;
+				const date = moment(indexDate);
 				const dateText = date.format('D MMMM YYYY');
-				const { title } = entries[dateFormatted];
+				const { title } = entries[indexDate];
 				const isSelected = date.isSame(dateSelected, 'day');
 				return (
 					<li key={result.ref} className="search-result">

@@ -1,4 +1,4 @@
-import { formatDate } from '../dateUtils';
+import { toIndexDate } from '../dateUtils';
 
 
 /**
@@ -10,11 +10,11 @@ export function parseJson(jsonStr) {
 	const now = new Date().toString();
 
 	const importObj = {};
-	Object.entries(entries).forEach(([dateFormatted, entry]) => {
+	Object.entries(entries).forEach(([indexDate, entry]) => {
 		const { text, title } = entry;
 
-		// Validate dateFormatted
-		const dateFormattedValidated = formatDate(dateFormatted);
+		// Validate indexDate
+		const indexDateValidated = toIndexDate(indexDate);
 
 		// Use dateUpdated if defined, otherwise set it to now
 		let dateUpdated;
@@ -24,7 +24,7 @@ export function parseJson(jsonStr) {
 			dateUpdated = now;
 		}
 
-		importObj[dateFormattedValidated] = {
+		importObj[indexDateValidated] = {
 			dateUpdated,
 			title: title.trim(),
 			text: text.trim()

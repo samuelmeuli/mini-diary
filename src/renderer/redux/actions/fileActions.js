@@ -172,17 +172,17 @@ function encryptFile(entries) {
  * Update the diary entry in the state. Remove the entry if it is empty. Then write the diary to the
  * encrypted diary file and update the index
  */
-export function updateEntry(dateFormatted, title, text) {
+export function updateEntry(indexDate, title, text) {
 	return (dispatch, getState) => {
 		const { entries } = getState().file;
 
 		if (title === '' && text === '') {
 			// Empty entry: Delete entry from file if it exists
-			if (dateFormatted in entries) {
+			if (indexDate in entries) {
 				const entriesUpdated = entries;
-				delete entriesUpdated[dateFormatted];
+				delete entriesUpdated[indexDate];
 				// Remove from index
-				updateIndex(dateFormatted, {
+				updateIndex(indexDate, {
 					title: '',
 					text: ''
 				});
@@ -190,9 +190,9 @@ export function updateEntry(dateFormatted, title, text) {
 				dispatch(encryptFile(entriesUpdated));
 			}
 		} else if (
-			!(dateFormatted in entries)
-			|| title !== entries[dateFormatted].title
-			|| text !== entries[dateFormatted].text
+			!(indexDate in entries)
+			|| title !== entries[indexDate].title
+			|| text !== entries[indexDate].text
 		) {
 			// Non-empty and changed/missing entry: Write to file
 			const entryUpdated = {
@@ -202,10 +202,10 @@ export function updateEntry(dateFormatted, title, text) {
 			};
 			const entriesUpdated = {
 				...entries,
-				[dateFormatted]: entryUpdated
+				[indexDate]: entryUpdated
 			};
 			// Update index
-			updateIndex(dateFormatted, entryUpdated);
+			updateIndex(indexDate, entryUpdated);
 			// Write to diary and index files
 			dispatch(encryptFile(entriesUpdated));
 		}
@@ -226,11 +226,11 @@ export function mergeUpdateFile(newEntries) {
 		const { entries } = getState().file;
 		const entriesUpdated = { ...entries };
 
-		Object.entries(newEntries).forEach(([dateFormatted, newEntry]) => {
+		Object.entries(newEntries).forEach(([indexDate, newEntry]) => {
 			let entryUpdated;
-			if (dateFormatted in entriesUpdated) {
+			if (indexDate in entriesUpdated) {
 				// Entry exists -> merge
-				const oldEntry = entriesUpdated[dateFormatted];
+				const oldEntry = entriesUpdated[indexDate];
 				entryUpdated = {
 					dateUpdated: newEntry.dateUpdated,
 					title: `${oldEntry.title} | ${newEntry.title}`,
@@ -240,8 +240,8 @@ export function mergeUpdateFile(newEntries) {
 				// Entry does not exist yet -> add
 				entryUpdated = newEntry;
 			}
-			entriesUpdated[dateFormatted] = entryUpdated;
-			updateIndex(dateFormatted, entryUpdated);
+			entriesUpdated[indexDate] = entryUpdated;
+			updateIndex(indexDate, entryUpdated);
 		});
 		dispatch(encryptFile(entriesUpdated));
 	};
