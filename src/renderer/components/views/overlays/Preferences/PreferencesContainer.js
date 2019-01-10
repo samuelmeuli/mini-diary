@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import Preferences from './Preferences';
-import { setTheme, setPreferencesVisibility } from '../../../redux/actions/appActions';
-import { createEncryptedFile, testFileExists } from '../../../redux/actions/fileActions';
+import { setTheme, setPreferencesVisibility } from '../../../../redux/actions/appActions';
+import { createEncryptedFile, testFileExists } from '../../../../redux/actions/fileActions';
 
 
 function mapStateToProps(state) {

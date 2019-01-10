@@ -2,6 +2,10 @@ import crypto from 'crypto';
 import fs from 'fs';
 
 
+export function copyFile(sourcePath, destinationPath) {
+	fs.copyFileSync(sourcePath, destinationPath);
+}
+
 export function fileExists(filePath) {
 	if (!filePath) {
 		throw Error('filePath not specified');
@@ -9,7 +13,11 @@ export function fileExists(filePath) {
 	return fs.existsSync(filePath);
 }
 
-export function readFile(filePath, hashedPassword) {
+export function readFile(filePath) {
+	return fs.readFileSync(filePath, { encoding: 'utf8' });
+}
+
+export function readEncryptedFile(filePath, hashedPassword) {
 	if (!filePath) {
 		throw Error('filePath not specified');
 	}
@@ -22,7 +30,11 @@ export function readFile(filePath, hashedPassword) {
 	return JSON.parse(fileContent.toString());
 }
 
-export function writeFile(filePath, hashedPassword, content) {
+export function writeFile(filePath, content) {
+	fs.writeFileSync(filePath, content);
+}
+
+export function writeEncryptedFile(filePath, hashedPassword, content) {
 	if (!filePath) {
 		throw Error('filePath not specified');
 	}
@@ -32,7 +44,7 @@ export function writeFile(filePath, hashedPassword, content) {
 	if (!content) {
 		throw Error('content not specified');
 	}
-	if (content === null || typeof content !== 'object') {
+	if (typeof content !== 'object') {
 		throw Error('content is not an object');
 	}
 	const cipher = crypto.createCipher('aes192', hashedPassword);

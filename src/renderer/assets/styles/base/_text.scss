@@ -21,6 +21,10 @@ abbr {
 	text-decoration: none;
 }
 
+code {
+	user-select: text;
+}
+
 .text-faded {
 	font-size: 80%;
 	@include color("text-faded");

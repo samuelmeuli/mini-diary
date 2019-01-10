@@ -7,6 +7,13 @@ function file(state = {
 	hashedPassword: ''
 }, action) {
 	switch (action.type) {
+		case 'CLEAR_FILE_STATE': {
+			return {
+				...state,
+				entries: {},
+				hashedPassword: ''
+			};
+		}
 		case 'DECRYPT_IN_PROGRESS': {
 			return {
 				...state,

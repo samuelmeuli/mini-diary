@@ -1,6 +1,18 @@
 const { getWindow } = require('../window');
 
 
+exports.importDayOne = () => {
+	getWindow().webContents.send('importDayOne');
+};
+
+exports.importJrnl = () => {
+	getWindow().webContents.send('importJrnl');
+};
+
+exports.importJson = () => {
+	getWindow().webContents.send('importJson');
+};
+
 exports.lock = () => {
 	getWindow().webContents.send('lock');
 };

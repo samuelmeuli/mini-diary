@@ -4,7 +4,7 @@ import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
 import CalendarNavContainer from './CalendarNavContainer';
-import { getFirstDayOfWeek } from '../../../../helpers/dateUtils';
+import { formatDate, getFirstDayOfWeek } from '../../../../helpers/dateUtils';
 
 
 const propTypes = {
@@ -40,8 +40,8 @@ export default class Calendar extends PureComponent {
 		const { dateSelected, entries, monthSelected } = this.props;
 
 		const today = new Date();
-		const daysWithEntries = Object.keys(entries).map(entry => moment(entry).format('YYYY-MM-DD'));
-		const hasEntry = day => daysWithEntries.includes(moment(day).format('YYYY-MM-DD'));
+		const daysWithEntries = Object.keys(entries).map(entry => formatDate(entry));
+		const hasEntry = day => daysWithEntries.includes(formatDate(day));
 
 		return (
 			<DayPicker

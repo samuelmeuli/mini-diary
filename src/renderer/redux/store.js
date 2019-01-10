@@ -5,13 +5,15 @@ import thunk from 'redux-thunk';
 import app from './reducers/appReducer';
 import diary from './reducers/diaryReducer';
 import file from './reducers/fileReducer';
+import importReducer from './reducers/importReducer';
 
 
 // Combine reducers
 const reducers = combineReducers({
 	app,
 	diary,
-	file
+	file,
+	import: importReducer
 });
 
 // eslint-disable-next-line no-underscore-dangle

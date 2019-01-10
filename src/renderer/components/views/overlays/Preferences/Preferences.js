@@ -5,10 +5,10 @@ import {
 	getFilePath as getFilePathPref,
 	setFileDir as setFileDirPref,
 	setTheme as setThemePref
-} from '../../../helpers/preferences';
-import Banner from '../../elements/Banner';
+} from '../../../../helpers/preferences';
+import Banner from '../../../elements/Banner';
 import Overlay from '../Overlay';
-import { supportsSystemTheme } from '../../../electron/systemTheme';
+import { supportsSystemTheme } from '../../../../electron/systemTheme';
 
 const { dialog } = window.require('electron').remote;
 
@@ -177,7 +177,7 @@ export default class Preferences extends PureComponent {
 						isLocked
 							&& (
 								<fieldset className="fieldset-file-dir">
-									<legend>Diary file</legend>
+									<legend>Diary directory</legend>
 									<p>{fileDir}</p>
 									<button type="button" className="button button-main" onClick={this.selectFileDir}>
 										Select directory

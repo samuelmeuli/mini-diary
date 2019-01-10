@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Banner from '../../elements/Banner';
-import PageCentered from '../PageCentered';
+import Banner from '../../../elements/Banner';
+import StartPage from '../StartPage';
 
 
 const propTypes = {
@@ -60,7 +60,7 @@ export default class PasswordCreation extends PureComponent {
 		const passwordsMatch = password1 === password2;
 
 		return (
-			<PageCentered>
+			<StartPage>
 				<p>Please choose a password for your diary.</p>
 				<form className="password-creation-form" onSubmit={this.onSubmit}>
 					<input
@@ -92,7 +92,7 @@ export default class PasswordCreation extends PureComponent {
 							&& <Banner type="error" message="Passwords do not match" />
 					}
 				</div>
-			</PageCentered>
+			</StartPage>
 		);
 	}
 }

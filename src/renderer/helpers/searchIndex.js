@@ -1,5 +1,5 @@
 import elasticlunr from 'elasticlunr';
-import { fileExists, readFile, writeFile } from './fileAccess';
+import { fileExists, readEncryptedFile, writeEncryptedFile } from './fileAccess';
 
 const { app } = window.require('electron').remote;
 
@@ -14,7 +14,7 @@ let index;
  */
 export function writeIndex(hashedPassword) {
 	try {
-		writeFile(INDEX_PATH, hashedPassword, index);
+		writeEncryptedFile(INDEX_PATH, hashedPassword, index);
 	} catch (err) {
 		console.error(`Could not write search index to disk: ${err}`);
 	}
@@ -53,7 +53,7 @@ export function readIndex(entries, hashedPassword) {
 		createIndex(entries, hashedPassword);
 	} else {
 		try {
-			const indexDump = readFile(INDEX_PATH, hashedPassword);
+			const indexDump = readEncryptedFile(INDEX_PATH, hashedPassword);
 			index = elasticlunr.Index.load(indexDump);
 		} catch (err) {
 			createIndex(entries, hashedPassword);

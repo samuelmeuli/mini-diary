@@ -9,7 +9,12 @@ const propTypes = {
 		PropTypes.arrayOf(PropTypes.node),
 		PropTypes.node
 	]).isRequired,
+	className: PropTypes.string,
 	onClose: PropTypes.func.isRequired
+};
+
+const defaultProps = {
+	className: ''
 };
 
 export default class Overlay extends PureComponent {
@@ -28,6 +33,9 @@ export default class Overlay extends PureComponent {
 		window.removeEventListener('keydown', this.onKeyDown);
 	}
 
+	/**
+	 * Close the overlay when the ESC key is pressed
+	 */
 	onKeyDown(e) {
 		if (e.key === 'Escape') {
 			const { onClose } = this.props;
@@ -36,10 +44,10 @@ export default class Overlay extends PureComponent {
 	}
 
 	render() {
-		const { children, onClose } = this.props;
+		const { children, className, onClose } = this.props;
 
 		return (
-			<div className="overlay-outer">
+			<div className={`overlay-outer ${className}`}>
 				<div className="overlay-inner">
 					<button
 						type="button"
@@ -58,3 +66,4 @@ export default class Overlay extends PureComponent {
 }
 
 Overlay.propTypes = propTypes;
+Overlay.defaultProps = defaultProps;

@@ -1,6 +1,9 @@
 const { app } = require('electron');
 
 const {
+	importDayOne,
+	importJrnl,
+	importJson,
 	lock,
 	setDaySelectedNext,
 	setDaySelectedPrevious,
@@ -24,16 +27,27 @@ exports.getMenuTemplate = () => {
 					},
 					enabled: false
 				},
+				{ type: 'separator' },
 				{
 					label: 'Import',
 					submenu: [
 						{
-							label: 'Import from Day One…'
-							// TODO
+							label: 'Import from Day One…',
+							click() {
+								importDayOne();
+							}
 						},
 						{
-							label: 'Import from jrnl…'
-							// TODO
+							label: 'Import from jrnl…',
+							click() {
+								importJrnl();
+							}
+						},
+						{
+							label: 'Import from JSON…',
+							click() {
+								importJson();
+							}
 						}
 					]
 				},
@@ -42,6 +56,10 @@ exports.getMenuTemplate = () => {
 					submenu: [
 						{
 							label: 'Export to PDF…'
+							// TODO
+						},
+						{
+							label: 'Export to Markdown…'
 							// TODO
 						},
 						{

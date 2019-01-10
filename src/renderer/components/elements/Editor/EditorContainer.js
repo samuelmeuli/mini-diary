@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Editor from './Editor';
-import { updateFile } from '../../../redux/actions/fileActions';
+import { updateEntry } from '../../../redux/actions/fileActions';
 
 
 function mapStateToProps(state) {
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		updateFile: (dateFormatted, title, text) => dispatch(updateFile(dateFormatted, title, text))
+		updateEntry: (dateFormatted, title, text) => dispatch(updateEntry(dateFormatted, title, text))
 	};
 }
 

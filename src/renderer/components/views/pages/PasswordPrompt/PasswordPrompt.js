@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
-import Banner from '../../elements/Banner';
-import PageCentered from '../PageCentered';
+import Banner from '../../../elements/Banner';
+import StartPage from '../StartPage';
 
 
 const propTypes = {
@@ -58,7 +58,7 @@ export default class PasswordPrompt extends PureComponent {
 		const { isSubmitted, password } = this.state;
 
 		return (
-			<PageCentered>
+			<StartPage>
 				<form className="password-prompt-form" onSubmit={this.onSubmit}>
 					<input
 						type="password"
@@ -81,7 +81,7 @@ export default class PasswordPrompt extends PureComponent {
 							&& <Banner type="error" message={decryptErrorMsg} />
 					}
 				</div>
-			</PageCentered>
+			</StartPage>
 		);
 	}
 }

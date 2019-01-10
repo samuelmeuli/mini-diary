@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SimpleSvg from 'react-simple-svg';
 
-import appIcon from '../../assets/icons/app-icon.svg';
+import appIcon from '../../../assets/icons/app-icon.svg';
 
 
 const propTypes = {
 	children: PropTypes.arrayOf(PropTypes.node).isRequired
 };
 
-export default function PageCentered(props) {
+export default function StartPage(props) {
 	const { children } = props;
 	return (
 		<div className="page-centered-outer">
@@ -23,4 +23,4 @@ export default function PageCentered(props) {
 	);
 }
 
-PageCentered.propTypes = propTypes;
+StartPage.propTypes = propTypes;

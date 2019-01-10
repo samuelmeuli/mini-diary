@@ -1,6 +1,6 @@
 import { disableMenuItems, enableMenuItems } from '../../electron/ipcRenderer/senders';
-import { fileExists, readFile, writeFile } from '../../helpers/fileAccess';
-import hashPassword from '../../helpers/hashPassword';
+import { fileExists, readEncryptedFile, writeEncryptedFile } from '../../helpers/fileAccess';
+import { hashPassword } from '../../helpers/hashPassword';
 import { getMetadata } from '../../helpers/metadata';
 import { getFilePath } from '../../helpers/preferences';
 import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/searchIndex';
@@ -8,9 +8,9 @@ import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/s
 
 // Action creators
 
-function setDecryptReset() {
+function clearFileState() {
 	return {
-		type: 'DECRYPT_RESET'
+		type: 'CLEAR_FILE_STATE'
 	};
 }
 
@@ -80,6 +80,9 @@ function setHashedPassword(hashedPassword) {
 
 // Thunks
 
+/**
+ * Test whether a diary file exists at the path specified in the preferences
+ */
 export function testFileExists() {
 	const filePath = getFilePath();
 	return (dispatch) => {
@@ -87,6 +90,9 @@ export function testFileExists() {
 	};
 }
 
+/**
+ * Create new encrypted diary and index files with the provided password
+ */
 export function createEncryptedFile(password) {
 	const entries = {};
 	const filePath = getFilePath();
@@ -98,7 +104,7 @@ export function createEncryptedFile(password) {
 		dispatch(setEncryptInProgress());
 		const hashedPassword = hashPassword(password);
 		try {
-			writeFile(filePath, hashedPassword, content);
+			writeEncryptedFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
 			createIndex(entries, hashedPassword);
@@ -110,13 +116,16 @@ export function createEncryptedFile(password) {
 	};
 }
 
+/**
+ * Read diary entries and index from disk
+ */
 export function decryptFile(password) {
 	const filePath = getFilePath();
 	return (dispatch) => {
 		dispatch(setDecryptInProgress());
 		const hashedPassword = hashPassword(password);
 		try {
-			const fileContent = readFile(filePath, hashedPassword);
+			const fileContent = readEncryptedFile(filePath, hashedPassword);
 			const { entries } = fileContent;
 			// On success, load diary entries and save password
 			dispatch(setDecryptSuccess(entries));
@@ -129,13 +138,16 @@ export function decryptFile(password) {
 			if (err.message.endsWith('bad decrypt')) {
 				errorMsg = 'Incorrect password';
 			} else {
-				errorMsg = 'Error while decrypting diary file';
+				errorMsg = `Error while decrypting diary file: ${err.message}`;
 			}
 			dispatch(setDecryptError(errorMsg));
 		}
 	};
 }
 
+/**
+ * Write diary entries and index to disk
+ */
 function encryptFile(entries) {
 	const filePath = getFilePath();
 	const content = {
@@ -146,7 +158,7 @@ function encryptFile(entries) {
 		const { hashedPassword } = getState().file;
 		dispatch(setEncryptInProgress());
 		try {
-			writeFile(filePath, hashedPassword, content);
+			writeEncryptedFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
 			writeIndex(hashedPassword);
 		} catch (err) {
@@ -156,7 +168,11 @@ function encryptFile(entries) {
 	};
 }
 
-export function updateFile(dateFormatted, title, text) {
+/**
+ * Update the diary entry in the state. Remove the entry if it is empty. Then write the diary to the
+ * encrypted diary file and update the index
+ */
+export function updateEntry(dateFormatted, title, text) {
 	return (dispatch, getState) => {
 		const { entries } = getState().file;
 
@@ -165,33 +181,78 @@ export function updateFile(dateFormatted, title, text) {
 			if (dateFormatted in entries) {
 				const entriesUpdated = entries;
 				delete entriesUpdated[dateFormatted];
+				// Remove from index
+				updateIndex(dateFormatted, {
+					title: '',
+					text: ''
+				});
+				// Write to diary and index files
 				dispatch(encryptFile(entriesUpdated));
 			}
 		} else if (
 			!(dateFormatted in entries)
-			|| text !== entries[dateFormatted].text
 			|| title !== entries[dateFormatted].title
+			|| text !== entries[dateFormatted].text
 		) {
 			// Non-empty and changed/missing entry: Write to file
 			const entryUpdated = {
 				dateUpdated: new Date().toString(),
-				text,
-				title
+				title,
+				text
 			};
 			const entriesUpdated = {
 				...entries,
 				[dateFormatted]: entryUpdated
 			};
-			dispatch(encryptFile(entriesUpdated));
+			// Update index
 			updateIndex(dateFormatted, entryUpdated);
+			// Write to diary and index files
+			dispatch(encryptFile(entriesUpdated));
 		}
 	};
 }
 
+/**
+ * Merge the provided diary JSON with the one in the Redux state. For each entry, use the new one if
+ * none exists yet. Otherwise, append the new title and text to the existing ones
+ */
+export function mergeUpdateFile(newEntries) {
+	// Check whether newEntries is an object
+	if (typeof newEntries !== 'object' || newEntries === null) {
+		throw Error('Entries are not an object');
+	}
+
+	return (dispatch, getState) => {
+		const { entries } = getState().file;
+		const entriesUpdated = { ...entries };
+
+		Object.entries(newEntries).forEach(([dateFormatted, newEntry]) => {
+			let entryUpdated;
+			if (dateFormatted in entriesUpdated) {
+				// Entry exists -> merge
+				const oldEntry = entriesUpdated[dateFormatted];
+				entryUpdated = {
+					dateUpdated: newEntry.dateUpdated,
+					title: `${oldEntry.title} | ${newEntry.title}`,
+					text: `${oldEntry.text}\n\n----------\n\n${newEntry.text}`
+				};
+			} else {
+				// Entry does not exist yet -> add
+				entryUpdated = newEntry;
+			}
+			entriesUpdated[dateFormatted] = entryUpdated;
+			updateIndex(dateFormatted, entryUpdated);
+		});
+		dispatch(encryptFile(entriesUpdated));
+	};
+}
+
+/**
+ * Lock the diary: Remove password and diary entries from state
+ */
 export function lock() {
 	return (dispatch) => {
-		dispatch(setDecryptReset());
-		dispatch(setHashedPassword(''));
+		dispatch(clearFileState());
 		disableMenuItems();
 	};
 }

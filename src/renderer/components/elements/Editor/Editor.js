@@ -4,6 +4,8 @@ import debounce from 'lodash.debounce';
 import moment from 'moment';
 import TextareaAutosize from 'react-autosize-textarea';
 
+import { formatDate } from '../../../helpers/dateUtils';
+
 const AUTOSAVE_INTERVAL = 500;
 
 
@@ -14,14 +16,10 @@ const propTypes = {
 		text: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired
 	})).isRequired,
-	updateFile: PropTypes.func.isRequired
+	updateEntry: PropTypes.func.isRequired
 };
 
 export default class Editor extends PureComponent {
-	static formatDate(date) {
-		return moment(date).format('YYYY-MM-DD');
-	}
-
 	static onTitleEnterKey(e) {
 		// On typing "enter" in the title textarea, do not insert a newline character and jump to
 		// the next form element
@@ -37,7 +35,7 @@ export default class Editor extends PureComponent {
 		if (dateProps === dateState) {
 			return null;
 		}
-		const dateFormatted = Editor.formatDate(dateProps);
+		const dateFormatted = formatDate(dateProps);
 		let text = '';
 		let title = '';
 		if (entries[dateFormatted]) {
@@ -54,7 +52,7 @@ export default class Editor extends PureComponent {
 		super(props);
 
 		const { dateSelected, entries } = props;
-		const dateFormatted = Editor.formatDate(dateSelected);
+		const dateFormatted = formatDate(dateSelected);
 		let text = '';
 		let title = '';
 		if (entries[dateFormatted]) {
@@ -90,11 +88,11 @@ export default class Editor extends PureComponent {
 	}
 
 	saveEntry() {
-		const { dateSelected, updateFile } = this.props;
+		const { dateSelected, updateEntry } = this.props;
 		const { text, title } = this.state;
-		const dateFormatted = Editor.formatDate(dateSelected);
+		const dateFormatted = formatDate(dateSelected);
 
-		updateFile(dateFormatted, title, text);
+		updateEntry(dateFormatted, title, text);
 	}
 
 	render() {

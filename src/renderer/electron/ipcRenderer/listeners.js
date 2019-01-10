@@ -6,12 +6,25 @@ import {
 	setMonthSelectedPrevious
 } from '../../redux/actions/diaryActions';
 import { lock } from '../../redux/actions/fileActions';
+import { showImportOverlay } from '../../redux/actions/importActions';
 import store from '../../redux/store';
 import { getSystemTheme } from '../systemTheme';
 
 const { ipcRenderer } = window.require('electron');
 const { systemPreferences } = window.require('electron').remote;
 
+
+ipcRenderer.on('importDayOne', () => {
+	store.dispatch(showImportOverlay('dayOne'));
+});
+
+ipcRenderer.on('importJrnl', () => {
+	store.dispatch(showImportOverlay('jrnl'));
+});
+
+ipcRenderer.on('importJson', () => {
+	store.dispatch(showImportOverlay('json'));
+});
 
 ipcRenderer.on('lock', () => {
 	store.dispatch(lock());
