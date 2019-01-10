@@ -26,8 +26,8 @@ export function parseJson(jsonStr) {
 
 		importObj[dateFormattedValidated] = {
 			dateUpdated,
-			title,
-			text
+			title: title.trim(),
+			text: text.trim()
 		};
 	});
 	return importObj;

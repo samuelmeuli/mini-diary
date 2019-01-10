@@ -12,25 +12,18 @@ export function parseJrnlJson(jrnlJsonStr) {
 	const importObj = {};
 	entries.forEach((entry) => {
 		const dateFormatted = formatDate(entry.date);
-		let title;
-		let text;
+		let title = entry.title.trim();
+		let text = entry.body.trim();
+
+		// Add title and text to existing entry if already is one for the same day
 		if (dateFormatted in importObj) {
-			// Add to existing entry if there is another one for the day
 			const existingEntry = { ...importObj[dateFormatted] };
-			// Append new title to existing one
 			if (existingEntry.title) {
-				title = `${existingEntry.text} | ${entry.title}`;
-			} else {
-				({ title } = entry);
+				title = `${existingEntry.text} | ${title}`;
 			}
-			// Append new text to existing one
 			if (existingEntry.text) {
-				text = `${existingEntry.text}\n\n----------\n\n${entry.body}`;
-			} else {
-				text = entry.body;
+				text = `${existingEntry.text}\n\n----------\n\n${text}`;
 			}
-		} else {
-			({ title, body: text } = entry);
 		}
 
 		importObj[dateFormatted] = {
