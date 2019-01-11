@@ -89,7 +89,6 @@ exports.getMenuTemplate = () => {
 								exportToJson();
 							}
 						}
-						// TODO enable/disable import/export menu items
 					]
 				}
 			]
