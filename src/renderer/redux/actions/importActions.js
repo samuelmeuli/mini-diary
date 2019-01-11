@@ -61,8 +61,8 @@ function importDayOne(dayOneTxtPath) {
 			const json = parseDayOneTxt(dayOneTxt);
 			dispatch(mergeUpdateFile(json));
 			dispatch(setImportSuccess());
-		} catch (e) {
-			dispatch(setImportError(e.message));
+		} catch (err) {
+			dispatch(setImportError(err.toString()));
 		}
 	};
 }
@@ -75,8 +75,8 @@ function importJrnl(jrnlJsonPath) {
 			const json = parseJrnlJson(jrnlJsonStr);
 			dispatch(mergeUpdateFile(json));
 			dispatch(setImportSuccess());
-		} catch (e) {
-			dispatch(setImportError(e.message));
+		} catch (err) {
+			dispatch(setImportError(err.toString()));
 		}
 	};
 }
@@ -89,8 +89,8 @@ function importJson(jsonPath) {
 			const json = parseJson(jsonStr);
 			dispatch(mergeUpdateFile(json));
 			dispatch(setImportSuccess());
-		} catch (e) {
-			dispatch(setImportError(e.message));
+		} catch (err) {
+			dispatch(setImportError(err.toString()));
 		}
 	};
 }

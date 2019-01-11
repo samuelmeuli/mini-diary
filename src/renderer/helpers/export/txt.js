@@ -11,24 +11,26 @@ import { toDayOneDate } from '../dateUtils';
  *   [Text]
  */
 export function convertToTxt(entries) {
-	let txt = '';
+	return new Promise((resolve) => {
+		let txt = '';
 
-	entries.forEach(([indexDate, entry]) => {
-		const { text, title } = entry;
+		entries.forEach(([indexDate, entry]) => {
+			const { text, title } = entry;
 
-		// Format date
-		const dayOneDate = toDayOneDate(indexDate);
+			// Format date
+			const dayOneDate = toDayOneDate(indexDate);
 
-		// Build TXT string
-		txt += `\tDate:\t${dayOneDate}\n\n`; // Date
-		if (title) {
-			txt += `${title}\n\n`; // Title
-		}
-		if (text) {
-			txt += `${text}\n\n`; // Text
-		}
-		txt += '\n';
+			// Build TXT string
+			txt += `\tDate:\t${dayOneDate}\n\n`; // Date
+			if (title) {
+				txt += `${title}\n\n`; // Title
+			}
+			if (text) {
+				txt += `${text}\n\n`; // Text
+			}
+			txt += '\n';
+		});
+
+		resolve(txt);
 	});
-
-	return txt;
 }

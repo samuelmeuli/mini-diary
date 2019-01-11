@@ -2,11 +2,13 @@
  * Convert entries to a JSON string
  */
 export function convertToJson(entries) {
-	const json = {};
+	return new Promise((resolve) => {
+		const json = {};
 
-	entries.forEach(([indexDate, entry]) => {
-		json[indexDate] = entry;
+		entries.forEach(([indexDate, entry]) => {
+			json[indexDate] = entry;
+		});
+
+		resolve(JSON.stringify(json, null, '\t'));
 	});
-
-	return JSON.stringify(json, null, '\t');
 }

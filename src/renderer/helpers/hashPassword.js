@@ -7,7 +7,7 @@ export function hashPassword(password) {
 	try {
 		const hash = crypto.pbkdf2Sync(password, SALT, 500000, 64, 'sha512');
 		return hash.toString('hex');
-	} catch (e) {
-		throw Error(`Error while hashing password: ${e.message}`);
+	} catch (err) {
+		throw Error(`Error while hashing password: ${err.toString()}`);
 	}
 }

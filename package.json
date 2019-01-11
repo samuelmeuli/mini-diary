@@ -37,6 +37,7 @@
 		"lodash.debounce": "^4.0.8",
 		"minireset.css": "^0.0.3",
 		"moment": "^2.22.2",
+		"pdfmake": "^0.1.40",
 		"prop-types": "^15.6.2",
 		"react": "^16.4.1",
 		"react-autosize-textarea": "^6.0.0",
