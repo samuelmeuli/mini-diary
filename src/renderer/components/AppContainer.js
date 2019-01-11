@@ -9,7 +9,9 @@ function mapStateToProps(state) {
 		fileExists: state.file.fileExists,
 		hashedPassword: state.file.hashedPassword,
 		exportErrorMsg: state.export.exportErrorMsg,
+		exportStatus: state.export.exportStatus,
 		importErrorMsg: state.import.importErrorMsg,
+		importStatus: state.import.importStatus,
 		showImportOverlay: state.import.showImportOverlay,
 		showPreferences: state.app.showPreferences,
 		theme: state.app.theme

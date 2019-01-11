@@ -17,7 +17,9 @@ const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
 	hashedPassword: PropTypes.string.isRequired,
 	exportErrorMsg: PropTypes.string.isRequired,
+	exportStatus: PropTypes.string.isRequired,
 	importErrorMsg: PropTypes.string.isRequired,
+	importStatus: PropTypes.string.isRequired,
 	showImportOverlay: PropTypes.bool.isRequired,
 	showPreferences: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
@@ -25,6 +27,14 @@ const propTypes = {
 };
 
 export default class App extends Component {
+	static hideSpinningCursor() {
+		document.body.style.cursor = 'auto';
+	}
+
+	static showSpinningCursor() {
+		document.body.style.cursor = 'wait';
+	}
+
 	constructor() {
 		super();
 
@@ -43,7 +53,7 @@ export default class App extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { exportErrorMsg, importErrorMsg } = this.props;
+		const { exportErrorMsg, exportStatus, importErrorMsg, importStatus } = this.props;
 
 		// Check for export error and display it if there is one
 		if (exportErrorMsg && exportErrorMsg !== prevProps.exportErrorMsg) {
@@ -57,6 +67,22 @@ export default class App extends Component {
 			dialog.showErrorBox(
 				'Import error', `An error occurred during the import: ${importErrorMsg}`
 			);
+		}
+
+		// Show loading spinner if necessary
+		if (exportStatus !== prevProps.exportStatus) {
+			if (exportStatus === 'inProgress') {
+				App.showSpinningCursor();
+			} else {
+				App.hideSpinningCursor();
+			}
+		}
+		if (importStatus !== prevProps.importStatus) {
+			if (importStatus === 'inProgress') {
+				App.showSpinningCursor();
+			} else {
+				App.hideSpinningCursor();
+			}
 		}
 	}
 
