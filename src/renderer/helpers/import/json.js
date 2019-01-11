@@ -5,8 +5,7 @@ import { toIndexDate } from '../dateUtils';
  * Parse the JSON file and format it as a processable object
  */
 export function parseJson(jsonStr) {
-	const json = JSON.parse(jsonStr);
-	const { entries } = json;
+	const entries = JSON.parse(jsonStr);
 	const now = new Date().toString();
 
 	const importObj = {};
