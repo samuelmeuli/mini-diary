@@ -4,6 +4,8 @@ const { disableMenuItems, enableMenuItems } = require('../menu/menu');
 const { getWindow } = require('../window');
 
 
+// Menu items
+
 ipcMain.on('disableMenuItems', () => {
 	disableMenuItems();
 });
@@ -11,6 +13,9 @@ ipcMain.on('disableMenuItems', () => {
 ipcMain.on('enableMenuItems', () => {
 	enableMenuItems();
 });
+
+
+// Window
 
 ipcMain.on('toggleWindowSize', () => {
 	const window = getWindow();

@@ -8,7 +8,7 @@ import Preferences from './views/overlays/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
 import { toggleWindowSize } from '../electron/ipcRenderer/senders';
 import { getSystemTheme } from '../electron/systemTheme';
-import ImportOverlay from './views/overlays/ImportOverlay/ImportOverlayContainer';
+import ImportOverlayContainer from './views/overlays/ImportOverlay/ImportOverlayContainer';
 
 const { dialog } = window.require('electron').remote;
 
@@ -16,6 +16,7 @@ const { dialog } = window.require('electron').remote;
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
 	hashedPassword: PropTypes.string.isRequired,
+	exportErrorMsg: PropTypes.string.isRequired,
 	importErrorMsg: PropTypes.string.isRequired,
 	showImportOverlay: PropTypes.bool.isRequired,
 	showPreferences: PropTypes.bool.isRequired,
@@ -42,7 +43,14 @@ export default class App extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { importErrorMsg } = this.props;
+		const { exportErrorMsg, importErrorMsg } = this.props;
+
+		// Check for export error and display it if there is one
+		if (exportErrorMsg && exportErrorMsg !== prevProps.exportErrorMsg) {
+			dialog.showErrorBox(
+				'Export error', `An error occurred during the export: ${exportErrorMsg}`
+			);
+		}
 
 		// Check for import error and display it if there is one
 		if (importErrorMsg && importErrorMsg !== prevProps.importErrorMsg) {
@@ -85,7 +93,7 @@ export default class App extends Component {
 		if (showPreferences) {
 			overlay = <Preferences isLocked={fileExists === false || hashedPassword === ''} />;
 		} else if (showImportOverlay) {
-			overlay = <ImportOverlay />;
+			overlay = <ImportOverlayContainer />;
 		}
 
 		return (

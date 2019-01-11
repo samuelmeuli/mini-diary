@@ -1,6 +1,27 @@
 const { getWindow } = require('../window');
 
 
+// Export
+
+exports.exportToJson = () => {
+	getWindow().webContents.send('exportToJson');
+};
+
+exports.exportToMd = () => {
+	getWindow().webContents.send('exportToMd');
+};
+
+exports.exportToPdf = () => {
+	getWindow().webContents.send('exportToPdf');
+};
+
+exports.exportToTxt = () => {
+	getWindow().webContents.send('exportToTxt');
+};
+
+
+// Import
+
 exports.importDayOne = () => {
 	getWindow().webContents.send('importDayOne');
 };
@@ -13,9 +34,15 @@ exports.importJson = () => {
 	getWindow().webContents.send('importJson');
 };
 
+
+// Lock
+
 exports.lock = () => {
 	getWindow().webContents.send('lock');
 };
+
+
+// Date
 
 exports.setDaySelectedNext = () => {
 	getWindow().webContents.send('nextDay');
@@ -32,6 +59,9 @@ exports.setMonthSelectedNext = () => {
 exports.setMonthSelectedPrevious = () => {
 	getWindow().webContents.send('previousMonth');
 };
+
+
+// Preferences
 
 exports.showPreferences = () => {
 	getWindow().webContents.send('showPreferences');

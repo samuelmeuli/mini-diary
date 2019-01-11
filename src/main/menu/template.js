@@ -1,6 +1,10 @@
 const { app } = require('electron');
 
 const {
+	exportToJson,
+	exportToMd,
+	exportToPdf,
+	exportToTxt,
 	importDayOne,
 	importJrnl,
 	importJson,
@@ -55,22 +59,29 @@ exports.getMenuTemplate = () => {
 					label: 'Export',
 					submenu: [
 						{
-							label: 'Export to PDF…'
-							// TODO
+							label: 'Export to PDF…',
+							click() {
+								exportToPdf();
+							}
 						},
 						{
-							label: 'Export to Markdown…'
-							// TODO
+							label: 'Export to Markdown…',
+							click() {
+								exportToMd();
+							}
 						},
 						{
-							label: 'Export to TXT…'
-							// TODO
+							label: 'Export to TXT…',
+							click() {
+								exportToTxt();
+							}
 						},
 						{
-							label: 'Export to JSON…'
-							// TODO
+							label: 'Export to JSON…',
+							click() {
+								exportToJson();
+							}
 						}
-						// TODO diary formats?
 						// TODO enable/disable import/export menu items
 					]
 				}

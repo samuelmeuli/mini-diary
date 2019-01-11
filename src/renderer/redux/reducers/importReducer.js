@@ -1,7 +1,7 @@
 function importState(state = {
-	importStatus: 'idle', // One of ['idle', 'inProgress', 'error']
 	importErrorMsg: '',
 	importFormat: '', // One of ['dayOne', 'jrnl', 'json']
+	importStatus: 'idle', // One of ['idle', 'inProgress', 'error']
 	showImportOverlay: false
 }, action) {
 	switch (action.type) {

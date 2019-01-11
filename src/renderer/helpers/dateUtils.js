@@ -20,7 +20,15 @@ export function getFirstDayOfWeek() {
 
 
 /**
- * Format Date as diary object index
+ * Format date as a string compatible with the import tool of Day One
+ */
+export function toDayOneDate(date) {
+	return moment(date).format('DD MMMM YYYY [at 00:00:00 GMT]');
+}
+
+
+/**
+ * Format date as diary object index
  */
 export function toIndexDate(date) {
 	return moment(date).format('YYYY-MM-DD');
@@ -28,7 +36,7 @@ export function toIndexDate(date) {
 
 
 /**
- * Format Date as a string with weekday
+ * Format date as a string with weekday
  */
 export function toDateString(date) {
 	return moment(date).format('dddd, D MMMM YYYY');

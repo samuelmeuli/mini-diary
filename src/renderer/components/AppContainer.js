@@ -8,6 +8,7 @@ function mapStateToProps(state) {
 	return {
 		fileExists: state.file.fileExists,
 		hashedPassword: state.file.hashedPassword,
+		exportErrorMsg: state.export.exportErrorMsg,
 		importErrorMsg: state.import.importErrorMsg,
 		showImportOverlay: state.import.showImportOverlay,
 		showPreferences: state.app.showPreferences,
