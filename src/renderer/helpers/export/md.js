@@ -13,7 +13,7 @@ import { toDateString } from '../dateUtils';
  *   [Text]
  */
 export function convertToMd(entries) {
-	let md = '# Mini Diary';
+	let md = '# Mini Diary\n\n';
 
 	entries.forEach(([indexDate, entry]) => {
 		const { text, title } = entry;
@@ -25,7 +25,14 @@ export function convertToMd(entries) {
 		const dateStr = toDateString(indexDate);
 
 		// Build Markdown string
-		md += `\n\n## ${dateStr}\n\n### ${title}\n\n${textMd}\n`;
+		md += `## ${dateStr}\n\n`; // Date
+		if (title) {
+			md += `### ${title}\n\n`; // Title
+		}
+		if (textMd) {
+			md += `${textMd}\n\n`; // Text
+		}
+		md += '\n';
 	});
 
 	return md;

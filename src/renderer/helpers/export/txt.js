@@ -20,7 +20,14 @@ export function convertToTxt(entries) {
 		const dayOneDate = toDayOneDate(indexDate);
 
 		// Build TXT string
-		txt += `\tDate:\t${dayOneDate}\n\n${title}\n\n${text}\n\n\n`;
+		txt += `\tDate:\t${dayOneDate}\n\n`; // Date
+		if (title) {
+			txt += `${title}\n\n`; // Title
+		}
+		if (text) {
+			txt += `${text}\n\n`; // Text
+		}
+		txt += '\n';
 	});
 
 	return txt;
