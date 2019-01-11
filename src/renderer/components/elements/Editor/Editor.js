@@ -91,7 +91,7 @@ export default class Editor extends PureComponent {
 		const { text, title } = this.state;
 		const indexDate = toIndexDate(dateSelected);
 
-		updateEntry(indexDate, title, text);
+		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
 	render() {
