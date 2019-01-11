@@ -28,8 +28,7 @@ exports.getMenuTemplate = () => {
 					accelerator: 'CmdOrCtrl+L',
 					click() {
 						lock();
-					},
-					enabled: false
+					}
 				},
 				{ type: 'separator' },
 				{
@@ -37,18 +36,21 @@ exports.getMenuTemplate = () => {
 					submenu: [
 						{
 							label: 'Import from Day One…',
+							id: 'importFromDayOne',
 							click() {
 								importDayOne();
 							}
 						},
 						{
 							label: 'Import from jrnl…',
+							id: 'importFromJrnl',
 							click() {
 								importJrnl();
 							}
 						},
 						{
 							label: 'Import from JSON…',
+							id: 'importFromJson',
 							click() {
 								importJson();
 							}
@@ -57,27 +59,32 @@ exports.getMenuTemplate = () => {
 				},
 				{
 					label: 'Export',
+					id: 'export',
 					submenu: [
 						{
 							label: 'Export to PDF…',
+							id: 'exportToPdf',
 							click() {
 								exportToPdf();
 							}
 						},
 						{
 							label: 'Export to Markdown…',
+							id: 'exportToMd',
 							click() {
 								exportToMd();
 							}
 						},
 						{
 							label: 'Export to TXT…',
+							id: 'exportToTxt',
 							click() {
 								exportToTxt();
 							}
 						},
 						{
 							label: 'Export to JSON…',
+							id: 'exportToJson',
 							click() {
 								exportToJson();
 							}
@@ -108,8 +115,7 @@ exports.getMenuTemplate = () => {
 					accelerator: 'Left',
 					click() {
 						setDaySelectedPrevious();
-					},
-					enabled: false
+					}
 				},
 				{
 					label: 'Next day',
@@ -117,8 +123,7 @@ exports.getMenuTemplate = () => {
 					accelerator: 'Right',
 					click() {
 						setDaySelectedNext();
-					},
-					enabled: false
+					}
 				},
 				{ type: 'separator' },
 				{
@@ -127,8 +132,7 @@ exports.getMenuTemplate = () => {
 					accelerator: 'CmdOrCtrl+Left',
 					click() {
 						setMonthSelectedPrevious();
-					},
-					enabled: false
+					}
 				},
 				{
 					label: 'Next month',
@@ -136,8 +140,7 @@ exports.getMenuTemplate = () => {
 					accelerator: 'CmdOrCtrl+Right',
 					click() {
 						setMonthSelectedNext();
-					},
-					enabled: false
+					}
 				}
 			]
 		},
