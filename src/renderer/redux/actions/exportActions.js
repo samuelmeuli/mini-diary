@@ -1,4 +1,5 @@
 import { showExportDialog } from '../../helpers/export/exportDialog';
+import { convertToJson } from '../../helpers/export/json';
 import { convertToMd } from '../../helpers/export/md';
 import { convertToTxt } from '../../helpers/export/txt';
 import { writeFile } from '../../helpers/fileAccess';
@@ -42,10 +43,11 @@ function exportToFile(converterFunc, fileExtension) {
 			} else {
 				filePath = `${fileName}.${fileExtension}`;
 			}
-			// Convert entries to the specified format and write them to disk
+			// Sort and convert entries to the specified format, then write them to disk
 			const { entries } = getState().file;
+			const entriesSorted = Object.entries(entries).sort((a, b) => a[0].localeCompare(b[0]));
 			try {
-				const entriesConverted = converterFunc(entries);
+				const entriesConverted = converterFunc(entriesSorted);
 				writeFile(filePath, entriesConverted);
 				dispatch(setExportSuccess());
 			} catch (e) {
@@ -57,7 +59,7 @@ function exportToFile(converterFunc, fileExtension) {
 
 export function exportToJson() {
 	return (dispatch) => {
-		dispatch(exportToFile(entries => JSON.stringify(entries, null, '\t'), 'json'));
+		dispatch(exportToFile(convertToJson, 'json'));
 	};
 }
 

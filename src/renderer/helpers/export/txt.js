@@ -13,7 +13,7 @@ import { toDayOneDate } from '../dateUtils';
 export function convertToTxt(entries) {
 	let txt = '';
 
-	Object.entries(entries).forEach(([indexDate, entry]) => {
+	entries.forEach(([indexDate, entry]) => {
 		const { text, title } = entry;
 
 		// Format date

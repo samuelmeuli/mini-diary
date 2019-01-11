@@ -15,7 +15,7 @@ import { toDateString } from '../dateUtils';
 export function convertToMd(entries) {
 	let md = '# Mini Diary';
 
-	Object.entries(entries).forEach(([indexDate, entry]) => {
+	entries.forEach(([indexDate, entry]) => {
 		const { text, title } = entry;
 
 		// Replace single with double line breaks to get Markdown paragraphs
