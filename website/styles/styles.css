@@ -115,6 +115,20 @@ a:hover {
 	transition: var(--transition);
 }
 
+header a,
+footer a {
+	color: var(--color-text-footer);
+}
+
+header a:hover,
+footer a:hover {
+	color: var(--color-text-footer-hover);
+}
+
+.all-formats-link {
+	font-size: 80%;
+}
+
 main a {
 	font-weight: 500;
 	color: var(--color-text-dark);
@@ -127,11 +141,6 @@ main a:hover {
 footer a {
 	display: inline-flex;
 	align-items: center;
-	color: var(--color-text-footer);
-}
-
-footer a:hover {
-	color: var(--color-text-footer-hover);
 }
 
 ::selection {

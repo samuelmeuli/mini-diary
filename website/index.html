@@ -46,26 +46,34 @@
 			<h1>Mini Diary</h1>
 			<p class="tagline">Simple and secure journal app</p>
 
+			<div>
+				<a
+					class="button download-link-mac"
+					href="https://github.com/samuelmeuli/mini-diary/releases"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+					macOS
+				</a>
+				<a
+					class="button download-link-windows"
+					href="https://github.com/samuelmeuli/mini-diary/releases"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+					Windows
+				</a>
+				<a
+					class="button download-link-linux"
+					href="https://github.com/samuelmeuli/mini-diary/releases"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+					Linux
+				</a>
+			</div>
 			<a
-				class="button download-link-mac"
-				href="https://github.com/samuelmeuli/mini-diary/releases"
+				class="all-formats-link"
+				href="https://github.com/samuelmeuli/mini-diary/releases/latest"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-				macOS
-			</a>
-			<a
-				class="button download-link-windows"
-				href="https://github.com/samuelmeuli/mini-diary/releases"
-			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-				Windows
-			</a>
-			<a
-				class="button download-link-linux"
-				href="https://github.com/samuelmeuli/mini-diary/releases"
-			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-				Linux
+				All download formats
 			</a>
 		</header>
 
@@ -162,7 +170,7 @@
 						const downloadUrls = {
 							mac: `${urlBase}/mini-diary-${version}.dmg`,
 							windows: `${urlBase}/mini-diary-setup-${version}.exe`,
-							linux: `${urlBase}/mini-diary_${version}_amd64.snap`
+							linux: `${urlBase}/mini-diary-${version}-x86_64.AppImage`
 						};
 
 						// Insert asset URLs in site
