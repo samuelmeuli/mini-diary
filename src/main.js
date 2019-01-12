@@ -15,7 +15,10 @@ function createMainWindow() {
 		width: 1100,
 		height: 600,
 		show: false,
-		titleBarStyle: 'hiddenInset'
+		titleBarStyle: 'hiddenInset',
+		webPreferences: {
+			nodeIntegration: true
+		}
 	});
 	window.loadURL(`file://${__dirname}/index.html`);
 	window.once('ready-to-show', () => {

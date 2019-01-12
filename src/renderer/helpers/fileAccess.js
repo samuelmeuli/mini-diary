@@ -1,6 +1,8 @@
 import crypto from 'crypto';
 import fs from 'fs';
 
+const CIPHER = 'aes-192-cbc';
+
 
 export function copyFile(sourcePath, destinationPath) {
 	fs.copyFileSync(sourcePath, destinationPath);
@@ -25,7 +27,7 @@ export function readEncryptedFile(filePath, hashedPassword) {
 		throw Error('hashedPassword not specified');
 	}
 	const data = fs.readFileSync(filePath);
-	const decipher = crypto.createDecipher('aes192', hashedPassword);
+	const decipher = crypto.createDecipher(CIPHER, hashedPassword);
 	const fileContent = Buffer.concat([decipher.update(data), decipher.final()]);
 	return JSON.parse(fileContent.toString());
 }
@@ -47,7 +49,7 @@ export function writeEncryptedFile(filePath, hashedPassword, content) {
 	if (typeof content !== 'object') {
 		throw Error('content is not an object');
 	}
-	const cipher = crypto.createCipher('aes192', hashedPassword);
+	const cipher = crypto.createCipher(CIPHER, hashedPassword);
 	const encrypted = Buffer.concat([
 		cipher.update(Buffer.from(JSON.stringify(content), 'utf8')), cipher.final()
 	]);
