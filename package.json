@@ -1,6 +1,6 @@
 {
 	"name": "mini-diary",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Simple and secure journal app",
 	"main": "bundle/main.js",
 	"author": "Samuel Meuli <me@samuelmeuli.com>",
