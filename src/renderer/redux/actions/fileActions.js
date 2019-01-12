@@ -135,7 +135,7 @@ export function decryptFile(password) {
 		} catch (err) {
 			// Error reading diary file
 			let errorMsg;
-			if (err.message.endsWith('bad decrypt')) {
+			if (err.message.endsWith('BAD_DECRYPT')) {
 				errorMsg = 'Incorrect password';
 			} else {
 				errorMsg = `Error while decrypting diary file: ${err.message}`;
