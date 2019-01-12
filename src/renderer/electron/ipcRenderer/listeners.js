@@ -89,7 +89,9 @@ ipcRenderer.on('showPreferences', () => {
 
 // Theme
 
-systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
-	const theme = getSystemTheme();
-	store.dispatch(setTheme(theme));
-});
+if (process.platform === 'darwin') {
+	systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
+		const theme = getSystemTheme();
+		store.dispatch(setTheme(theme));
+	});
+}
