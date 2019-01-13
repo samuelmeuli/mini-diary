@@ -38,3 +38,8 @@ The application is built with Electron and React. To run or build the app yourse
 ### Building the app
 
 After cloning the repo and installing the dependencies, run `yarn build`. The built app can be found in the `dist` folder.
+
+
+### Contributing
+
+Suggestions and contributions are always welcome! Please first discuss changes via issue before submitting a pull request.
