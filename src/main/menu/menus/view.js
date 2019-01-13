@@ -10,7 +10,7 @@ module.exports = {
 	label: 'View',
 	submenu: [
 		{
-			label: 'Previous day',
+			label: 'Previous Day',
 			id: 'previousDay',
 			accelerator: 'Left',
 			click() {
@@ -18,7 +18,7 @@ module.exports = {
 			}
 		},
 		{
-			label: 'Next day',
+			label: 'Next Day',
 			id: 'nextDay',
 			accelerator: 'Right',
 			click() {
@@ -27,7 +27,7 @@ module.exports = {
 		},
 		{ type: 'separator' },
 		{
-			label: 'Previous month',
+			label: 'Previous Month',
 			id: 'previousMonth',
 			accelerator: 'CmdOrCtrl+Left',
 			click() {
@@ -35,7 +35,7 @@ module.exports = {
 			}
 		},
 		{
-			label: 'Next month',
+			label: 'Next Month',
 			id: 'nextMonth',
 			accelerator: 'CmdOrCtrl+Right',
 			click() {
