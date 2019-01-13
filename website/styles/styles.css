@@ -115,6 +115,10 @@ a:hover {
 	transition: var(--transition);
 }
 
+.small-text {
+	font-size: 80%;
+}
+
 header a,
 footer a {
 	color: var(--color-text-footer);
@@ -123,10 +127,6 @@ footer a {
 header a:hover,
 footer a:hover {
 	color: var(--color-text-footer-hover);
-}
-
-.all-formats-link {
-	font-size: 80%;
 }
 
 main a {
@@ -237,6 +237,6 @@ footer svg {
 	flex: 1;
 }
 
-.jump-to-downloads {
-	text-align: center;
+.terms {
+	margin-top: var(--spacing-abs-small);
 }
