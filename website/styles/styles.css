@@ -8,14 +8,14 @@
 body {
 	/* Variables */
 	--color-background-grey: #242326;
-	--color-background-white: #E7E7E7;
+	--color-background-white: #F1F1F1;
 	--color-main: #4E8BD2;
 	--color-main-hover: #447AB8;
 	--color-selection: #B7CBE4;
 	--color-text: #4E4E4E;
 	--color-text-button: #F1F1F1;
 	--color-text-dark: #212121;
-	--color-text-header: #D0D0D0;
+	--color-text-header: #D8D8D8;
 	--color-text-footer: #939EA7;
 	--color-text-footer-hover: #B7BEC5;
 	--spacing-abs-medium: 35px;
