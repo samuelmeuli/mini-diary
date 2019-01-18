@@ -91,32 +91,6 @@ export function testFileExists() {
 }
 
 /**
- * Create new encrypted diary and index files with the provided password
- */
-export function createEncryptedFile(password) {
-	const entries = {};
-	const filePath = getFilePath();
-	const content = {
-		metadata: getMetadata(),
-		entries
-	};
-	return (dispatch) => {
-		dispatch(setEncryptInProgress());
-		const hashedPassword = hashPassword(password);
-		try {
-			writeEncryptedFile(filePath, hashedPassword, content);
-			dispatch(setEncryptSuccess(entries));
-			dispatch(setHashedPassword(hashedPassword));
-			createIndex(entries, hashedPassword);
-			enableMenuItems();
-		} catch (err) {
-			console.error(err);
-			dispatch(setEncryptError());
-		}
-	};
-}
-
-/**
  * Read diary entries and index from disk
  */
 export function decryptFile(password) {
@@ -146,19 +120,44 @@ export function decryptFile(password) {
 }
 
 /**
- * Write diary entries and index to disk
+ * Create new encrypted diary and index files with the provided password
  */
-function encryptFile(entries) {
+export function createEncryptedFile(password) {
+	const entries = {};
 	const filePath = getFilePath();
 	const content = {
 		metadata: getMetadata(),
 		entries
 	};
-	return (dispatch, getState) => {
-		const { hashedPassword } = getState().file;
+	return (dispatch) => {
 		dispatch(setEncryptInProgress());
+		const hashedPassword = hashPassword(password);
 		try {
 			writeEncryptedFile(filePath, hashedPassword, content);
+			dispatch(setEncryptSuccess(entries));
+			dispatch(setHashedPassword(hashedPassword));
+			createIndex(entries, hashedPassword);
+			enableMenuItems();
+		} catch (err) {
+			console.error(err);
+			dispatch(setEncryptError());
+		}
+	};
+}
+
+/**
+ * Write diary entries and index to disk
+ */
+function writeEntriesEncrypted(entries, hashedPassword) {
+	const filePath = getFilePath();
+	const fileContent = {
+		metadata: getMetadata(),
+		entries
+	};
+	return (dispatch) => {
+		dispatch(setEncryptInProgress());
+		try {
+			writeEncryptedFile(filePath, hashedPassword, fileContent);
 			dispatch(setEncryptSuccess(entries));
 			writeIndex(hashedPassword);
 		} catch (err) {
@@ -169,12 +168,24 @@ function encryptFile(entries) {
 }
 
 /**
+ * Write diary entries and index to disk with a new password. Update the password in the store
+ */
+export function updatePassword(newPassword) {
+	return (dispatch, getState) => {
+		const { entries } = getState().file;
+		const hashedPassword = hashPassword(newPassword);
+		dispatch(writeEntriesEncrypted(entries, hashedPassword));
+		dispatch(setHashedPassword(hashedPassword));
+	};
+}
+
+/**
  * Update the diary entry in the state. Remove the entry if it is empty. Then write the diary to the
  * encrypted diary file and update the index
  */
 export function updateEntry(indexDate, title, text) {
 	return (dispatch, getState) => {
-		const { entries } = getState().file;
+		const { entries, hashedPassword } = getState().file;
 
 		if (title === '' && text === '') {
 			// Empty entry: Delete entry from file if it exists
@@ -187,7 +198,7 @@ export function updateEntry(indexDate, title, text) {
 					text: ''
 				});
 				// Write to diary and index files
-				dispatch(encryptFile(entriesUpdated));
+				dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 			}
 		} else if (
 			!(indexDate in entries)
@@ -207,7 +218,7 @@ export function updateEntry(indexDate, title, text) {
 			// Update index
 			updateIndex(indexDate, entryUpdated);
 			// Write to diary and index files
-			dispatch(encryptFile(entriesUpdated));
+			dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 		}
 	};
 }
@@ -223,7 +234,7 @@ export function mergeUpdateFile(newEntries) {
 	}
 
 	return (dispatch, getState) => {
-		const { entries } = getState().file;
+		const { entries, hashedPassword } = getState().file;
 		const entriesUpdated = { ...entries };
 
 		Object.entries(newEntries).forEach(([indexDate, newEntry]) => {
@@ -243,7 +254,7 @@ export function mergeUpdateFile(newEntries) {
 			entriesUpdated[indexDate] = entryUpdated;
 			updateIndex(indexDate, entryUpdated);
 		});
-		dispatch(encryptFile(entriesUpdated));
+		dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 	};
 }
 

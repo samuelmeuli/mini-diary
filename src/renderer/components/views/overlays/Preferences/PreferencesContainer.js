@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Preferences from './Preferences';
 import { setTheme, setPreferencesVisibility } from '../../../../redux/actions/appActions';
-import { createEncryptedFile, testFileExists } from '../../../../redux/actions/fileActions';
+import { testFileExists, updatePassword } from '../../../../redux/actions/fileActions';
 
 
 function mapStateToProps(state) {
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		createEncryptedFile: password => dispatch(createEncryptedFile(password)),
+		updatePassword: password => dispatch(updatePassword(password)),
 		setPreferencesVisibility: showPreferences => (
 			dispatch(setPreferencesVisibility(showPreferences))
 		),

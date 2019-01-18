@@ -14,12 +14,12 @@ const { dialog } = window.require('electron').remote;
 
 
 const propTypes = {
-	createEncryptedFile: PropTypes.func.isRequired,
 	isLocked: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
 	theme: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired,
 	setPreferencesVisibility: PropTypes.func.isRequired,
-	setTheme: PropTypes.func.isRequired
+	setTheme: PropTypes.func.isRequired,
+	updatePassword: PropTypes.func.isRequired
 };
 
 export default class Preferences extends PureComponent {
@@ -98,12 +98,11 @@ export default class Preferences extends PureComponent {
 	}
 
 	updatePassword() {
-		const { createEncryptedFile, testFileExists } = this.props;
+		const { updatePassword } = this.props;
 		const { password1, password2 } = this.state;
 
 		if (password1 === password2) {
-			createEncryptedFile(password1);
-			testFileExists();
+			updatePassword(password1);
 			this.setState({
 				password1: '',
 				password2: ''
