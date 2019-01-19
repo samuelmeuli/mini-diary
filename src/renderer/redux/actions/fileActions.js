@@ -3,7 +3,7 @@ import { fileExists, readEncryptedFile, writeEncryptedFile } from '../../helpers
 import { hashPassword } from '../../helpers/hashPassword';
 import { getMetadata } from '../../helpers/metadata';
 import { getFilePath } from '../../helpers/preferences';
-import { createIndex, readIndex, updateIndex, writeIndex } from '../../helpers/searchIndex';
+import { createIndex, createOrUpdateIndexDoc, deleteIndexDoc } from '../../helpers/searchIndex';
 
 
 // Action creators
@@ -91,7 +91,7 @@ export function testFileExists() {
 }
 
 /**
- * Read diary entries and index from disk
+ * Read diary entries from disk
  */
 export function decryptFile(password) {
 	const filePath = getFilePath();
@@ -104,7 +104,7 @@ export function decryptFile(password) {
 			// On success, load diary entries and save password
 			dispatch(setDecryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
-			readIndex(entries, hashedPassword);
+			createIndex(entries);
 			enableMenuItems();
 		} catch (err) {
 			// Error reading diary file
@@ -120,7 +120,7 @@ export function decryptFile(password) {
 }
 
 /**
- * Create new encrypted diary and index files with the provided password
+ * Create new encrypted diary file and index with the provided password
  */
 export function createEncryptedFile(password) {
 	const entries = {};
@@ -136,7 +136,7 @@ export function createEncryptedFile(password) {
 			writeEncryptedFile(filePath, hashedPassword, content);
 			dispatch(setEncryptSuccess(entries));
 			dispatch(setHashedPassword(hashedPassword));
-			createIndex(entries, hashedPassword);
+			createIndex(entries);
 			enableMenuItems();
 		} catch (err) {
 			console.error(err);
@@ -146,7 +146,7 @@ export function createEncryptedFile(password) {
 }
 
 /**
- * Write diary entries and index to disk
+ * Write diary entries to disk
  */
 function writeEntriesEncrypted(entries, hashedPassword) {
 	const filePath = getFilePath();
@@ -159,7 +159,6 @@ function writeEntriesEncrypted(entries, hashedPassword) {
 		try {
 			writeEncryptedFile(filePath, hashedPassword, fileContent);
 			dispatch(setEncryptSuccess(entries));
-			writeIndex(hashedPassword);
 		} catch (err) {
 			console.error(err);
 			dispatch(setEncryptError());
@@ -168,7 +167,7 @@ function writeEntriesEncrypted(entries, hashedPassword) {
 }
 
 /**
- * Write diary entries and index to disk with a new password. Update the password in the store
+ * Write diary entries to disk with a new password. Update the password in the store
  */
 export function updatePassword(newPassword) {
 	return (dispatch, getState) => {
@@ -186,40 +185,31 @@ export function updatePassword(newPassword) {
 export function updateEntry(indexDate, title, text) {
 	return (dispatch, getState) => {
 		const { entries, hashedPassword } = getState().file;
+		const entriesUpdated = { ...entries };
 
 		if (title === '' && text === '') {
-			// Empty entry: Delete entry from file if it exists
+			// Empty entry
 			if (indexDate in entries) {
-				const entriesUpdated = entries;
+				// If existing entry: Delete entry from file and index
 				delete entriesUpdated[indexDate];
-				// Remove from index
-				updateIndex(indexDate, {
-					title: '',
-					text: ''
-				});
-				// Write to diary and index files
-				dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
+				deleteIndexDoc(indexDate);
 			}
 		} else if (
-			!(indexDate in entries)
-			|| title !== entries[indexDate].title
-			|| text !== entries[indexDate].text
+			!(indexDate in entries) // Entry doesn't exist yet
+			|| title !== entries[indexDate].title // Title has changed
+			|| text !== entries[indexDate].text // Text has changed
 		) {
-			// Non-empty and changed/missing entry: Write to file
+			// Non-empty and new/updated entry: Write to file and add to index
 			const entryUpdated = {
 				dateUpdated: new Date().toString(),
 				title,
 				text
 			};
-			const entriesUpdated = {
-				...entries,
-				[indexDate]: entryUpdated
-			};
-			// Update index
-			updateIndex(indexDate, entryUpdated);
-			// Write to diary and index files
-			dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
+			entriesUpdated[indexDate] = entryUpdated;
+			createOrUpdateIndexDoc(indexDate, entryUpdated);
 		}
+		// Write entries to disk
+		dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 	};
 }
 
@@ -252,9 +242,9 @@ export function mergeUpdateFile(newEntries) {
 				entryUpdated = newEntry;
 			}
 			entriesUpdated[indexDate] = entryUpdated;
-			updateIndex(indexDate, entryUpdated);
 		});
 		dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
+		createIndex(entriesUpdated); // Recreate index
 	};
 }
 

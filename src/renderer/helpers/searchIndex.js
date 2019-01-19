@@ -1,30 +1,13 @@
 import elasticlunr from 'elasticlunr';
-import { fileExists, readEncryptedFile, writeEncryptedFile } from './fileAccess';
 
-const { app } = window.require('electron').remote;
-
-const PREF_DIR = `${app.getPath('appData')}/${app.getName()}`;
-const INDEX_PATH = `${PREF_DIR}/search-index.txt`;
 
 let index;
 
 
 /**
- * Encrypt and save search index to disk
- */
-export function writeIndex(hashedPassword) {
-	try {
-		writeEncryptedFile(INDEX_PATH, hashedPassword, index);
-	} catch (err) {
-		console.error(`Could not write search index to disk: ${err}`);
-	}
-}
-
-
-/**
  * Create a new search index form all existing diary entries
  */
-export function createIndex(entries, hashedPassword) {
+export function createIndex(entries) {
 	// Define index structure
 	index = elasticlunr();
 	index.addField('title');
@@ -39,39 +22,27 @@ export function createIndex(entries, hashedPassword) {
 			...entry
 		});
 	});
-
-	// Persist index on disk
-	writeIndex(hashedPassword);
 }
 
 
 /**
- * Load encrypted search index from disk. Create a new one on error or if the file doesn't exist
+ * Add the specified entry to the index if it doesn't exist. If it exists, update it
  */
-export function readIndex(entries, hashedPassword) {
-	if (!fileExists(INDEX_PATH)) {
-		createIndex(entries, hashedPassword);
-	} else {
-		try {
-			const indexDump = readEncryptedFile(INDEX_PATH, hashedPassword);
-			index = elasticlunr.Index.load(indexDump);
-		} catch (err) {
-			createIndex(entries, hashedPassword);
-		}
-	}
-}
-
-
-/**
- * Update the specified index entry
- */
-export function updateIndex(date, entry) {
+export function createOrUpdateIndexDoc(date, entry) {
 	const doc = {
 		date,
 		title: entry.title,
 		text: entry.text
 	};
 	index.updateDoc(doc);
+}
+
+
+/**
+ * Remove the specified entry from the index
+ */
+export function deleteIndexDoc(date) {
+	index.removeDocByRef(date);
 }
 
 
