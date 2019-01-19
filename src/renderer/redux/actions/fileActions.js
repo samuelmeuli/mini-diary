@@ -207,6 +207,8 @@ export function updateEntry(indexDate, title, text) {
 			};
 			entriesUpdated[indexDate] = entryUpdated;
 			createOrUpdateIndexDoc(indexDate, entryUpdated);
+		} else {
+			return;
 		}
 		// Write entries to disk
 		dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
