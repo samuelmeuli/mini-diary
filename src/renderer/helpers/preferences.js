@@ -6,6 +6,7 @@ const settings = window.require('electron-settings');
 
 const DEFAULT_THEME = 'light';
 const FILE_NAME = 'mini-diary.txt';
+const PREF_DIR = app.getPath('userData');
 const THEMES = ['auto', 'light', 'dark'];
 
 
@@ -17,7 +18,7 @@ export function getFilePath() {
 	if (settings.has('filePath')) {
 		fileDir = settings.get('filePath');
 	} else {
-		fileDir = app.getPath('documents');
+		fileDir = PREF_DIR;
 		settings.set('filePath', fileDir);
 	}
 	// Concatenate directory path with file name and return it
