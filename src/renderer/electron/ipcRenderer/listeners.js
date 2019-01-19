@@ -1,3 +1,4 @@
+import { isMac, isWindows } from '../../helpers/platform';
 import { setPreferencesVisibility, setTheme } from '../../redux/actions/appActions';
 import {
 	setDaySelectedNext,
@@ -17,7 +18,7 @@ import store from '../../redux/store';
 import { getSystemTheme } from '../systemTheme';
 
 const { ipcRenderer } = window.require('electron');
-const { systemPreferences } = window.require('electron').remote;
+const { powerMonitor, systemPreferences } = window.require('electron').remote;
 
 
 // Export
@@ -87,9 +88,19 @@ ipcRenderer.on('showPreferences', () => {
 });
 
 
+// Screen lock
+// Lock diary when screen is locked
+
+if (isMac || isWindows) {
+	powerMonitor.on('lock-screen', () => {
+		store.dispatch(lock());
+	});
+}
+
+
 // Theme
 
-if (process.platform === 'darwin') {
+if (isMac) {
 	systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
 		const theme = getSystemTheme();
 		store.dispatch(setTheme(theme));

@@ -1,5 +1,5 @@
 import path from 'path';
-import { supportsSystemTheme } from '../electron/systemTheme';
+import { isMac } from './platform';
 
 const { app } = window.require('electron').remote;
 const settings = window.require('electron-settings');
@@ -37,7 +37,7 @@ export function getTheme() {
 	if (settings.has('theme')) {
 		theme = settings.get('theme');
 	} else {
-		theme = supportsSystemTheme() ? 'auto' : DEFAULT_THEME;
+		theme = isMac ? 'auto' : DEFAULT_THEME;
 		settings.set('theme', theme);
 	}
 	return theme;

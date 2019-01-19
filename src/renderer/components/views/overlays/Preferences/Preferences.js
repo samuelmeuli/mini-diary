@@ -7,8 +7,8 @@ import {
 	setTheme as setThemePref
 } from '../../../../helpers/preferences';
 import Banner from '../../../elements/Banner';
+import { isMac } from '../../../../helpers/platform';
 import Overlay from '../Overlay';
-import { supportsSystemTheme } from '../../../../electron/systemTheme';
 
 const { dialog } = window.require('electron').remote;
 
@@ -132,7 +132,7 @@ export default class Preferences extends PureComponent {
 					<fieldset className="fieldset-theme">
 						<legend>Theme</legend>
 						{
-							supportsSystemTheme()
+							isMac
 								&& (
 									<label htmlFor="radio-theme-auto">
 										<input
