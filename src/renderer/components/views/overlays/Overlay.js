@@ -22,15 +22,38 @@ export default class Overlay extends PureComponent {
 		super();
 
 		// Function bindings
+		this.onClick = this.onClick.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
 	}
 
 	componentDidMount() {
+		document.addEventListener('click', this.onClick);
 		window.addEventListener('keydown', this.onKeyDown);
 	}
 
 	componentWillUnmount() {
+		document.removeEventListener('click', this.onClick);
 		window.removeEventListener('keydown', this.onKeyDown);
+	}
+
+	/**
+	 * Close the overlay if the user clicks outside it
+	 */
+	onClick(e) {
+		const { onClose } = this.props;
+		let targetElement = e.target; // Clicked element
+
+		do {
+			if (targetElement === this.overlayElement) {
+				// Click inside overlay
+				return;
+			}
+			// Move up the DOM
+			targetElement = targetElement.parentNode;
+		} while (targetElement);
+
+		// Click outside overlay
+		onClose();
 	}
 
 	/**
@@ -48,7 +71,12 @@ export default class Overlay extends PureComponent {
 
 		return (
 			<div className={`overlay-outer ${className}`}>
-				<div className="overlay-inner">
+				<div
+					className="overlay-inner"
+					ref={(el) => {
+						this.overlayElement = el;
+					}}
+				>
 					<button
 						type="button"
 						className="button button-invisible overlay-close-button"
