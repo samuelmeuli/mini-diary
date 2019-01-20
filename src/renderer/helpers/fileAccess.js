@@ -15,6 +15,13 @@ export function fileExists(filePath) {
 	return fs.existsSync(filePath);
 }
 
+export function moveFile(sourcePath, destinationPath) {
+	if (fileExists(destinationPath)) {
+		throw Error('Another file exists at the destination path');
+	}
+	fs.renameSync(sourcePath, destinationPath);
+}
+
 export function readFile(filePath) {
 	return fs.readFileSync(filePath, { encoding: 'utf8' });
 }

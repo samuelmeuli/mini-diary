@@ -6,7 +6,7 @@ const { app } = window.require('electron').remote;
 const settings = window.require('electron-settings');
 
 const DEFAULT_THEME = 'light';
-const FILE_NAME = 'mini-diary.txt';
+export const FILE_NAME = 'mini-diary.txt';
 const PREF_DIR = app.getPath('userData');
 const THEMES = ['light', 'dark'];
 

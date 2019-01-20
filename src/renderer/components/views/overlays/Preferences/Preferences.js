@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import { moveFile } from '../../../../helpers/fileAccess';
 import { isMac } from '../../../../helpers/platform';
 import {
+	FILE_NAME,
 	getFilePath as getFilePathPref,
 	setFileDir as setFileDirPref,
 	setTheme as setThemePref
@@ -37,7 +39,8 @@ export default class Preferences extends PureComponent {
 		this.onChangePassword2 = this.onChangePassword2.bind(this);
 		this.hidePreferences = this.hidePreferences.bind(this);
 		this.updatePassword = this.updatePassword.bind(this);
-		this.selectFileDir = this.selectFileDir.bind(this);
+		this.selectDir = this.selectDir.bind(this);
+		this.selectMoveDir = this.selectMoveDir.bind(this);
 		this.setTheme = this.setTheme.bind(this);
 		this.setThemeDark = this.setThemeDark.bind(this);
 		this.setThemeLight = this.setThemeLight.bind(this);
@@ -74,18 +77,47 @@ export default class Preferences extends PureComponent {
 		this.setTheme('light');
 	}
 
-	selectFileDir() {
+	selectDir() {
 		const { testFileExists } = this.props;
 
 		// Show dialog for selecting directory
 		const fileDirArray = dialog.showOpenDialog({
+			buttonLabel: 'Select directory',
 			properties: ['openDirectory']
 		});
 
 		if (fileDirArray && fileDirArray.length === 1) {
 			// Use mini-diary.txt file from selected directory
-			setFileDirPref(fileDirArray[0]);
+			const newDir = fileDirArray[0];
+			setFileDirPref(newDir);
 			testFileExists();
+			this.setState({
+				fileDir: getFilePathPref()
+			});
+		}
+	}
+
+	selectMoveDir() {
+		const { fileDir } = this.state;
+
+		// Show dialog for selecting directory
+		const fileDirArray = dialog.showOpenDialog({
+			buttonLabel: 'Move diary file',
+			properties: ['openDirectory']
+		});
+
+		if (fileDirArray && fileDirArray.length === 1) {
+			// Move mini-diary.txt file to selected directory
+			const newDir = fileDirArray[0];
+			try {
+				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
+			} catch (err) {
+				dialog.showErrorBox(
+					'Move error', `An error occurred when moving the file: ${err.message}`
+				);
+				return;
+			}
+			setFileDirPref(newDir);
 			this.setState({
 				fileDir: getFilePathPref()
 			});
@@ -156,18 +188,23 @@ export default class Preferences extends PureComponent {
 					}
 
 					{
-						/* File directory (only when locked) */
-						isLocked
-							&& (
-								<fieldset className="fieldset-file-dir">
-									<legend>Diary directory</legend>
-									<p>{fileDir}</p>
-									<button type="button" className="button button-main" onClick={this.selectFileDir}>
-										Change directory
-									</button>
-								</fieldset>
-							)
+						/*
+							File directory
+							When locked: Change directory
+							When unlocked: Move diary file and change directory
+						 */
 					}
+					<fieldset className="fieldset-file-dir">
+						<legend>Diary file</legend>
+						<p>{fileDir}</p>
+						<button
+							type="button"
+							className="button button-main"
+							onClick={isLocked ? this.selectDir : this.selectMoveDir}
+						>
+							{isLocked ? 'Change directory' : 'Move diary file'}
+						</button>
+					</fieldset>
 
 					{
 						/* Password (only when unlocked) */
