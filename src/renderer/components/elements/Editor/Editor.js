@@ -5,7 +5,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 
 import { toDateString, toIndexDate } from '../../../helpers/dateUtils';
 
-const AUTOSAVE_INTERVAL = 500;
+const AUTOSAVE_INTERVAL = 1000;
 
 
 const propTypes = {
@@ -68,6 +68,11 @@ export default class Editor extends PureComponent {
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
 		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
+
+		// Save entry before app is closed
+		window.addEventListener('unload', () => {
+			this.saveEntry();
+		});
 	}
 
 	onTextChange(e) {
