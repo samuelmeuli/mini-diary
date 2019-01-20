@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ImportOverlayContainer from './views/overlays/ImportOverlay/ImportOverlayContainer';
+import Preferences from './views/overlays/Preferences/PreferencesContainer';
 import Diary from './views/pages/Diary/Diary';
 import PasswordCreationContainer from './views/pages/PasswordCreation/PasswordCreationContainer';
 import PasswordPromptContainer from './views/pages/PasswordPrompt/PasswordPromptContainer';
-import Preferences from './views/overlays/Preferences/PreferencesContainer';
 import ThemeContext from './ThemeContext';
 import { toggleWindowSize } from '../electron/ipcRenderer/senders';
-import { getSystemTheme } from '../electron/systemTheme';
-import ImportOverlayContainer from './views/overlays/ImportOverlay/ImportOverlayContainer';
 
 const { dialog } = window.require('electron').remote;
 
@@ -23,7 +22,7 @@ const propTypes = {
 	showImportOverlay: PropTypes.bool.isRequired,
 	showPreferences: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired
+	theme: PropTypes.oneOf(['light', 'dark']).isRequired
 };
 
 export default class App extends Component {
@@ -92,7 +91,7 @@ export default class App extends Component {
 			hashedPassword,
 			showImportOverlay,
 			showPreferences,
-			theme: themePref
+			theme
 		} = this.props;
 		const { isLoading } = this.state;
 		let page;
@@ -110,9 +109,6 @@ export default class App extends Component {
 			// Diary is unlocked
 			page = <Diary />;
 		}
-
-		// Determine theme ('light', 'dark', or system theme if 'auto')
-		const theme = themePref === 'auto' ? getSystemTheme() : themePref;
 
 		// Render overlay (e.g. preferences or import dialog) over page if necessary
 		let overlay;

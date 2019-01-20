@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import { isMac } from '../../../../helpers/platform';
 import {
 	getFilePath as getFilePathPref,
 	setFileDir as setFileDirPref,
 	setTheme as setThemePref
 } from '../../../../helpers/preferences';
 import Banner from '../../../elements/Banner';
-import { isMac } from '../../../../helpers/platform';
 import Overlay from '../Overlay';
 
 const { dialog } = window.require('electron').remote;
@@ -16,7 +16,7 @@ const { dialog } = window.require('electron').remote;
 const propTypes = {
 	isLocked: PropTypes.bool.isRequired,
 	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired,
+	theme: PropTypes.oneOf(['light', 'dark']).isRequired,
 	setPreferencesVisibility: PropTypes.func.isRequired,
 	setTheme: PropTypes.func.isRequired,
 	updatePassword: PropTypes.func.isRequired
@@ -39,7 +39,6 @@ export default class Preferences extends PureComponent {
 		this.updatePassword = this.updatePassword.bind(this);
 		this.selectFileDir = this.selectFileDir.bind(this);
 		this.setTheme = this.setTheme.bind(this);
-		this.setThemeAuto = this.setThemeAuto.bind(this);
 		this.setThemeDark = this.setThemeDark.bind(this);
 		this.setThemeLight = this.setThemeLight.bind(this);
 	}
@@ -65,10 +64,6 @@ export default class Preferences extends PureComponent {
 
 		setThemePref(theme);
 		setTheme(theme);
-	}
-
-	setThemeAuto() {
-		this.setTheme('auto');
 	}
 
 	setThemeDark() {
@@ -128,48 +123,37 @@ export default class Preferences extends PureComponent {
 			<Overlay onClose={this.hidePreferences}>
 				<h1>Preferences</h1>
 				<form className="preferences-form">
-					{/* Theme */}
-					<fieldset className="fieldset-theme">
-						<legend>Theme</legend>
-						{
-							isMac
-								&& (
-									<label htmlFor="radio-theme-auto">
+					{
+						/* Theme */
+						!isMac
+							&& (
+								<fieldset className="fieldset-theme">
+									<legend>Theme</legend>
+									<label htmlFor="radio-theme-light">
 										<input
 											type="radio"
-											name="radio-theme-auto"
-											id="radio-theme-auto"
+											name="radio-theme-light"
+											id="radio-theme-light"
 											className="radio"
-											checked={theme === 'auto'}
-											onChange={this.setThemeAuto}
+											checked={theme === 'light'}
+											onChange={this.setThemeLight}
 										/>
-										Auto
+										Light
 									</label>
-								)
-						}
-						<label htmlFor="radio-theme-light">
-							<input
-								type="radio"
-								name="radio-theme-light"
-								id="radio-theme-light"
-								className="radio"
-								checked={theme === 'light'}
-								onChange={this.setThemeLight}
-							/>
-							Light
-						</label>
-						<label htmlFor="radio-theme-dark">
-							<input
-								type="radio"
-								name="radio-theme-dark"
-								id="radio-theme-dark"
-								className="radio"
-								checked={theme === 'dark'}
-								onChange={this.setThemeDark}
-							/>
-							Dark
-						</label>
-					</fieldset>
+									<label htmlFor="radio-theme-dark">
+										<input
+											type="radio"
+											name="radio-theme-dark"
+											id="radio-theme-dark"
+											className="radio"
+											checked={theme === 'dark'}
+											onChange={this.setThemeDark}
+										/>
+										Dark
+									</label>
+								</fieldset>
+							)
+					}
 
 					{
 						/* File directory (only when locked) */

@@ -4,7 +4,7 @@ import { getTheme } from '../../helpers/preferences';
 const theme = getTheme();
 
 function app(state = {
-	theme,
+	theme, // One of ['light', 'dark']
 	showPreferences: false
 }, action) {
 	switch (action.type) {

@@ -1,5 +1,6 @@
 import path from 'path';
 import { isMac } from './platform';
+import { getSystemTheme } from '../electron/systemTheme';
 
 const { app } = window.require('electron').remote;
 const settings = window.require('electron-settings');
@@ -7,7 +8,7 @@ const settings = window.require('electron-settings');
 const DEFAULT_THEME = 'light';
 const FILE_NAME = 'mini-diary.txt';
 const PREF_DIR = app.getPath('userData');
-const THEMES = ['auto', 'light', 'dark'];
+const THEMES = ['light', 'dark'];
 
 
 // Path to diary file
@@ -34,10 +35,13 @@ export function setFileDir(filePath) {
 
 export function getTheme() {
 	let theme;
-	if (settings.has('theme')) {
+	if (isMac) {
+		// Mac: Use system theme
+		theme = getSystemTheme();
+	} else if (settings.has('theme')) {
 		theme = settings.get('theme');
 	} else {
-		theme = isMac ? 'auto' : DEFAULT_THEME;
+		theme = DEFAULT_THEME;
 		settings.set('theme', theme);
 	}
 	return theme;

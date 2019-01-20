@@ -99,6 +99,7 @@ if (isMac || isWindows) {
 
 
 // Theme
+// Listen to system theme changes and update the app theme accordingly
 
 if (isMac) {
 	systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
