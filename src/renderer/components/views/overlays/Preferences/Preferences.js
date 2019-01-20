@@ -163,7 +163,7 @@ export default class Preferences extends PureComponent {
 									<legend>Diary directory</legend>
 									<p>{fileDir}</p>
 									<button type="button" className="button button-main" onClick={this.selectFileDir}>
-										Select directory
+										Change directory
 									</button>
 								</fieldset>
 							)
@@ -195,7 +195,7 @@ export default class Preferences extends PureComponent {
 										onClick={this.updatePassword}
 										className="button button-main"
 									>
-										Update password
+										Change password
 									</button>
 									<div className="password-update-banner">
 										{
