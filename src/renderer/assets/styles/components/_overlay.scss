@@ -35,8 +35,14 @@
 	margin-right: $spacing-small;
 }
 
-.fieldset-file-dir button {
-	margin-top: $spacing-small / 2;
+.fieldset-file-dir {
+	button {
+		margin-top: $spacing-small / 2;
+	}
+
+	p {
+		word-break: break-all;
+	}
 }
 
 .fieldset-password {
