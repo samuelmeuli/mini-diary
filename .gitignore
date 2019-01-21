@@ -12,6 +12,8 @@ bundle/
 
 # electron-builder
 dist/
+*.p12
+*.provisionprofile
 
 # Website
 minireset.*

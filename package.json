@@ -82,6 +82,11 @@
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
 		"mac": {
+			"target": [
+				"dmg",
+				"mas",
+				"zip"
+			],
 			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true
 		},
