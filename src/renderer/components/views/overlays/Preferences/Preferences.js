@@ -186,26 +186,29 @@ export default class Preferences extends PureComponent {
 								</fieldset>
 							)
 					}
-
 					{
 						/*
 							File directory
 							When locked: Change directory
 							When unlocked: Move diary file and change directory
+							Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
+							file without an open dialog after changing the diary path)
 						 */
+						!is.mas()
+							&& (
+								<fieldset className="fieldset-file-dir">
+									<legend>Diary file</legend>
+									<p>{fileDir}</p>
+									<button
+										type="button"
+										className="button button-main"
+										onClick={isLocked ? this.selectDir : this.selectMoveDir}
+									>
+										{isLocked ? 'Change directory' : 'Move diary file'}
+									</button>
+								</fieldset>
+							)
 					}
-					<fieldset className="fieldset-file-dir">
-						<legend>Diary file</legend>
-						<p>{fileDir}</p>
-						<button
-							type="button"
-							className="button button-main"
-							onClick={isLocked ? this.selectDir : this.selectMoveDir}
-						>
-							{isLocked ? 'Change directory' : 'Move diary file'}
-						</button>
-					</fieldset>
-
 					{
 						/* Password (only when unlocked) */
 						!isLocked

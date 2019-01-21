@@ -1,4 +1,5 @@
 const { Menu } = require('electron');
+const is = require('electron-is');
 
 const { getMenuTemplate } = require('./template');
 
@@ -16,6 +17,11 @@ const DISABLED_MENU_ITEMS = [
 	'previousMonth',
 	'nextMonth'
 ];
+
+// Disable preferences in MAS build when the app is locked (no options that can be changed)
+if (is.mas()) {
+	DISABLED_MENU_ITEMS.push('preferences');
+}
 
 // Build menu
 const template = getMenuTemplate();
