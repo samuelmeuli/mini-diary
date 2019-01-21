@@ -1,3 +1,5 @@
+const is = require('electron-is');
+
 const appMenu = require('./menus/app');
 const fileMenu = require('./menus/file');
 const editMenu = require('./menus/edit');
@@ -6,11 +8,9 @@ const viewMenu = require('./menus/view');
 const windowMenu = require('./menus/window');
 const preferencesItem = require('./preferencesItem');
 
-const isMac = process.platform === 'darwin';
-
 
 exports.getMenuTemplate = () => {
-	if (isMac) {
+	if (is.macOS()) {
 		// Add macOS-specific items
 		editMenu.submenu.push(
 			{ type: 'separator' },
@@ -35,7 +35,7 @@ exports.getMenuTemplate = () => {
 	}
 
 	return [
-		...(isMac ? [appMenu] : []),
+		...(is.macOS() ? [appMenu] : []),
 		fileMenu,
 		editMenu,
 		viewMenu,

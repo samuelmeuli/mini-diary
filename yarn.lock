@@ -2783,6 +2783,14 @@ electron-is-dev@^0.3.0:
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-0.3.0.tgz#14e6fda5c68e9e4ecbeff9ccf037cbd7c05c5afe"
   integrity sha1-FOb9pcaOnk7L7/nM8DfL18BcWv4=
 
+electron-is@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/electron-is/-/electron-is-3.0.0.tgz#bd4c27651fbe03f243f3607c2a098be884f9ed50"
+  integrity sha512-aQv1y3WrDZ+mtO8acbhiiip/8fa0Et7cvZyvlqJm2H7fih4hiJWEFRyYxzLgDG2kmiLdF8l3y5tbek5JFOPQkQ==
+  dependencies:
+    electron-is-dev "^0.3.0"
+    semver "^5.5.0"
+
 electron-localshortcut@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/electron-localshortcut/-/electron-localshortcut-3.1.0.tgz#10c1ffd537b8d39170aaf6e1551341f7780dd2ce"

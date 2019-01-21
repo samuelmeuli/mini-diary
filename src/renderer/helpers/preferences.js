@@ -1,5 +1,5 @@
+import is from 'electron-is';
 import path from 'path';
-import { isMac } from './platform';
 import { getSystemTheme } from '../electron/systemTheme';
 
 const { app } = window.require('electron').remote;
@@ -35,7 +35,7 @@ export function setFileDir(filePath) {
 
 export function getTheme() {
 	let theme;
-	if (isMac) {
+	if (is.macOS()) {
 		// Mac: Use system theme
 		theme = getSystemTheme();
 	} else if (settings.has('theme')) {

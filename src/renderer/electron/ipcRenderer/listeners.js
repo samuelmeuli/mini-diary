@@ -1,4 +1,5 @@
-import { isMac, isWindows } from '../../helpers/platform';
+import is from 'electron-is';
+
 import { setPreferencesVisibility, setTheme } from '../../redux/actions/appActions';
 import {
 	setDaySelectedNext,
@@ -91,7 +92,7 @@ ipcRenderer.on('showPreferences', () => {
 // Screen lock
 // Lock diary when screen is locked
 
-if (isMac || isWindows) {
+if (is.macOS() || is.windows()) {
 	powerMonitor.on('lock-screen', () => {
 		store.dispatch(lock());
 	});
@@ -101,7 +102,7 @@ if (isMac || isWindows) {
 // Theme
 // Listen to system theme changes and update the app theme accordingly
 
-if (isMac) {
+if (is.macOS()) {
 	systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
 		const theme = getSystemTheme();
 		store.dispatch(setTheme(theme));

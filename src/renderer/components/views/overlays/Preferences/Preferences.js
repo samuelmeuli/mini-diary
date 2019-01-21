@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import is from 'electron-is';
 
 import { moveFile } from '../../../../helpers/fileAccess';
-import { isMac } from '../../../../helpers/platform';
 import {
 	FILE_NAME,
 	getFilePath as getFilePathPref,
@@ -157,7 +157,7 @@ export default class Preferences extends PureComponent {
 				<form className="preferences-form">
 					{
 						/* Theme */
-						!isMac
+						!is.macOS()
 							&& (
 								<fieldset className="fieldset-theme">
 									<legend>Theme</legend>
