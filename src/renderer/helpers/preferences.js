@@ -7,7 +7,7 @@ const settings = window.require('electron-settings');
 
 const DEFAULT_THEME = 'light';
 export const FILE_NAME = 'mini-diary.txt';
-const PREF_DIR = app.getPath('userData');
+const PREF_DIR = app.getPath('documents');
 const THEMES = ['light', 'dark'];
 
 
