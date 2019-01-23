@@ -89,7 +89,8 @@
 				"zip"
 			],
 			"category": "public.app-category.lifestyle",
-			"darkModeSupport": true
+			"darkModeSupport": true,
+			"electronLanguages": ["en"]
 		},
 		"linux": {
 			"category": "Office"
