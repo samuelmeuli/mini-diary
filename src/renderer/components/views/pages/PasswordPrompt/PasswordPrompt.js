@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
+import { t } from '../../../../electron/ipcRenderer/senders';
 import Banner from '../../../elements/Banner';
 import StartPage from '../StartPage';
-
 
 const propTypes = {
 	decryptErrorMsg: PropTypes.string.isRequired,
@@ -64,22 +64,21 @@ export default class PasswordPrompt extends PureComponent {
 						type="password"
 						value={password}
 						onChange={this.onChange}
-						placeholder="Password"
+						placeholder={t('password')}
 						autoFocus
 						required
-						ref={(i) => {
+						ref={i => {
 							this.input = i;
 						}}
 					/>
 					<button type="submit" className="button button-main">
-						Unlock
+						{t('unlock')}
 					</button>
 				</form>
 				<div className="password-prompt-banner">
-					{
-						isSubmitted && decryptStatus === 'error'
-							&& <Banner type="error" message={decryptErrorMsg} />
-					}
+					{isSubmitted && decryptStatus === 'error' && (
+						<Banner type="error" message={decryptErrorMsg} />
+					)}
 				</div>
 			</StartPage>
 		);

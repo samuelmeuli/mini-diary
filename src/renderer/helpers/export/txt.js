@@ -1,5 +1,4 @@
-import { toDayOneDate } from '../dateUtils';
-
+import { toDayOneDate } from '../dateFormat';
 
 /**
  * Convert entries to a text string in a format compatible with Day One's TXT import:
@@ -11,7 +10,7 @@ import { toDayOneDate } from '../dateUtils';
  *   [Text]
  */
 export function convertToTxt(entries) {
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		let txt = '';
 
 		entries.forEach(([indexDate, entry]) => {

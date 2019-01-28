@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import { toDateString, toIndexDate } from '../../../helpers/dateUtils';
+import { t } from '../../../electron/ipcRenderer/senders';
+import { toWeekdayDateString, toIndexDate } from '../../../helpers/dateFormat';
 
 const AUTOSAVE_INTERVAL = 1000;
 
-
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
-	entries: PropTypes.objectOf(PropTypes.shape({
-		dateUpdated: PropTypes.string.isRequired,
-		text: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired
-	})).isRequired,
+	entries: PropTypes.objectOf(
+		PropTypes.shape({
+			dateUpdated: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired,
+			title: PropTypes.string.isRequired
+		})
+	).isRequired,
 	updateEntry: PropTypes.func.isRequired
 };
 
@@ -101,7 +103,7 @@ export default class Editor extends PureComponent {
 
 	render() {
 		const { dateSelected, text, title } = this.state;
-		const indexDate = toDateString(dateSelected);
+		const indexDate = toWeekdayDateString(dateSelected);
 
 		return (
 			<form className="editor">
@@ -112,14 +114,14 @@ export default class Editor extends PureComponent {
 					onChange={this.onTitleChange}
 					onBlur={this.saveEntry}
 					onKeyPress={Editor.onTitleEnterKey}
-					placeholder="Add a title"
+					placeholder={t('add-a-title')}
 				/>
 				<TextareaAutosize
 					className="editor-text"
 					value={text}
 					onChange={this.onTextChange}
 					onBlur={this.saveEntry}
-					placeholder="Write something…"
+					placeholder={`${t('write-something')}…`}
 				/>
 			</form>
 		);

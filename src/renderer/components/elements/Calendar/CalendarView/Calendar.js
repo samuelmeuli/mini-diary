@@ -1,28 +1,30 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import DayPicker from 'react-day-picker';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
+import DayPicker from 'react-day-picker';
+import MomentLocaleUtils from 'react-day-picker/moment';
 
 import CalendarNavContainer from './CalendarNavContainer';
-import { toIndexDate, getFirstDayOfWeek } from '../../../../helpers/dateUtils';
+import { getLang } from '../../../../electron/ipcRenderer/senders';
+import { toIndexDate } from '../../../../helpers/dateFormat';
 
+const LANG = getLang();
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
 	monthSelected: PropTypes.instanceOf(Date).isRequired,
-	entries: PropTypes.objectOf(PropTypes.shape({
-		dateUpdated: PropTypes.string.isRequired,
-		text: PropTypes.string.isRequired
-	})).isRequired,
+	entries: PropTypes.objectOf(
+		PropTypes.shape({
+			dateUpdated: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired
+		})
+	).isRequired,
 	setDateSelected: PropTypes.func.isRequired
 };
 
 export default class Calendar extends PureComponent {
 	constructor() {
 		super();
-
-		// Determine first day of the week for calendar view
-		this.firstDayOfWeek = getFirstDayOfWeek();
 
 		// Function bindings
 		this.onDateSelection = this.onDateSelection.bind(this);
@@ -50,8 +52,9 @@ export default class Calendar extends PureComponent {
 				month={monthSelected}
 				toMonth={today}
 				captionElement={() => null}
-				firstDayOfWeek={this.firstDayOfWeek}
 				modifiers={{ hasEntry }}
+				locale={LANG}
+				localeUtils={MomentLocaleUtils}
 				navbarElement={<CalendarNavContainer />}
 				onDayClick={this.onDateSelection}
 			/>

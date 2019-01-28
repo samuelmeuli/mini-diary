@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import Banner from '../../Banner';
-
+import { t } from '../../../../electron/ipcRenderer/senders';
+import { toDateString } from '../../../../helpers/dateFormat';
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
-	entries: PropTypes.objectOf(PropTypes.shape({
-		dateUpdated: PropTypes.string.isRequired,
-		text: PropTypes.string.isRequired
-	})).isRequired,
+	entries: PropTypes.objectOf(
+		PropTypes.shape({
+			dateUpdated: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired
+		})
+	).isRequired,
 	searchResults: PropTypes.arrayOf(PropTypes.object).isRequired,
 	setDateSelected: PropTypes.func.isRequired
 };
@@ -36,7 +39,7 @@ export default class Search extends PureComponent {
 				// until a new search is performed. That's why it needs to be filtered out here)
 				const indexDate = searchResult.ref;
 				const date = moment(indexDate);
-				const dateText = date.format('D MMMM YYYY');
+				const dateText = toDateString(date);
 				const { title } = entries[indexDate];
 				const isSelected = date.isSame(dateSelected, 'day');
 				r.push(
@@ -46,11 +49,9 @@ export default class Search extends PureComponent {
 							className={`button ${isSelected ? 'button-main' : ''}`}
 							onClick={() => setDateSelected(date.toDate())}
 						>
-							<p className="search-date text-faded">
-								{dateText}
-							</p>
+							<p className="search-date text-faded">{dateText}</p>
 							<p className={`search-title ${!title ? 'text-faded' : ''}`}>
-								{title || 'No title'}
+								{title || t('no-title')}
 							</p>
 						</button>
 					</li>
@@ -64,11 +65,11 @@ export default class Search extends PureComponent {
 		const searchResultsEl = this.generateSearchResults();
 		return (
 			<ul className="search-results">
-				{
-					searchResultsEl.length === 0
-						? <Banner type="info" message="No results" className="banner-no-results" />
-						: searchResultsEl
-				}
+				{searchResultsEl.length === 0 ? (
+					<Banner type="info" message={t('no-results')} className="banner-no-results" />
+				) : (
+					searchResultsEl
+				)}
 			</ul>
 		);
 	}

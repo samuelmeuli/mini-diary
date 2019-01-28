@@ -1,6 +1,6 @@
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { toDateString } from '../dateUtils';
+import { toWeekdayDateString } from '../dateFormat';
 
 // Currently required to make PDF generation work
 // Related issue: https://github.com/bpampuch/pdfmake/issues/864#issuecomment-298341323
@@ -15,7 +15,6 @@ const DOC_CONFIG = {
 	pageSize: 'A4'
 };
 
-
 function h1(text) {
 	return {
 		text,
@@ -23,7 +22,6 @@ function h1(text) {
 		bold: true
 	};
 }
-
 
 function h2(text) {
 	return {
@@ -34,7 +32,6 @@ function h2(text) {
 	};
 }
 
-
 function h3(text) {
 	return {
 		text,
@@ -43,7 +40,6 @@ function h3(text) {
 	};
 }
 
-
 function p(text) {
 	return {
 		text,
@@ -51,20 +47,17 @@ function p(text) {
 	};
 }
 
-
 /**
  * Fill the PDF document with the diary entries
  */
 function buildPdfDoc(entries) {
-	const content = [
-		h1('Mini Diary')
-	];
+	const content = [h1('Mini Diary')];
 
 	entries.forEach(([indexDate, entry]) => {
 		const { text, title } = entry;
 
 		// Format date
-		const dateStr = toDateString(indexDate);
+		const dateStr = toWeekdayDateString(indexDate);
 
 		// Build document
 		content.push(h2(dateStr));
@@ -82,18 +75,17 @@ function buildPdfDoc(entries) {
 	};
 }
 
-
 /**
  * Convert entries to a PDF buffer
  */
 export function convertToPdf(entries) {
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		// Build PDF
 		const doc = buildPdfDoc(entries);
 		const pdf = pdfMake.createPdf(doc);
 
 		// Return PDF as Buffer
-		pdf.getDataUrl((dataUrl) => {
+		pdf.getDataUrl(dataUrl => {
 			const regex = /^data:.+\/.+;base64,(.*)$/;
 			const matches = dataUrl.match(regex);
 			const data = matches[1];

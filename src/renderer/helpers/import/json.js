@@ -1,5 +1,4 @@
-import { toIndexDate } from '../dateUtils';
-
+import { toIndexDate } from '../dateFormat';
 
 /**
  * Parse the JSON file and format it as a processable object

@@ -7,10 +7,9 @@ import Diary from './views/pages/Diary/Diary';
 import PasswordCreationContainer from './views/pages/PasswordCreation/PasswordCreationContainer';
 import PasswordPromptContainer from './views/pages/PasswordPrompt/PasswordPromptContainer';
 import ThemeContext from './ThemeContext';
-import { toggleWindowSize } from '../electron/ipcRenderer/senders';
+import { t, toggleWindowSize } from '../electron/ipcRenderer/senders';
 
 const { dialog } = window.require('electron').remote;
-
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
@@ -56,16 +55,12 @@ export default class App extends Component {
 
 		// Check for export error and display it if there is one
 		if (exportErrorMsg && exportErrorMsg !== prevProps.exportErrorMsg) {
-			dialog.showErrorBox(
-				'Export error', `An error occurred during the export: ${exportErrorMsg}`
-			);
+			dialog.showErrorBox('export-error-title', `${t('export-error-msg')}: ${exportErrorMsg}`);
 		}
 
 		// Check for import error and display it if there is one
 		if (importErrorMsg && importErrorMsg !== prevProps.importErrorMsg) {
-			dialog.showErrorBox(
-				'Import error', `An error occurred during the import: ${importErrorMsg}`
-			);
+			dialog.showErrorBox('import-error-title', `${t('import-error-msg')}: ${importErrorMsg}`);
 		}
 
 		// Show loading spinner if necessary
@@ -86,19 +81,13 @@ export default class App extends Component {
 	}
 
 	render() {
-		const {
-			fileExists,
-			hashedPassword,
-			showImportOverlay,
-			showPreferences,
-			theme
-		} = this.props;
+		const { fileExists, hashedPassword, showImportOverlay, showPreferences, theme } = this.props;
 		const { isLoading } = this.state;
 		let page;
 
 		if (isLoading === true) {
 			// Looking for diary file
-			page = <p>Loading…</p>;
+			page = <p>{`${t('loading')}…`}</p>;
 		} else if (fileExists === false) {
 			// Diary file has not yet been created
 			page = <PasswordCreationContainer />;

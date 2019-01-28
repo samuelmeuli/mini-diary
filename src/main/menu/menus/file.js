@@ -8,13 +8,13 @@ const {
 	importJson,
 	lock
 } = require('../../ipcMain/senders');
-
+const { t } = require('../../i18n/i18n');
 
 module.exports = {
-	label: 'File',
+	label: t('file'),
 	submenu: [
 		{
-			label: 'Lock diary',
+			label: t('lock-diary'),
 			id: 'lock',
 			accelerator: 'CmdOrCtrl+L',
 			click() {
@@ -23,24 +23,24 @@ module.exports = {
 		},
 		{ type: 'separator' },
 		{
-			label: 'Import',
+			label: t('import'),
 			submenu: [
 				{
-					label: 'Import from Day One…',
+					label: `${t('import-from-format', { format: 'Day One' })}…`,
 					id: 'importFromDayOne',
 					click() {
 						importDayOne();
 					}
 				},
 				{
-					label: 'Import from jrnl…',
+					label: `${t('import-from-format', { format: 'jrnl' })}…`,
 					id: 'importFromJrnl',
 					click() {
 						importJrnl();
 					}
 				},
 				{
-					label: 'Import from JSON…',
+					label: `${t('import-from-format', { format: 'JSON' })}…`,
 					id: 'importFromJson',
 					click() {
 						importJson();
@@ -49,32 +49,32 @@ module.exports = {
 			]
 		},
 		{
-			label: 'Export',
+			label: t('export'),
 			id: 'export',
 			submenu: [
 				{
-					label: 'Export to PDF…',
+					label: `${t('export-to-format', { format: 'PDF' })}…`,
 					id: 'exportToPdf',
 					click() {
 						exportToPdf();
 					}
 				},
 				{
-					label: 'Export to Markdown…',
+					label: `${t('export-to-format', { format: 'Markdown' })}…`,
 					id: 'exportToMd',
 					click() {
 						exportToMd();
 					}
 				},
 				{
-					label: 'Export to TXT…',
+					label: `${t('export-to-format', { format: 'TXT' })}…`,
 					id: 'exportToTxt',
 					click() {
 						exportToTxt();
 					}
 				},
 				{
-					label: 'Export to JSON…',
+					label: `${t('export-to-format', { format: 'JSON' })}…`,
 					id: 'exportToJson',
 					click() {
 						exportToJson();

@@ -6,7 +6,7 @@ import moment from 'moment';
 import SimpleSvg from 'react-simple-svg';
 
 import iconToday from '../../../assets/icons/today.svg';
-
+import { t } from '../../../electron/ipcRenderer/senders';
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
@@ -75,24 +75,21 @@ export default class Toolbar extends PureComponent {
 					<input
 						type="search"
 						className="search-input"
-						placeholder="Search…"
+						placeholder={`${t('search')}…`}
 						value={newSearchKey}
 						onChange={this.onChange}
 					/>
-					{
-						newSearchKey !== ''
-							&& (
-								<span className="search-input-clear">
-									<button
-										type="button"
-										className="button button-invisible"
-										onClick={this.clearSearchKey}
-									>
-										<SimpleSvg src={iconClear} height={20} width={20} />
-									</button>
-								</span>
-							)
-					}
+					{newSearchKey !== '' && (
+						<span className="search-input-clear">
+							<button
+								type="button"
+								className="button button-invisible"
+								onClick={this.clearSearchKey}
+							>
+								<SimpleSvg src={iconClear} height={20} width={20} />
+							</button>
+						</span>
+					)}
 				</div>
 				<button
 					type="button"
@@ -100,7 +97,7 @@ export default class Toolbar extends PureComponent {
 					disabled={isToday && isCurrentMonth}
 					onClick={this.onTodaySelection}
 				>
-					<SimpleSvg src={iconToday} title="Today" height={20} width={20} />
+					<SimpleSvg src={iconToday} title={t('today')} height={20} width={20} />
 				</button>
 			</div>
 		);

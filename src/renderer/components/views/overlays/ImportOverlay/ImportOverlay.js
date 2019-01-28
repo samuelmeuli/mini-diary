@@ -2,40 +2,31 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Overlay from '../Overlay';
+import { t } from '../../../../electron/ipcRenderer/senders';
 
 const { dialog } = window.require('electron').remote;
 
-
 const FIELDS = {
 	dayOne: {
-		name: 'Day One',
+		title: `${t('import-from-format', { format: 'Day One' })}…`,
 		extension: 'txt',
-		instructions: (
-			<p>
-				Open the Day One app and export your diary under File → Export → Plain Text. Unzip the
-				created file. Select the resulting TXT file in the next step to import it into Mini Diary.
-			</p>
-		)
+		instructions: <p>{t('import-instructions-day-one')}</p>
 	},
 	jrnl: {
-		name: 'jrnl',
+		title: `${t('import-from-format', { format: 'jrnl' })}…`,
 		extension: 'json',
 		instructions: (
 			<p>
-				To export your jrnl diary, run <code>jrnl --export json -o jrnl-export.json</code>. Select
-				the created JSON file in the next step to import it into Mini Diary.
+				{t('import-instructions-jrnl').split(/{.*?}/)[0]}
+				<code>jrnl --export json -o jrnl-export.json</code>
+				{t('import-instructions-jrnl').split(/{.*?}/)[1]}
 			</p>
 		)
 	},
 	json: {
-		name: 'JSON',
+		title: `${t('import-from-format', { format: 'JSON' })}…`,
 		extension: 'json',
-		instructions: (
-			<p>
-				You can import your data from a previous Mini Diary JSON export or from another JSON file
-				that is formatted the same way.
-			</p>
-		)
+		instructions: <p>{t('import-instructions-json')}</p>
 	}
 };
 
@@ -59,10 +50,12 @@ export default class ImportOverlay extends PureComponent {
 		// Show dialog for selecting file to import
 		const fileNameArray = dialog.showOpenDialog({
 			properties: ['openFile'],
-			filters: [{
-				name: `${FIELDS[importFormat].extension.toUpperCase()} file`,
-				extensions: [FIELDS[importFormat].extension]
-			}]
+			filters: [
+				{
+					name: FIELDS[importFormat].extension.toUpperCase(),
+					extensions: [FIELDS[importFormat].extension]
+				}
+			]
 		});
 
 		// Run import if exactly one file has been selected
@@ -76,11 +69,11 @@ export default class ImportOverlay extends PureComponent {
 
 		return (
 			<Overlay className="import-overlay" onClose={hideImportOverlay}>
-				<h1>Import from {FIELDS[importFormat].name}</h1>
+				<h1>{FIELDS[importFormat].title}</h1>
 				{FIELDS[importFormat].instructions}
-				<p>Mini Diary will create a backup of your data before the import.</p>
+				<p>{t('import-backup-info')}</p>
 				<button type="button" className="button button-main" onClick={this.selectAndImportFile}>
-					Start import
+					{t('start-import')}
 				</button>
 			</Overlay>
 		);

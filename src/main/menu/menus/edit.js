@@ -1,12 +1,32 @@
+const { t } = require('../../i18n/i18n');
+
 module.exports = {
-	label: 'Edit',
+	label: t('edit'),
 	submenu: [
-		{ role: 'undo' },
-		{ role: 'redo' },
+		{
+			label: t('undo'),
+			role: 'undo'
+		},
+		{
+			label: t('redo'),
+			role: 'redo'
+		},
 		{ type: 'separator' },
-		{ role: 'cut' },
-		{ role: 'copy' },
-		{ role: 'paste' },
-		{ role: 'selectall' }
+		{
+			label: t('cut'),
+			role: 'cut'
+		},
+		{
+			label: t('copy'),
+			role: 'copy'
+		},
+		{
+			label: t('paste'),
+			role: 'paste'
+		},
+		{
+			label: t('select-all'),
+			role: 'selectall'
+		}
 	]
 };

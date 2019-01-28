@@ -7,7 +7,7 @@ const helpMenu = require('./menus/help');
 const viewMenu = require('./menus/view');
 const windowMenu = require('./menus/window');
 const preferencesItem = require('./preferencesItem');
-
+const { t } = require('../i18n/i18n');
 
 exports.getMenuTemplate = () => {
 	if (is.macOS()) {
@@ -15,31 +15,42 @@ exports.getMenuTemplate = () => {
 		editMenu.submenu.push(
 			{ type: 'separator' },
 			{
-				label: 'Speech',
+				label: t('speech'),
 				submenu: [
-					{ role: 'startspeaking' },
-					{ role: 'stopspeaking' }
+					{
+						label: t('start-speaking'),
+						role: 'startspeaking'
+					},
+					{
+						label: t('stop-speaking'),
+						role: 'stopspeaking'
+					}
 				]
 			}
 		);
 		windowMenu.submenu = [
-			{ role: 'close' },
-			{ role: 'minimize' },
-			{ role: 'zoom' },
+			{
+				label: t('close'),
+				role: 'close'
+			},
+			{
+				label: t('minimize'),
+				role: 'minimize'
+			},
+			{
+				label: t('zoom'),
+				role: 'zoom'
+			},
 			{ type: 'separator' },
-			{ role: 'front' }
+			{
+				label: t('bring-all-to-front'),
+				role: 'front'
+			}
 		];
 	} else {
 		// Add preferences under "File" (will be added under "Mini Diary" for macOS)
 		fileMenu.submenu.push(preferencesItem);
 	}
 
-	return [
-		...(is.macOS() ? [appMenu] : []),
-		fileMenu,
-		editMenu,
-		viewMenu,
-		windowMenu,
-		helpMenu
-	];
+	return [...(is.macOS() ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
 };

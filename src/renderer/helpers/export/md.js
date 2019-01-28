@@ -1,5 +1,4 @@
-import { toDateString } from '../dateUtils';
-
+import { toWeekdayDateString } from '../dateFormat';
 
 /**
  * Convert entries to a Markdown string of the following form:
@@ -13,7 +12,7 @@ import { toDateString } from '../dateUtils';
  *   [Text]
  */
 export function convertToMd(entries) {
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		let md = '# Mini Diary\n\n';
 
 		entries.forEach(([indexDate, entry]) => {
@@ -23,7 +22,7 @@ export function convertToMd(entries) {
 			const textMd = text.replace(/\n/g, '\n\n');
 
 			// Format date
-			const dateStr = toDateString(indexDate);
+			const dateStr = toWeekdayDateString(indexDate);
 
 			// Build Markdown string
 			md += `## ${dateStr}\n\n`; // Date

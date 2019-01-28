@@ -1,6 +1,3 @@
-/* eslint react/forbid-prop-types: 0 */
-/* eslint react/require-default-props: 0 */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import iconNext from 'feather-icons/dist/icons/chevron-right.svg';
@@ -8,6 +5,8 @@ import iconPrev from 'feather-icons/dist/icons/chevron-left.svg';
 import moment from 'moment';
 import SimpleSvg from 'react-simple-svg';
 
+import { t } from '../../../../electron/ipcRenderer/senders';
+import { toMonthYearString } from '../../../../helpers/dateFormat';
 
 const propTypes = {
 	monthSelected: PropTypes.instanceOf(Date).isRequired,
@@ -24,17 +23,12 @@ export default function CalendarNav(props) {
 	const today = moment();
 	const disableNextButton = month.isSame(today, 'month');
 
-	// Determine name of current month
-	const monthStr = month.format('MMMM YYYY');
+	const monthStr = toMonthYearString(month);
 
 	return (
 		<div className="calendar-nav">
-			<button
-				type="button"
-				className="button button-invisible"
-				onClick={setMonthSelectedPrevious}
-			>
-				<SimpleSvg src={iconPrev} title="Prev. month" height={20} width={20} />
+			<button type="button" className="button button-invisible" onClick={setMonthSelectedPrevious}>
+				<SimpleSvg src={iconPrev} title={t('previous-month')} height={20} width={20} />
 			</button>
 			<h1 className="month-name">{monthStr}</h1>
 			<button
@@ -43,7 +37,7 @@ export default function CalendarNav(props) {
 				disabled={disableNextButton}
 				onClick={setMonthSelectedNext}
 			>
-				<SimpleSvg src={iconNext} title="Next month" height={20} width={20} />
+				<SimpleSvg src={iconNext} title={t('next-month')} height={20} width={20} />
 			</button>
 		</div>
 	);
