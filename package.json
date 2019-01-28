@@ -95,6 +95,7 @@
 			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true,
 			"electronLanguages": [
+				"de",
 				"en"
 			]
 		},

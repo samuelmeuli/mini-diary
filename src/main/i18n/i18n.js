@@ -2,6 +2,7 @@ const { app } = require('electron');
 
 const DEFAULT_LANG = 'en';
 const TRANSLATIONS = {
+	de: require('./translations/de'),
 	en: require('./translations/en')
 };
 
