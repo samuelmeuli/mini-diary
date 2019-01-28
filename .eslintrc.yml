@@ -16,6 +16,7 @@ rules:
     - error
     - always
     - ignoreConsecutiveComments: true
+      ignorePattern: prettier-ignore
   no-console:
     - error
     - allow:
