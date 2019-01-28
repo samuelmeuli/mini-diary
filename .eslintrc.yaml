@@ -1,6 +1,8 @@
 root: true
 
-extends: airbnb
+extends:
+  - airbnb
+  - prettier
 
 env:
   browser: true
@@ -10,30 +12,16 @@ plugins:
   - html
 
 rules:
-  # General rules
   capitalized-comments:
     - error
     - always
     - ignoreConsecutiveComments: true
-  comma-dangle:
-    - error
-    - never
-  indent:
-    - error
-    - tab
-    - SwitchCase: 1
   no-console:
     - error
     - allow:
         - error
-  no-tabs: off
-  object-curly-newline: off
-  object-curly-spacing:
-    - error
-    - always
-    - objectsInObjects: false
 
-  # React rules
+  # React
   react/button-has-type: error
   react/jsx-filename-extension:
     - error
@@ -47,7 +35,7 @@ rules:
     - tab
   react/jsx-one-expression-per-line: off
 
-  # Project-specific rules
+  # Project-specific
   global-require: off
   import/no-extraneous-dependencies: off
   import/prefer-default-export: off
