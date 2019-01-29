@@ -6,6 +6,7 @@ import Overlay from '../Overlay';
 import Banner from '../../../elements/Banner';
 import { t } from '../../../../electron/ipcRenderer/senders';
 import { moveFile } from '../../../../helpers/fileAccess';
+import { isAtLeastMojave } from '../../../../helpers/os';
 import {
 	FILE_NAME,
 	getFilePath as getFilePathPref,
@@ -154,7 +155,7 @@ export default class Preferences extends PureComponent {
 				<h1>{t('preferences')}</h1>
 				<form className="preferences-form">
 					{/* Theme */
-					!is.macOS() && (
+					!(is.macOS() && isAtLeastMojave()) && (
 						<fieldset className="fieldset-theme">
 							<legend>{t('theme')}</legend>
 							<label htmlFor="radio-theme-light">

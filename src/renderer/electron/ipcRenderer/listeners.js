@@ -1,5 +1,6 @@
 import is from 'electron-is';
 
+import { getSystemTheme } from '../systemTheme';
 import { setPreferencesVisibility, setTheme } from '../../redux/actions/appActions';
 import {
 	setDaySelectedNext,
@@ -16,11 +17,10 @@ import {
 import { lock } from '../../redux/actions/fileActions';
 import { showImportOverlay } from '../../redux/actions/importActions';
 import store from '../../redux/store';
-import { getSystemTheme } from '../systemTheme';
+import { isAtLeastMojave } from '../../helpers/os';
 
 const { ipcRenderer } = window.require('electron');
 const { powerMonitor, systemPreferences } = window.require('electron').remote;
-
 
 // Export
 
@@ -40,7 +40,6 @@ ipcRenderer.on('exportToTxt', () => {
 	store.dispatch(exportToTxt());
 });
 
-
 // Import
 
 ipcRenderer.on('importDayOne', () => {
@@ -55,13 +54,11 @@ ipcRenderer.on('importJson', () => {
 	store.dispatch(showImportOverlay('json'));
 });
 
-
 // Lock
 
 ipcRenderer.on('lock', () => {
 	store.dispatch(lock());
 });
-
 
 // Date
 
@@ -81,13 +78,11 @@ ipcRenderer.on('previousMonth', () => {
 	store.dispatch(setMonthSelectedPrevious());
 });
 
-
 // Preferences
 
 ipcRenderer.on('showPreferences', () => {
 	store.dispatch(setPreferencesVisibility(true));
 });
-
 
 // Screen lock
 // Lock diary when screen is locked
@@ -98,11 +93,10 @@ if (is.macOS() || is.windows()) {
 	});
 }
 
-
 // Theme
 // Listen to system theme changes and update the app theme accordingly
 
-if (is.macOS()) {
+if (is.macOS() && isAtLeastMojave()) {
 	systemPreferences.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
 		const theme = getSystemTheme();
 		store.dispatch(setTheme(theme));
