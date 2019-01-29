@@ -96,7 +96,8 @@
 			"darkModeSupport": true,
 			"electronLanguages": [
 				"de",
-				"en"
+				"en",
+				"es"
 			]
 		},
 		"linux": {
