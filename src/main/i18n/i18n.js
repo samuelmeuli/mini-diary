@@ -3,7 +3,8 @@ const { app } = require('electron');
 const DEFAULT_LANG = 'en';
 const TRANSLATIONS = {
 	de: require('./translations/de'),
-	en: require('./translations/en')
+	en: require('./translations/en'),
+	es: require('./translations/es')	
 };
 
 const systemLang = app.getLocale();
