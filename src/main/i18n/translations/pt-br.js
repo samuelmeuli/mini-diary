@@ -77,7 +77,7 @@ module.exports = {
 	'import-backup-info': 'Mini Diary realizará uma cópia de segurança antes da importação',
 	'import-error-msg': 'Houve um erro durante a importação',
 	'import-error-title': 'Erro ao importar',
-	'import-instructions-day-one': 'Abra o aplicativo Day One e exporte o seu diário em Arquivo → Exportar → Text. Descompacte o arquivo gerado. Selecione o arquivo TXT resultante no próximo passo para importá-lo para o Mini Diary.',
+	'import-instructions-day-one': 'Abra o aplicativo Day One e exporte o seu diário em Arquivo → Exportar → Texto. Descompacte o arquivo gerado. Selecione o arquivo TXT resultante no próximo passo para importá-lo para o Mini Diary.',
 	'import-instructions-jrnl': 'Para exportar o seu diário jrnl, execute {command}. Selecione o JSON gerado no próximo passo para importá-lo para o Mini Diary.',
 	'import-instructions-json': 'Você pode importar os seus dados de outra exportação JSON do Mini Diary ou de outro arquivo JSON que possua a mesma formatação.',
 	'start-import': 'Iniciar a importação',
