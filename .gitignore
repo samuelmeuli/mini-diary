@@ -17,3 +17,5 @@ dist/
 
 # Website
 minireset.*
+
+.idea/
