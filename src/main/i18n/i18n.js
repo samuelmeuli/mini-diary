@@ -5,7 +5,7 @@ const TRANSLATIONS = {
 	de: require('./translations/de'),
 	en: require('./translations/en'),
 	es: require('./translations/es'),
-	ptbr: require('./translations/pt-br')
+	pt: require('./translations/pt')
 };
 
 const systemLang = app.getLocale();
