@@ -1,11 +1,10 @@
 import { mergeUpdateFile } from './fileActions';
+import { getDiaryFilePath } from '../../helpers/diaryFile';
 import { readFile } from '../../helpers/fileAccess';
 import { backupFile } from '../../helpers/import/backupFile';
 import { parseDayOneTxt } from '../../helpers/import/dayOne';
 import { parseJrnlJson } from '../../helpers/import/jrnl';
 import { parseJson } from '../../helpers/import/json';
-import { getFilePath } from '../../helpers/preferences';
-
 
 // Action creators
 
@@ -50,11 +49,10 @@ export function showImportOverlay(importFormat) {
 	};
 }
 
-
 // Thunks
 
 function importDayOne(dayOneTxtPath) {
-	return (dispatch) => {
+	return dispatch => {
 		dispatch(setImportInProgress());
 		try {
 			const dayOneTxt = readFile(dayOneTxtPath);
@@ -68,7 +66,7 @@ function importDayOne(dayOneTxtPath) {
 }
 
 function importJrnl(jrnlJsonPath) {
-	return (dispatch) => {
+	return dispatch => {
 		dispatch(setImportInProgress());
 		try {
 			const jrnlJsonStr = readFile(jrnlJsonPath);
@@ -82,7 +80,7 @@ function importJrnl(jrnlJsonPath) {
 }
 
 function importJson(jsonPath) {
-	return (dispatch) => {
+	return dispatch => {
 		dispatch(setImportInProgress());
 		try {
 			const jsonStr = readFile(jsonPath);
@@ -96,7 +94,7 @@ function importJson(jsonPath) {
 }
 
 export function runImport(importFilePath) {
-	const diaryFilePath = getFilePath();
+	const diaryFilePath = getDiaryFilePath();
 	backupFile(diaryFilePath);
 	return (dispatch, getState) => {
 		const { importFormat } = getState().import;

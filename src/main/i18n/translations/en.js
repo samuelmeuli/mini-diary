@@ -41,6 +41,7 @@ module.exports = {
 	'website': 'Website',
 
 	// Theme
+	'auto': 'Auto',
 	'dark': 'Dark',
 	'light': 'Light',
 	'theme': 'Theme',

@@ -41,6 +41,7 @@ module.exports = {
 	'website': 'Website',
 
 	// Theme
+	'auto': 'Automatisch',
 	'dark': 'Dunkel',
 	'light': 'Hell',
 	'theme': 'Design',
