@@ -4,7 +4,8 @@ const DEFAULT_LANG = 'en';
 const TRANSLATIONS = {
 	de: require('./translations/de'),
 	en: require('./translations/en'),
-	es: require('./translations/es')	
+	es: require('./translations/es'),
+	pt: require('./translations/pt')
 };
 
 const systemLang = app.getLocale();
