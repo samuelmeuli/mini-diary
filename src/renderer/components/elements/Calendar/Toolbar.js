@@ -86,7 +86,7 @@ export default class Toolbar extends PureComponent {
 								className="button button-invisible"
 								onClick={this.clearSearchKey}
 							>
-								<SimpleSvg src={iconClear} height={20} width={20} />
+								<SimpleSvg src={iconClear} height={20} width={20} title={t('clear')} />
 							</button>
 						</span>
 					)}
@@ -97,7 +97,7 @@ export default class Toolbar extends PureComponent {
 					disabled={isToday && isCurrentMonth}
 					onClick={this.onTodaySelection}
 				>
-					<SimpleSvg src={iconToday} title={t('today')} height={20} width={20} />
+					<SimpleSvg src={iconToday} height={20} width={20} title={t('today')} />
 				</button>
 			</div>
 		);

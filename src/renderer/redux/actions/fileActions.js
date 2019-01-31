@@ -1,4 +1,4 @@
-import { disableMenuItems, enableMenuItems } from '../../electron/ipcRenderer/senders';
+import { disableMenuItems, enableMenuItems, t } from '../../electron/ipcRenderer/senders';
 import { fileExists, readEncryptedFile, writeEncryptedFile } from '../../helpers/fileAccess';
 import { hashPassword } from '../../helpers/hashPassword';
 import { getDiaryFilePath, getMetadata } from '../../helpers/diaryFile';
@@ -107,9 +107,9 @@ export function decryptFile(password) {
 			// Error reading diary file
 			let errorMsg;
 			if (err.message.endsWith('BAD_DECRYPT')) {
-				errorMsg = 'Incorrect password';
+				errorMsg = t('wrong-password');
 			} else {
-				errorMsg = `Error while decrypting diary file: ${err.message}`;
+				errorMsg = `${t('decryption-error')}: ${err.message}`;
 			}
 			dispatch(setDecryptError(errorMsg));
 		}

@@ -54,6 +54,7 @@ module.exports = {
 	'write-something': 'Write something',
 
 	// Search
+	'clear': 'Clear',
 	'no-results': 'No results',
 	'no-title': 'No title',
 	'search': 'Search',
@@ -61,7 +62,9 @@ module.exports = {
 	// Password and directory
 	'change-directory': 'Change directory',
 	'change-password': 'Change password',
+	'decryption-error': 'Error decrypting diary file',
 	'diary-file': 'Diary file',
+	'file-exists': 'Another file exists at the destination path',
 	'move-error-msg': 'An error occurred when moving the file',
 	'move-error-title': 'Move error',
 	'move-file': 'Move file',
@@ -73,6 +76,7 @@ module.exports = {
 	'select-directory': 'Select directory',
 	'set-password': 'Set password',
 	'unlock': 'Unlock',
+	"wrong-password": "Wrong password",
 
 	// Import
 	'import-backup-info': 'Mini Diary will create a backup of your data before the import.',

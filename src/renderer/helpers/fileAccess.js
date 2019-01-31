@@ -1,8 +1,9 @@
 import crypto from 'crypto';
 import fs from 'fs';
 
-const CIPHER = 'aes-192-cbc';
+import { t } from '../electron/ipcRenderer/senders';
 
+const CIPHER = 'aes-192-cbc';
 
 export function copyFile(sourcePath, destinationPath) {
 	fs.copyFileSync(sourcePath, destinationPath);
@@ -17,7 +18,7 @@ export function fileExists(filePath) {
 
 export function moveFile(sourcePath, destinationPath) {
 	if (fileExists(destinationPath)) {
-		throw Error('Another file exists at the destination path');
+		throw Error(t('file-exists'));
 	}
 	fs.renameSync(sourcePath, destinationPath);
 }
@@ -58,7 +59,8 @@ export function writeEncryptedFile(filePath, hashedPassword, content) {
 	}
 	const cipher = crypto.createCipher(CIPHER, hashedPassword);
 	const encrypted = Buffer.concat([
-		cipher.update(Buffer.from(JSON.stringify(content), 'utf8')), cipher.final()
+		cipher.update(Buffer.from(JSON.stringify(content), 'utf8')),
+		cipher.final()
 	]);
 	fs.writeFileSync(filePath, encrypted);
 }
