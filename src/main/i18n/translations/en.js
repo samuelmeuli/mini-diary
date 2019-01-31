@@ -62,6 +62,7 @@ module.exports = {
 	// Password and directory
 	'change-directory': 'Change directory',
 	'change-password': 'Change password',
+	'choose-password': 'Please choose a password for your diary.',
 	'decryption-error': 'Error decrypting diary file',
 	'diary-file': 'Diary file',
 	'file-exists': 'Another file exists at the destination path',

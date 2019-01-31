@@ -61,7 +61,7 @@ export default class PasswordCreation extends PureComponent {
 
 		return (
 			<StartPage>
-				<p>Please choose a password for your diary.</p>
+				<p>{t('choose-password')}</p>
 				<form className="password-creation-form" onSubmit={this.onSubmit}>
 					<input
 						type="password"
