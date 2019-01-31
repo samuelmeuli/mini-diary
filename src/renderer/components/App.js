@@ -83,8 +83,9 @@ export default class App extends Component {
 	render() {
 		const { fileExists, hashedPassword, showImportOverlay, showPreferences, theme } = this.props;
 		const { isLoading } = this.state;
-		let page;
 
+		// Render app page
+		let page;
 		if (isLoading === true) {
 			// Looking for diary file
 			page = <p>{`${t('loading')}…`}</p>;

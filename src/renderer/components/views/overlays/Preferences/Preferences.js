@@ -5,24 +5,20 @@ import is from 'electron-is';
 import Overlay from '../Overlay';
 import Banner from '../../../elements/Banner';
 import { t } from '../../../../electron/ipcRenderer/senders';
+import { getDiaryFilePath, FILE_NAME } from '../../../../helpers/diaryFile';
 import { moveFile } from '../../../../helpers/fileAccess';
 import { isAtLeastMojave } from '../../../../helpers/os';
-import {
-	FILE_NAME,
-	getFilePath as getFilePathPref,
-	setFileDir as setFileDirPref,
-	setTheme as setThemePref
-} from '../../../../helpers/preferences';
+import { saveDirPref } from '../../../../helpers/preferences';
 
 const { dialog } = window.require('electron').remote;
 
 const propTypes = {
 	isLocked: PropTypes.bool.isRequired,
-	testFileExists: PropTypes.func.isRequired,
-	theme: PropTypes.oneOf(['light', 'dark']).isRequired,
 	setPreferencesVisibility: PropTypes.func.isRequired,
-	setTheme: PropTypes.func.isRequired,
-	updatePassword: PropTypes.func.isRequired
+	testFileExists: PropTypes.func.isRequired,
+	themePref: PropTypes.oneOf(['auto', 'light', 'dark']).isRequired,
+	updatePassword: PropTypes.func.isRequired,
+	updateThemePref: PropTypes.func.isRequired
 };
 
 export default class Preferences extends PureComponent {
@@ -30,7 +26,7 @@ export default class Preferences extends PureComponent {
 		super();
 
 		this.state = {
-			fileDir: getFilePathPref(),
+			fileDir: getDiaryFilePath(),
 			password1: '',
 			password2: ''
 		};
@@ -39,12 +35,13 @@ export default class Preferences extends PureComponent {
 		this.onChangePassword1 = this.onChangePassword1.bind(this);
 		this.onChangePassword2 = this.onChangePassword2.bind(this);
 		this.hidePreferences = this.hidePreferences.bind(this);
-		this.updatePassword = this.updatePassword.bind(this);
 		this.selectDir = this.selectDir.bind(this);
 		this.selectMoveDir = this.selectMoveDir.bind(this);
-		this.setTheme = this.setTheme.bind(this);
-		this.setThemeDark = this.setThemeDark.bind(this);
-		this.setThemeLight = this.setThemeLight.bind(this);
+		this.setThemePrefAuto = this.setThemePrefAuto.bind(this);
+		this.setThemePrefDark = this.setThemePrefDark.bind(this);
+		this.setThemePrefLight = this.setThemePrefLight.bind(this);
+		this.updateDir = this.updateDir.bind(this);
+		this.updatePassword = this.updatePassword.bind(this);
 	}
 
 	onChangePassword1(e) {
@@ -63,19 +60,22 @@ export default class Preferences extends PureComponent {
 		});
 	}
 
-	setTheme(theme) {
-		const { setTheme } = this.props;
+	setThemePrefAuto() {
+		const { updateThemePref } = this.props;
 
-		setThemePref(theme);
-		setTheme(theme);
+		updateThemePref('auto');
 	}
 
-	setThemeDark() {
-		this.setTheme('dark');
+	setThemePrefDark() {
+		const { updateThemePref } = this.props;
+
+		updateThemePref('dark');
 	}
 
-	setThemeLight() {
-		this.setTheme('light');
+	setThemePrefLight() {
+		const { updateThemePref } = this.props;
+
+		updateThemePref('light');
 	}
 
 	selectDir() {
@@ -90,11 +90,8 @@ export default class Preferences extends PureComponent {
 		if (fileDirArray && fileDirArray.length === 1) {
 			// Use mini-diary.txt file from selected directory
 			const newDir = fileDirArray[0];
-			setFileDirPref(newDir);
+			this.updateDir(newDir);
 			testFileExists();
-			this.setState({
-				fileDir: getFilePathPref()
-			});
 		}
 	}
 
@@ -116,11 +113,15 @@ export default class Preferences extends PureComponent {
 				dialog.showErrorBox(t('move-error-title'), `${t('move-error-msg')}: ${err.message}`);
 				return;
 			}
-			setFileDirPref(newDir);
-			this.setState({
-				fileDir: getFilePathPref()
-			});
+			this.updateDir(newDir);
 		}
+	}
+
+	updateDir(dir) {
+		saveDirPref(dir);
+		this.setState({
+			fileDir: getDiaryFilePath()
+		});
 	}
 
 	updatePassword() {
@@ -145,7 +146,7 @@ export default class Preferences extends PureComponent {
 	}
 
 	render() {
-		const { isLocked, theme } = this.props;
+		const { isLocked, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
 
 		const passwordsMatch = password1 === password2;
@@ -154,34 +155,45 @@ export default class Preferences extends PureComponent {
 			<Overlay onClose={this.hidePreferences}>
 				<h1>{t('preferences')}</h1>
 				<form className="preferences-form">
-					{/* Theme */
-					!(is.macOS() && isAtLeastMojave()) && (
-						<fieldset className="fieldset-theme">
-							<legend>{t('theme')}</legend>
-							<label htmlFor="radio-theme-light">
+					{/* Theme */}
+					<fieldset className="fieldset-theme">
+						<legend>{t('theme')}</legend>
+						{is.macOS() && isAtLeastMojave() && (
+							<label htmlFor="radio-theme-auto">
 								<input
 									type="radio"
-									name="radio-theme-light"
-									id="radio-theme-light"
+									name="radio-theme-auto"
+									id="radio-theme-auto"
 									className="radio"
-									checked={theme === 'light'}
-									onChange={this.setThemeLight}
+									checked={themePref === 'auto'}
+									onChange={this.setThemePrefAuto}
 								/>
-								{t('light')}
+								{t('auto')}
 							</label>
-							<label htmlFor="radio-theme-dark">
-								<input
-									type="radio"
-									name="radio-theme-dark"
-									id="radio-theme-dark"
-									className="radio"
-									checked={theme === 'dark'}
-									onChange={this.setThemeDark}
-								/>
-								{t('dark')}
-							</label>
-						</fieldset>
-					)}
+						)}
+						<label htmlFor="radio-theme-light">
+							<input
+								type="radio"
+								name="radio-theme-light"
+								id="radio-theme-light"
+								className="radio"
+								checked={themePref === 'light'}
+								onChange={this.setThemePrefLight}
+							/>
+							{t('light')}
+						</label>
+						<label htmlFor="radio-theme-dark">
+							<input
+								type="radio"
+								name="radio-theme-dark"
+								id="radio-theme-dark"
+								className="radio"
+								checked={themePref === 'dark'}
+								onChange={this.setThemePrefDark}
+							/>
+							{t('dark')}
+						</label>
+					</fieldset>
 					{/*
 							File directory
 							When locked: Change directory

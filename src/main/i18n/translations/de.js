@@ -41,6 +41,7 @@ module.exports = {
 	'website': 'Website',
 
 	// Theme
+	'auto': 'Automatisch',
 	'dark': 'Dunkel',
 	'light': 'Hell',
 	'theme': 'Design',
@@ -53,6 +54,7 @@ module.exports = {
 	'write-something': 'Schreibe etwas',
 
 	// Search
+	'clear': 'Löschen',
 	'no-results': 'Keine Resultate',
 	'no-title': 'Kein Titel',
 	'search': 'Suche',
@@ -60,7 +62,9 @@ module.exports = {
 	// Password and directory
 	'change-directory': 'Ordner ändern',
 	'change-password': 'Passwort ändern',
+	'decryption-error': 'Fehler bei Tagebuch-Entschlüsselung',
 	'diary-file': 'Tagebuch-Datei',
+	'file-exists': 'Eine andere Datei existiert bereits unter dem gewählten Pfad',
 	'move-error-msg': 'Beim Verschieben der Datei ist ein Fehler aufgetreten',
 	'move-error-title': 'Fehler beim Verschieben',
 	'move-file': 'Datei verschieben',
@@ -72,6 +76,7 @@ module.exports = {
 	'select-directory': 'Ordner auswählen',
 	'set-password': 'Passwort setzen',
 	'unlock': 'Entsperren',
+	'wrong-password': 'Falsches Passwort',
 
 	// Import
 	'import-backup-info': 'Vor dem Importieren erstellt Mini Diary ein Backup deiner Daten.',

@@ -1,19 +1,18 @@
 import is from 'electron-is';
-import path from 'path';
-import { getSystemTheme } from '../electron/systemTheme';
 import { isAtLeastMojave } from './os';
 
 const { app } = window.require('electron').remote;
 const settings = window.require('electron-settings');
 
 const DEFAULT_THEME = 'light';
-export const FILE_NAME = 'mini-diary.txt';
 const PREF_DIR = app.getPath('userData');
-const THEMES = ['light', 'dark'];
 
-// Path to diary file
+// Diary file
 
-export function getFilePath() {
+/**
+ * Return the preference for the directory in which the diary file is saved
+ */
+export function loadDirPref() {
 	// Get path of file directory (or set it to default)
 	let fileDir;
 	if (settings.has('filePath')) {
@@ -22,33 +21,42 @@ export function getFilePath() {
 		fileDir = PREF_DIR;
 		settings.set('filePath', fileDir);
 	}
-	// Concatenate directory path with file name and return it
-	return path.resolve(fileDir, FILE_NAME);
+	return fileDir;
 }
 
-export function setFileDir(filePath) {
+/**
+ * Update the diary directory preference
+ */
+export function saveDirPref(filePath) {
 	settings.set('filePath', filePath);
 }
 
 // Theme
 
-export function getTheme() {
+/**
+ * Return the theme preference (one of ['auto', 'light', 'dark'])
+ * When set to 'auto', the system theme will be used
+ */
+export function loadThemePref() {
 	let theme;
-	if (is.macOS() && isAtLeastMojave()) {
-		// Mac (Mojave or later): Use system theme
-		theme = getSystemTheme();
-	} else if (settings.has('theme')) {
+	if (settings.has('theme')) {
 		theme = settings.get('theme');
 	} else {
-		theme = DEFAULT_THEME;
+		if (is.macOS() && isAtLeastMojave()) {
+			// On macOS Mojave and later: Use system theme
+			theme = 'auto';
+		} else {
+			// On Windows, Linux, and macOS before Mojave: use default theme
+			theme = DEFAULT_THEME;
+		}
 		settings.set('theme', theme);
 	}
 	return theme;
 }
 
-export function setTheme(theme) {
-	if (!THEMES.includes(theme)) {
-		throw Error(`Theme setting must be one of ${THEMES}`);
-	}
+/**
+ * Update the theme preference (one of ['auto', 'light', 'dark'])
+ */
+export function saveThemePref(theme) {
 	settings.set('theme', theme);
 }
