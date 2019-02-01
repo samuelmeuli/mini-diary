@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Overlay from '../Overlay';
 import { t } from '../../../../electron/ipcRenderer/senders';
 
-const { dialog } = window.require('electron').remote;
+const { dialog } = require('electron').remote;
 
 const FIELDS = {
 	dayOne: {

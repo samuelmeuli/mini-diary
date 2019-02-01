@@ -10,7 +10,7 @@ import { moveFile } from '../../../../helpers/fileAccess';
 import { isAtLeastMojave } from '../../../../helpers/os';
 import { saveDirPref } from '../../../../helpers/preferences';
 
-const { dialog } = window.require('electron').remote;
+const { dialog } = require('electron').remote;
 
 const propTypes = {
 	isLocked: PropTypes.bool.isRequired,

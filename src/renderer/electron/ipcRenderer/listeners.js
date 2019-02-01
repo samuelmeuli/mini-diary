@@ -19,8 +19,8 @@ import { showImportOverlay } from '../../redux/actions/importActions';
 import store from '../../redux/store';
 import { isAtLeastMojave } from '../../helpers/os';
 
-const { ipcRenderer } = window.require('electron');
-const { powerMonitor, systemPreferences } = window.require('electron').remote;
+const { ipcRenderer } = require('electron');
+const { powerMonitor, systemPreferences } = require('electron').remote;
 
 // Export
 

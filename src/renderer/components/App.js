@@ -9,7 +9,7 @@ import PasswordPromptContainer from './views/pages/PasswordPrompt/PasswordPrompt
 import ThemeContext from './ThemeContext';
 import { t, toggleWindowSize } from '../electron/ipcRenderer/senders';
 
-const { dialog } = window.require('electron').remote;
+const { dialog } = require('electron').remote;
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,

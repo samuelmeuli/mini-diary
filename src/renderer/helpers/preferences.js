@@ -1,8 +1,8 @@
 import is from 'electron-is';
 import { isAtLeastMojave } from './os';
 
-const { app } = window.require('electron').remote;
-const settings = window.require('electron-settings');
+const { app } = require('electron').remote;
+const settings = require('electron-settings');
 
 const DEFAULT_THEME = 'light';
 const PREF_DIR = app.getPath('userData');
