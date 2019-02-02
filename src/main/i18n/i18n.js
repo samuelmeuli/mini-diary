@@ -5,6 +5,7 @@ const TRANSLATIONS = {
 	de: require('./translations/de'),
 	en: require('./translations/en'),
 	es: require('./translations/es'),
+	fr: require('./translations/fr'),
 	pt: require('./translations/pt')
 };
 
