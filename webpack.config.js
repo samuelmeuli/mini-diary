@@ -17,11 +17,7 @@ module.exports = {
 			},
 			{
 				test: /\.s?css$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					'sass-loader'
-				]
+				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
 			{
 				test: /\.svg$/,
@@ -41,5 +37,5 @@ module.exports = {
 			title: 'Mini Diary'
 		})
 	],
-	target: 'node'
+	target: 'electron-renderer'
 };

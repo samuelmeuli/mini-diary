@@ -2,7 +2,7 @@ import is from 'electron-is';
 
 import { isAtLeastMojave } from '../helpers/os';
 
-const { systemPreferences } = window.require('electron').remote;
+const { systemPreferences } = require('electron').remote;
 
 export function getSystemTheme() {
 	if (is.macOS() && isAtLeastMojave()) {

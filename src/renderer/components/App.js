@@ -9,7 +9,7 @@ import PasswordPromptContainer from './views/pages/PasswordPrompt/PasswordPrompt
 import ThemeContext from './ThemeContext';
 import { t, toggleWindowSize } from '../electron/ipcRenderer/senders';
 
-const { dialog } = window.require('electron').remote;
+const { dialog } = require('electron').remote;
 
 const propTypes = {
 	fileExists: PropTypes.bool.isRequired,
@@ -83,8 +83,9 @@ export default class App extends Component {
 	render() {
 		const { fileExists, hashedPassword, showImportOverlay, showPreferences, theme } = this.props;
 		const { isLoading } = this.state;
-		let page;
 
+		// Render app page
+		let page;
 		if (isLoading === true) {
 			// Looking for diary file
 			page = <p>{`${t('loading')}…`}</p>;

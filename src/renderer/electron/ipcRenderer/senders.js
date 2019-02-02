@@ -1,4 +1,4 @@
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = require('electron');
 
 // Localization
 
