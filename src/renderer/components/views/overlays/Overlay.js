@@ -68,9 +68,9 @@ export default class Overlay extends PureComponent {
 		const { children, className, onClose } = this.props;
 
 		return (
-			<div className={`overlay-outer ${className}`}>
+			<div className="overlay-outer">
 				<div
-					className="overlay-inner"
+					className={`overlay-inner ${className}`}
 					ref={el => {
 						this.overlayElement = el;
 					}}

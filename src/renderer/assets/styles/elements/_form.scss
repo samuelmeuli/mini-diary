@@ -7,3 +7,16 @@ legend {
 	margin-bottom: $spacing-small / 2;
 	font-weight: $font-weight-semibold;
 }
+
+.fieldset-content {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-right: $spacing-small;
+	margin-bottom: -($spacing-small / 2);
+}
+
+.fieldset-content > * {
+	margin-right: $spacing-small;
+	margin-bottom: $spacing-small / 2;
+}

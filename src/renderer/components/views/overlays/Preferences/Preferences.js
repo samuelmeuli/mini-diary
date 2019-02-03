@@ -158,41 +158,43 @@ export default class Preferences extends PureComponent {
 					{/* Theme */}
 					<fieldset className="fieldset-theme">
 						<legend>{t('theme')}</legend>
-						{is.macOS() && isAtLeastMojave() && (
-							<label htmlFor="radio-theme-auto">
+						<div className="fieldset-content">
+							{is.macOS() && isAtLeastMojave() && (
+								<label htmlFor="radio-theme-auto">
+									<input
+										type="radio"
+										name="radio-theme-auto"
+										id="radio-theme-auto"
+										className="radio"
+										checked={themePref === 'auto'}
+										onChange={this.setThemePrefAuto}
+									/>
+									{t('auto')}
+								</label>
+							)}
+							<label htmlFor="radio-theme-light">
 								<input
 									type="radio"
-									name="radio-theme-auto"
-									id="radio-theme-auto"
+									name="radio-theme-light"
+									id="radio-theme-light"
 									className="radio"
-									checked={themePref === 'auto'}
-									onChange={this.setThemePrefAuto}
+									checked={themePref === 'light'}
+									onChange={this.setThemePrefLight}
 								/>
-								{t('auto')}
+								{t('light')}
 							</label>
-						)}
-						<label htmlFor="radio-theme-light">
-							<input
-								type="radio"
-								name="radio-theme-light"
-								id="radio-theme-light"
-								className="radio"
-								checked={themePref === 'light'}
-								onChange={this.setThemePrefLight}
-							/>
-							{t('light')}
-						</label>
-						<label htmlFor="radio-theme-dark">
-							<input
-								type="radio"
-								name="radio-theme-dark"
-								id="radio-theme-dark"
-								className="radio"
-								checked={themePref === 'dark'}
-								onChange={this.setThemePrefDark}
-							/>
-							{t('dark')}
-						</label>
+							<label htmlFor="radio-theme-dark">
+								<input
+									type="radio"
+									name="radio-theme-dark"
+									id="radio-theme-dark"
+									className="radio"
+									checked={themePref === 'dark'}
+									onChange={this.setThemePrefDark}
+								/>
+								{t('dark')}
+							</label>
+						</div>
 					</fieldset>
 					{/*
 							File directory
@@ -204,42 +206,46 @@ export default class Preferences extends PureComponent {
 					!is.mas() && (
 						<fieldset className="fieldset-file-dir">
 							<legend>{t('diary-file')}</legend>
-							<p>{fileDir}</p>
-							<button
-								type="button"
-								className="button button-main"
-								onClick={isLocked ? this.selectDir : this.selectMoveDir}
-							>
-								{isLocked ? t('change-directory') : t('move-file')}
-							</button>
+							<div className="fieldset-content">
+								<p>{fileDir}</p>
+								<button
+									type="button"
+									className="button button-main"
+									onClick={isLocked ? this.selectDir : this.selectMoveDir}
+								>
+									{isLocked ? t('change-directory') : t('move-file')}
+								</button>
+							</div>
 						</fieldset>
 					)}
 					{/* Password (only when unlocked) */
 					!isLocked && (
 						<fieldset className="fieldset-password">
 							<legend>{t('password')}</legend>
-							<input
-								type="password"
-								value={password1}
-								placeholder={t('new-password')}
-								required
-								onChange={this.onChangePassword1}
-							/>
-							<input
-								type="password"
-								value={password2}
-								placeholder={t('repeat-new-password')}
-								required
-								onChange={this.onChangePassword2}
-							/>
-							<button
-								type="button"
-								disabled={!password1 || !password2 || !passwordsMatch}
-								onClick={this.updatePassword}
-								className="button button-main"
-							>
-								{t('change-password')}
-							</button>
+							<div className="fieldset-content">
+								<input
+									type="password"
+									value={password1}
+									placeholder={t('new-password')}
+									required
+									onChange={this.onChangePassword1}
+								/>
+								<input
+									type="password"
+									value={password2}
+									placeholder={t('repeat-new-password')}
+									required
+									onChange={this.onChangePassword2}
+								/>
+								<button
+									type="button"
+									disabled={!password1 || !password2 || !passwordsMatch}
+									onClick={this.updatePassword}
+									className="button button-main"
+								>
+									{t('change-password')}
+								</button>
+							</div>
 							<div className="password-update-banner">
 								{password1 && password2 && !passwordsMatch && (
 									<Banner type="error" message={t('passwords-no-match')} />

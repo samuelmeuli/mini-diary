@@ -1,45 +1,36 @@
 // Colors
 $themes: (
 	"light": (
-		"background": #E7E7E7,
-		"background-hover": #DDDDDD,
-		"background-editor": #F9F9F9,
-		"background-editor-hover": #F0F0F0,
-		"button-disabled": #E0E0E0,
-		"error": #D23939,
-		"main": #4E8BD2,
-		"main-hover": #447AB8,
+		"background": #e7e7e7,
+		"background-hover": #dddddd,
+		"background-editor": #f9f9f9,
+		"background-editor-hover": #f0f0f0,
+		"button-disabled": #e0e0e0,
+		"error": #d23939,
+		"main": #4e8bd2,
+		"main-hover": #447ab8,
 		"text": #353535,
-		"text-disabled": #C2C2C2,
+		"text-disabled": #c2c2c2,
 		"text-faded": #727272
 	),
 	"dark": (
 		"background": #242326,
-		"background-hover": #3F3F41,
+		"background-hover": #3f3f41,
 		"background-editor": #373739,
 		"background-editor-hover": #323234,
-		"button-disabled": #1D1D1D,
-		"error": #D23939,
-		"main": #4C81BF,
-		"main-hover": #4371A7,
-		"text": #D0D0D0,
-		"text-disabled": #4E4E4E,
-		"text-faded": #A1A1A1
+		"button-disabled": #1d1d1d,
+		"error": #d23939,
+		"main": #4c81bf,
+		"main-hover": #4371a7,
+		"text": #d0d0d0,
+		"text-disabled": #4e4e4e,
+		"text-faded": #a1a1a1
 	)
 ) !default;
 
 // Fonts
-$font-family:
-	-apple-system,
-	BlinkMacSystemFont,
-	"Segoe UI",
-	Roboto,
-	Helvetica,
-	Arial,
-	sans-serif,
-	"Apple Color Emoji",
-	"Segoe UI Emoji",
-	"Segoe UI Symbol";
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+	"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-size: 16px;
 $font-weight-normal: 400;
 $font-weight-semibold: 500;
@@ -58,5 +49,6 @@ $border-radius-button: 10px;
 $border-radius-input: 3px;
 $box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.075);
 $calendar-cell-size: 40px;
+$input-width: 210px;
 $input-height: 36px;
 $transition: 0.2s;

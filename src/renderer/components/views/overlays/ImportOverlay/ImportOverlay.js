@@ -8,12 +8,12 @@ const { dialog } = require('electron').remote;
 
 const FIELDS = {
 	dayOne: {
-		title: `${t('import-from-format', { format: 'Day One' })}…`,
+		title: t('import-from-format', { format: 'Day One' }),
 		extension: 'txt',
 		instructions: <p>{t('import-instructions-day-one')}</p>
 	},
 	jrnl: {
-		title: `${t('import-from-format', { format: 'jrnl' })}…`,
+		title: t('import-from-format', { format: 'jrnl' }),
 		extension: 'json',
 		instructions: (
 			<p>
@@ -24,7 +24,7 @@ const FIELDS = {
 		)
 	},
 	json: {
-		title: `${t('import-from-format', { format: 'JSON' })}…`,
+		title: t('import-from-format', { format: 'JSON' }),
 		extension: 'json',
 		instructions: <p>{t('import-instructions-json')}</p>
 	}

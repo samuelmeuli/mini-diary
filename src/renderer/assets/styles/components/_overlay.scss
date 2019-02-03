@@ -11,8 +11,9 @@
 
 	.overlay-inner {
 		position: relative;
-		width: 550px;
-		max-width: 100%;
+		max-width: 90%;
+		max-height: 100%;
+		overflow-y: auto;
 		border-radius: $border-radius-input;
 		box-shadow: $box-shadow;
 		@include background-color("background");
@@ -28,39 +29,21 @@
 	}
 }
 
-
-// Preferences overlay
-
-.fieldset-theme label {
-	margin-right: $spacing-small;
-}
-
-.fieldset-file-dir {
-	button {
-		margin-top: $spacing-small / 2;
-	}
-
-	p {
-		word-break: break-all;
-	}
-}
-
-.fieldset-password {
-	input {
-		margin-right: $spacing-small / 2;
-	}
-
-	button {
-		margin-top: $spacing-small / 2;
-	}
-}
-
-
 // Import overlay
 
 .import-overlay {
+	width: 600px;
+
 	h1,
 	p {
 		margin-bottom: $spacing-small;
+	}
+}
+
+// Preferences overlay
+
+.fieldset-file-dir {
+	p {
+		word-break: break-all;
 	}
 }

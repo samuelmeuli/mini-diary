@@ -22,6 +22,11 @@ input {
 
 input {
 	border-radius: $border-radius-input;
+
+	&[type="password"],
+	&[type="text"] {
+		width: $input-width;
+	}
 }
 
 .button {
@@ -36,7 +41,7 @@ input {
 	}
 
 	&.button-main {
-		color: #FFFFFF;
+		color: #ffffff;
 
 		&:not([disabled]) {
 			@include background-color("main");
