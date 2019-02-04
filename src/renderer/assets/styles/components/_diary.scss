@@ -4,14 +4,14 @@
 	height: 100%;
 
 	@media (max-width: 650px) {
-		padding: 2 * $spacing-large;
-		margin: 0 auto;
-		overflow-y: scroll;
 		flex-direction: column;
+		margin: 0 auto;
+		padding: 2 * $spacing-large;
+		overflow-y: scroll;
 
 		.sidebar {
-			margin: 0 auto (1.5 * $spacing-large);
 			flex-shrink: 0;
+			margin: 0 auto (1.5 * $spacing-large);
 		}
 
 		.editor {
@@ -34,8 +34,8 @@
 
 	.sidebar {
 		display: flex;
-		width: 7 * $calendar-cell-size;
 		flex-direction: column;
+		width: 7 * $calendar-cell-size;
 	}
 
 	.editor {

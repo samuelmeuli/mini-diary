@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 .view-selector {
 	display: flex;
 	justify-content: space-between;
@@ -40,8 +42,8 @@
 .DayPicker-Day,
 .DayPicker-Weekday {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 }
 
 .DayPicker-WeekdaysRow {
@@ -49,8 +51,8 @@
 }
 
 .DayPicker-Weekday {
-	font-size: 80%;
 	@include color("text-faded");
+	font-size: 80%;
 }
 
 .DayPicker-Day {
@@ -78,10 +80,10 @@
 }
 
 .DayPicker-Day--hasEntry {
-	font-weight: $font-weight-bold;
 	@include color("main");
+	font-weight: $font-weight-bold;
 }
 
 .DayPicker-Day--selected {
-	color: #FFFFFF !important;
+	color: #ffffff !important; // stylelint-disable-line declaration-no-important
 }

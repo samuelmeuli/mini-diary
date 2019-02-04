@@ -1,11 +1,11 @@
 .editor {
+	@include background-color("background-editor");
 	display: grid;
 	grid-template-rows: auto auto 1fr;
 	width: 100%;
 	padding: $spacing-rel-small;
 	overflow-y: auto;
 	border-radius: $border-radius-input;
-	@include background-color("background-editor");
 
 	textarea {
 		background: none;
@@ -18,6 +18,6 @@
 
 .editor-title {
 	margin-bottom: $spacing-small / 2;
-	font-size: 150%;
 	font-weight: $font-weight-bold;
+	font-size: 150%;
 }

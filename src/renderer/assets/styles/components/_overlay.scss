@@ -10,13 +10,13 @@
 	background-color: rgba(0, 0, 0, 0.6);
 
 	.overlay-inner {
+		@include background-color("background");
 		position: relative;
 		max-width: 90%;
 		max-height: 100%;
 		overflow-y: auto;
 		border-radius: $border-radius-input;
 		box-shadow: $box-shadow;
-		@include background-color("background");
 	}
 
 	.overlay-close-button {

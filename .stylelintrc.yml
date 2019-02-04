@@ -1,9 +1,1 @@
-extends: stylelint-config-primer
-rules:
-  color-hex-length: long
-  indentation: tab
-  max-empty-lines: 2
-  plugin/no-unsupported-browser-features: null
-  selector-max-type: null
-  selector-max-specificity: null
-  selector-no-qualifying-type: null
+extends: "@samuelmeuli/stylelint-config"

@@ -2,45 +2,34 @@
 
 @import "minireset.min.css";
 
-
 /* Global styles */
 
 body {
 	/* Variables */
 	--color-background-grey: #242326;
-	--color-background-white: #F1F1F1;
-	--color-main: #4E8BD2;
-	--color-main-hover: #447AB8;
-	--color-selection: #B7CBE4;
-	--color-text: #4E4E4E;
-	--color-text-button: #F1F1F1;
+	--color-background-white: #f1f1f1;
+	--color-main: #4e8bd2;
+	--color-main-hover: #447ab8;
+	--color-selection: #b7cbe4;
+	--color-text: #4e4e4e;
+	--color-text-button: #f1f1f1;
 	--color-text-dark: #212121;
-	--color-text-header: #D8D8D8;
-	--color-text-footer: #939EA7;
-	--color-text-footer-hover: #B7BEC5;
+	--color-text-header: #d8d8d8;
+	--color-text-footer: #939ea7;
+	--color-text-footer-hover: #b7bec5;
 	--spacing-abs-medium: 35px;
 	--spacing-abs-small: 23px;
 	--spacing-rel-large: 8vw;
 	--spacing-rel-medium: 4vw;
 	--spacing-rel-small: 2vw;
 	--transition: 0.2s;
-
-	font-family:
-		-apple-system,
-		BlinkMacSystemFont,
-		"Segoe UI",
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		"Apple Color Emoji",
-		"Segoe UI Emoji",
-		"Segoe UI Symbol";
-	line-height: 1.7;
 	color: var(--color-text);
+
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica", "Arial",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	line-height: 1.7;
 	background: var(--color-background-white);
 }
-
 
 /* Layout */
 
@@ -76,12 +65,11 @@ footer {
 
 .centered {
 	max-width: 800px;
-	padding-right: var(--spacing-rel-medium);
-	padding-left: var(--spacing-rel-medium);
 	margin-right: auto;
 	margin-left: auto;
+	padding-right: var(--spacing-rel-medium);
+	padding-left: var(--spacing-rel-medium);
 }
-
 
 /* Text */
 
@@ -91,14 +79,14 @@ h1,
 }
 
 h1 {
-	font-size: 250%;
 	font-weight: 700;
+	font-size: 250%;
 }
 
 h2,
 .tagline {
-	font-size: 120%;
 	font-weight: 500;
+	font-size: 120%;
 }
 
 h2 {
@@ -130,8 +118,8 @@ footer a:hover {
 }
 
 main a {
-	font-weight: 500;
 	color: var(--color-text-dark);
+	font-weight: 500;
 }
 
 main a:hover {
@@ -147,17 +135,16 @@ footer a {
 	background-color: var(--color-selection);
 }
 
-
 /* Buttons/links */
 
 .button {
 	display: inline-flex;
 	align-items: center;
-	padding: 11px 15px;
 	margin: calc(var(--spacing-rel-small) / 1.5);
+	padding: 11px 15px;
+	color: var(--color-text-button);
 	font-weight: 500;
 	line-height: 1;
-	color: var(--color-text-button);
 	background: var(--color-main);
 	border-radius: 12px;
 	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -173,7 +160,6 @@ footer a {
 footer svg {
 	margin-right: 7px;
 }
-
 
 /* Elements */
 

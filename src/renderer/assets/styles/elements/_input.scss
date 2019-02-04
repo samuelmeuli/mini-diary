@@ -1,8 +1,8 @@
 button,
 input,
 textarea {
-	font: inherit;
 	color: inherit;
+	font: inherit;
 	text-align: left;
 	background: none;
 	border: 0;
@@ -30,11 +30,11 @@ input {
 }
 
 .button {
+	@include background-color("background-editor");
 	font-weight: $font-weight-semibold;
 	border-radius: $border-radius-button;
 	box-shadow: $box-shadow;
 	transition: $transition;
-	@include background-color("background-editor");
 
 	&:not(.button-invisible):hover {
 		@include background-color("background-editor-hover");
@@ -52,8 +52,8 @@ input {
 		}
 
 		&:disabled {
-			box-shadow: none;
 			@include background-color("button-disabled");
+			box-shadow: none;
 		}
 	}
 
@@ -85,6 +85,6 @@ textarea {
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	resize: none;
 	background: none;
+	resize: none;
 }

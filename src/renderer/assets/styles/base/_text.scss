@@ -1,9 +1,9 @@
 .app {
-	font-family: $font-family;
-	font-size: $font-size;
-	font-weight: $font-weight-normal;
-	line-height: $line-height;
 	@include color("text");
+	font-weight: $font-weight-normal;
+	font-size: $font-size;
+	font-family: $font-family;
+	line-height: $line-height;
 	user-select: none;
 }
 
@@ -13,8 +13,8 @@ a {
 }
 
 h1 {
-	font-size: 150%;
 	font-weight: $font-weight-bold;
+	font-size: 150%;
 }
 
 abbr {
@@ -26,6 +26,6 @@ code {
 }
 
 .text-faded {
-	font-size: 80%;
 	@include color("text-faded");
+	font-size: 80%;
 }

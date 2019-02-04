@@ -17,8 +17,8 @@
 		"start:electron": "electron .",
 		"format:any": "prettier --ignore-path .gitignore --print-width 100 --write",
 		"format:js": "prettier --ignore-path .gitignore --print-width 100 --single-quote --write",
-		"lint:css": "stylelint",
-		"lint:scss": "stylelint --syntax scss",
+		"lint:css": "stylelint --fix",
+		"lint:scss": "stylelint --fix --syntax scss",
 		"lint:js": "eslint --ext .html,.js",
 		"pack": "electron-builder --dir",
 		"build": "run-s build:*",
@@ -56,6 +56,7 @@
 		"@babel/core": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.0.0",
+		"@samuelmeuli/stylelint-config": "1.0.0",
 		"babel-loader": "^8.0.4",
 		"copy-webpack-plugin": "^4.6.0",
 		"css-loader": "^2.0.0",
@@ -78,7 +79,6 @@
 		"serve": "^10.1.1",
 		"style-loader": "^0.23.0",
 		"stylelint": "^9.6.0",
-		"stylelint-config-primer": "^3.0.1",
 		"svg-inline-loader": "^0.8.0",
 		"url-loader": "^1.1.1",
 		"webpack": "^4.16.1",
@@ -118,13 +118,13 @@
 			"git add"
 		],
 		"*.css": [
-			"yarn format:any",
 			"yarn lint:css",
+			"yarn format:any",
 			"git add"
 		],
 		"*.scss": [
-			"yarn format:any",
 			"yarn lint:scss",
+			"yarn format:any",
 			"git add"
 		],
 		"*.{json,md,yml}": [
