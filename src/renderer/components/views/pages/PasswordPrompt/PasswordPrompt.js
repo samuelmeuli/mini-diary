@@ -65,7 +65,7 @@ export default class PasswordPrompt extends PureComponent {
 						value={password}
 						onChange={this.onChange}
 						placeholder={t('password')}
-						autoFocus
+						autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 						required
 						ref={i => {
 							this.input = i;

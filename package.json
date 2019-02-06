@@ -15,8 +15,8 @@
 		"start:webpack": "webpack --mode development",
 		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
-		"format:any": "prettier --ignore-path .gitignore --print-width 100 --write",
-		"format:js": "prettier --ignore-path .gitignore --print-width 100 --single-quote --write",
+		"format:any": "prettier --print-width 100 --write",
+		"format:js": "prettier --print-width 100 --single-quote --write",
 		"lint:css": "stylelint --fix",
 		"lint:scss": "stylelint --fix --syntax scss",
 		"lint:js": "eslint --ext .html,.js",
@@ -56,6 +56,7 @@
 		"@babel/core": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.0.0",
+		"@samuelmeuli/eslint-config": "~1.0.0",
 		"@samuelmeuli/stylelint-config": "1.0.0",
 		"babel-loader": "^8.0.4",
 		"copy-webpack-plugin": "^4.6.0",
@@ -113,8 +114,8 @@
 	},
 	"lint-staged": {
 		"*.{html,js}": [
-			"yarn format:js",
 			"yarn lint:js",
+			"yarn format:js",
 			"git add"
 		],
 		"*.css": [

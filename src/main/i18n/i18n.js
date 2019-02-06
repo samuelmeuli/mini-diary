@@ -1,12 +1,18 @@
 const { app } = require('electron');
 
+const translationsDe = require('./translations/de');
+const translationsEn = require('./translations/en');
+const translationsEs = require('./translations/es');
+const translationsFr = require('./translations/fr');
+const translationsPt = require('./translations/pt');
+
 const DEFAULT_LANG = 'en';
 const TRANSLATIONS = {
-	de: require('./translations/de'),
-	en: require('./translations/en'),
-	es: require('./translations/es'),
-	fr: require('./translations/fr'),
-	pt: require('./translations/pt')
+	translationsDe,
+	translationsEn,
+	translationsEs,
+	translationsFr,
+	translationsPt
 };
 
 const systemLang = app.getLocale();

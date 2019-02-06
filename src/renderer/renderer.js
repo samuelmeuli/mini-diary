@@ -19,7 +19,7 @@ const root = document.createElement('div');
 root.id = 'root';
 document.body.appendChild(root);
 
-// Render react app inside root
+// Render React app inside root
 ReactDOM.render(
 	<Provider store={store}>
 		<AppContainer />

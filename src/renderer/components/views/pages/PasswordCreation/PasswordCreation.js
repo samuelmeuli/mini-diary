@@ -67,7 +67,7 @@ export default class PasswordCreation extends PureComponent {
 						type="password"
 						value={password1}
 						placeholder={t('password')}
-						autoFocus
+						autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 						required
 						onChange={this.onChangePassword1}
 					/>

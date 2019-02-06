@@ -2,6 +2,7 @@ root: true
 
 extends:
   - airbnb
+  - "@samuelmeuli/eslint-config/react"
   - prettier
 
 env:
@@ -11,33 +12,7 @@ env:
 plugins:
   - html
 
-rules:
-  capitalized-comments:
-    - error
-    - always
-    - ignoreConsecutiveComments: true
-      ignorePattern: prettier-ignore
-  no-console:
-    - error
-    - allow:
-        - error
-
-  # React
-  react/button-has-type: error
-  react/jsx-filename-extension:
-    - error
-    - extensions:
-        - .js
-  react/jsx-indent:
-    - error
-    - tab
-  react/jsx-indent-props:
-    - error
-    - tab
-  react/jsx-one-expression-per-line: off
-
-  # Project-specific
-  global-require: off
-  import/no-extraneous-dependencies: off
-  import/prefer-default-export: off
-  jsx-a11y/no-autofocus: off
+settings:
+  # Electron
+  import/core-modules:
+    - electron
