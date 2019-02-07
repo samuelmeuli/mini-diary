@@ -9,12 +9,12 @@ const translationsTr = require('./translations/tr');
 
 const DEFAULT_LANG = 'en';
 const TRANSLATIONS = {
-	translationsDe,
-	translationsEn,
-	translationsEs,
-	translationsFr,
-	translationsPt,
-	translationsTr
+	de: translationsDe,
+	en: translationsEn,
+	es: translationsEs,
+	fr: translationsFr,
+	pr: translationsPt,
+	tr: translationsTr
 };
 
 const systemLang = app.getLocale();
