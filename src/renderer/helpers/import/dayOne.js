@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import { toIndexDate } from '../dateFormat';
-import { t } from '../../electron/ipcRenderer/senders';
+import { translations } from '../i18n';
 
 /**
  * Remove empty lines and meta info from start of entry array
@@ -33,7 +33,7 @@ export function parseDayOneTxt(dayOneTxt) {
 			const dateStr = lines.shift();
 			const dateMoment = moment(dateStr, 'DD MMMM YYYY');
 			if (!dateMoment.isValid()) {
-				throw Error(`${t('invalid-date')}: "${dateStr}"`);
+				throw Error(`${translations['invalid-date']}: "${dateStr}"`);
 			}
 			const indexDate = toIndexDate(dateMoment);
 

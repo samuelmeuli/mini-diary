@@ -1,31 +1,31 @@
-const { t } = require('../../i18n/i18n');
+const { translate } = require('../../i18n/i18n');
 
 module.exports = {
-	label: t('edit'),
+	label: translate('edit'),
 	submenu: [
 		{
-			label: t('undo'),
+			label: translate('undo'),
 			role: 'undo'
 		},
 		{
-			label: t('redo'),
+			label: translate('redo'),
 			role: 'redo'
 		},
 		{ type: 'separator' },
 		{
-			label: t('cut'),
+			label: translate('cut'),
 			role: 'cut'
 		},
 		{
-			label: t('copy'),
+			label: translate('copy'),
 			role: 'copy'
 		},
 		{
-			label: t('paste'),
+			label: translate('paste'),
 			role: 'paste'
 		},
 		{
-			label: t('select-all'),
+			label: translate('select-all'),
 			role: 'selectall'
 		}
 	]

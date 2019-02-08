@@ -1,32 +1,34 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import { translate, translations } from '../../../../helpers/i18n';
 import Overlay from '../Overlay';
-import { t } from '../../../../electron/ipcRenderer/senders';
 
-const { dialog } = require('electron').remote;
+const { app, dialog } = require('electron').remote;
 
-const FIELDS = {
+const APP_NAME = app.getName();
+const tBackupInfo = translate('import-backup-info', { appName: APP_NAME });
+const fields = {
 	dayOne: {
-		title: t('import-from-format', { format: 'Day One' }),
+		title: translate('import-from-format', { format: 'Day One' }),
 		extension: 'txt',
-		instructions: <p>{t('import-instructions-day-one')}</p>
+		instructions: <p>{translate('import-instructions-day-one', { appName: APP_NAME })}</p>
 	},
 	jrnl: {
-		title: t('import-from-format', { format: 'jrnl' }),
+		title: translate('import-from-format', { format: 'jrnl' }),
 		extension: 'json',
 		instructions: (
 			<p>
-				{t('import-instructions-jrnl').split(/{.*?}/)[0]}
+				{translate('import-instructions-jrnl', { appName: APP_NAME }).split(/{.*?}/)[0]}
 				<code>jrnl --export json -o jrnl-export.json</code>
-				{t('import-instructions-jrnl').split(/{.*?}/)[1]}
+				{translate('import-instructions-jrnl', { appName: APP_NAME }).split(/{.*?}/)[1]}
 			</p>
 		)
 	},
 	json: {
-		title: t('import-from-format', { format: 'JSON' }),
+		title: translate('import-from-format', { format: 'JSON' }),
 		extension: 'json',
-		instructions: <p>{t('import-instructions-json')}</p>
+		instructions: <p>{translate('import-instructions-json', { appName: APP_NAME })}</p>
 	}
 };
 
@@ -52,8 +54,8 @@ export default class ImportOverlay extends PureComponent {
 			properties: ['openFile'],
 			filters: [
 				{
-					name: FIELDS[importFormat].extension.toUpperCase(),
-					extensions: [FIELDS[importFormat].extension]
+					name: fields[importFormat].extension.toUpperCase(),
+					extensions: [fields[importFormat].extension]
 				}
 			]
 		});
@@ -69,11 +71,11 @@ export default class ImportOverlay extends PureComponent {
 
 		return (
 			<Overlay className="import-overlay" onClose={hideImportOverlay}>
-				<h1>{FIELDS[importFormat].title}</h1>
-				{FIELDS[importFormat].instructions}
-				<p>{t('import-backup-info')}</p>
+				<h1>{fields[importFormat].title}</h1>
+				{fields[importFormat].instructions}
+				<p>{tBackupInfo}</p>
 				<button type="button" className="button button-main" onClick={this.selectAndImportFile}>
-					{t('start-import')}
+					{translations['start-import']}
 				</button>
 			</Overlay>
 		);

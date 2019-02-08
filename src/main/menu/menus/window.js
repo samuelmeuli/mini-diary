@@ -1,15 +1,15 @@
-const { t } = require('../../i18n/i18n');
+const { translate } = require('../../i18n/i18n');
 
 module.exports = {
-	label: t('window'),
+	label: translate('window'),
 	role: 'window',
 	submenu: [
 		{
-			label: t('minimize'),
+			label: translate('minimize'),
 			role: 'minimize'
 		},
 		{
-			label: t('close'),
+			label: translate('close'),
 			role: 'close'
 		}
 	]

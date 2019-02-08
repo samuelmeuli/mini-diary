@@ -22,6 +22,24 @@ import { isAtLeastMojave } from '../../helpers/os';
 const { ipcRenderer } = require('electron');
 const { powerMonitor, systemPreferences } = require('electron').remote;
 
+// Date
+
+ipcRenderer.on('nextDay', () => {
+	store.dispatch(setDaySelectedNext());
+});
+
+ipcRenderer.on('nextMonth', () => {
+	store.dispatch(setMonthSelectedNext());
+});
+
+ipcRenderer.on('previousDay', () => {
+	store.dispatch(setDateSelectedPrevious());
+});
+
+ipcRenderer.on('previousMonth', () => {
+	store.dispatch(setMonthSelectedPrevious());
+});
+
 // Export
 
 ipcRenderer.on('exportToJson', () => {
@@ -58,24 +76,6 @@ ipcRenderer.on('importJson', () => {
 
 ipcRenderer.on('lock', () => {
 	store.dispatch(lock());
-});
-
-// Date
-
-ipcRenderer.on('nextDay', () => {
-	store.dispatch(setDaySelectedNext());
-});
-
-ipcRenderer.on('nextMonth', () => {
-	store.dispatch(setMonthSelectedNext());
-});
-
-ipcRenderer.on('previousDay', () => {
-	store.dispatch(setDateSelectedPrevious());
-});
-
-ipcRenderer.on('previousMonth', () => {
-	store.dispatch(setMonthSelectedPrevious());
 });
 
 // Preferences

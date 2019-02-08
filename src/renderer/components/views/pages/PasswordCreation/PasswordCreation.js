@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { t } from '../../../../electron/ipcRenderer/senders';
+import { translations } from '../../../../helpers/i18n';
 import Banner from '../../../elements/Banner';
 import StartPage from '../StartPage';
 
@@ -50,7 +50,7 @@ export default class PasswordCreation extends PureComponent {
 			createEncryptedFile(password1);
 			testFileExists();
 		} else {
-			throw Error(t('passwords-no-match'));
+			throw Error(translations['passwords-no-match']);
 		}
 	}
 
@@ -61,12 +61,12 @@ export default class PasswordCreation extends PureComponent {
 
 		return (
 			<StartPage>
-				<p>{t('choose-password')}</p>
+				<p>{translations['choose-password']}</p>
 				<form className="password-creation-form" onSubmit={this.onSubmit}>
 					<input
 						type="password"
 						value={password1}
-						placeholder={t('password')}
+						placeholder={translations.password}
 						autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 						required
 						onChange={this.onChangePassword1}
@@ -74,7 +74,7 @@ export default class PasswordCreation extends PureComponent {
 					<input
 						type="password"
 						value={password2}
-						placeholder={t('repeat-password')}
+						placeholder={translations['repeat-password']}
 						required
 						onChange={this.onChangePassword2}
 					/>
@@ -83,12 +83,12 @@ export default class PasswordCreation extends PureComponent {
 						disabled={!password1 || !password2 || !passwordsMatch}
 						className="button button-main"
 					>
-						{t('set-password')}
+						{translations['set-password']}
 					</button>
 				</form>
 				<div className="password-creation-banner">
 					{password1 && password2 && !passwordsMatch && (
-						<Banner type="error" message={t('passwords-no-match')} />
+						<Banner type="error" message={translations['passwords-no-match']} />
 					)}
 				</div>
 			</StartPage>

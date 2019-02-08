@@ -4,9 +4,9 @@ import is from 'electron-is';
 
 import Overlay from '../Overlay';
 import Banner from '../../../elements/Banner';
-import { t } from '../../../../electron/ipcRenderer/senders';
 import { getDiaryFilePath, FILE_NAME } from '../../../../helpers/diaryFile';
 import { moveFile } from '../../../../helpers/fileAccess';
+import { translations } from '../../../../helpers/i18n';
 import { isAtLeastMojave } from '../../../../helpers/os';
 import { saveDirPref } from '../../../../helpers/preferences';
 
@@ -83,7 +83,7 @@ export default class Preferences extends PureComponent {
 
 		// Show dialog for selecting directory
 		const fileDirArray = dialog.showOpenDialog({
-			buttonLabel: t('select-directory'),
+			buttonLabel: translations['select-directory'],
 			properties: ['openDirectory']
 		});
 
@@ -100,7 +100,7 @@ export default class Preferences extends PureComponent {
 
 		// Show dialog for selecting directory
 		const fileDirArray = dialog.showOpenDialog({
-			buttonLabel: t('move-file'),
+			buttonLabel: translations['move-file'],
 			properties: ['openDirectory']
 		});
 
@@ -110,7 +110,10 @@ export default class Preferences extends PureComponent {
 			try {
 				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
 			} catch (err) {
-				dialog.showErrorBox(t('move-error-title'), `${t('move-error-msg')}: ${err.message}`);
+				dialog.showErrorBox(
+					translations['move-error-title'],
+					`${translations['move-error-msg']}: ${err.message}`
+				);
 				return;
 			}
 			this.updateDir(newDir);
@@ -135,7 +138,7 @@ export default class Preferences extends PureComponent {
 				password2: ''
 			});
 		} else {
-			throw Error(t('passwords-no-match'));
+			throw Error(translations['passwords-no-match']);
 		}
 	}
 
@@ -153,11 +156,11 @@ export default class Preferences extends PureComponent {
 
 		return (
 			<Overlay onClose={this.hidePreferences}>
-				<h1>{t('preferences')}</h1>
+				<h1>{translations.preferences}</h1>
 				<form className="preferences-form">
 					{/* Theme */}
 					<fieldset className="fieldset-theme">
-						<legend>{t('theme')}</legend>
+						<legend>{translations.theme}</legend>
 						<div className="fieldset-content">
 							{is.macOS() && isAtLeastMojave() && (
 								<label htmlFor="radio-theme-auto">
@@ -169,7 +172,7 @@ export default class Preferences extends PureComponent {
 										checked={themePref === 'auto'}
 										onChange={this.setThemePrefAuto}
 									/>
-									{t('auto')}
+									{translations.auto}
 								</label>
 							)}
 							<label htmlFor="radio-theme-light">
@@ -181,7 +184,7 @@ export default class Preferences extends PureComponent {
 									checked={themePref === 'light'}
 									onChange={this.setThemePrefLight}
 								/>
-								{t('light')}
+								{translations.light}
 							</label>
 							<label htmlFor="radio-theme-dark">
 								<input
@@ -192,7 +195,7 @@ export default class Preferences extends PureComponent {
 									checked={themePref === 'dark'}
 									onChange={this.setThemePrefDark}
 								/>
-								{t('dark')}
+								{translations.dark}
 							</label>
 						</div>
 					</fieldset>
@@ -205,7 +208,7 @@ export default class Preferences extends PureComponent {
 						 */
 					!is.mas() && (
 						<fieldset className="fieldset-file-dir">
-							<legend>{t('diary-file')}</legend>
+							<legend>{translations['diary-file']}</legend>
 							<div className="fieldset-content">
 								<p>{fileDir}</p>
 								<button
@@ -213,7 +216,7 @@ export default class Preferences extends PureComponent {
 									className="button button-main"
 									onClick={isLocked ? this.selectDir : this.selectMoveDir}
 								>
-									{isLocked ? t('change-directory') : t('move-file')}
+									{isLocked ? translations['change-directory'] : translations['move-file']}
 								</button>
 							</div>
 						</fieldset>
@@ -221,19 +224,19 @@ export default class Preferences extends PureComponent {
 					{/* Password (only when unlocked) */
 					!isLocked && (
 						<fieldset className="fieldset-password">
-							<legend>{t('password')}</legend>
+							<legend>{translations.password}</legend>
 							<div className="fieldset-content">
 								<input
 									type="password"
 									value={password1}
-									placeholder={t('new-password')}
+									placeholder={translations['new-password']}
 									required
 									onChange={this.onChangePassword1}
 								/>
 								<input
 									type="password"
 									value={password2}
-									placeholder={t('repeat-new-password')}
+									placeholder={translations['repeat-new-password']}
 									required
 									onChange={this.onChangePassword2}
 								/>
@@ -243,12 +246,12 @@ export default class Preferences extends PureComponent {
 									onClick={this.updatePassword}
 									className="button button-main"
 								>
-									{t('change-password')}
+									{translations['change-password']}
 								</button>
 							</div>
 							<div className="password-update-banner">
 								{password1 && password2 && !passwordsMatch && (
-									<Banner type="error" message={t('passwords-no-match')} />
+									<Banner type="error" message={translations['passwords-no-match']} />
 								)}
 							</div>
 						</fieldset>

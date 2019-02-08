@@ -1,17 +1,21 @@
 const { ipcMain } = require('electron');
 
-const { getLang, t } = require('../i18n/i18n');
+const { lang, translate, translations } = require('../i18n/i18n');
 const { disableMenuItems, enableMenuItems } = require('../menu/menu');
 const { getWindow } = require('../window');
 
 // Localization
 
 ipcMain.on('getLang', e => {
-	e.returnValue = getLang();
+	e.returnValue = lang;
 });
 
-ipcMain.on('translate', (e, i18nKey, ...args) => {
-	e.returnValue = t(i18nKey, ...args);
+ipcMain.on('getTranslation', (e, i18nKey, ...args) => {
+	e.returnValue = translate(i18nKey, ...args);
+});
+
+ipcMain.on('getTranslations', e => {
+	e.returnValue = translations;
 });
 
 // Menu items

@@ -1,7 +1,7 @@
 const { app } = require('electron');
 
 const preferencesItem = require('../preferencesItem');
-const { t } = require('../../i18n/i18n');
+const { translate } = require('../../i18n/i18n');
 
 const appName = app.getName();
 
@@ -9,27 +9,27 @@ module.exports = {
 	label: app.getName(),
 	submenu: [
 		{
-			label: t('about-app', { appName }),
+			label: translate('about-app', { appName }),
 			role: 'about'
 		},
 		{ type: 'separator' },
 		preferencesItem,
 		{ type: 'separator' },
 		{
-			label: t('hide-app', { appName }),
+			label: translate('hide-app', { appName }),
 			role: 'hide'
 		},
 		{
-			label: t('hide-others'),
+			label: translate('hide-others'),
 			role: 'hideothers'
 		},
 		{
-			label: t('show-all'),
+			label: translate('show-all'),
 			role: 'unhide'
 		},
 		{ type: 'separator' },
 		{
-			label: t('quit-app', { appName }),
+			label: translate('quit-app', { appName }),
 			role: 'quit'
 		}
 	]

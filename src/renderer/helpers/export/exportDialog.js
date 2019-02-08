@@ -1,4 +1,4 @@
-import { t } from '../../electron/ipcRenderer/senders';
+import { translations } from '../i18n';
 
 const { dialog } = require('electron').remote;
 
@@ -8,6 +8,6 @@ const { dialog } = require('electron').remote;
 export function showExportDialog(fileExtension) {
 	return dialog.showSaveDialog({
 		defaultPath: `*/mini-diary-export.${fileExtension}`,
-		buttonLabel: t('export')
+		buttonLabel: translations.export
 	});
 }

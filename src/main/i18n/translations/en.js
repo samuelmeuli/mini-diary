@@ -80,12 +80,12 @@ module.exports = {
 	"wrong-password": "Wrong password",
 
 	// Import
-	'import-backup-info': 'Mini Diary will create a backup of your data before the import.',
+	'import-backup-info': '{appName} will create a backup of your data before the import.',
 	'import-error-msg': 'An error occurred during the import',
 	'import-error-title': 'Import error',
-	'import-instructions-day-one': 'Open the Day One app and export your diary under File → Export → Plain Text. Unzip the created file. Select the resulting TXT file in the next step to import it into Mini Diary.',
-	'import-instructions-jrnl': 'To export your jrnl diary, run {command}. Select the created JSON file in the next step to import it into Mini Diary.',
-	'import-instructions-json': 'You can import your data from a previous Mini Diary JSON export or from another JSON file that is formatted the same way.',
+	'import-instructions-day-one': 'Open the Day One app and export your diary under File → Export → Plain Text. Unzip the created file. Select the resulting TXT file in the next step to import it into {appName}.',
+	'import-instructions-jrnl': 'To export your jrnl diary, run {command}. Select the created JSON file in the next step to import it into {appName}.',
+	'import-instructions-json': 'You can import your data from a previous {appName} JSON export or from another JSON file that is formatted the same way.',
 	'start-import': 'Start import',
 
 	// Export

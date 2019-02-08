@@ -80,12 +80,12 @@ module.exports = {
 	"wrong-password": "Yanlış parola",
 
 	// Import
-	'import-backup-info': 'Mini Diary veri alımı öncesinde verilerinizi yedekleyecek.',
+	'import-backup-info': '{appName} veri alımı öncesinde verilerinizi yedekleyecek.',
 	'import-error-msg': 'Veri alımı sırasında bir hata oluştu',
 	'import-error-title': 'Veri alımı hatası',
-	'import-instructions-day-one': 'Day One uygulamasını açıp Klasör → Veri Aktar → Düz Metin seçeneği ile günlüğünüzü aktarın. Oluşan sıkıştırılmış dosyayı çıkartın. Mini Diary\'ye aktarmak için elde ettiğiniz TXT dosyasını sonraki adımda seçin.',
-	'import-instructions-jrnl': 'jrnl günlüğünüzdeki verileri aktarmak için şu komutu kullanın {command}. Mini Diary\'ye aktarmak için oluşturulan JSON dosyasını sonraki adımda seçin.',
-	'import-instructions-json': 'Daha önceden Mini Diary veri aktarımı ile oluşturmuş olduğunuz veya aynı formata sahip başka bir JSON dosyasını kullanarak veri alımı yapabilirsiniz.',
+	'import-instructions-day-one': 'Day One uygulamasını açıp Klasör → Veri Aktar → Düz Metin seçeneği ile günlüğünüzü aktarın. Oluşan sıkıştırılmış dosyayı çıkartın. {appName}\'ye aktarmak için elde ettiğiniz TXT dosyasını sonraki adımda seçin.',
+	'import-instructions-jrnl': 'jrnl günlüğünüzdeki verileri aktarmak için şu komutu kullanın {command}. {appName}\'ye aktarmak için oluşturulan JSON dosyasını sonraki adımda seçin.',
+	'import-instructions-json': 'Daha önceden {appName} veri aktarımı ile oluşturmuş olduğunuz veya aynı formata sahip başka bir JSON dosyasını kullanarak veri alımı yapabilirsiniz.',
 	'start-import': 'Veri alımını başlat',
 
 	// Export

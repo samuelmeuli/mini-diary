@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import Banner from '../../Banner';
-import { t } from '../../../../electron/ipcRenderer/senders';
 import { toDateString } from '../../../../helpers/dateFormat';
+import { translations } from '../../../../helpers/i18n';
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
@@ -51,7 +51,7 @@ export default class Search extends PureComponent {
 						>
 							<p className="search-date text-faded">{dateText}</p>
 							<p className={`search-title ${!title ? 'text-faded' : ''}`}>
-								{title || t('no-title')}
+								{title || translations['no-title']}
 							</p>
 						</button>
 					</li>
@@ -66,7 +66,7 @@ export default class Search extends PureComponent {
 		return (
 			<ul className="search-results">
 				{searchResultsEl.length === 0 ? (
-					<Banner type="info" message={t('no-results')} className="banner-no-results" />
+					<Banner type="info" message={translations['no-results']} className="banner-no-results" />
 				) : (
 					searchResultsEl
 				)}

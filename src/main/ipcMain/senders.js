@@ -1,5 +1,22 @@
 const { getWindow } = require('../window');
 
+// Date
+
+exports.setDaySelectedNext = () => {
+	getWindow().webContents.send('nextDay');
+};
+
+exports.setDaySelectedPrevious = () => {
+	getWindow().webContents.send('previousDay');
+};
+
+exports.setMonthSelectedNext = () => {
+	getWindow().webContents.send('nextMonth');
+};
+
+exports.setMonthSelectedPrevious = () => {
+	getWindow().webContents.send('previousMonth');
+};
 
 // Export
 
@@ -19,7 +36,6 @@ exports.exportToTxt = () => {
 	getWindow().webContents.send('exportToTxt');
 };
 
-
 // Import
 
 exports.importDayOne = () => {
@@ -34,32 +50,11 @@ exports.importJson = () => {
 	getWindow().webContents.send('importJson');
 };
 
-
 // Lock
 
 exports.lock = () => {
 	getWindow().webContents.send('lock');
 };
-
-
-// Date
-
-exports.setDaySelectedNext = () => {
-	getWindow().webContents.send('nextDay');
-};
-
-exports.setDaySelectedPrevious = () => {
-	getWindow().webContents.send('previousDay');
-};
-
-exports.setMonthSelectedNext = () => {
-	getWindow().webContents.send('nextMonth');
-};
-
-exports.setMonthSelectedPrevious = () => {
-	getWindow().webContents.send('previousMonth');
-};
-
 
 // Preferences
 

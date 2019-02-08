@@ -8,13 +8,13 @@ const {
 	importJson,
 	lock
 } = require('../../ipcMain/senders');
-const { t } = require('../../i18n/i18n');
+const { translate } = require('../../i18n/i18n');
 
 module.exports = {
-	label: t('file'),
+	label: translate('file'),
 	submenu: [
 		{
-			label: t('lock-diary'),
+			label: translate('lock-diary'),
 			id: 'lock',
 			accelerator: 'CmdOrCtrl+L',
 			click() {
@@ -23,24 +23,24 @@ module.exports = {
 		},
 		{ type: 'separator' },
 		{
-			label: t('import'),
+			label: translate('import'),
 			submenu: [
 				{
-					label: `${t('import-from-format', { format: 'Day One' })}…`,
+					label: `${translate('import-from-format', { format: 'Day One' })}…`,
 					id: 'importFromDayOne',
 					click() {
 						importDayOne();
 					}
 				},
 				{
-					label: `${t('import-from-format', { format: 'jrnl' })}…`,
+					label: `${translate('import-from-format', { format: 'jrnl' })}…`,
 					id: 'importFromJrnl',
 					click() {
 						importJrnl();
 					}
 				},
 				{
-					label: `${t('import-from-format', { format: 'JSON' })}…`,
+					label: `${translate('import-from-format', { format: 'JSON' })}…`,
 					id: 'importFromJson',
 					click() {
 						importJson();
@@ -49,32 +49,32 @@ module.exports = {
 			]
 		},
 		{
-			label: t('export'),
+			label: translate('export'),
 			id: 'export',
 			submenu: [
 				{
-					label: `${t('export-to-format', { format: 'PDF' })}…`,
+					label: `${translate('export-to-format', { format: 'PDF' })}…`,
 					id: 'exportToPdf',
 					click() {
 						exportToPdf();
 					}
 				},
 				{
-					label: `${t('export-to-format', { format: 'Markdown' })}…`,
+					label: `${translate('export-to-format', { format: 'Markdown' })}…`,
 					id: 'exportToMd',
 					click() {
 						exportToMd();
 					}
 				},
 				{
-					label: `${t('export-to-format', { format: 'TXT' })}…`,
+					label: `${translate('export-to-format', { format: 'TXT' })}…`,
 					id: 'exportToTxt',
 					click() {
 						exportToTxt();
 					}
 				},
 				{
-					label: `${t('export-to-format', { format: 'JSON' })}…`,
+					label: `${translate('export-to-format', { format: 'JSON' })}…`,
 					id: 'exportToJson',
 					click() {
 						exportToJson();

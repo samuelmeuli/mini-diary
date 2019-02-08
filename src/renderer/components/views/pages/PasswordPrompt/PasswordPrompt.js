@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
-import { t } from '../../../../electron/ipcRenderer/senders';
+import { translations } from '../../../../helpers/i18n';
 import Banner from '../../../elements/Banner';
 import StartPage from '../StartPage';
 
@@ -64,7 +64,7 @@ export default class PasswordPrompt extends PureComponent {
 						type="password"
 						value={password}
 						onChange={this.onChange}
-						placeholder={t('password')}
+						placeholder={translations.password}
 						autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 						required
 						ref={i => {
@@ -72,7 +72,7 @@ export default class PasswordPrompt extends PureComponent {
 						}}
 					/>
 					<button type="submit" className="button button-main">
-						{t('unlock')}
+						{translations.unlock}
 					</button>
 				</form>
 				<div className="password-prompt-banner">

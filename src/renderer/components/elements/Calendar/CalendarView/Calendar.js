@@ -5,10 +5,8 @@ import DayPicker from 'react-day-picker';
 import MomentLocaleUtils from 'react-day-picker/moment';
 
 import CalendarNavContainer from './CalendarNavContainer';
-import { getLang } from '../../../../electron/ipcRenderer/senders';
+import { lang } from '../../../../helpers/i18n';
 import { toIndexDate } from '../../../../helpers/dateFormat';
-
-const LANG = getLang();
 
 const propTypes = {
 	dateSelected: PropTypes.instanceOf(Date).isRequired,
@@ -53,7 +51,7 @@ export default class Calendar extends PureComponent {
 				toMonth={today}
 				captionElement={() => null}
 				modifiers={{ hasEntry }}
-				locale={LANG}
+				locale={lang}
 				localeUtils={MomentLocaleUtils}
 				navbarElement={<CalendarNavContainer />}
 				onDayClick={this.onDateSelection}

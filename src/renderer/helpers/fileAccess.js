@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import fs from 'fs';
 
-import { t } from '../electron/ipcRenderer/senders';
+import { translations } from './i18n';
 
 const CIPHER = 'aes-192-cbc';
 
@@ -18,7 +18,7 @@ export function fileExists(filePath) {
 
 export function moveFile(sourcePath, destinationPath) {
 	if (fileExists(destinationPath)) {
-		throw Error(t('file-exists'));
+		throw Error(translations['file-exists']);
 	}
 	fs.renameSync(sourcePath, destinationPath);
 }

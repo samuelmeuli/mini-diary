@@ -6,8 +6,12 @@ export function getLang() {
 	return ipcRenderer.sendSync('getLang');
 }
 
-export function t(i18nKey, ...args) {
-	return ipcRenderer.sendSync('translate', i18nKey, ...args);
+export function getTranslation(i18nKey, ...args) {
+	return ipcRenderer.sendSync('getTranslation', i18nKey, ...args);
+}
+
+export function getTranslations() {
+	return ipcRenderer.sendSync('getTranslations');
 }
 
 // Menu items

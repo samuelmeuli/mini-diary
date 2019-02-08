@@ -1,5 +1,6 @@
 const is = require('electron-is');
 
+const { translate } = require('../i18n/i18n');
 const appMenu = require('./menus/app');
 const fileMenu = require('./menus/file');
 const editMenu = require('./menus/edit');
@@ -7,7 +8,6 @@ const helpMenu = require('./menus/help');
 const viewMenu = require('./menus/view');
 const windowMenu = require('./menus/window');
 const preferencesItem = require('./preferencesItem');
-const { t } = require('../i18n/i18n');
 
 exports.getMenuTemplate = () => {
 	if (is.macOS()) {
@@ -15,14 +15,14 @@ exports.getMenuTemplate = () => {
 		editMenu.submenu.push(
 			{ type: 'separator' },
 			{
-				label: t('speech'),
+				label: translate('speech'),
 				submenu: [
 					{
-						label: t('start-speaking'),
+						label: translate('start-speaking'),
 						role: 'startspeaking'
 					},
 					{
-						label: t('stop-speaking'),
+						label: translate('stop-speaking'),
 						role: 'stopspeaking'
 					}
 				]
@@ -30,20 +30,20 @@ exports.getMenuTemplate = () => {
 		);
 		windowMenu.submenu = [
 			{
-				label: t('close'),
+				label: translate('close'),
 				role: 'close'
 			},
 			{
-				label: t('minimize'),
+				label: translate('minimize'),
 				role: 'minimize'
 			},
 			{
-				label: t('zoom'),
+				label: translate('zoom'),
 				role: 'zoom'
 			},
 			{ type: 'separator' },
 			{
-				label: t('bring-all-to-front'),
+				label: translate('bring-all-to-front'),
 				role: 'front'
 			}
 		];

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import { t } from '../../../electron/ipcRenderer/senders';
 import { toWeekdayDateString, toIndexDate } from '../../../helpers/dateFormat';
+import { translations } from '../../../helpers/i18n';
 
 const AUTOSAVE_INTERVAL = 1000;
 
@@ -114,14 +114,14 @@ export default class Editor extends PureComponent {
 					onChange={this.onTitleChange}
 					onBlur={this.saveEntry}
 					onKeyPress={Editor.onTitleEnterKey}
-					placeholder={t('add-a-title')}
+					placeholder={translations['add-a-title']}
 				/>
 				<TextareaAutosize
 					className="editor-text"
 					value={text}
 					onChange={this.onTextChange}
 					onBlur={this.saveEntry}
-					placeholder={`${t('write-something')}…`}
+					placeholder={`${translations['write-something']}…`}
 				/>
 			</form>
 		);

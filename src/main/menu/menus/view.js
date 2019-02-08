@@ -4,13 +4,13 @@ const {
 	setMonthSelectedNext,
 	setMonthSelectedPrevious
 } = require('../../ipcMain/senders');
-const { t } = require('../../i18n/i18n');
+const { translate } = require('../../i18n/i18n');
 
 module.exports = {
-	label: t('view'),
+	label: translate('view'),
 	submenu: [
 		{
-			label: t('previous-day'),
+			label: translate('previous-day'),
 			id: 'previousDay',
 			accelerator: 'Left',
 			click() {
@@ -18,7 +18,7 @@ module.exports = {
 			}
 		},
 		{
-			label: t('next-day'),
+			label: translate('next-day'),
 			id: 'nextDay',
 			accelerator: 'Right',
 			click() {
@@ -27,7 +27,7 @@ module.exports = {
 		},
 		{ type: 'separator' },
 		{
-			label: t('previous-month'),
+			label: translate('previous-month'),
 			id: 'previousMonth',
 			accelerator: 'CmdOrCtrl+Left',
 			click() {
@@ -35,7 +35,7 @@ module.exports = {
 			}
 		},
 		{
-			label: t('next-month'),
+			label: translate('next-month'),
 			id: 'nextMonth',
 			accelerator: 'CmdOrCtrl+Right',
 			click() {

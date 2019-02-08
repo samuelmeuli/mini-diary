@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import iconClear from 'feather-icons/dist/icons/x.svg';
 import SimpleSvg from 'react-simple-svg';
 
-import { t } from '../../../electron/ipcRenderer/senders';
+import { translations } from '../../../helpers/i18n';
 
 const propTypes = {
 	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
@@ -80,7 +80,7 @@ export default class Overlay extends PureComponent {
 						className="button button-invisible overlay-close-button"
 						onClick={onClose}
 					>
-						<SimpleSvg src={iconClear} height={20} width={20} title={t('close')} />
+						<SimpleSvg src={iconClear} height={20} width={20} title={translations.close} />
 					</button>
 					<div className="overlay-content">{children}</div>
 				</div>

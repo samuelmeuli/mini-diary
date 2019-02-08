@@ -80,12 +80,12 @@ module.exports = {
 	'wrong-password': 'Falsches Passwort',
 
 	// Import
-	'import-backup-info': 'Vor dem Importieren erstellt Mini Diary ein Backup deiner Daten.',
+	'import-backup-info': 'Vor dem Importieren erstellt {appName} ein Backup deiner Daten.',
 	'import-error-msg': 'Beim Importieren ist ein Fehler aufgetreten',
 	'import-error-title': 'Fehler beim Importieren',
-	'import-instructions-day-one': 'Öffne das Day-One-App und exportiere dein Tagebuch unter Datei → Export → Plain Text. Entzippe die erstellte Datei. Im nächsten Schritt, wähle die erstellte TXT-Datei aus, um sie in dein Mini Diary zu importieren.',
-	'import-instructions-jrnl': 'Um dein jrnl-Tagebuch zu exportieren, führe den folgenden Behfehl aus: {command}. Im nächsten Schritt, wähle die erstellte JSON-Datei aus, um sie in dein Mini Diary zu importieren.',
-	'import-instructions-json': 'Du kannst deine Tagebuchdaten von einer mit Mini Diary exportierten JSON-Datei oder einer anderen, gleich formatierten JSON-Datei importieren.',
+	'import-instructions-day-one': 'Öffne das Day-One-App und exportiere dein Tagebuch unter Datei → Export → Plain Text. Entzippe die erstellte Datei. Im nächsten Schritt, wähle die erstellte TXT-Datei aus, um sie in dein {appName} zu importieren.',
+	'import-instructions-jrnl': 'Um dein jrnl-Tagebuch zu exportieren, führe den folgenden Behfehl aus: {command}. Im nächsten Schritt, wähle die erstellte JSON-Datei aus, um sie in dein {appName} zu importieren.',
+	'import-instructions-json': 'Du kannst deine Tagebuchdaten von einer mit {appName} exportierten JSON-Datei oder einer anderen, gleich formatierten JSON-Datei importieren.',
 	'start-import': 'Import starten',
 
 	// Export
