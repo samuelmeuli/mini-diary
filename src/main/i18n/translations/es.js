@@ -41,6 +41,7 @@ module.exports = {
 	'website': 'Página web',
 
 	// Theme
+	'auto': 'Automático',
 	'dark': 'Oscuro',
 	'light': 'Claro',
 	'theme': 'Tema',
@@ -53,6 +54,7 @@ module.exports = {
 	'write-something': 'Escribe alguna cosa',
 
 	// Search
+	'clear': 'Borrar',
 	'no-results': 'Sin resultados',
 	'no-title': 'Sin título',
 	'search': 'Buscar',
@@ -60,7 +62,10 @@ module.exports = {
 	// Password and directory
 	'change-directory': 'Cambiar carpeta',
 	'change-password': 'Cambiar clave',
+	'choose-password': 'Por favor, elija una clave para su diario',
+	'decryption-error': 'Error al descifrar el fichero para el diario',
 	'diary-file': 'Fichero para el diario',
+	'file-exists': 'Otro fichero existe en la carpeta seleccionada',
 	'move-error-msg': 'Ha ocurrido un error al mover el fichero',
 	'move-error-title': 'Error al mover fichero',
 	'move-file': 'Mover fichero',
@@ -72,12 +77,13 @@ module.exports = {
 	'select-directory': 'Selecciona carpeta',
 	'set-password': 'Establecer clave',
 	'unlock': 'Desbloquear',
+	'wrong-password': 'Clave incorrecta',
 
 	// Import
 	'import-backup-info': '{appName} realizará una copia de seguridad de tus datos antes de la importación.',
 	'import-error-msg': 'Ha ocurrido un error durante la importación',
 	'import-error-title': 'Error importando',
-	'import-instructions-day-one': 'Abre la aplicaicón Day One y exporta tu diario en Fichero → Exportar → Texto plano. Descomprime el fichero guardado. Selecciona el TXT en el siguiente paso para importarlo a {appName}.',
+	'import-instructions-day-one': 'Abre la aplicación Day One y exporta tu diario en Fichero → Exportar → Texto plano. Descomprime el fichero guardado. Selecciona el TXT en el siguiente paso para importarlo a {appName}.',
 	'import-instructions-jrnl': 'Para exportar tu diario jrnl, ejecuta {command}. Selecciona el fichero JSON generado en el siguiente paso para importarlo a {appName}.',
 	'import-instructions-json': 'Puedes importar los datos de una exportación previa desde {appName} en formato JSON o desde otro fichero JSON que tenga el formato adecuado.',
 	'start-import': 'Iniciar importación',
