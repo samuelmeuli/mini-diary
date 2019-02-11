@@ -12,7 +12,7 @@ const ALL_TRANSLATIONS = {
 	en: translationsEn,
 	es: translationsEs,
 	fr: translationsFr,
-	pr: translationsPt,
+	pt: translationsPt,
 	tr: translationsTr
 };
 const DEFAULT_LANG = 'en';
