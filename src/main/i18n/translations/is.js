@@ -93,6 +93,6 @@ module.exports = {
 	'export-error-title': 'Útflutningsvilla',
 
 	// Other
-	'invalid-date': 'Ógild gögn',
+	'invalid-date': 'Ógild dagsetning',
 	'loading': 'Hleð'
 };
