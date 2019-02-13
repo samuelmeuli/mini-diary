@@ -4,6 +4,7 @@ const translationsDe = require('./translations/de');
 const translationsEn = require('./translations/en');
 const translationsEs = require('./translations/es');
 const translationsFr = require('./translations/fr');
+const translationsIs = require('./translations/is');
 const translationsPt = require('./translations/pt');
 const translationsTr = require('./translations/tr');
 
@@ -12,6 +13,7 @@ const ALL_TRANSLATIONS = {
 	en: translationsEn,
 	es: translationsEs,
 	fr: translationsFr,
+	is: translationsIs,
 	pt: translationsPt,
 	tr: translationsTr
 };
