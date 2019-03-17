@@ -6,18 +6,24 @@
 	padding: $spacing-rel-small;
 	overflow-y: auto;
 	border-radius: $border-radius-input;
-
-	textarea {
-		background: none;
-	}
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
 }
 
-.editor-title {
-	margin-bottom: $spacing-small / 2;
+.editor-title-wrapper {
+	margin-bottom: $spacing-small;
 	font-weight: $font-weight-bold;
 	font-size: 150%;
+}
+
+// stylelint-disable selector-class-pattern
+
+.DraftEditor-root {
+	height: 100% !important; // stylelint-disable-line declaration-no-important
+}
+
+.public-DraftEditorPlaceholder-inner {
+	@include color("text-placeholder");
+}
+
+.editor-text-wrapper .public-DraftStyleDefault-block {
+	margin-bottom: $spacing-small;
 }

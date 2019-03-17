@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { ContentState, Editor as DraftJsEditor, EditorState } from 'draft-js';
+import 'draft-js/dist/Draft.css';
 import debounce from 'lodash.debounce';
-import TextareaAutosize from 'react-autosize-textarea';
-
 import { toWeekdayDateString, toIndexDate } from '../../../helpers/dateFormat';
 import { translations } from '../../../helpers/i18n';
 
@@ -21,48 +21,41 @@ const propTypes = {
 };
 
 export default class Editor extends PureComponent {
-	static onTitleEnterKey(e) {
-		// On typing "enter" in the title textarea, do not insert a newline character and jump to
-		// the next form element
-		if (e.which === 13) {
-			e.preventDefault();
-			e.target.nextElementSibling.focus();
-		}
-	}
-
 	static getDerivedStateFromProps(props, state) {
 		const { dateSelected: dateProps, entries } = props;
 		const { dateSelected: dateState } = state;
 		if (dateProps === dateState) {
 			return null;
 		}
-		const indexDate = toIndexDate(dateProps);
+		const entryState = Editor.getStateFromEntry(entries, dateProps);
+		return {
+			...entryState,
+			dateSelected: dateProps
+		};
+	}
+
+	static getStateFromEntry(entries, date) {
+		const indexDate = toIndexDate(date);
+		const entry = entries[indexDate];
 		let text = '';
 		let title = '';
-		if (entries[indexDate]) {
-			({ text, title } = entries[indexDate]);
+		if (entry) {
+			({ text, title } = entry);
 		}
 		return {
-			dateSelected: dateProps,
-			text,
-			title
+			textEditorState: EditorState.createWithContent(ContentState.createFromText(text)),
+			titleEditorState: EditorState.createWithContent(ContentState.createFromText(title))
 		};
 	}
 
 	constructor(props) {
 		super(props);
-
 		const { dateSelected, entries } = props;
-		const indexDate = toIndexDate(dateSelected);
-		let text = '';
-		let title = '';
-		if (entries[indexDate]) {
-			({ text, title } = entries[indexDate]);
-		}
+
+		const entryState = Editor.getStateFromEntry(entries, dateSelected);
 		this.state = {
-			dateSelected,
-			text,
-			title
+			...entryState,
+			dateSelected
 		};
 
 		// Function bindings
@@ -77,52 +70,53 @@ export default class Editor extends PureComponent {
 		});
 	}
 
-	onTextChange(e) {
-		const text = e.target.value;
+	onTextChange(textEditorState) {
 		this.setState({
-			text
+			textEditorState
 		});
 		this.saveEntryDebounced();
 	}
 
-	onTitleChange(e) {
-		const title = e.target.value;
+	onTitleChange(titleEditorState) {
 		this.setState({
-			title
+			titleEditorState
 		});
 		this.saveEntryDebounced();
 	}
 
 	saveEntry() {
 		const { dateSelected, updateEntry } = this.props;
-		const { text, title } = this.state;
-		const indexDate = toIndexDate(dateSelected);
+		const { textEditorState, titleEditorState } = this.state;
 
+		const title = titleEditorState.getCurrentContent().getPlainText();
+		const text = textEditorState.getCurrentContent().getPlainText();
+		const indexDate = toIndexDate(dateSelected);
 		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
 	render() {
-		const { dateSelected, text, title } = this.state;
+		const { dateSelected, textEditorState, titleEditorState } = this.state;
 		const indexDate = toWeekdayDateString(dateSelected);
 
 		return (
 			<form className="editor">
 				<p className="text-faded">{indexDate}</p>
-				<TextareaAutosize
-					className="editor-title"
-					value={title}
-					onChange={this.onTitleChange}
-					onBlur={this.saveEntry}
-					onKeyPress={Editor.onTitleEnterKey}
-					placeholder={translations['add-a-title']}
-				/>
-				<TextareaAutosize
-					className="editor-text"
-					value={text}
-					onChange={this.onTextChange}
-					onBlur={this.saveEntry}
-					placeholder={`${translations['write-something']}…`}
-				/>
+				<div className="editor-title-wrapper">
+					<DraftJsEditor
+						editorState={titleEditorState}
+						onBlur={this.saveEntry}
+						onChange={this.onTitleChange}
+						placeholder={translations['add-a-title']}
+					/>
+				</div>
+				<div className="editor-text-wrapper">
+					<DraftJsEditor
+						editorState={textEditorState}
+						onBlur={this.saveEntry}
+						onChange={this.onTextChange}
+						placeholder={`${translations['write-something']}…`}
+					/>
+				</div>
 			</form>
 		);
 	}

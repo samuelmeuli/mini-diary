@@ -31,6 +31,7 @@
 		"website:serve": "serve website --listen 3000"
 	},
 	"dependencies": {
+		"draft-js": "^0.10.5",
 		"elasticlunr": "^0.9.5",
 		"electron-debug": "^2.0.0",
 		"electron-is": "^3.0.0",
@@ -43,7 +44,6 @@
 		"moment": "^2.22.2",
 		"prop-types": "^15.7.2",
 		"react": "^16.8.4",
-		"react-autosize-textarea": "^6.0.0",
 		"react-day-picker": "https://github.com/samuelmeuli/react-day-picker",
 		"react-dom": "^16.8.4",
 		"react-redux": "^6.0.1",

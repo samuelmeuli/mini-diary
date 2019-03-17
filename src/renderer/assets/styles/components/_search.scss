@@ -1,7 +1,7 @@
 .search-input-wrapper {
 	position: relative;
 	width: 100%;
-	margin-right: $spacing-small;
+	margin-right: $spacing-medium;
 }
 
 .search-input {
@@ -24,7 +24,7 @@
 	.button {
 		width: 100%;
 		height: 100%;
-		padding: ($spacing-small / 2) $spacing-small;
+		padding: $spacing-small $spacing-medium;
 		font-weight: $font-weight-normal;
 		line-height: $line-height;
 	}
@@ -35,7 +35,7 @@
 }
 
 .search-result + .search-result {
-	margin-top: $spacing-small;
+	margin-top: $spacing-medium;
 }
 
 .search-title:not(.text-faded) {
@@ -43,5 +43,5 @@
 }
 
 ::-webkit-search-cancel-button {
-	-webkit-appearance: none; /* stylelint-disable-line property-no-vendor-prefix */
+	-webkit-appearance: none; // stylelint-disable-line property-no-vendor-prefix
 }

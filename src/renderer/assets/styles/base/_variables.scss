@@ -11,7 +11,8 @@ $themes: (
 		"main-hover": #447ab8,
 		"text": #353535,
 		"text-disabled": #c2c2c2,
-		"text-faded": #727272
+		"text-faded": #727272,
+		"text-placeholder": #757575
 	),
 	"dark": (
 		"background": #242326,
@@ -24,7 +25,8 @@ $themes: (
 		"main-hover": #4371a7,
 		"text": #d0d0d0,
 		"text-disabled": #4e4e4e,
-		"text-faded": #a1a1a1
+		"text-faded": #a1a1a1,
+		"text-placeholder": #757575
 	)
 ) !default;
 
@@ -39,8 +41,9 @@ $line-height: 1.7;
 
 // Spacing
 $height-header: 37px;
-$spacing-small: 15px;
 $spacing-large: 30px;
+$spacing-medium: 15px;
+$spacing-small: 10px;
 $spacing-rel-small: 4vw;
 $spacing-rel-large: 6vw;
 
