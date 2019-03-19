@@ -1,10 +1,14 @@
 /* eslint-disable global-require */
 
 const { app, BrowserWindow } = require("electron");
-require("electron-debug")();
+const contextMenu = require("electron-context-menu");
+const electronDebug = require("electron-debug");
 const { autoUpdater } = require("electron-updater");
 
 const { getWindow, setWindow } = require("./main/window");
+
+electronDebug();
+contextMenu();
 
 function onClosed() {
 	// Dereference the window
