@@ -1,19 +1,20 @@
-const { Menu } = require('electron');
-const { getMenuTemplate } = require('./template');
+const { Menu } = require("electron");
+
+const { getMenuTemplate } = require("./template");
 
 const DISABLED_MENU_ITEMS = [
-	'exportToJson',
-	'exportToMd',
-	'exportToPdf',
-	'exportToTxt',
-	'importFromDayOne',
-	'importFromJrnl',
-	'importFromJson',
-	'lock',
-	'previousDay',
-	'nextDay',
-	'previousMonth',
-	'nextMonth'
+	"exportToJson",
+	"exportToMd",
+	"exportToPdf",
+	"exportToTxt",
+	"importFromDayOne",
+	"importFromJrnl",
+	"importFromJson",
+	"lock",
+	"previousDay",
+	"nextDay",
+	"previousMonth",
+	"nextMonth",
 ];
 
 // Build menu
@@ -35,5 +36,5 @@ function enableMenuItems() {
 
 module.exports = {
 	disableMenuItems,
-	enableMenuItems
+	enableMenuItems,
 };

@@ -1,36 +1,36 @@
-const { ipcMain } = require('electron');
+const { ipcMain } = require("electron");
 
-const { lang, translate, translations } = require('../i18n/i18n');
-const { disableMenuItems, enableMenuItems } = require('../menu/menu');
-const { getWindow } = require('../window');
+const { lang, translate, translations } = require("../i18n/i18n");
+const { disableMenuItems, enableMenuItems } = require("../menu/menu");
+const { getWindow } = require("../window");
 
 // Localization
 
-ipcMain.on('getLang', e => {
+ipcMain.on("getLang", e => {
 	e.returnValue = lang;
 });
 
-ipcMain.on('getTranslation', (e, i18nKey, ...args) => {
-	e.returnValue = translate(i18nKey, ...args);
+ipcMain.on("getTranslation", (e, i18nKey, substitutions) => {
+	e.returnValue = translate(i18nKey, substitutions);
 });
 
-ipcMain.on('getTranslations', e => {
+ipcMain.on("getTranslations", e => {
 	e.returnValue = translations;
 });
 
 // Menu items
 
-ipcMain.on('disableMenuItems', () => {
+ipcMain.on("disableMenuItems", () => {
 	disableMenuItems();
 });
 
-ipcMain.on('enableMenuItems', () => {
+ipcMain.on("enableMenuItems", () => {
 	enableMenuItems();
 });
 
 // Window
 
-ipcMain.on('toggleWindowSize', () => {
+ipcMain.on("toggleWindowSize", () => {
 	const window = getWindow();
 	if (window.isMaximized()) {
 		window.unmaximize();

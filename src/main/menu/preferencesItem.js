@@ -1,11 +1,11 @@
-const { showPreferences } = require('../ipcMain/senders');
-const { translate } = require('../i18n/i18n');
+const { translate } = require("../i18n/i18n");
+const { showPref } = require("../ipcMain/senders");
 
 module.exports = {
-	label: `${translate('preferences')}…`,
-	id: 'preferences',
-	accelerator: 'CmdOrCtrl+,',
+	label: `${translate("preferences")}…`,
+	id: "preferences",
+	accelerator: "CmdOrCtrl+,",
 	click() {
-		showPreferences();
-	}
+		showPref();
+	},
 };

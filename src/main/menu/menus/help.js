@@ -1,33 +1,33 @@
-const { shell } = require('electron');
+const { shell } = require("electron");
 
-const { translate } = require('../../i18n/i18n');
+const { translate } = require("../../i18n/i18n");
 
-const URL_WEBSITE = 'https://minidiary.app';
-const URL_LICENSE = 'https://github.com/samuelmeuli/mini-diary/blob/master/LICENSE.md';
-const URL_PRIVACY_POLICY = 'https://github.com/samuelmeuli/mini-diary/blob/master/PRIVACY.md';
+const URL_LICENSE = "https://github.com/samuelmeuli/mini-diary/blob/master/LICENSE.md";
+const URL_PRIVACY_POLICY = "https://github.com/samuelmeuli/mini-diary/blob/master/PRIVACY.md";
+const URL_WEBSITE = "https://minidiary.app";
 
 module.exports = {
-	label: translate('help'),
-	role: 'help',
+	label: translate("help"),
+	role: "help",
 	submenu: [
 		{
-			label: translate('website'),
+			label: translate("website"),
 			click() {
 				shell.openExternal(URL_WEBSITE);
-			}
+			},
 		},
-		{ type: 'separator' },
+		{ type: "separator" },
 		{
-			label: translate('license'),
+			label: translate("license"),
 			click() {
 				shell.openExternal(URL_LICENSE);
-			}
+			},
 		},
 		{
-			label: translate('privacy-policy'),
+			label: translate("privacy-policy"),
 			click() {
 				shell.openExternal(URL_PRIVACY_POLICY);
-			}
-		}
-	]
+			},
+		},
+	],
 };

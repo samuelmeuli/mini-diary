@@ -15,11 +15,11 @@
 		"start:webpack": "webpack --mode development",
 		"start:webpack-watch": "webpack --mode development --watch",
 		"start:electron": "electron .",
-		"format:any": "prettier --print-width 100 --write",
-		"format:js": "prettier --print-width 100 --single-quote --write",
+		"format": "prettier --write",
 		"lint:css": "stylelint --fix",
 		"lint:scss": "stylelint --fix --syntax scss",
 		"lint:js": "eslint --ext .html,.js --fix",
+		"lint:ts": "eslint --ext .ts",
 		"pack": "electron-builder --dir",
 		"build": "run-s build:*",
 		"build:clean": "rm -rf bundle dist",
@@ -31,6 +31,12 @@
 		"website:serve": "serve website --listen 3000"
 	},
 	"dependencies": {
+		"@types/draft-js": "^0.10.29",
+		"@types/lodash.debounce": "^4.0.6",
+		"@types/react": "^16.8.8",
+		"@types/react-dom": "^16.8.2",
+		"@types/react-redux": "^7.0.3",
+		"@types/redux-logger": "^3.0.7",
 		"draft-js": "^0.10.5",
 		"elasticlunr": "^0.9.5",
 		"electron-debug": "^2.0.0",
@@ -42,7 +48,6 @@
 		"lodash.debounce": "^4.0.8",
 		"minireset.css": "^0.0.4",
 		"moment": "^2.22.2",
-		"prop-types": "^15.7.2",
 		"react": "^16.8.4",
 		"react-day-picker": "https://github.com/samuelmeuli/react-day-picker",
 		"react-dom": "^16.8.4",
@@ -53,12 +58,11 @@
 		"redux-thunk": "^2.3.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.3.4",
-		"@babel/preset-env": "^7.3.4",
-		"@babel/preset-react": "^7.0.0",
-		"@samuelmeuli/eslint-config": "~1.2.0",
+		"@samuelmeuli/eslint-config": "~2.0.0",
 		"@samuelmeuli/stylelint-config": "~1.0.0",
-		"babel-loader": "^8.0.4",
+		"@typescript-eslint/eslint-plugin": "^1.4.2",
+		"@typescript-eslint/parser": "^1.4.2",
+		"awesome-typescript-loader": "^5.2.1",
 		"copy-webpack-plugin": "^5.0.1",
 		"css-loader": "^2.1.1",
 		"electron": "^4.1.0",
@@ -78,9 +82,11 @@
 		"prettier": "^1.16.4",
 		"sass-loader": "^7.0.3",
 		"serve": "^10.1.2",
+		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.0",
 		"stylelint": "^9.6.0",
 		"svg-inline-loader": "^0.8.0",
+		"typescript": "^3.3.3333",
 		"webpack": "^4.29.6",
 		"webpack-cli": "^3.3.0"
 	},
@@ -131,21 +137,26 @@
 	"lint-staged": {
 		"*.{html,js}": [
 			"yarn lint:js",
-			"yarn format:js",
+			"yarn format",
+			"git add"
+		],
+		"*.ts": [
+			"yarn lint:ts",
+			"yarn format",
 			"git add"
 		],
 		"*.css": [
 			"yarn lint:css",
-			"yarn format:any",
+			"yarn format",
 			"git add"
 		],
 		"*.scss": [
 			"yarn lint:scss",
-			"yarn format:any",
+			"yarn format",
 			"git add"
 		],
 		"*.{json,md,yml}": [
-			"yarn format:any",
+			"yarn format",
 			"git add"
 		]
 	}

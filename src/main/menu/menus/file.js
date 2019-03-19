@@ -1,3 +1,4 @@
+const { translate } = require("../../i18n/i18n");
 const {
 	exportToJson,
 	exportToMd,
@@ -6,81 +7,80 @@ const {
 	importDayOne,
 	importJrnl,
 	importJson,
-	lock
-} = require('../../ipcMain/senders');
-const { translate } = require('../../i18n/i18n');
+	lock,
+} = require("../../ipcMain/senders");
 
 module.exports = {
-	label: translate('file'),
+	label: translate("file"),
 	submenu: [
 		{
-			label: translate('lock-diary'),
-			id: 'lock',
-			accelerator: 'CmdOrCtrl+L',
+			label: translate("lock-diary"),
+			id: "lock",
+			accelerator: "CmdOrCtrl+L",
 			click() {
 				lock();
-			}
+			},
 		},
-		{ type: 'separator' },
+		{ type: "separator" },
 		{
-			label: translate('import'),
+			label: translate("import"),
 			submenu: [
 				{
-					label: `${translate('import-from-format', { format: 'Day One' })}…`,
-					id: 'importFromDayOne',
+					label: `${translate("import-from-format", { format: "Day One" })}…`,
+					id: "importFromDayOne",
 					click() {
 						importDayOne();
-					}
+					},
 				},
 				{
-					label: `${translate('import-from-format', { format: 'jrnl' })}…`,
-					id: 'importFromJrnl',
+					label: `${translate("import-from-format", { format: "jrnl" })}…`,
+					id: "importFromJrnl",
 					click() {
 						importJrnl();
-					}
+					},
 				},
 				{
-					label: `${translate('import-from-format', { format: 'JSON' })}…`,
-					id: 'importFromJson',
+					label: `${translate("import-from-format", { format: "JSON" })}…`,
+					id: "importFromJson",
 					click() {
 						importJson();
-					}
-				}
-			]
+					},
+				},
+			],
 		},
 		{
-			label: translate('export'),
-			id: 'export',
+			label: translate("export"),
+			id: "export",
 			submenu: [
 				{
-					label: `${translate('export-to-format', { format: 'PDF' })}…`,
-					id: 'exportToPdf',
+					label: `${translate("export-to-format", { format: "PDF" })}…`,
+					id: "exportToPdf",
 					click() {
 						exportToPdf();
-					}
+					},
 				},
 				{
-					label: `${translate('export-to-format', { format: 'Markdown' })}…`,
-					id: 'exportToMd',
+					label: `${translate("export-to-format", { format: "Markdown" })}…`,
+					id: "exportToMd",
 					click() {
 						exportToMd();
-					}
+					},
 				},
 				{
-					label: `${translate('export-to-format', { format: 'TXT' })}…`,
-					id: 'exportToTxt',
+					label: `${translate("export-to-format", { format: "TXT" })}…`,
+					id: "exportToTxt",
 					click() {
 						exportToTxt();
-					}
+					},
 				},
 				{
-					label: `${translate('export-to-format', { format: 'JSON' })}…`,
-					id: 'exportToJson',
+					label: `${translate("export-to-format", { format: "JSON" })}…`,
+					id: "exportToJson",
 					click() {
 						exportToJson();
-					}
-				}
-			]
-		}
-	]
+					},
+				},
+			],
+		},
+	],
 };

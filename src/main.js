@@ -1,10 +1,10 @@
 /* eslint-disable global-require */
 
-const { app, BrowserWindow } = require('electron');
-require('electron-debug')();
-const { autoUpdater } = require('electron-updater');
+const { app, BrowserWindow } = require("electron");
+require("electron-debug")();
+const { autoUpdater } = require("electron-updater");
 
-const { getWindow, setWindow } = require('./main/window');
+const { getWindow, setWindow } = require("./main/window");
 
 function onClosed() {
 	// Dereference the window
@@ -16,20 +16,20 @@ function createMainWindow() {
 		width: 1100,
 		height: 600,
 		show: false,
-		titleBarStyle: 'hiddenInset',
+		titleBarStyle: "hiddenInset",
 		webPreferences: {
-			nodeIntegration: true
-		}
+			nodeIntegration: true,
+		},
 	});
 	window.loadURL(`file://${__dirname}/index.html`);
-	window.once('ready-to-show', () => {
+	window.once("ready-to-show", () => {
 		window.show();
 	});
-	window.on('closed', onClosed);
+	window.on("closed", onClosed);
 
 	// Load listeners and menu items
-	require('./main/ipcMain/listeners');
-	require('./main/menu/menu');
+	require("./main/ipcMain/listeners");
+	require("./main/menu/menu");
 
 	return window;
 }
@@ -40,16 +40,16 @@ function run() {
 	autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
 	app.quit();
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
 	if (!getWindow()) {
 		run();
 	}
 });
 
-app.on('ready', () => {
+app.on("ready", () => {
 	run();
 });

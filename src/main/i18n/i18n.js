@@ -1,12 +1,12 @@
-const { app } = require('electron');
+const { app } = require("electron");
 
-const translationsDe = require('./translations/de');
-const translationsEn = require('./translations/en');
-const translationsEs = require('./translations/es');
-const translationsFr = require('./translations/fr');
-const translationsIs = require('./translations/is');
-const translationsPt = require('./translations/pt');
-const translationsTr = require('./translations/tr');
+const translationsDe = require("./translations/de");
+const translationsEn = require("./translations/en");
+const translationsEs = require("./translations/es");
+const translationsFr = require("./translations/fr");
+const translationsIs = require("./translations/is");
+const translationsPt = require("./translations/pt");
+const translationsTr = require("./translations/tr");
 
 const ALL_TRANSLATIONS = {
 	de: translationsDe,
@@ -15,9 +15,9 @@ const ALL_TRANSLATIONS = {
 	fr: translationsFr,
 	is: translationsIs,
 	pt: translationsPt,
-	tr: translationsTr
+	tr: translationsTr,
 };
-const DEFAULT_LANG = 'en';
+const DEFAULT_LANG = "en";
 
 const systemLang = app.getLocale();
 let lang; // Language used by app (e.g. 'en-US'), used for dates/calendar
@@ -29,7 +29,7 @@ let translations; // String translations for langNoRegion
  * otherwise fall back to default language
  */
 function setUsedLang() {
-	const systemLangNoRegion = systemLang.split('-')[0];
+	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[DEFAULT_LANG];
 
 	if (systemLangNoRegion in ALL_TRANSLATIONS) {
@@ -38,7 +38,7 @@ function setUsedLang() {
 		langNoRegion = systemLangNoRegion;
 		translations = {
 			...defaultTranslations,
-			...ALL_TRANSLATIONS[langNoRegion]
+			...ALL_TRANSLATIONS[langNoRegion],
 		};
 	} else {
 		// Otherwise, fall back to default language
@@ -80,5 +80,5 @@ setUsedLang();
 module.exports = {
 	lang,
 	translate,
-	translations
+	translations,
 };

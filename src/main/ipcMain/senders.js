@@ -1,63 +1,63 @@
-const { getWindow } = require('../window');
+const { getWindow } = require("../window");
 
 // Date
 
 exports.setDaySelectedNext = () => {
-	getWindow().webContents.send('nextDay');
+	getWindow().webContents.send("nextDay");
 };
 
 exports.setDaySelectedPrevious = () => {
-	getWindow().webContents.send('previousDay');
+	getWindow().webContents.send("previousDay");
 };
 
 exports.setMonthSelectedNext = () => {
-	getWindow().webContents.send('nextMonth');
+	getWindow().webContents.send("nextMonth");
 };
 
 exports.setMonthSelectedPrevious = () => {
-	getWindow().webContents.send('previousMonth');
+	getWindow().webContents.send("previousMonth");
 };
 
 // Export
 
 exports.exportToJson = () => {
-	getWindow().webContents.send('exportToJson');
+	getWindow().webContents.send("exportToJson");
 };
 
 exports.exportToMd = () => {
-	getWindow().webContents.send('exportToMd');
+	getWindow().webContents.send("exportToMd");
 };
 
 exports.exportToPdf = () => {
-	getWindow().webContents.send('exportToPdf');
+	getWindow().webContents.send("exportToPdf");
 };
 
 exports.exportToTxt = () => {
-	getWindow().webContents.send('exportToTxt');
+	getWindow().webContents.send("exportToTxt");
 };
 
 // Import
 
 exports.importDayOne = () => {
-	getWindow().webContents.send('importDayOne');
+	getWindow().webContents.send("importDayOne");
 };
 
 exports.importJrnl = () => {
-	getWindow().webContents.send('importJrnl');
+	getWindow().webContents.send("importJrnl");
 };
 
 exports.importJson = () => {
-	getWindow().webContents.send('importJson');
+	getWindow().webContents.send("importJson");
 };
 
 // Lock
 
 exports.lock = () => {
-	getWindow().webContents.send('lock');
+	getWindow().webContents.send("lock");
 };
 
 // Preferences
 
-exports.showPreferences = () => {
-	getWindow().webContents.send('showPreferences');
+exports.showPref = () => {
+	getWindow().webContents.send("showPref");
 };

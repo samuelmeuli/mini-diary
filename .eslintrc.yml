@@ -1,9 +1,9 @@
 root: true
 
 extends:
-  - airbnb
-  - "@samuelmeuli/eslint-config/react"
-  - prettier
+  - "@samuelmeuli/eslint-config/react-typescript"
+  - "prettier"
+  - "prettier/@typescript-eslint"
 
 env:
   browser: true
@@ -13,6 +13,10 @@ plugins:
   - html
 
 settings:
-  # Electron
   import/core-modules:
     - electron
+
+rules:
+  # TODO Remove rule exceptions once fixed
+  "@typescript-eslint/no-var-requires": off # Seems to be broken (also marks normal imports)
+  "import/named": off # Seems to be broken for TypeScript (incorrect "not found" errors)
