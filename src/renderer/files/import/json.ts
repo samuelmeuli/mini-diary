@@ -1,12 +1,21 @@
+interface MiniDiaryJson {
+	metadata: {
+		application: "Mini Diary";
+		version: string;
+		dateUpdated: string;
+	};
+	entries: Entries;
+}
+
 /**
  * Parse the JSON file and format it as a processable object
  */
 export function parseJson(jsonStr: string): Entries {
-	const jsonEntries = JSON.parse(jsonStr) as Entries;
+	const miniDiaryJson = JSON.parse(jsonStr) as MiniDiaryJson;
 	const now = new Date().toString();
 
 	const importEntries: Entries = {};
-	Object.entries(jsonEntries).forEach(([indexDate, entry]: [string, DiaryEntry]) => {
+	Object.entries(miniDiaryJson.entries).forEach(([indexDate, entry]: [string, DiaryEntry]) => {
 		const { text, title } = entry;
 
 		// Use dateUpdated if defined, otherwise set it to now
