@@ -17,10 +17,14 @@ const DISABLED_MENU_ITEMS = [
 	"nextMonth",
 ];
 
-// Build menu
-const template = getMenuTemplate();
-const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);
+let menu: Menu;
+
+export function initMenu(): void {
+	// Build menu
+	const template = getMenuTemplate();
+	menu = Menu.buildFromTemplate(template);
+	Menu.setApplicationMenu(menu);
+}
 
 export function disableMenuItems(): void {
 	DISABLED_MENU_ITEMS.forEach(id => {

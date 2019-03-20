@@ -44,6 +44,7 @@
 		"@samuelmeuli/eslint-config": "~2.0.0",
 		"@samuelmeuli/stylelint-config": "~1.0.0",
 		"@types/draft-js": "^0.10.29",
+		"@types/electron-settings": "^3.1.1",
 		"@types/lodash.debounce": "^4.0.6",
 		"@types/react": "^16.8.8",
 		"@types/react-dom": "^16.8.2",

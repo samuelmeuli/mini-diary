@@ -1,13 +1,12 @@
+import { remote } from "electron";
 import path from "path";
 
 import { loadDirPref } from "../preferences/preferences";
 
-const { app } = require("electron").remote;
-
 export const FILE_NAME = "mini-diary.txt";
 const METADATA = {
-	application: app.getName(),
-	version: app.getVersion(),
+	application: remote.app.getName(),
+	version: remote.app.getVersion(),
 };
 
 /**

@@ -1,6 +1,7 @@
+import { remote } from "electron";
 import React, { ChangeEvent, PureComponent } from "react";
-import is from "electron-is";
 
+import is from "electron-is";
 import { getDiaryFilePath, FILE_NAME } from "../../../../files/diary/diaryFile";
 import { moveFile } from "../../../../files/fileAccess";
 import { saveDirPref } from "../../../../files/preferences/preferences";
@@ -8,8 +9,6 @@ import { translations } from "../../../../utils/i18n";
 import { isAtLeastMojave } from "../../../../utils/os";
 import Banner from "../../../elements/Banner";
 import Overlay from "../Overlay";
-
-const { dialog } = require("electron").remote;
 
 interface Props {
 	isLocked: boolean;
@@ -87,7 +86,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		const { testFileExists } = this.props;
 
 		// Show dialog for selecting directory
-		const fileDirArray = dialog.showOpenDialog({
+		const fileDirArray = remote.dialog.showOpenDialog({
 			buttonLabel: translations["select-directory"],
 			properties: ["openDirectory"],
 		});
@@ -104,7 +103,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		const { fileDir } = this.state;
 
 		// Show dialog for selecting directory
-		const fileDirArray = dialog.showOpenDialog({
+		const fileDirArray = remote.dialog.showOpenDialog({
 			buttonLabel: translations["move-file"],
 			properties: ["openDirectory"],
 		});
@@ -115,7 +114,7 @@ export default class Preferences extends PureComponent<Props, State> {
 			try {
 				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
 			} catch (err) {
-				dialog.showErrorBox(
+				remote.dialog.showErrorBox(
 					translations["move-error-title"],
 					`${translations["move-error-msg"]}: ${err.message}`,
 				);

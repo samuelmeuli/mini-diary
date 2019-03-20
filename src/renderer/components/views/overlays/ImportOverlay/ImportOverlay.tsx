@@ -1,11 +1,10 @@
+import { remote } from "electron";
 import React, { PureComponent } from "react";
 
 import { translate, translations } from "../../../../utils/i18n";
 import Overlay from "../Overlay";
 
-const { app, dialog } = require("electron").remote;
-
-const APP_NAME = app.getName();
+const APP_NAME = remote.app.getName();
 const fields = {
 	dayOne: {
 		title: translate("import-from-format", { format: "Day One" }),
@@ -49,7 +48,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		const { importFormat, runImport } = this.props;
 
 		// Show dialog for selecting file to import
-		const fileNameArray = dialog.showOpenDialog({
+		const fileNameArray = remote.dialog.showOpenDialog({
 			properties: ["openFile"],
 			filters: [
 				{

@@ -1,3 +1,4 @@
+import { remote } from "electron";
 import React, { Component } from "react";
 
 import { toggleWindowSize } from "../electron/ipcRenderer/senders";
@@ -8,8 +9,6 @@ import Preferences from "./views/overlays/Preferences/PreferencesContainer";
 import Diary from "./views/pages/Diary/Diary";
 import PasswordCreationContainer from "./views/pages/PasswordCreation/PasswordCreationContainer";
 import PasswordPromptContainer from "./views/pages/PasswordPrompt/PasswordPromptContainer";
-
-const { dialog } = require("electron").remote;
 
 interface Props {
 	exportErrorMsg: string;
@@ -59,7 +58,7 @@ export default class App extends Component<Props, State> {
 
 		// Check for export error and display it if there is one
 		if (exportErrorMsg && exportErrorMsg !== prevProps.exportErrorMsg) {
-			dialog.showErrorBox(
+			remote.dialog.showErrorBox(
 				"export-error-title",
 				`${translations["export-error-msg"]}: ${exportErrorMsg}`,
 			);
@@ -67,7 +66,7 @@ export default class App extends Component<Props, State> {
 
 		// Check for import error and display it if there is one
 		if (importErrorMsg && importErrorMsg !== prevProps.importErrorMsg) {
-			dialog.showErrorBox(
+			remote.dialog.showErrorBox(
 				"import-error-title",
 				`${translations["import-error-msg"]}: ${importErrorMsg}`,
 			);

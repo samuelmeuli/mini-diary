@@ -1,4 +1,4 @@
-import moment = require("moment");
+import moment from "moment";
 import React, { PureComponent } from "react";
 
 import { translations } from "../../../../utils/i18n";

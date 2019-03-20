@@ -6,53 +6,57 @@ import { getWindow } from "../window";
 
 // Localization
 
-ipcMain.on(
-	"getLang",
-	(e: IpcMessageEvent): void => {
-		e.returnValue = getUsedLang();
-	},
-);
+function initIpcListeners(): void {
+	ipcMain.on(
+		"getLang",
+		(e: IpcMessageEvent): void => {
+			e.returnValue = getUsedLang();
+		},
+	);
 
-ipcMain.on(
-	"getTranslation",
-	(e: IpcMessageEvent, i18nKey: string, substitutions: Record<string, string>): void => {
-		e.returnValue = translate(i18nKey, substitutions);
-	},
-);
+	ipcMain.on(
+		"getTranslation",
+		(e: IpcMessageEvent, i18nKey: string, substitutions: Record<string, string>): void => {
+			e.returnValue = translate(i18nKey, substitutions);
+		},
+	);
 
-ipcMain.on(
-	"getTranslations",
-	(e: IpcMessageEvent): void => {
-		e.returnValue = getTranslations();
-	},
-);
+	ipcMain.on(
+		"getTranslations",
+		(e: IpcMessageEvent): void => {
+			e.returnValue = getTranslations();
+		},
+	);
 
-// Menu items
+	// Menu items
 
-ipcMain.on(
-	"disableMenuItems",
-	(): void => {
-		disableMenuItems();
-	},
-);
+	ipcMain.on(
+		"disableMenuItems",
+		(): void => {
+			disableMenuItems();
+		},
+	);
 
-ipcMain.on(
-	"enableMenuItems",
-	(): void => {
-		enableMenuItems();
-	},
-);
+	ipcMain.on(
+		"enableMenuItems",
+		(): void => {
+			enableMenuItems();
+		},
+	);
 
-// Window
+	// Window
 
-ipcMain.on(
-	"toggleWindowSize",
-	(): void => {
-		const window = getWindow();
-		if (window.isMaximized()) {
-			window.unmaximize();
-		} else {
-			window.maximize();
-		}
-	},
-);
+	ipcMain.on(
+		"toggleWindowSize",
+		(): void => {
+			const window = getWindow();
+			if (window.isMaximized()) {
+				window.unmaximize();
+			} else {
+				window.maximize();
+			}
+		},
+	);
+}
+
+export default initIpcListeners;

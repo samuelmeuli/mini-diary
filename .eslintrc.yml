@@ -21,6 +21,4 @@ rules:
   # are declared as devDependencies so they are not bundled in the final app by electron-builder
   "import/no-extraneous-dependencies": off
 
-  # TODO Remove rule exceptions once fixed
-  "@typescript-eslint/no-var-requires": off # Seems to be broken (also marks normal imports)
-  "import/named": off # Seems to be broken for TypeScript (incorrect "not found" errors)
+  "import/named": off # TODO Currently seems to be broken for TypeScript (false positives)

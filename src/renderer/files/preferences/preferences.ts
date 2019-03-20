@@ -1,12 +1,11 @@
+import { remote } from "electron";
 import is from "electron-is";
+import settings from "electron-settings";
 
 import { isAtLeastMojave } from "../../utils/os";
 
-const { app } = require("electron").remote;
-const settings = require("electron-settings");
-
-const DEFAULT_THEME = "light";
-const PREF_DIR = app.getPath("userData");
+const DEFAULT_THEME_PREF: ThemePref = "light";
+const PREF_DIR = remote.app.getPath("userData");
 
 // Diary file
 
@@ -15,9 +14,9 @@ const PREF_DIR = app.getPath("userData");
  */
 export function loadDirPref(): string {
 	// Get path of file directory (or set it to default)
-	let fileDir;
+	let fileDir: string;
 	if (settings.has("filePath")) {
-		fileDir = settings.get("filePath");
+		fileDir = settings.get("filePath") as string;
 	} else {
 		fileDir = PREF_DIR;
 		settings.set("filePath", fileDir);
@@ -39,16 +38,16 @@ export function saveDirPref(filePath: string): void {
  * When set to 'auto', the system theme will be used
  */
 export function loadThemePref(): ThemePref {
-	let themePref;
+	let themePref: ThemePref;
 	if (settings.has("theme")) {
-		themePref = settings.get("theme");
+		themePref = settings.get("theme") as ThemePref;
 	} else {
 		if (is.macOS() && isAtLeastMojave()) {
 			// On macOS Mojave and later: Use system theme
 			themePref = "auto";
 		} else {
 			// On Windows, Linux, and macOS before Mojave: use default theme
-			themePref = DEFAULT_THEME;
+			themePref = DEFAULT_THEME_PREF;
 		}
 		settings.set("theme", themePref);
 	}

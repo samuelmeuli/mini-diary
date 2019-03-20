@@ -4,12 +4,11 @@ import { Provider } from "react-redux";
 
 import "./assets/styles/styles.scss";
 import AppContainer from "./components/AppContainer";
+import initIpcListeners from "./electron/ipcRenderer/listeners";
 import store from "./store/store";
 import { initI18n } from "./utils/i18n";
 
-// Listen to OS events and messages from main process
-import "./electron/ipcRenderer/listeners";
-
+initIpcListeners();
 initI18n();
 
 // Create 'root' div
