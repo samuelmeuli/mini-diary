@@ -204,6 +204,11 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
+	// Abort if password has been deleted from state (e.g. when the diary has been locked)
+	if (!hashedPassword) {
+		return;
+	}
+
 	if (title === "" && text === "") {
 		// Empty entry
 		if (entryDate in entries) {
