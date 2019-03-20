@@ -72,6 +72,7 @@
 		"husky": "^1.0.1",
 		"lint-staged": "^8.1.5",
 		"lodash.debounce": "^4.0.8",
+		"markdown-draft-js": "^1.4.1",
 		"minireset.css": "^0.0.4",
 		"moment": "^2.22.2",
 		"node-sass": "^4.9.2",

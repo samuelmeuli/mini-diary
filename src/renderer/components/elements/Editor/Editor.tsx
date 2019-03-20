@@ -1,12 +1,21 @@
-import { ContentState, Editor as DraftJsEditor, EditorState } from "draft-js";
+import {
+	ContentState,
+	convertFromRaw,
+	convertToRaw,
+	DraftEditorCommand,
+	Editor as DraftJsEditor,
+	EditorState,
+	RichUtils,
+} from "draft-js";
 import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
+import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 import React, { PureComponent } from "react";
 
 import { translations } from "../../../utils/i18n";
 import { toIndexDate, toLocaleWeekday } from "../../../utils/dateFormat";
 
-const AUTOSAVE_INTERVAL = 1000;
+const AUTOSAVE_INTERVAL = 500;
 
 interface Props {
 	dateSelected: Date;
@@ -45,8 +54,9 @@ export default class Editor extends PureComponent<Props, State> {
 		if (entry) {
 			({ text, title } = entry);
 		}
+
 		return {
-			textEditorState: EditorState.createWithContent(ContentState.createFromText(text)),
+			textEditorState: EditorState.createWithContent(convertFromRaw(markdownToDraft(text))),
 			titleEditorState: EditorState.createWithContent(ContentState.createFromText(title)),
 		};
 	}
@@ -62,6 +72,7 @@ export default class Editor extends PureComponent<Props, State> {
 		};
 
 		// Function bindings
+		this.handleKeyCommand = this.handleKeyCommand.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
@@ -87,13 +98,29 @@ export default class Editor extends PureComponent<Props, State> {
 		this.saveEntryDebounced();
 	}
 
+	handleKeyCommand(command: DraftEditorCommand, editorState: EditorState) {
+		let newState: EditorState;
+		if (command === "bold") {
+			newState = RichUtils.toggleInlineStyle(editorState, 'BOLD')
+		} else if (command === "italic") {
+			newState = RichUtils.toggleInlineStyle(editorState, 'ITALIC')
+		}
+
+		if (newState) {
+			this.onTextChange(newState);
+			return 'handled';
+		} else {
+			return 'not-handled';
+		}
+	}
+
 	saveEntry() {
 		const { dateSelected, updateEntry } = this.props;
 		const { textEditorState, titleEditorState } = this.state;
 
 		const indexDate = toIndexDate(dateSelected);
 		const title = titleEditorState.getCurrentContent().getPlainText();
-		const text = textEditorState.getCurrentContent().getPlainText();
+		const text = draftToMarkdown(convertToRaw(textEditorState.getCurrentContent()));
 		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
@@ -115,6 +142,7 @@ export default class Editor extends PureComponent<Props, State> {
 				<div className="editor-text-wrapper">
 					<DraftJsEditor
 						editorState={textEditorState}
+						handleKeyCommand={this.handleKeyCommand}
 						onBlur={this.saveEntry}
 						onChange={this.onTextChange}
 						placeholder={`${translations["write-something"]}…`}
