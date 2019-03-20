@@ -1,12 +1,12 @@
-const { app } = require("electron");
+import { app } from "electron";
 
-const { translate } = require("../../i18n/i18n");
-const preferencesItem = require("../preferencesItem");
+import { translate } from "../../i18n/i18n";
+import preferencesItem from "../preferencesItem";
 
 const appName = app.getName();
 
-module.exports = {
-	label: app.getName(),
+const appMenu: Electron.MenuItemConstructorOptions = {
+	label: appName,
 	submenu: [
 		{
 			label: translate("about-app", { appName }),
@@ -34,3 +34,5 @@ module.exports = {
 		},
 	],
 };
+
+export default appMenu;

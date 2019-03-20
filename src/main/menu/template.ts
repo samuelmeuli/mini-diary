@@ -1,18 +1,18 @@
-const is = require("electron-is");
+import is from "electron-is";
 
-const { translate } = require("../i18n/i18n");
-const appMenu = require("./menus/app");
-const editMenu = require("./menus/edit");
-const fileMenu = require("./menus/file");
-const helpMenu = require("./menus/help");
-const viewMenu = require("./menus/view");
-const windowMenu = require("./menus/window");
-const preferencesItem = require("./preferencesItem");
+import { translate } from "../i18n/i18n";
+import appMenu from "./menus/app";
+import editMenu from "./menus/edit";
+import fileMenu from "./menus/file";
+import helpMenu from "./menus/help";
+import viewMenu from "./menus/view";
+import windowMenu from "./menus/window";
+import preferencesItem from "./preferencesItem";
 
-exports.getMenuTemplate = () => {
+export const getMenuTemplate = (): Electron.MenuItemConstructorOptions[] => {
 	if (is.macOS()) {
 		// Add macOS-specific items
-		editMenu.submenu.push(
+		(editMenu.submenu as Electron.MenuItemConstructorOptions[]).push(
 			{ type: "separator" },
 			{
 				label: translate("speech"),
@@ -49,7 +49,7 @@ exports.getMenuTemplate = () => {
 		];
 	} else {
 		// Add preferences under "File" (will be added under "Mini Diary" for macOS)
-		fileMenu.submenu.push(preferencesItem);
+		(fileMenu.submenu as Electron.MenuItemConstructorOptions[]).push(preferencesItem);
 	}
 
 	return [...(is.macOS() ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];

@@ -1,63 +1,63 @@
-const { getWindow } = require("../window");
+import { getWindow } from "../window";
 
 // Date
 
-exports.setDaySelectedNext = () => {
+export const setDaySelectedNext = (): void => {
 	getWindow().webContents.send("nextDay");
 };
 
-exports.setDaySelectedPrevious = () => {
+export const setDaySelectedPrevious = (): void => {
 	getWindow().webContents.send("previousDay");
 };
 
-exports.setMonthSelectedNext = () => {
+export const setMonthSelectedNext = (): void => {
 	getWindow().webContents.send("nextMonth");
 };
 
-exports.setMonthSelectedPrevious = () => {
+export const setMonthSelectedPrevious = (): void => {
 	getWindow().webContents.send("previousMonth");
 };
 
 // Export
 
-exports.exportToJson = () => {
+export const exportToJson = (): void => {
 	getWindow().webContents.send("exportToJson");
 };
 
-exports.exportToMd = () => {
+export const exportToMd = (): void => {
 	getWindow().webContents.send("exportToMd");
 };
 
-exports.exportToPdf = () => {
+export const exportToPdf = (): void => {
 	getWindow().webContents.send("exportToPdf");
 };
 
-exports.exportToTxt = () => {
+export const exportToTxt = (): void => {
 	getWindow().webContents.send("exportToTxt");
 };
 
 // Import
 
-exports.importDayOne = () => {
+export const importDayOne = (): void => {
 	getWindow().webContents.send("importDayOne");
 };
 
-exports.importJrnl = () => {
+export const importJrnl = (): void => {
 	getWindow().webContents.send("importJrnl");
 };
 
-exports.importJson = () => {
+export const importJson = (): void => {
 	getWindow().webContents.send("importJson");
 };
 
 // Lock
 
-exports.lock = () => {
+export const lock = (): void => {
 	getWindow().webContents.send("lock");
 };
 
 // Preferences
 
-exports.showPref = () => {
+export const showPref = (): void => {
 	getWindow().webContents.send("showPref");
 };

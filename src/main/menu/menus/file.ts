@@ -1,5 +1,5 @@
-const { translate } = require("../../i18n/i18n");
-const {
+import { translate } from "../../i18n/i18n";
+import {
 	exportToJson,
 	exportToMd,
 	exportToPdf,
@@ -8,9 +8,9 @@ const {
 	importJrnl,
 	importJson,
 	lock,
-} = require("../../ipcMain/senders");
+} from "../../ipcMain/senders";
 
-module.exports = {
+const fileMenu: Electron.MenuItemConstructorOptions = {
 	label: translate("file"),
 	submenu: [
 		{
@@ -84,3 +84,5 @@ module.exports = {
 		},
 	],
 };
+
+export default fileMenu;

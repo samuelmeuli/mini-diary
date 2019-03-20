@@ -43,8 +43,8 @@ Suggestions and contributions are always welcome! Please first discuss changes v
 
 If the app isn't translated into your language yet and you'd like to help out, you can easily add translations with the following steps:
 
-1. The translation files can be found in [`src/main/i18n/translations`](src/main/i18n/translations). Duplicate the [`en.js`](src/main/i18n/translations/en.js) file as `[LANG].js`, where `[LANG]` is the [shortcode of your language](https://electronjs.org/docs/api/locales).
+1. The translation files can be found in [`src/main/i18n/translations`](src/main/i18n/translations). Duplicate the [`en.ts`](src/main/i18n/translations/en.ts) file as `[LANG].ts`, where `[LANG]` is the [shortcode of your language](https://electronjs.org/docs/api/locales).
 2. In the file you just created, replace the English translations with your own. Make sure they fit into the app's input fields.
-3. Import your file in the `ALL_TRANSLATIONS` object in [`src/main/i18n/i18n.js`](src/main/i18n/i18n.js).
+3. Import your file in the `ALL_TRANSLATIONS` object in [`src/main/i18n/i18n.ts`](src/main/i18n/i18n.ts).
 4. Add your language shortcode to the `electronLanguages` array in [`package.json`](package.json).
 5. Submit a PR. Thank you!

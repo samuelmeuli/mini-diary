@@ -1,12 +1,12 @@
-const { translate } = require("../../i18n/i18n");
-const {
+import { translate } from "../../i18n/i18n";
+import {
 	setDaySelectedNext,
 	setDaySelectedPrevious,
 	setMonthSelectedNext,
 	setMonthSelectedPrevious,
-} = require("../../ipcMain/senders");
+} from "../../ipcMain/senders";
 
-module.exports = {
+const viewMenu: Electron.MenuItemConstructorOptions = {
 	label: translate("view"),
 	submenu: [
 		{
@@ -44,3 +44,5 @@ module.exports = {
 		},
 	],
 };
+
+export default viewMenu;

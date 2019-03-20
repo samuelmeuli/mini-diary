@@ -17,6 +17,10 @@ settings:
     - electron
 
 rules:
+  # The usage check for devDependencies is disabled because dependencies of the renderer process
+  # are declared as devDependencies so they are not bundled in the final app by electron-builder
+  "import/no-extraneous-dependencies": off
+
   # TODO Remove rule exceptions once fixed
   "@typescript-eslint/no-var-requires": off # Seems to be broken (also marks normal imports)
   "import/named": off # Seems to be broken for TypeScript (incorrect "not found" errors)

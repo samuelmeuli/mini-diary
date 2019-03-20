@@ -1,12 +1,12 @@
-const { shell } = require("electron");
+import { shell } from "electron";
 
-const { translate } = require("../../i18n/i18n");
+import { translate } from "../../i18n/i18n";
 
 const URL_LICENSE = "https://github.com/samuelmeuli/mini-diary/blob/master/LICENSE.md";
 const URL_PRIVACY_POLICY = "https://github.com/samuelmeuli/mini-diary/blob/master/PRIVACY.md";
 const URL_WEBSITE = "https://minidiary.app";
 
-module.exports = {
+const helpMenu: Electron.MenuItemConstructorOptions = {
 	label: translate("help"),
 	role: "help",
 	submenu: [
@@ -31,3 +31,5 @@ module.exports = {
 		},
 	],
 };
+
+export default helpMenu;

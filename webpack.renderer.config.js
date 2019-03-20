@@ -1,22 +1,24 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	entry: "./src/renderer/renderer.tsx",
 	output: {
 		path: path.resolve(__dirname, "bundle"),
-		filename: "bundle.js",
+		filename: "renderer.js",
 	},
 	devtool: "source-map",
 	resolve: {
-		extensions: [".js", ".json", ".ts", ".tsx"],
+		extensions: [".js", ".jsx", ".json", ".ts", ".tsx"], // JS extension needed for node_modules
 	},
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
 				loader: "awesome-typescript-loader",
+				options: {
+					configFileName: "./src/renderer/tsconfig.json",
+				},
 			},
 			{
 				enforce: "pre",
@@ -34,13 +36,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			"src/main.js",
-			{
-				from: "src/main",
-				to: "main",
-			},
-		]),
 		new HtmlWebpackPlugin({
 			title: "Mini Diary",
 		}),

@@ -1,14 +1,15 @@
-const { app } = require("electron");
+import { app } from "electron";
 
-const translationsDe = require("./translations/de");
-const translationsEn = require("./translations/en");
-const translationsEs = require("./translations/es");
-const translationsFr = require("./translations/fr");
-const translationsIs = require("./translations/is");
-const translationsPt = require("./translations/pt");
-const translationsTr = require("./translations/tr");
+import translationsDe from "./translations/de";
+import translationsEn from "./translations/en";
+import translationsEs from "./translations/es";
+import translationsFr from "./translations/fr";
+import translationsIs from "./translations/is";
+import translationsPt from "./translations/pt";
+import translationsTr from "./translations/tr";
+import { Translations } from "./translations/types";
 
-const ALL_TRANSLATIONS = {
+const ALL_TRANSLATIONS: Record<string, Translations> = {
 	de: translationsDe,
 	en: translationsEn,
 	es: translationsEs,
@@ -20,15 +21,22 @@ const ALL_TRANSLATIONS = {
 const DEFAULT_LANG = "en";
 
 const systemLang = app.getLocale();
-let lang; // Language used by app (e.g. 'en-US'), used for dates/calendar
-let langNoRegion; // Language used by app without region string (e.g. 'en'), used for translations
-let translations; // String translations for langNoRegion
+let lang: string; // Language used by app (e.g. 'en-US'), used for dates/calendar
+let langNoRegion: string; // Language used by app without region string (e.g. 'en'), used for translations
+let translations: Translations; // String translations for langNoRegion
+
+/**
+ * Return language to use for the app
+ */
+export function getUsedLang(): string {
+	return lang;
+}
 
 /**
  * Determine language to use for the app (use system language if translations are available,
  * otherwise fall back to default language
  */
-function setUsedLang() {
+function setUsedLang(): void {
 	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[DEFAULT_LANG];
 
@@ -52,7 +60,7 @@ function setUsedLang() {
  * Return translation for string with the provided translation key. Perform string substitutions if
  * required
  */
-function translate(i18nKey, substitutions) {
+export function translate(i18nKey: string, substitutions?: Record<string, string>): string {
 	if (!(i18nKey in translations)) {
 		console.error(`Missing translation of i18nKey "${i18nKey}"`);
 		return i18nKey;
@@ -75,10 +83,11 @@ function translate(i18nKey, substitutions) {
 	return translation;
 }
 
-setUsedLang();
+/**
+ * Return all translations for the detected language
+ */
+export function getTranslations(): Translations {
+	return translations;
+}
 
-module.exports = {
-	lang,
-	translate,
-	translations,
-};
+setUsedLang();

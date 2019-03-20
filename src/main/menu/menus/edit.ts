@@ -1,6 +1,6 @@
-const { translate } = require("../../i18n/i18n");
+import { translate } from "../../i18n/i18n";
 
-module.exports = {
+const editMenu: Electron.MenuItemConstructorOptions = {
 	label: translate("edit"),
 	submenu: [
 		{
@@ -30,3 +30,5 @@ module.exports = {
 		},
 	],
 };
+
+export default editMenu;

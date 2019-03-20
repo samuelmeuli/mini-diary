@@ -1,6 +1,6 @@
-const { Menu } = require("electron");
+import { Menu } from "electron";
 
-const { getMenuTemplate } = require("./template");
+import { getMenuTemplate } from "./template";
 
 const DISABLED_MENU_ITEMS = [
 	"exportToJson",
@@ -22,19 +22,14 @@ const template = getMenuTemplate();
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
-function disableMenuItems() {
+export function disableMenuItems(): void {
 	DISABLED_MENU_ITEMS.forEach(id => {
 		menu.getMenuItemById(id).enabled = false;
 	});
 }
 
-function enableMenuItems() {
+export function enableMenuItems(): void {
 	DISABLED_MENU_ITEMS.forEach(id => {
 		menu.getMenuItemById(id).enabled = true;
 	});
 }
-
-module.exports = {
-	disableMenuItems,
-	enableMenuItems,
-};

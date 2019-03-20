@@ -1,21 +1,21 @@
 /* eslint-disable global-require */
 
-const { app, BrowserWindow } = require("electron");
-const contextMenu = require("electron-context-menu");
-const electronDebug = require("electron-debug");
-const { autoUpdater } = require("electron-updater");
+import { app, BrowserWindow } from "electron";
+import contextMenu from "electron-context-menu";
+import electronDebug from "electron-debug";
+import { autoUpdater } from "electron-updater";
 
-const { getWindow, setWindow } = require("./main/window");
+import { getWindow, setWindow } from "./window";
 
 electronDebug();
 contextMenu();
 
-function onClosed() {
+function onClosed(): void {
 	// Dereference the window
 	setWindow(null);
 }
 
-function createMainWindow() {
+function createMainWindow(): BrowserWindow {
 	const window = new BrowserWindow({
 		width: 1100,
 		height: 600,
@@ -32,13 +32,13 @@ function createMainWindow() {
 	window.on("closed", onClosed);
 
 	// Load listeners and menu items
-	require("./main/ipcMain/listeners");
-	require("./main/menu/menu");
+	require("./ipcMain/listeners");
+	require("./menu/menu");
 
 	return window;
 }
 
-function run() {
+function run(): void {
 	const window = createMainWindow();
 	setWindow(window);
 	autoUpdater.checkForUpdatesAndNotify();

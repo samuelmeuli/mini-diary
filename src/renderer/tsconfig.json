@@ -1,0 +1,12 @@
+{
+	"extends": "../tsconfig-base.json",
+	"compilerOptions": {
+		"jsx": "react",
+
+		// Specify path to node_modules
+		"baseUrl": ".",
+		"paths": {
+			"*": ["../../node_modules/*"]
+		}
+	}
+}
