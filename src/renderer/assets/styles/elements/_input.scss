@@ -9,9 +9,10 @@ textarea {
 	outline: none;
 }
 
-input,
+input:not([type="radio"]),
 textarea {
 	@include background-color("background-editor");
+	box-shadow: $box-shadow-inset;
 }
 
 .button,

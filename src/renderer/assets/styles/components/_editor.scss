@@ -2,6 +2,7 @@
 	@include background-color("background-editor");
 	position: relative;
 	border-radius: $border-radius-input;
+	box-shadow: $box-shadow-inset;
 }
 
 .editor-scrollable {

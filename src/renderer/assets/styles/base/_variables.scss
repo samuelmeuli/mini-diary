@@ -50,7 +50,8 @@ $spacing-rel-large: 6vw;
 // Other
 $border-radius-button: 10px;
 $border-radius-input: 3px;
-$box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.075);
+$box-shadow: 0.5px 0.5px 1px 1px rgba(0, 0, 0, 0.18);
+$box-shadow-inset: inset 0.5px 0.5px 1px 1px rgba(0, 0, 0, 0.13);
 $calendar-cell-size: 40px;
 $input-width: 210px;
 $transition: 0.2s;
