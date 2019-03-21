@@ -20,7 +20,9 @@ function onClosed(): void {
 function createMainWindow(): BrowserWindow {
 	const window = new BrowserWindow({
 		width: 1100,
+		minWidth: 400,
 		height: 600,
+		minHeight: 500,
 		show: false,
 		titleBarStyle: "hiddenInset",
 		webPreferences: {
