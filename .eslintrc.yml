@@ -20,7 +20,7 @@ rules:
   import/no-extraneous-dependencies:
     - error
     - devDependencies:
-        - "webpack.*.config.js"
+        - "webpack.*.js"
 
   # TODO Remove rule exceptions once fixed
   "@typescript-eslint/no-var-requires": off # Seems to be broken (also marks normal imports)

@@ -1,16 +1,18 @@
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const LicenseCheckerWebpackPlugin = require("license-checker-webpack-plugin");
+const path = require("path");
 
-module.exports = {
+const pkg = require("./package.json");
+
+module.exports = (env, argv) => ({
 	entry: "./src/renderer/renderer.tsx",
 	output: {
 		path: path.resolve(__dirname, "bundle"),
 		filename: "renderer.js",
 	},
-	devtool: "source-map",
+	devtool: argv.mode === "production" ? false : "source-map",
 	resolve: {
-		extensions: [".js", ".jsx", ".json", ".ts", ".tsx"], // JS extension needed for node_modules
+		extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
 	},
 	module: {
 		rules: [
@@ -38,9 +40,11 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: "Mini Diary",
+			title: pkg.productName,
 		}),
-		new LicenseCheckerWebpackPlugin({ outputFilename: "licenses-renderer.txt" }),
+		...(argv.mode === "production"
+			? [new LicenseCheckerWebpackPlugin({ outputFilename: "licenses-renderer.txt" })]
+			: []),
 	],
 	target: "electron-renderer",
-};
+});

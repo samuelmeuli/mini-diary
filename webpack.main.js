@@ -1,15 +1,15 @@
 const LicenseCheckerWebpackPlugin = require("license-checker-webpack-plugin");
 const path = require("path");
 
-module.exports = {
+module.exports = (env, argv) => ({
 	entry: "./src/main/main.ts",
 	output: {
 		path: path.resolve(__dirname, "bundle"),
 		filename: "main.js",
 	},
-	devtool: "source-map",
+	devtool: argv.mode === "production" ? false : "source-map",
 	resolve: {
-		extensions: [".js", ".jsx", ".json", ".ts", ".tsx"], // JS extension needed for node_modules
+		extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
 	},
 	module: {
 		rules: [
@@ -27,10 +27,14 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [new LicenseCheckerWebpackPlugin({ outputFilename: "licenses-main.txt" })],
+	plugins: [
+		...(argv.mode === "production"
+			? [new LicenseCheckerWebpackPlugin({ outputFilename: "licenses-main.txt" })]
+			: []),
+	],
 	target: "electron-main",
 	node: {
 		__dirname: false,
 		__filename: false,
 	},
-};
+});
