@@ -1,16 +1,16 @@
 // Colors
 $themes: (
 	"light": (
-		"background": #e7e7e7,
-		"background-hover": #dddddd,
+		"background": #e2e2e2,
+		"background-hover": #d1d1d1,
 		"background-editor": #f9f9f9,
-		"background-editor-hover": #f0f0f0,
-		"button-disabled": #e0e0e0,
+		"background-editor-hover": #d4d4d4,
+		"button-disabled": #d2d2d2,
 		"error": #d23939,
 		"main": #4e8bd2,
 		"main-hover": #447ab8,
 		"text": #353535,
-		"text-disabled": #c2c2c2,
+		"text-disabled": #b7b7b7,
 		"text-faded": #727272,
 		"text-placeholder": #757575,
 	),
@@ -44,7 +44,7 @@ $height-header: 37px;
 $spacing-large: 30px;
 $spacing-medium: 15px;
 $spacing-small: 10px;
-$spacing-rel-small: 4vw;
+$spacing-rel-small: 3.5vw;
 $spacing-rel-large: 6vw;
 
 // Other
@@ -53,5 +53,4 @@ $border-radius-input: 3px;
 $box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.075);
 $calendar-cell-size: 40px;
 $input-width: 210px;
-$input-height: 36px;
 $transition: 0.2s;
