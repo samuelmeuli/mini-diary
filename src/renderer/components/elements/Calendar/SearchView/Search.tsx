@@ -5,12 +5,17 @@ import { translations } from "../../../../utils/i18n";
 import Banner from "../../Banner";
 import { toDateString } from "../../../../utils/dateFormat";
 
-interface Props {
+export interface StateProps {
 	dateSelected: Date;
 	entries: Entries;
 	searchResults: SearchResult[];
+}
+
+export interface DispatchProps {
 	setDateSelected: (date: Date) => void;
 }
+
+type Props = StateProps & DispatchProps;
 
 export default class Search extends PureComponent<Props, {}> {
 	constructor(props: Props) {
@@ -23,7 +28,7 @@ export default class Search extends PureComponent<Props, {}> {
 	/**
 	 * Generate list of search result elements
 	 */
-	generateSearchResults() {
+	generateSearchResults(): SearchResult[] {
 		const { dateSelected, entries, searchResults, setDateSelected } = this.props;
 
 		return searchResults.reduce((r, searchResult) => {
@@ -54,12 +59,16 @@ export default class Search extends PureComponent<Props, {}> {
 		}, []);
 	}
 
-	render() {
+	render(): React.ReactNode {
 		const searchResultsEl = this.generateSearchResults();
 		return (
 			<ul className="search-results">
 				{searchResultsEl.length === 0 ? (
-					<Banner bannerType="info" message={translations["no-results"]} className="banner-no-results" />
+					<Banner
+						bannerType="info"
+						message={translations["no-results"]}
+						className="banner-no-results"
+					/>
 				) : (
 					searchResultsEl
 				)}

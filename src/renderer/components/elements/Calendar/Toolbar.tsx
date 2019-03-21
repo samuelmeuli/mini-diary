@@ -7,22 +7,24 @@ import SimpleSvg from "react-simple-svg";
 import iconToday from "../../../assets/icons/today.svg";
 import { translations } from "../../../utils/i18n";
 
-interface Props {
+export interface StateProps {
 	dateSelected: Date;
 	monthSelected: Date;
-	search: (searchKey: string) => void;
 	searchKey: string;
+}
+
+export interface DispatchProps {
+	search: (searchKey: string) => void;
 	setDateSelected: (date: Date) => void;
 }
+
+type Props = StateProps & DispatchProps;
 
 interface State {
 	newSearchKey: string;
 }
 
 export default class Toolbar extends PureComponent<Props, State> {
-
-	updateSearchKeyDebounced: (newSearchKey: string) => void;
-
 	constructor(props: Props) {
 		super(props);
 
@@ -38,7 +40,7 @@ export default class Toolbar extends PureComponent<Props, State> {
 		this.updateSearchKeyDebounced = debounce(this.updateSearchKey, 500);
 	}
 
-	onChange(e: ChangeEvent<HTMLInputElement>) {
+	onChange(e: ChangeEvent<HTMLInputElement>): void {
 		const newSearchKey = e.target.value;
 		this.setState({
 			newSearchKey,
@@ -49,27 +51,29 @@ export default class Toolbar extends PureComponent<Props, State> {
 		this.updateSearchKeyDebounced(newSearchKey);
 	}
 
-	onTodaySelection() {
+	onTodaySelection(): void {
 		const { setDateSelected } = this.props;
 
 		const today = new Date();
 		setDateSelected(today);
 	}
 
-	clearSearchKey() {
+	clearSearchKey(): void {
 		this.setState({
 			newSearchKey: "",
 		});
 		this.updateSearchKey("");
 	}
 
-	updateSearchKey(newSearchKey: string) {
+	updateSearchKey(newSearchKey: string): void {
 		const { search } = this.props;
 
 		search(newSearchKey);
 	}
 
-	render() {
+	updateSearchKeyDebounced: (newSearchKey: string) => void;
+
+	render(): React.ReactNode {
 		const { dateSelected, monthSelected } = this.props;
 		const { newSearchKey } = this.state;
 

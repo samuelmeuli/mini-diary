@@ -7,12 +7,17 @@ import { lang } from "../../../../utils/i18n";
 import { toIndexDate } from "../../../../utils/dateFormat";
 import CalendarNavContainer from "./CalendarNavContainer";
 
-interface Props {
+export interface StateProps {
 	dateSelected: Date;
 	entries: Entries;
 	monthSelected: Date;
+}
+
+export interface DispatchProps {
 	setDateSelected: (date: Date) => void;
 }
+
+type Props = StateProps & DispatchProps;
 
 export default class Calendar extends PureComponent<Props, {}> {
 	constructor(props: Props) {
@@ -22,7 +27,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 		this.onDateSelection = this.onDateSelection.bind(this);
 	}
 
-	onDateSelection(date: Date) {
+	onDateSelection(date: Date): void {
 		const { setDateSelected } = this.props;
 
 		if (moment(date).isSameOrBefore(moment(), "day")) {
@@ -30,7 +35,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 		}
 	}
 
-	render() {
+	render(): React.ReactNode {
 		const { dateSelected, entries, monthSelected } = this.props;
 
 		const today = new Date();

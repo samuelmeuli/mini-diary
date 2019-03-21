@@ -2,20 +2,16 @@ import { connect } from "react-redux";
 
 import { decryptFile } from "../../../../store/file/actionCreators";
 import { RootState, ThunkDispatchT } from "../../../../store/store";
-import PasswordPrompt from "./PasswordPrompt";
+import PasswordPrompt, { DispatchProps, StateProps } from "./PasswordPrompt";
 
-function mapStateToProps(state: RootState) {
-	return {
-		decryptErrorMsg: state.file.decryptErrorMsg,
-		decryptStatus: state.file.decryptStatus,
-	};
-}
+const mapStateToProps = (state: RootState): StateProps => ({
+	decryptErrorMsg: state.file.decryptErrorMsg,
+	decryptStatus: state.file.decryptStatus,
+});
 
-function mapDispatchToProps(dispatch: ThunkDispatchT) {
-	return {
-		decryptFile: (password: string) => dispatch(decryptFile(password)),
-	};
-}
+const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
+	decryptFile: (password: string) => dispatch(decryptFile(password)),
+});
 
 export default connect(
 	mapStateToProps,

@@ -4,14 +4,16 @@ import { translations } from "../../../../utils/i18n";
 import Banner from "../../../elements/Banner";
 import StartPage from "../StartPage";
 
-interface Props {
+export interface DispatchProps {
 	createEncryptedFile: (password: string) => void;
 	testFileExists: () => void;
 }
 
+type Props = DispatchProps;
+
 interface State {
-	password1: string,
-	password2: string
+	password1: string;
+	password2: string;
 }
 
 export default class PasswordCreation extends PureComponent<Props, State> {
@@ -29,7 +31,7 @@ export default class PasswordCreation extends PureComponent<Props, State> {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onChangePassword1(e: ChangeEvent<HTMLInputElement>) {
+	onChangePassword1(e: ChangeEvent<HTMLInputElement>): void {
 		const password1 = e.target.value;
 
 		this.setState({
@@ -37,7 +39,7 @@ export default class PasswordCreation extends PureComponent<Props, State> {
 		});
 	}
 
-	onChangePassword2(e: ChangeEvent<HTMLInputElement>) {
+	onChangePassword2(e: ChangeEvent<HTMLInputElement>): void {
 		const password2 = e.target.value;
 
 		this.setState({
@@ -45,7 +47,7 @@ export default class PasswordCreation extends PureComponent<Props, State> {
 		});
 	}
 
-	onSubmit(e: FormEvent) {
+	onSubmit(e: FormEvent): void {
 		e.preventDefault();
 		const { createEncryptedFile, testFileExists } = this.props;
 		const { password1, password2 } = this.state;
@@ -58,7 +60,7 @@ export default class PasswordCreation extends PureComponent<Props, State> {
 		}
 	}
 
-	render() {
+	render(): React.ReactNode {
 		const { password1, password2 } = this.state;
 
 		const passwordsMatch = password1 === password2;

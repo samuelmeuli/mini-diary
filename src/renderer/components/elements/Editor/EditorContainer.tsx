@@ -2,20 +2,17 @@ import { connect } from "react-redux";
 
 import { updateEntry } from "../../../store/file/actionCreators";
 import { RootState, ThunkDispatchT } from "../../../store/store";
-import Editor from "./Editor";
+import Editor, { DispatchProps, StateProps } from "./Editor";
 
-function mapStateToProps(state: RootState) {
-	return {
-		dateSelected: state.diary.dateSelected,
-		entries: state.file.entries,
-	};
-}
+const mapStateToProps = (state: RootState): StateProps => ({
+	dateSelected: state.diary.dateSelected,
+	entries: state.file.entries,
+});
 
-function mapDispatchToProps(dispatch: ThunkDispatchT) {
-	return {
-		updateEntry: (entryDate: IndexDate, title: string, text: string) => dispatch(updateEntry(entryDate, title, text)),
-	};
-}
+const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
+	updateEntry: (entryDate: IndexDate, title: string, text: string) =>
+		dispatch(updateEntry(entryDate, title, text)),
+});
 
 export default connect(
 	mapStateToProps,

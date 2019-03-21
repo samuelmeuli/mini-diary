@@ -7,11 +7,16 @@ import SimpleSvg from "react-simple-svg";
 import { translations } from "../../../../utils/i18n";
 import { toMonthYear } from "../../../../utils/dateFormat";
 
-interface Props {
+export interface StateProps {
 	monthSelected: Date;
+}
+
+export interface DispatchProps {
 	setMonthSelectedNext: () => void;
 	setMonthSelectedPrevious: () => void;
 }
+
+type Props = StateProps & DispatchProps;
 
 const CalendarNav: FunctionComponent<Props> = (props: Props): JSX.Element => {
 	const { monthSelected, setMonthSelectedNext, setMonthSelectedPrevious } = props;

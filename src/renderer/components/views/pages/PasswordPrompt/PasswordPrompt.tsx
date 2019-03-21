@@ -4,20 +4,23 @@ import { translations } from "../../../../utils/i18n";
 import Banner from "../../../elements/Banner";
 import StartPage from "../StartPage";
 
-interface Props {
+export interface StateProps {
 	decryptErrorMsg: string;
-	decryptFile: (password: string) => void;
 	decryptStatus: string;
 }
 
+export interface DispatchProps {
+	decryptFile: (password: string) => void;
+}
+
+type Props = StateProps & DispatchProps;
+
 interface State {
-	isSubmitted: boolean,
-	password: string
+	isSubmitted: boolean;
+	password: string;
 }
 
 export default class PasswordPrompt extends PureComponent<Props, State> {
-	input: HTMLInputElement;
-
 	constructor(props: Props) {
 		super(props);
 
@@ -31,7 +34,7 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onChange(e: ChangeEvent<HTMLInputElement>) {
+	onChange(e: ChangeEvent<HTMLInputElement>): void {
 		this.setState({
 			isSubmitted: false,
 			password: e.target.value,
@@ -42,7 +45,7 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 	 * Test decrypting the diary file with the provided password. On success, save the password and
 	 * the decrypted diary entries to the Redux store. Otherwise, throw an error
 	 */
-	onSubmit(e: FormEvent) {
+	onSubmit(e: FormEvent): void {
 		e.preventDefault();
 		const { decryptFile } = this.props;
 		const { password } = this.state;
@@ -60,7 +63,9 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 		this.input.select();
 	}
 
-	render() {
+	input: HTMLInputElement;
+
+	render(): React.ReactNode {
 		const { decryptErrorMsg, decryptStatus } = this.props;
 		const { isSubmitted, password } = this.state;
 

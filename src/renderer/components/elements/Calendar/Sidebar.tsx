@@ -4,12 +4,14 @@ import CalendarContainer from "./CalendarView/CalendarContainer";
 import SearchContainer from "./SearchView/SearchContainer";
 import ToolbarContainer from "./ToolbarContainer";
 
-interface Props {
+export interface StateProps {
 	searchKey: string;
 }
 
+type Props = StateProps;
+
 export default class Sidebar extends PureComponent<Props, {}> {
-	render() {
+	render(): React.ReactNode {
 		const { searchKey } = this.props;
 		return (
 			<div className="sidebar">

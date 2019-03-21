@@ -1,7 +1,7 @@
 import { remote } from "electron";
 import React, { ChangeEvent, PureComponent } from "react";
-
 import is from "electron-is";
+
 import { getDiaryFilePath, FILE_NAME } from "../../../../files/diary/diaryFile";
 import { moveFile } from "../../../../files/fileAccess";
 import { saveDirPref } from "../../../../files/preferences/preferences";
@@ -10,19 +10,24 @@ import { isAtLeastMojave } from "../../../../utils/os";
 import Banner from "../../../elements/Banner";
 import Overlay from "../Overlay";
 
-interface Props {
-	isLocked: boolean;
+export interface StateProps {
+	hashedPassword: string;
+	themePref: ThemePref;
+}
+
+export interface DispatchProps {
 	setPrefVisibility: (showPref: boolean) => void;
 	testFileExists: () => void;
-	themePref: ThemePref;
 	updatePassword: (newPassword: string) => void;
 	updateThemePref: (themePref: ThemePref) => void;
 }
 
+type Props = StateProps & DispatchProps;
+
 interface State {
-	fileDir: string,
-	password1: string,
-	password2: string
+	fileDir: string;
+	password1: string;
+	password2: string;
 }
 
 export default class Preferences extends PureComponent<Props, State> {
@@ -48,7 +53,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		this.updatePassword = this.updatePassword.bind(this);
 	}
 
-	onChangePassword1(e: ChangeEvent<HTMLInputElement>) {
+	onChangePassword1(e: ChangeEvent<HTMLInputElement>): void {
 		const password1 = e.target.value;
 
 		this.setState({
@@ -56,7 +61,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		});
 	}
 
-	onChangePassword2(e: ChangeEvent<HTMLInputElement>) {
+	onChangePassword2(e: ChangeEvent<HTMLInputElement>): void {
 		const password2 = e.target.value;
 
 		this.setState({
@@ -64,25 +69,25 @@ export default class Preferences extends PureComponent<Props, State> {
 		});
 	}
 
-	setThemePrefAuto() {
+	setThemePrefAuto(): void {
 		const { updateThemePref } = this.props;
 
 		updateThemePref("auto");
 	}
 
-	setThemePrefDark() {
+	setThemePrefDark(): void {
 		const { updateThemePref } = this.props;
 
 		updateThemePref("dark");
 	}
 
-	setThemePrefLight() {
+	setThemePrefLight(): void {
 		const { updateThemePref } = this.props;
 
 		updateThemePref("light");
 	}
 
-	selectDir() {
+	selectDir(): void {
 		const { testFileExists } = this.props;
 
 		// Show dialog for selecting directory
@@ -99,7 +104,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		}
 	}
 
-	selectMoveDir() {
+	selectMoveDir(): void {
 		const { fileDir } = this.state;
 
 		// Show dialog for selecting directory
@@ -124,14 +129,14 @@ export default class Preferences extends PureComponent<Props, State> {
 		}
 	}
 
-	updateDir(dir: string) {
+	updateDir(dir: string): void {
 		saveDirPref(dir);
 		this.setState({
 			fileDir: getDiaryFilePath(),
 		});
 	}
 
-	updatePassword() {
+	updatePassword(): void {
 		const { updatePassword } = this.props;
 		const { password1, password2 } = this.state;
 
@@ -146,16 +151,17 @@ export default class Preferences extends PureComponent<Props, State> {
 		}
 	}
 
-	hidePreferences() {
+	hidePreferences(): void {
 		const { setPrefVisibility } = this.props;
 
 		setPrefVisibility(false);
 	}
 
-	render() {
-		const { isLocked, themePref } = this.props;
+	render(): React.ReactNode {
+		const { hashedPassword, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
 
+		const isLocked = hashedPassword === "";
 		const passwordsMatch = password1 === password2;
 
 		return (
@@ -204,12 +210,12 @@ export default class Preferences extends PureComponent<Props, State> {
 						</div>
 					</fieldset>
 					{/*
-							File directory
-							When locked: Change directory
-							When unlocked: Move diary file and change directory
-							Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
-							file without an open dialog after changing the diary path)
-						 */
+						File directory
+						When locked: Change directory
+						When unlocked: Move diary file and change directory
+						Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
+						file without an open dialog after changing the diary path)
+					 */
 					!is.mas() && (
 						<fieldset className="fieldset-file-dir">
 							<legend>{translations["diary-file"]}</legend>

@@ -11,8 +11,6 @@ interface Props {
 }
 
 export default class Overlay extends PureComponent<Props, {}> {
-	overlayElement: HTMLDivElement;
-
 	constructor(props: Props) {
 		super(props);
 
@@ -21,12 +19,12 @@ export default class Overlay extends PureComponent<Props, {}> {
 		this.onKeyDown = this.onKeyDown.bind(this);
 	}
 
-	componentDidMount() {
+	componentDidMount(): void {
 		document.addEventListener("click", this.onClick);
 		window.addEventListener("keydown", this.onKeyDown);
 	}
 
-	componentWillUnmount() {
+	componentWillUnmount(): void {
 		document.removeEventListener("click", this.onClick);
 		window.removeEventListener("keydown", this.onKeyDown);
 	}
@@ -34,7 +32,7 @@ export default class Overlay extends PureComponent<Props, {}> {
 	/**
 	 * Close the overlay if the user clicks outside it
 	 */
-	onClick(e: MouseEvent) {
+	onClick(e: MouseEvent): void {
 		const { onClose } = this.props;
 		let targetElement = e.target as Node; // Clicked element
 
@@ -54,20 +52,22 @@ export default class Overlay extends PureComponent<Props, {}> {
 	/**
 	 * Close the overlay when the ESC key is pressed
 	 */
-	onKeyDown(e: KeyboardEvent) {
+	onKeyDown(e: KeyboardEvent): void {
 		if (e.key === "Escape") {
 			const { onClose } = this.props;
 			onClose();
 		}
 	}
 
-	render() {
+	overlayElement: HTMLDivElement;
+
+	render(): React.ReactNode {
 		const { children, className, onClose } = this.props;
 
 		return (
 			<div className="overlay-outer">
 				<div
-					className={`overlay-inner ${className ? className : ''}`}
+					className={`overlay-inner ${className || ""}`}
 					ref={el => {
 						this.overlayElement = el;
 					}}

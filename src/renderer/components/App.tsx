@@ -10,7 +10,7 @@ import Diary from "./views/pages/Diary/Diary";
 import PasswordCreationContainer from "./views/pages/PasswordCreation/PasswordCreationContainer";
 import PasswordPromptContainer from "./views/pages/PasswordPrompt/PasswordPromptContainer";
 
-interface Props {
+export interface StateProps {
 	exportErrorMsg: string;
 	exportStatus: Status;
 	fileExists: boolean;
@@ -19,20 +19,25 @@ interface Props {
 	importStatus: Status;
 	showImportOverlay: boolean;
 	showPref: boolean;
-	testFileExists: () => void;
 	theme: Theme;
 }
+
+export interface DispatchProps {
+	testFileExists: () => void;
+}
+
+type Props = StateProps & DispatchProps;
 
 interface State {
 	isLoading: boolean;
 }
 
 export default class App extends Component<Props, State> {
-	static hideSpinningCursor() {
+	static hideSpinningCursor(): void {
 		document.body.style.cursor = "auto";
 	}
 
-	static showSpinningCursor() {
+	static showSpinningCursor(): void {
 		document.body.style.cursor = "wait";
 	}
 
@@ -44,7 +49,7 @@ export default class App extends Component<Props, State> {
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount(): void {
 		const { testFileExists } = this.props;
 
 		testFileExists();
@@ -53,7 +58,7 @@ export default class App extends Component<Props, State> {
 		});
 	}
 
-	componentDidUpdate(prevProps: Props) {
+	componentDidUpdate(prevProps: Props): void {
 		const { exportErrorMsg, exportStatus, importErrorMsg, importStatus } = this.props;
 
 		// Check for export error and display it if there is one
@@ -89,7 +94,7 @@ export default class App extends Component<Props, State> {
 		}
 	}
 
-	render() {
+	render(): React.ReactNode {
 		const { fileExists, hashedPassword, showImportOverlay, showPref, theme } = this.props;
 		const { isLoading } = this.state;
 
@@ -112,7 +117,7 @@ export default class App extends Component<Props, State> {
 		// Render overlay (e.g. preferences or import dialog) over page if necessary
 		let overlay;
 		if (showPref) {
-			overlay = <Preferences isLocked={fileExists === false || hashedPassword === ""} />;
+			overlay = <Preferences />;
 		} else if (showImportOverlay) {
 			overlay = <ImportOverlayContainer />;
 		}

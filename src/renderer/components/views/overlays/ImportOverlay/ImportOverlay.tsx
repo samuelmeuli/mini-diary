@@ -30,11 +30,16 @@ const fields = {
 };
 const tBackupInfo = translate("import-backup-info", { appName: APP_NAME });
 
-interface Props {
-	hideImportOverlay: () => void;
+export interface StateProps {
 	importFormat: ImportFormat;
+}
+
+export interface DispatchProps {
+	hideImportOverlay: () => void;
 	runImport: (importFilePath: string) => void;
 }
+
+type Props = StateProps & DispatchProps;
 
 export default class ImportOverlay extends PureComponent<Props, {}> {
 	constructor(props: Props) {
@@ -44,7 +49,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		this.selectAndImportFile = this.selectAndImportFile.bind(this);
 	}
 
-	selectAndImportFile() {
+	selectAndImportFile(): void {
 		const { importFormat, runImport } = this.props;
 
 		// Show dialog for selecting file to import
@@ -64,7 +69,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		}
 	}
 
-	render() {
+	render(): React.ReactNode {
 		const { hideImportOverlay, importFormat } = this.props;
 
 		return (

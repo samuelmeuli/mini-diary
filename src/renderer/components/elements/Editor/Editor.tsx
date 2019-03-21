@@ -3,13 +3,14 @@ import {
 	convertFromRaw,
 	convertToRaw,
 	DraftEditorCommand,
+	DraftHandleValue,
 	Editor as DraftJsEditor,
 	EditorState,
 	RichUtils,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
-import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
+import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 import React, { PureComponent } from "react";
 
 import { translations } from "../../../utils/i18n";
@@ -17,22 +18,25 @@ import { toIndexDate, toLocaleWeekday } from "../../../utils/dateFormat";
 
 const AUTOSAVE_INTERVAL = 500;
 
-interface Props {
+export interface StateProps {
 	dateSelected: Date;
 	entries: Entries;
+}
+
+export interface DispatchProps {
 	updateEntry: (entryDate: IndexDate, title: string, text: string) => void;
 }
 
+type Props = StateProps & DispatchProps;
+
 interface State {
-	dateSelected: Date,
-	textEditorState: EditorState,
-	titleEditorState: EditorState
+	dateSelected: Date;
+	textEditorState: EditorState;
+	titleEditorState: EditorState;
 }
 
 export default class Editor extends PureComponent<Props, State> {
-	saveEntryDebounced: () => void;
-
-	static getDerivedStateFromProps(props: Props, state: State) {
+	static getDerivedStateFromProps(props: Props, state: State): State {
 		const { dateSelected: dateProps, entries } = props;
 		const { dateSelected: dateState } = state;
 
@@ -46,7 +50,10 @@ export default class Editor extends PureComponent<Props, State> {
 		};
 	}
 
-	static getStateFromEntry(entries: Entries, date: Date) {
+	static getStateFromEntry(
+		entries: Entries,
+		date: Date,
+	): { textEditorState: EditorState; titleEditorState: EditorState } {
 		const indexDate = toIndexDate(date);
 		const entry = entries[indexDate];
 		let text = "";
@@ -84,37 +91,36 @@ export default class Editor extends PureComponent<Props, State> {
 		});
 	}
 
-	onTextChange(textEditorState: EditorState) {
+	onTextChange(textEditorState: EditorState): void {
 		this.setState({
 			textEditorState,
 		});
 		this.saveEntryDebounced();
 	}
 
-	onTitleChange(titleEditorState: EditorState) {
+	onTitleChange(titleEditorState: EditorState): void {
 		this.setState({
 			titleEditorState,
 		});
 		this.saveEntryDebounced();
 	}
 
-	handleKeyCommand(command: DraftEditorCommand, editorState: EditorState) {
+	handleKeyCommand(command: DraftEditorCommand, editorState: EditorState): DraftHandleValue {
 		let newState: EditorState;
 		if (command === "bold") {
-			newState = RichUtils.toggleInlineStyle(editorState, 'BOLD')
+			newState = RichUtils.toggleInlineStyle(editorState, "BOLD");
 		} else if (command === "italic") {
-			newState = RichUtils.toggleInlineStyle(editorState, 'ITALIC')
+			newState = RichUtils.toggleInlineStyle(editorState, "ITALIC");
 		}
 
 		if (newState) {
 			this.onTextChange(newState);
-			return 'handled';
-		} else {
-			return 'not-handled';
+			return "handled";
 		}
+		return "not-handled";
 	}
 
-	saveEntry() {
+	saveEntry(): void {
 		const { dateSelected, updateEntry } = this.props;
 		const { textEditorState, titleEditorState } = this.state;
 
@@ -124,7 +130,9 @@ export default class Editor extends PureComponent<Props, State> {
 		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
-	render() {
+	saveEntryDebounced: () => void;
+
+	render(): React.ReactNode {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
 
 		const weekdayDate = toLocaleWeekday(dateSelected);
