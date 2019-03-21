@@ -30,8 +30,8 @@
 		"format": "prettier --write",
 		"lint:css": "stylelint --fix",
 		"lint:scss": "stylelint --fix --syntax scss",
-		"lint:js": "eslint --ext .html,.js --fix",
-		"lint:ts": "eslint --ext .ts"
+		"lint:js": "eslint --ext .html,.js,.jsx --fix",
+		"lint:ts": "eslint --ext .ts,.tsx --fix"
 	},
 	"dependencies": {
 		"@types/draft-js": "^0.10.29",
@@ -146,12 +146,12 @@
 		}
 	},
 	"lint-staged": {
-		"*.ts": [
+		"*.{ts,tsx}": [
 			"yarn lint:ts",
 			"yarn format",
 			"git add"
 		],
-		"*.{html,js}": [
+		"*.{html,js,jsx}": [
 			"yarn lint:js",
 			"yarn format",
 			"git add"
