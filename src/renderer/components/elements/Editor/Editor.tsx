@@ -80,6 +80,10 @@ export default class Editor extends PureComponent<Props, State> {
 
 		// Function bindings
 		this.handleKeyCommand = this.handleKeyCommand.bind(this);
+		this.onBoldClick = this.onBoldClick.bind(this);
+		this.onItalicClick = this.onItalicClick.bind(this);
+		this.onOlClick = this.onOlClick.bind(this);
+		this.onUlClick = this.onUlClick.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
@@ -89,6 +93,30 @@ export default class Editor extends PureComponent<Props, State> {
 		window.addEventListener("unload", () => {
 			this.saveEntry();
 		});
+	}
+
+	onBoldClick(): void {
+		const { textEditorState } = this.state;
+
+		this.onTextChange(RichUtils.toggleInlineStyle(textEditorState, "BOLD"));
+	}
+
+	onItalicClick(): void {
+		const { textEditorState } = this.state;
+
+		this.onTextChange(RichUtils.toggleInlineStyle(textEditorState, "ITALIC"));
+	}
+
+	onOlClick(): void {
+		const { textEditorState } = this.state;
+
+		this.onTextChange(RichUtils.toggleBlockType(textEditorState, "ordered-list-item"));
+	}
+
+	onUlClick(): void {
+		const { textEditorState } = this.state;
+
+		this.onTextChange(RichUtils.toggleBlockType(textEditorState, "unordered-list-item"));
 	}
 
 	onTextChange(textEditorState: EditorState): void {
@@ -135,6 +163,14 @@ export default class Editor extends PureComponent<Props, State> {
 	render(): React.ReactNode {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
 
+		// Detect active inline/block styles
+		const inlineStyle = textEditorState.getCurrentInlineStyle();
+		const blockType = RichUtils.getCurrentBlockType(textEditorState);
+		const isBold = inlineStyle.has("BOLD");
+		const isItalic = inlineStyle.has("ITALIC");
+		const isOl = blockType === "ordered-list-item";
+		const isUl = blockType === "unordered-list-item";
+
 		const weekdayDate = toLocaleWeekday(dateSelected);
 		return (
 			<form className="editor">
@@ -153,8 +189,44 @@ export default class Editor extends PureComponent<Props, State> {
 						handleKeyCommand={this.handleKeyCommand}
 						onBlur={this.saveEntry}
 						onChange={this.onTextChange}
-						placeholder={`${translations["write-something"]}…`}
+						placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
 					/>
+				</div>
+				<div
+					className="editor-buttons"
+					onMouseDown={e => {
+						e.preventDefault(); // Keep focus on editor when a button is clicked
+					}}
+					role="none"
+				>
+					<button
+						type="button"
+						className={`button button-main ${isBold ? "button-active" : ""}`}
+						onClick={this.onBoldClick}
+					>
+						Bold
+					</button>
+					<button
+						type="button"
+						className={`button button-main ${isItalic ? "button-active" : ""}`}
+						onClick={this.onItalicClick}
+					>
+						Italic
+					</button>
+					<button
+						type="button"
+						className={`button button-main ${isOl ? "button-active" : ""}`}
+						onClick={this.onOlClick}
+					>
+						OL
+					</button>
+					<button
+						type="button"
+						className={`button button-main ${isUl ? "button-active" : ""}`}
+						onClick={this.onUlClick}
+					>
+						UL
+					</button>
 				</div>
 			</form>
 		);
