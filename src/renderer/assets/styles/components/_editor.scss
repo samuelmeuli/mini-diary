@@ -1,17 +1,36 @@
 .editor {
 	@include background-color("background-editor");
+	position: relative;
+	border-radius: $border-radius-input;
+}
+
+.editor-scrollable {
 	display: grid;
 	grid-template-rows: auto auto 1fr;
 	width: 100%;
-	padding: $spacing-rel-small;
+	height: 100%;
+	padding: $spacing-rel-small (2 * $spacing-rel-small) $spacing-rel-small $spacing-rel-small;
 	overflow-y: auto;
-	border-radius: $border-radius-input;
 }
 
 .editor-title-wrapper {
 	margin-bottom: $spacing-small;
 	font-weight: $font-weight-bold;
 	font-size: 150%;
+}
+
+.editor-buttons-wrapper {
+	@include background-color("background");
+	position: absolute;
+	top: 0;
+	right: $spacing-medium;
+	bottom: 0;
+	width: $calendar-cell-size;
+	height: 4 * $calendar-cell-size;
+	margin-top: auto;
+	margin-bottom: auto;
+	border-radius: $border-radius-button;
+	box-shadow: $box-shadow;
 }
 
 // stylelint-disable selector-class-pattern

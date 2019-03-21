@@ -15,7 +15,8 @@ textarea {
 }
 
 .button,
-input {
+input:not([type="radio"]) {
+	height: $calendar-cell-size;
 	padding: (0.75 * $spacing-medium) $spacing-medium;
 	line-height: 1;
 }
@@ -69,6 +70,14 @@ input {
 
 		&:not([disabled]):hover {
 			@include color("text-faded");
+		}
+
+		&.button-active {
+			@include color("main");
+
+			&:hover {
+				@include color("main-hover");
+			}
 		}
 	}
 
