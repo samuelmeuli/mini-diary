@@ -1,5 +1,4 @@
 const path = require("path");
-const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
 	entry: "./src/main/main.ts",
@@ -28,7 +27,6 @@ module.exports = {
 		],
 	},
 	target: "electron-main",
-	externals: [nodeExternals()],
 	node: {
 		__dirname: false,
 		__filename: false,
