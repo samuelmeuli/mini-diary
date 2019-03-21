@@ -11,7 +11,7 @@
 	"private": true,
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
-		"start": "npm-run-all --parallel start:main start:renderer --sequential start:app",
+		"start": "npm-run-all --parallel start:main start:renderer --parallel start:app start:main-watch start:renderer-watch",
 		"start:main": "webpack --config webpack.main.config.js --mode development",
 		"start:main-watch": "yarn start:main --watch",
 		"start:renderer": "webpack --config webpack.renderer.config.js --mode development",
