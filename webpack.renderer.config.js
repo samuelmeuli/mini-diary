@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const LicenseCheckerWebpackPlugin = require("license-checker-webpack-plugin");
 
 module.exports = {
 	entry: "./src/renderer/renderer.tsx",
@@ -39,6 +40,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: "Mini Diary",
 		}),
+		new LicenseCheckerWebpackPlugin({ outputFilename: "licenses-renderer.txt" }),
 	],
 	target: "electron-renderer",
 };

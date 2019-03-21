@@ -51,6 +51,7 @@
 		"electron-settings": "^3.2.0",
 		"electron-updater": "^4.0.6",
 		"feather-icons": "^4.19.0",
+		"license-checker-webpack-plugin": "^0.0.9",
 		"lodash.debounce": "^4.0.8",
 		"markdown-draft-js": "^1.4.1",
 		"minireset.css": "^0.0.4",
