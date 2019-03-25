@@ -138,6 +138,9 @@
 		},
 		"linux": {
 			"category": "Office"
+		},
+		"dmg": {
+			"icon": false
 		}
 	},
 	"husky": {
