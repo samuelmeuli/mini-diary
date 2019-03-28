@@ -152,9 +152,9 @@
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
 "@samuelmeuli/eslint-config@~2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@samuelmeuli/eslint-config/-/eslint-config-2.0.0.tgz#75edaeb7283a27e9fe2255a07e3668cb9d5b2241"
-  integrity sha512-T5N5zqWYb5JUrb0oEiuGWRMbCYaM6qgnqTqf6hpZ2EuLeBwtz1l3gkQ2mwPuBz/qndutO419GbQSI9W4ehgNUg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@samuelmeuli/eslint-config/-/eslint-config-2.0.1.tgz#10b2f70bf455f14938bbde5983f5a900d7bbc225"
+  integrity sha512-mPD6Uu1/skwxkMYC+PDtZC5VoK9Eg/B/bpzY9KX5L51yC7sKtxelS0Pb00QiCfKU8YEs5DbJfGciEFsnoqALag==
 
 "@samuelmeuli/stylelint-config@~1.0.0":
   version "1.0.0"

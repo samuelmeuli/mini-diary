@@ -21,7 +21,3 @@ rules:
     - error
     - devDependencies:
         - "webpack.*.js"
-
-  # TODO Remove rule exceptions once fixed
-  "@typescript-eslint/no-var-requires": off # Seems to be broken (also marks normal imports)
-  "import/named": off # Seems to be broken for TypeScript (incorrect "not found" errors)
