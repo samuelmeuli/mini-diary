@@ -3,6 +3,10 @@ declare module "*.svg" {
 	export = value;
 }
 
+declare module "draft-js-autolist-plugin";
+
+declare module "draft-js-plugins-editor";
+
 declare module "elasticlunr";
 
 declare module "electron-md-to-pdf";

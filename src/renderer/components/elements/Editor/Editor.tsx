@@ -4,20 +4,23 @@ import {
 	convertToRaw,
 	DraftEditorCommand,
 	DraftHandleValue,
-	Editor as DraftJsEditor,
 	EditorState,
 	RichUtils,
 } from "draft-js";
+import createAutoListPlugin from "draft-js-autolist-plugin";
+import DraftJsEditor from "draft-js-plugins-editor";
 import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 import React, { PureComponent } from "react";
 
-import { translations } from "../../../utils/i18n";
 import { toIndexDate, toLocaleWeekday } from "../../../utils/dateFormat";
+import { translations } from "../../../utils/i18n";
 import EditorToolbar from "./EditorToolbar";
 
 const AUTOSAVE_INTERVAL = 500;
+
+const plugins = [createAutoListPlugin()];
 
 export interface StateProps {
 	dateSelected: Date;
@@ -161,6 +164,7 @@ export default class Editor extends PureComponent<Props, State> {
 							onBlur={this.saveEntry}
 							onChange={this.onTextChange}
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
+							plugins={plugins}
 						/>
 					</div>
 				</div>
