@@ -4,11 +4,13 @@ import {
 	convertToRaw,
 	DraftEditorCommand,
 	DraftHandleValue,
+	Editor as DraftJsEditor,
 	EditorState,
+	getDefaultKeyBinding,
 	RichUtils,
 } from "draft-js";
 import createAutoListPlugin from "draft-js-autolist-plugin";
-import DraftJsEditor from "draft-js-plugins-editor";
+import PluginEditor from "draft-js-plugins-editor";
 import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
@@ -17,6 +19,8 @@ import React, { PureComponent } from "react";
 import { toIndexDate, toLocaleWeekday } from "../../../utils/dateFormat";
 import { translations } from "../../../utils/i18n";
 import EditorToolbar from "./EditorToolbar";
+
+type DraftEditorCommandExtended = DraftEditorCommand | "enter";
 
 const AUTOSAVE_INTERVAL = 500;
 
@@ -72,6 +76,13 @@ export default class Editor extends PureComponent<Props, State> {
 		};
 	}
 
+	static titleKeyBindingFn(e: React.KeyboardEvent): DraftEditorCommandExtended {
+		if (e.key === "Enter") {
+			return "enter";
+		}
+		return getDefaultKeyBinding(e);
+	}
+
 	constructor(props: Props) {
 		super(props);
 		const { dateSelected, entries } = props;
@@ -83,7 +94,8 @@ export default class Editor extends PureComponent<Props, State> {
 		};
 
 		// Function bindings
-		this.handleKeyCommand = this.handleKeyCommand.bind(this);
+		this.handleTextKeyCommand = this.handleTextKeyCommand.bind(this);
+		this.handleTitleKeyCommand = this.handleTitleKeyCommand.bind(this);
 		this.onTextChange = this.onTextChange.bind(this);
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
@@ -109,7 +121,9 @@ export default class Editor extends PureComponent<Props, State> {
 		this.saveEntryDebounced();
 	}
 
-	handleKeyCommand(command: DraftEditorCommand, editorState: EditorState): DraftHandleValue {
+	textEditor: DraftJsEditor;
+
+	handleTextKeyCommand(command: DraftEditorCommand, editorState: EditorState): DraftHandleValue {
 		let newState: EditorState;
 		if (command === "bold") {
 			newState = RichUtils.toggleInlineStyle(editorState, "BOLD");
@@ -119,6 +133,15 @@ export default class Editor extends PureComponent<Props, State> {
 
 		if (newState) {
 			this.onTextChange(newState);
+			return "handled";
+		}
+		return "not-handled";
+	}
+
+	handleTitleKeyCommand(command: DraftEditorCommandExtended): DraftHandleValue {
+		// Move focus to text editor when enter key is pressed in title editor
+		if (command === "enter") {
+			this.textEditor.focus();
 			return "handled";
 		}
 		return "not-handled";
@@ -152,17 +175,22 @@ export default class Editor extends PureComponent<Props, State> {
 					<div className="editor-title-wrapper">
 						<DraftJsEditor
 							editorState={titleEditorState}
+							handleKeyCommand={this.handleTitleKeyCommand}
+							keyBindingFn={Editor.titleKeyBindingFn}
 							onBlur={this.saveEntry}
 							onChange={this.onTitleChange}
 							placeholder={translations["add-a-title"]}
 						/>
 					</div>
 					<div className="editor-text-wrapper">
-						<DraftJsEditor
+						<PluginEditor
 							editorState={textEditorState}
-							handleKeyCommand={this.handleKeyCommand}
+							handleKeyCommand={this.handleTextKeyCommand}
 							onBlur={this.saveEntry}
 							onChange={this.onTextChange}
+							ref={(textEditor: DraftJsEditor) => {
+								this.textEditor = textEditor;
+							}}
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
 							plugins={plugins}
 						/>
