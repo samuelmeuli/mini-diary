@@ -9,6 +9,9 @@ import SimpleSvg from "react-simple-svg";
 import iconOl from "../../../assets/icons/ordered-list.svg";
 import { translations } from "../../../utils/i18n";
 
+const STROKE_WIDTH_DEFAULT = 2;
+const STROKE_WIDTH_SELECTED = 3;
+
 export interface CustomProps {
 	onTextChange: (textEditorState: EditorState) => void;
 	textEditorState: EditorState;
@@ -75,28 +78,52 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 					className={`button button-invisible ${isBold ? "button-active" : ""}`}
 					onClick={this.onBoldClick}
 				>
-					<SimpleSvg src={iconBold} height={20} width={20} title={translations.bold} />
+					<SimpleSvg
+						src={iconBold}
+						width={20}
+						height={20}
+						strokeWidth={isBold ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
+						title={translations.bold}
+					/>
 				</button>
 				<button
 					type="button"
 					className={`button button-invisible ${isItalic ? "button-active" : ""}`}
 					onClick={this.onItalicClick}
 				>
-					<SimpleSvg src={iconItalic} height={20} width={20} title={translations.italic} />
+					<SimpleSvg
+						src={iconItalic}
+						width={20}
+						height={20}
+						strokeWidth={isItalic ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
+						title={translations.italic}
+					/>
 				</button>
 				<button
 					type="button"
 					className={`button button-invisible ${isUl ? "button-active" : ""}`}
 					onClick={this.onUlClick}
 				>
-					<SimpleSvg src={iconUl} height={20} width={20} title={translations.bullets} />
+					<SimpleSvg
+						src={iconUl}
+						width={20}
+						height={20}
+						strokeWidth={isUl ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
+						title={translations.bullets}
+					/>
 				</button>
 				<button
 					type="button"
 					className={`button button-invisible ${isOl ? "button-active" : ""}`}
 					onClick={this.onOlClick}
 				>
-					<SimpleSvg src={iconOl} height={20} width={20} title={translations.numbers} />
+					<SimpleSvg
+						src={iconOl}
+						width={20}
+						height={20}
+						strokeWidth={isOl ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
+						title={translations.numbers}
+					/>
 				</button>
 			</div>
 		);
