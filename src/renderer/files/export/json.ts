@@ -13,7 +13,7 @@ export function convertToJson(entries: [string, DiaryEntry][]): Promise<string> 
 		});
 
 		// Add metadata
-		const content = {
+		const content: DiaryFile = {
 			metadata: getMetadata(),
 			entries: jsonEntries,
 		};

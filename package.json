@@ -65,7 +65,8 @@
 		"react-simple-svg": "^1.0.2",
 		"redux": "^4.0.0",
 		"redux-logger": "^3.0.6",
-		"redux-thunk": "^2.3.0"
+		"redux-thunk": "^2.3.0",
+		"semver": "^6.0.0"
 	},
 	"devDependencies": {
 		"@samuelmeuli/eslint-config": "~2.0.0",

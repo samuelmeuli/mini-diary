@@ -22,7 +22,7 @@ export function getDiaryFilePath(): string {
  * Return metadata to include in encrypted diary file (consists of app version and date of last
  * write)
  */
-export function getMetadata(): Record<string, string> {
+export function getMetadata(): Metadata {
 	return {
 		...METADATA,
 		dateUpdated: new Date().toString(),

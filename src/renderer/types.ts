@@ -1,14 +1,25 @@
 // Diary
 
+type IndexDate = string;
+
 interface DiaryEntry {
 	dateUpdated: string;
 	title: string;
 	text: string;
 }
 
-type IndexDate = string;
-
 type Entries = Record<IndexDate, DiaryEntry>;
+
+interface Metadata {
+	application: string;
+	version: string;
+	dateUpdated: string;
+}
+
+interface DiaryFile {
+	metadata: Metadata;
+	entries: Entries;
+}
 
 interface SearchResult {
 	ref: string;

@@ -1,20 +1,19 @@
-import { getDiaryFilePath } from "../../files/diary/diaryFile";
+import { createBackup } from "../../files/diary/backupFile";
 import { readFile } from "../../files/fileAccess";
-import { backupFile } from "../../files/import/backupFile";
 import { parseDayOneTxt } from "../../files/import/dayOne";
-import { parseJson } from "../../files/import/json";
 import { parseJrnlJson } from "../../files/import/jrnl";
+import { parseJson } from "../../files/import/json";
 import { mergeUpdateFile } from "../file/actionCreators";
 import { ThunkActionT } from "../store";
 import {
 	IMPORT_ERROR,
 	IMPORT_IN_PROGRESS,
 	IMPORT_SUCCESS,
-	SET_IMPORT_DIALOG,
 	SetImportErrorAction,
 	SetImportInProgressAction,
 	SetImportOverlayAction,
 	SetImportSuccessAction,
+	SET_IMPORT_DIALOG,
 } from "./types";
 
 // Action creators
@@ -111,8 +110,7 @@ const importJson = (jsonPath: string): ThunkActionT => dispatch => {
 };
 
 export const runImport = (importFilePath: string): ThunkActionT => (dispatch, getState) => {
-	const diaryFilePath = getDiaryFilePath();
-	backupFile(diaryFilePath);
+	createBackup();
 	const { importFormat } = getState().import;
 	if (importFormat === "dayOne") {
 		dispatch(importDayOne(importFilePath));

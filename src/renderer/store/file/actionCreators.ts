@@ -1,21 +1,20 @@
 import { disableMenuItems, enableMenuItems } from "../../electron/ipcRenderer/senders";
 import { getDiaryFilePath, getMetadata } from "../../files/diary/diaryFile";
 import { hashPassword } from "../../files/diary/hashPassword";
+import { performMigrations } from "../../files/diary/migrations";
 import { fileExists, readEncryptedFile, writeEncryptedFile } from "../../files/fileAccess";
 import { translations } from "../../utils/i18n";
 import { createIndex, createOrUpdateIndexDoc, deleteIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
 import {
-	CLEAR_FILE_STATE,
 	ClearFileStateAction,
+	CLEAR_FILE_STATE,
 	DECRYPT_ERROR,
 	DECRYPT_IN_PROGRESS,
 	DECRYPT_SUCCESS,
 	ENCRYPT_ERROR,
 	ENCRYPT_IN_PROGRESS,
 	ENCRYPT_SUCCESS,
-	SET_FILE_EXISTS,
-	SET_HASHED_PASSWORD,
 	SetDecryptErrorAction,
 	SetDecryptInProgressAction,
 	SetDecryptSuccessAction,
@@ -24,6 +23,8 @@ import {
 	SetEncryptSuccessAction,
 	SetFileExistsAction,
 	SetHashedPasswordAction,
+	SET_FILE_EXISTS,
+	SET_HASHED_PASSWORD,
 } from "./types";
 
 // Action creators
@@ -119,10 +120,17 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 	const hashedPassword = hashPassword(password);
 	try {
 		const fileContent = readEncryptedFile(filePath, hashedPassword);
-		const { entries } = JSON.parse(fileContent);
-		// On success, load diary entries and save password
-		dispatch(setDecryptSuccess(entries));
+		let data: DiaryFile = JSON.parse(fileContent);
+
+		// On success: Save password
 		dispatch(setHashedPassword(hashedPassword));
+
+		// Perform data migrations between app updates if necessary
+		data = performMigrations(data);
+
+		// Load diary entries and save password
+		const { entries } = data;
+		dispatch(setDecryptSuccess(entries));
 		createIndex(entries);
 		enableMenuItems();
 	} catch (err) {
@@ -143,7 +151,7 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 export const createEncryptedFile = (password: string): ThunkActionT => dispatch => {
 	const entries = {};
 	const filePath = getDiaryFilePath();
-	const content = {
+	const content: DiaryFile = {
 		metadata: getMetadata(),
 		entries,
 	};
@@ -169,7 +177,7 @@ const writeEntriesEncrypted = (
 	hashedPassword: string,
 ): ThunkActionT => dispatch => {
 	const filePath = getDiaryFilePath();
-	const fileContent = {
+	const fileContent: DiaryFile = {
 		metadata: getMetadata(),
 		entries,
 	};
