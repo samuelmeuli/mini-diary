@@ -64,7 +64,7 @@ export default class App extends Component<Props, State> {
 		// Check for export error and display it if there is one
 		if (exportErrorMsg && exportErrorMsg !== prevProps.exportErrorMsg) {
 			remote.dialog.showErrorBox(
-				"export-error-title",
+				translations["export-error-title"],
 				`${translations["export-error-msg"]}: ${exportErrorMsg}`,
 			);
 		}
@@ -72,7 +72,7 @@ export default class App extends Component<Props, State> {
 		// Check for import error and display it if there is one
 		if (importErrorMsg && importErrorMsg !== prevProps.importErrorMsg) {
 			remote.dialog.showErrorBox(
-				"import-error-title",
+				translations["import-error-title"],
 				`${translations["import-error-msg"]}: ${importErrorMsg}`,
 			);
 		}
