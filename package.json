@@ -66,7 +66,9 @@
 		"redux": "^4.0.0",
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
-		"semver": "^6.0.0"
+		"remark": "^10.0.1",
+		"semver": "^6.0.0",
+		"strip-markdown": "^3.0.3"
 	},
 	"devDependencies": {
 		"@samuelmeuli/eslint-config": "~2.0.0",

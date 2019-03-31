@@ -18,9 +18,6 @@ export function convertToMd(entries: [string, DiaryEntry][]): Promise<string> {
 		entries.forEach(([indexDate, entry]) => {
 			const { text, title } = entry;
 
-			// Replace single with double line breaks to get Markdown paragraphs
-			const textMd = text.replace(/\n/g, "\n\n");
-
 			// Format date
 			const dateStr = toLocaleWeekday(new Date(indexDate));
 
@@ -29,8 +26,8 @@ export function convertToMd(entries: [string, DiaryEntry][]): Promise<string> {
 			if (title) {
 				md += `**${title}**\n\n`; // Title
 			}
-			if (textMd) {
-				md += `${textMd}\n\n`; // Text
+			if (text) {
+				md += `${text}\n\n`; // Text
 			}
 			md += "\n";
 		});

@@ -5,7 +5,7 @@ import { createBackup } from "./backupFile";
 /**
  * v2.0.0: Migrate plain text entries to Markdown entries (replace \n with \n\n)
  */
-function migrateToMarkdown(data: DiaryFile) {
+function migrateToMarkdown(data: DiaryFile): DiaryFile {
 	createBackup();
 
 	const { metadata, entries } = data;
@@ -30,7 +30,7 @@ function migrateToMarkdown(data: DiaryFile) {
 /**
  * Compare app version with diary file version, perform data migrations if necessary
  */
-export function performMigrations(data: DiaryFile) {
+export function performMigrations(data: DiaryFile): DiaryFile {
 	const diaryFileVersion = data.metadata.version;
 
 	if (semver.lt(diaryFileVersion, "2.0.0")) {

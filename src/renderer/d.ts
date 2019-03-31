@@ -16,3 +16,7 @@ declare module "markdown-draft-js";
 declare module "react-day-picker/moment";
 
 declare module "react-simple-svg";
+
+declare module "remark";
+
+declare module "strip-markdown";

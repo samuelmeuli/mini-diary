@@ -1,3 +1,6 @@
+import remark from "remark";
+import strip from "strip-markdown";
+
 import { toDayOneDate } from "../../utils/dateFormat";
 
 /**
@@ -9,11 +12,12 @@ import { toDayOneDate } from "../../utils/dateFormat";
  *
  *   [Text]
  */
-export function convertToTxt(entries: [string, DiaryEntry][]): Promise<string> {
-	return new Promise(resolve => {
+export async function convertToTxt(entries: [string, DiaryEntry][]): Promise<string> {
+	return new Promise(async resolve => {
 		let txt = "";
 
-		entries.forEach(([indexDate, entry]) => {
+		for (let i = 0; i < entries.length; i += 1) {
+			const [indexDate, entry] = entries[i];
 			const { text, title } = entry;
 
 			// Format date
@@ -25,10 +29,14 @@ export function convertToTxt(entries: [string, DiaryEntry][]): Promise<string> {
 				txt += `${title}\n\n`; // Title
 			}
 			if (text) {
-				txt += `${text}\n\n`; // Text
+				// eslint-disable-next-line no-await-in-loop
+				const textTxt = await remark()
+					.use(strip)
+					.process(text);
+				txt += `${textTxt}\n\n`; // Text
 			}
 			txt += "\n";
-		});
+		}
 
 		resolve(txt);
 	});
