@@ -53,6 +53,10 @@ const translationsDe: Translations = {
 
 	// Editor
 	"add-a-title": "Titel hinzufügen",
+	"bold": "Fett",
+	"bullets": "Aufzählung",
+	"italic": "Kursiv",
+	"list": "Nummerierte Liste",
 	"write-something": "Schreibe etwas",
 
 	// Search

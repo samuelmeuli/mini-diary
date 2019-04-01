@@ -51,6 +51,10 @@ export interface Translations {
 
 	// Editor
 	"add-a-title": string,
+	"bold": string,
+	"bullets": string,
+	"italic": string,
+	"list": string,
 	"write-something": string,
 
 	// Search

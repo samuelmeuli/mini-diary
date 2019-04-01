@@ -53,6 +53,10 @@ const translationsFr: Translations = {
 
 	// Editor
 	"add-a-title": "Ajoutez un titre",
+	"bold": "Gras",
+	"bullets": "Liste à puces",
+	"italic": "Italique",
+	"list": "Liste numérotée",
 	"write-something": "Écrivez ce qui vous passe par la tête",
 
 	// Search

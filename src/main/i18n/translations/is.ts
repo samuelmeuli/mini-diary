@@ -53,6 +53,10 @@ const translationsIs: Translations  = {
 
 	// Editor
 	"add-a-title": "Bæta við titli",
+	"bold": "Djarfur",
+	"bullets": "Bullet listi",
+	"italic": "Skáletrað",
+	"list": "Númeraður listi",
 	"write-something": "Skrifaðu eitthvað",
 
 	// Search

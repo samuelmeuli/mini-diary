@@ -53,6 +53,10 @@ const translationsTr: Translations  = {
 
 	// Editor
 	"add-a-title": "Bir başlık ekle",
+	"bold": "Kalın",
+	"bullets": "Madde işareti listesi",
+	"italic": "İtalik",
+	"list": "Numaralı liste",
 	"write-something": "Bir şeyler yaz",
 
 	// Search
