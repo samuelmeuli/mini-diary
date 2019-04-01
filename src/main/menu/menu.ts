@@ -19,13 +19,6 @@ const DISABLED_MENU_ITEMS = [
 
 let menu: Menu;
 
-export function initMenu(): void {
-	// Build menu
-	const template = getMenuTemplate();
-	menu = Menu.buildFromTemplate(template);
-	Menu.setApplicationMenu(menu);
-}
-
 export function disableMenuItems(): void {
 	DISABLED_MENU_ITEMS.forEach(id => {
 		menu.getMenuItemById(id).enabled = false;
@@ -37,3 +30,8 @@ export function enableMenuItems(): void {
 		menu.getMenuItemById(id).enabled = true;
 	});
 }
+
+// Build menu
+const template = getMenuTemplate();
+menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
