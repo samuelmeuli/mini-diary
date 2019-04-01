@@ -89,7 +89,7 @@ const translationsEs: Translations = {
 	"import-backup-info": "{appName} realizará una copia de seguridad de tus datos antes de la importación.",
 	"import-error-msg": "Ha ocurrido un error durante la importación",
 	"import-error-title": "Error importando",
-	"import-instructions-day-one": "Abre la aplicación Day One y exporta tu diario en Fichero → Exportar → Texto plano. Descomprime el fichero guardado. Selecciona el TXT en el siguiente paso para importarlo a {appName}.",
+	"import-instructions-day-one": "Abre la aplicación Day One y exporta tu diario en Fichero → Exportar → JSON. Descomprime el fichero guardado. Selecciona el JSON en el siguiente paso para importarlo a {appName}.",
 	"import-instructions-jrnl": "Para exportar tu diario jrnl, ejecuta {command}. Selecciona el fichero JSON generado en el siguiente paso para importarlo a {appName}.",
 	"import-instructions-json": "Puedes importar los datos de una exportación previa desde {appName} en formato JSON o desde otro fichero JSON que tenga el formato adecuado.",
 	"start-import": "Iniciar importación",
