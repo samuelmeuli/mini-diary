@@ -8,7 +8,7 @@ const APP_NAME = remote.app.getName();
 const fields = {
 	dayOne: {
 		title: translate("import-from-format", { format: "Day One" }),
-		extension: "txt",
+		extension: "json",
 		instructions: <p>{translate("import-instructions-day-one", { appName: APP_NAME })}</p>,
 	},
 	jrnl: {
