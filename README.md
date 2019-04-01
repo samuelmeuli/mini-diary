@@ -14,6 +14,7 @@
 
 - Beautiful and clean design
 - Encryption
+- Basic text formatting (bold, italics, lists)
 - Full-text search
 - Light and dark themes
 - Import from Day One, jrnl, or JSON
