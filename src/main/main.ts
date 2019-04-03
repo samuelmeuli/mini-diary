@@ -46,16 +46,22 @@ function run(): void {
 	autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on("window-all-closed", () => {
+const hasInstanceLock = app.requestSingleInstanceLock();
+if (!hasInstanceLock) {
+	// Only allow a single instance of the app to run at the same time
 	app.quit();
-});
+} else {
+	app.on("window-all-closed", () => {
+		app.quit();
+	});
 
-app.on("activate", () => {
-	if (!getWindow()) {
+	app.on("activate", () => {
+		if (!getWindow()) {
+			run();
+		}
+	});
+
+	app.on("ready", () => {
 		run();
-	}
-});
-
-app.on("ready", () => {
-	run();
-});
+	});
+}
