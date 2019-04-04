@@ -7,8 +7,10 @@
 
 ## Download
 
-- **[Download](https://minidiary.app) for macOS, Windows or Linux**
-- [View all available download formats](https://github.com/samuelmeuli/mini-diary/releases/latest)
+- **[Mac (App Store)](https://itunes.apple.com/app/mini-diary/id1450296884)**
+- **[Windows](https://minidiary.app)**
+- **[Linux](https://minidiary.app)**
+- [All available download formats](https://github.com/samuelmeuli/mini-diary/releases/latest)
 
 ## Features
 
