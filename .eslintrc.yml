@@ -9,9 +9,6 @@ env:
   browser: true
   node: true
 
-plugins:
-  - html
-
 settings:
   import/core-modules:
     - electron

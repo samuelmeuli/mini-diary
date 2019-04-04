@@ -30,7 +30,7 @@
 		"format": "prettier --write",
 		"lint:css": "stylelint --fix",
 		"lint:scss": "stylelint --fix --syntax scss",
-		"lint:js": "eslint --ext .html,.js,.jsx --fix",
+		"lint:js": "eslint --ext .js,.jsx --fix",
 		"lint:ts": "eslint --ext .ts,.tsx --fix"
 	},
 	"dependencies": {
@@ -82,7 +82,6 @@
 		"eslint": "^5.15.2",
 		"eslint-config-airbnb": "^17.0.0",
 		"eslint-config-prettier": "^4.1.0",
-		"eslint-plugin-html": "^5.0.3",
 		"eslint-plugin-import": "^2.13.0",
 		"eslint-plugin-jsx-a11y": "^6.2.1",
 		"eslint-plugin-react": "^7.10.0",
@@ -159,7 +158,7 @@
 			"yarn format",
 			"git add"
 		],
-		"*.{html,js,jsx}": [
+		"*.{js,jsx}": [
 			"yarn lint:js",
 			"yarn format",
 			"git add"
