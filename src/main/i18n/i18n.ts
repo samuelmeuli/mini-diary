@@ -7,6 +7,7 @@ import translationsFr from "./translations/fr";
 import translationsIs from "./translations/is";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
+import translationsZh from "./translations/zh";
 import { Translations } from "./translations/types";
 
 const ALL_TRANSLATIONS: Record<string, Translations> = {
@@ -17,6 +18,7 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	is: translationsIs,
 	pt: translationsPt,
 	tr: translationsTr,
+	zh: translationsZh,
 };
 const DEFAULT_LANG = "en";
 
