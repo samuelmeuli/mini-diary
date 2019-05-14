@@ -103,6 +103,16 @@
 	},
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
+		"extraResources": [
+			{
+				"from": "bundle/licenses-main.txt",
+				"to": "licenses-main.txt"
+			},
+			{
+				"from": "bundle/licenses-renderer.txt",
+				"to": "licenses-renderer.txt"
+			}
+		],
 		"files": [
 			"!**/*",
 			"bundle/**/*"
