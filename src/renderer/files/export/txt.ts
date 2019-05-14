@@ -1,7 +1,5 @@
-import remark from "remark";
-import strip from "strip-markdown";
-
 import { toDayOneDate } from "../../utils/dateFormat";
+import mdToTxt from "../../utils/mdToTxt";
 
 /**
  * Convert entries to a text string in a format compatible with Day One's TXT import:
@@ -30,9 +28,7 @@ export async function convertToTxt(entries: [string, DiaryEntry][]): Promise<str
 			}
 			if (text) {
 				// eslint-disable-next-line no-await-in-loop
-				const textTxt = await remark()
-					.use(strip)
-					.process(text);
+				const textTxt = await mdToTxt(text);
 				txt += `${textTxt}\n\n`; // Text
 			}
 			txt += "\n";

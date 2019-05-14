@@ -19,4 +19,6 @@ declare module "react-simple-svg";
 
 declare module "remark";
 
+declare module "remark-stringify";
+
 declare module "strip-markdown";

@@ -66,8 +66,9 @@
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
 		"remark": "^10.0.1",
+		"remark-stringify": "^6.0.4",
 		"semver": "^6.0.0",
-		"strip-markdown": "^3.0.3"
+		"strip-markdown": "https://github.com/samuelmeuli/strip-markdown"
 	},
 	"devDependencies": {
 		"@samuelmeuli/eslint-config": "~2.0.0",
