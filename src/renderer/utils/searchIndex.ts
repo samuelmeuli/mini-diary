@@ -1,5 +1,7 @@
 import elasticlunr from "elasticlunr";
 
+import mdToTxt from "./mdToTxt";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let index: any;
 
@@ -15,23 +17,25 @@ export function createIndex(entries: Entries): void {
 	index.saveDocument(true);
 
 	// Index all existing diary entries
-	Object.entries(entries).forEach(([indexDate, entry]) => {
-		index.addDoc({
-			date: indexDate,
-			title: entry.title,
-			text: entry.text,
-		});
-	});
+	Object.entries(entries).forEach(
+		async ([indexDate, entry]): Promise<void> => {
+			index.addDoc({
+				date: indexDate,
+				title: entry.title,
+				text: await mdToTxt(entry.text),
+			});
+		},
+	);
 }
 
 /**
  * Add the specified entry to the index if it doesn't exist. If it exists, update it
  */
-export function createOrUpdateIndexDoc(date: IndexDate, entry: DiaryEntry): void {
+export async function createOrUpdateIndexDoc(date: IndexDate, entry: DiaryEntry): Promise<void> {
 	const doc = {
 		date,
 		title: entry.title,
-		text: entry.text,
+		text: await mdToTxt(entry.text),
 	};
 	index.updateDoc(doc);
 }
