@@ -7,10 +7,13 @@
 
 ## Download
 
-- **[Mac (App Store)](https://itunes.apple.com/app/mini-diary/id1450296884)**
+- **Mac:**
+  - [App Store](https://itunes.apple.com/app/mini-diary/id1450296884) (sandboxed)
+  - [DMG](https://github.com/samuelmeuli/mini-diary/releases/latest) (not sandboxed, allows storing diary file anywhere on disk)
 - **[Windows](https://minidiary.app)**
 - **[Linux](https://minidiary.app)**
-- [All available download formats](https://github.com/samuelmeuli/mini-diary/releases/latest)
+
+You can find all available download formats [here](https://github.com/samuelmeuli/mini-diary/releases/latest).
 
 ## Features
 
