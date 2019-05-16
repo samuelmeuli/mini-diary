@@ -14,16 +14,9 @@ module.exports = (env, argv) => ({
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
-				loader: "awesome-typescript-loader",
-				options: {
-					configFileName: "./src/main/tsconfig.json",
-				},
-			},
-			{
-				enforce: "pre",
-				test: /\.js$/,
-				loader: "source-map-loader",
+				test: [/\.jsx?$/, /\.tsx?$/],
+				use: "babel-loader",
+				exclude: /node_modules/,
 			},
 		],
 	},

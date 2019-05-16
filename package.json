@@ -30,7 +30,11 @@
 		"lint:css": "stylelint --fix",
 		"lint:scss": "stylelint --fix --syntax scss",
 		"lint:js": "eslint --ext .js,.jsx --fix",
-		"lint:ts": "eslint --ext .ts,.tsx --fix"
+		"lint:ts": "eslint --ext .ts,.tsx --fix",
+		"staged": "lint-staged",
+		"typecheck": "run-p typecheck:*",
+		"typecheck:main": "tsc --project src/main",
+		"typecheck:renderer": "tsc --project src/renderer"
 	},
 	"dependencies": {
 		"@types/draft-js": "^0.10.29",
@@ -71,11 +75,15 @@
 		"strip-markdown": "https://github.com/samuelmeuli/strip-markdown"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.4.4",
+		"@babel/preset-env": "^7.4.4",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-typescript": "^7.3.3",
 		"@samuelmeuli/eslint-config": "~2.0.0",
 		"@samuelmeuli/stylelint-config": "~1.0.0",
 		"@typescript-eslint/eslint-plugin": "^1.5.0",
 		"@typescript-eslint/parser": "^1.5.0",
-		"awesome-typescript-loader": "^5.2.1",
+		"babel-loader": "^8.0.6",
 		"css-loader": "^2.1.1",
 		"electron": "^5.0.1",
 		"electron-builder": "^20.39.0",
@@ -93,7 +101,6 @@
 		"prettier": "^1.16.4",
 		"sass-loader": "^7.0.3",
 		"serve": "^11.0.0",
-		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.0",
 		"stylelint": "^10.0.1",
 		"svg-inline-loader": "^0.8.0",
@@ -160,7 +167,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "run-s staged typecheck"
 		}
 	},
 	"lint-staged": {
