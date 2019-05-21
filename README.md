@@ -22,10 +22,25 @@ You can find all available download formats [here](https://github.com/samuelmeul
 - Basic text formatting (bold, italics, lists)
 - Full-text search
 - Light and dark themes
-- Import from Day One, jrnl, or JSON
-- Export to PDF, Markdown, TXT, or JSON
+- Various import and export formats
 - Localization in multiple languages
 - Keyboard shortcuts
+
+## Import/Export Formats
+
+**Import formats:**
+
+- [JSON (Day One)](tests/import-export/files/jsonDayOne.json)
+- [JSON (jrnl)](tests/import-export/files/jsonJrnl.json)
+- [JSON (Mini Diary)](tests/import-export/files/jsonMiniDiary.json)
+- [TXT (Day One)](tests/import-export/files/txtDayOne.txt)
+
+**Export formats:**
+
+- [JSON (Mini Diary)](tests/import-export/files/jsonMiniDiary.json)
+- Markdown
+- PDF
+- [TXT (Day One)](tests/import-export/files/txtDayOne.txt)
 
 ## Development
 
