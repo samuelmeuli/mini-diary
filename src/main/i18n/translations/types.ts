@@ -84,7 +84,6 @@ export interface Translations {
 	"wrong-password": string,
 
 	// Import
-	"import-backup-info": string,
 	"import-error-msg": string,
 	"import-error-title": string,
 	"import-instructions-day-one": string,
@@ -97,7 +96,6 @@ export interface Translations {
 	"export-error-title": string,
 
 	// Other
-	"invalid-date": string,
 	"loading": string,
 
 	// Index signature

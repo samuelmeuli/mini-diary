@@ -1,4 +1,5 @@
 import { disableMenuItems, enableMenuItems } from "../../electron/ipcRenderer/senders";
+import createBackup from "../../files/diary/backupFile";
 import { getDiaryFilePath, getMetadata } from "../../files/diary/diaryFile";
 import { hashPassword } from "../../files/diary/hashPassword";
 import { performMigrations } from "../../files/diary/migrations";
@@ -133,6 +134,7 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 		dispatch(setDecryptSuccess(entries));
 		createIndex(entries);
 		enableMenuItems();
+		createBackup();
 	} catch (err) {
 		// Error reading diary file
 		let errorMsg;

@@ -86,7 +86,6 @@ const translationsEs: Translations = {
 	"wrong-password": "Clave incorrecta",
 
 	// Import
-	"import-backup-info": "{appName} realizará una copia de seguridad de tus datos antes de la importación.",
 	"import-error-msg": "Ha ocurrido un error durante la importación",
 	"import-error-title": "Error importando",
 	"import-instructions-day-one": "Abre la aplicación Day One y exporta tu diario en Fichero → Exportar → {format}. Descomprime el fichero guardado. Selecciona el {format} en el siguiente paso para importarlo a {appName}.",
@@ -99,7 +98,6 @@ const translationsEs: Translations = {
 	"export-error-title": "Error exportando",
 
 	// Other
-	"invalid-date": "Fecha no válida",
 	"loading": "Cargando",
 };
 

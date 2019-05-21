@@ -86,7 +86,6 @@ const translationsEl: Translations = {
 	"wrong-password": "Λάθος κωδικός",
 
 	// Import
-	"import-backup-info": "{appName} θα δημιουργήσει ένα αντίγραφο ασφαλείας των δεδομένων σας πρίν την εισαγωγή.",
 	"import-error-msg": "Προέκυψε ένα σφάλμα κατά την εισαγωγή",
 	"import-error-title": "Σφάλμα εισαγωγής",
 	"import-instructions-day-one": "Ανοίξτε την εφαρμογή Day One και εξάγετε το ημερολόγιο σας από το Αρχείο → Εξαγωγή → {format}. Αποσυμπιέστε το αρχείο που θα δημιουργηθεί. Επιλέξτε το αρχείο {format} που δημιουργήθηκε στο επόμενο βήμα για να το εισάγετε στο {appName}.",
@@ -99,7 +98,6 @@ const translationsEl: Translations = {
 	"export-error-title": "Σφάλμα εξαγωγής",
 
 	// Other
-	"invalid-date": "Μη έγκυρη ημερομηνία",
 	"loading": "Φορτώνει",
 };
 

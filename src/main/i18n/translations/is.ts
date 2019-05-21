@@ -86,7 +86,6 @@ const translationsIs: Translations  = {
 	"wrong-password": "Rangt lykilorð",
 
 	// Import
-	"import-backup-info": "{appName} mun búa til afrit af gögnunum þínum fyrir innflutninginn.",
 	"import-error-msg": "Villa varð við innflutninginn",
 	"import-error-title": "Innfærsluvilla",
 	"import-instructions-day-one": "Opnaðu Day One forritið og fluttu út dagbókina þúna undir File → Export → {format}. Afþjappaðu skrána sem varð til. Veldu {format} skrána í næsta skrefi til að færa hana inn í {appName}.",
@@ -99,7 +98,6 @@ const translationsIs: Translations  = {
 	"export-error-title": "Útflutningsvilla",
 
 	// Other
-	"invalid-date": "Ógild dagsetning",
 	"loading": "Hleð",
 };
 

@@ -86,7 +86,6 @@ const translationsFr: Translations = {
 	"wrong-password": "Mot de passe invalide",
 
 	// Import
-	"import-backup-info": "{appName} créera une sauvegarde de vos données avant l'importation.",
 	"import-error-msg": "Une erreur s'est produite lors de l'importation",
 	"import-error-title": "Erreur d'importation",
 	"import-instructions-day-one": "Ouvrez l'application Day One et exportez votre journal depuis le menu Fichier → Exporter → {format}. Ouvrez le fichier au format ZIP. Sélectionnez le fichier {format} demandé lors de l'importation via {appName}.",
@@ -99,7 +98,6 @@ const translationsFr: Translations = {
 	"export-error-title": "Erreur d'exportation",
 
 	// Other
-	"invalid-date": "Date invalide",
 	"loading": "Chargement en cours",
 };
 

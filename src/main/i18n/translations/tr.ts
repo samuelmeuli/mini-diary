@@ -86,7 +86,6 @@ const translationsTr: Translations  = {
 	"wrong-password": "Yanlış parola",
 
 	// Import
-	"import-backup-info": "{appName} veri alımı öncesinde verilerinizi yedekleyecek.",
 	"import-error-msg": "Veri alımı sırasında bir hata oluştu",
 	"import-error-title": "Veri alımı hatası",
 	"import-instructions-day-one": "Day One uygulamasını açıp Klasör → Veri Aktar → {format} seçeneği ile günlüğünüzü aktarın. Oluşan sıkıştırılmış dosyayı çıkartın. {appName}'ye aktarmak için elde ettiğiniz {format} dosyasını sonraki adımda seçin.",
@@ -99,7 +98,6 @@ const translationsTr: Translations  = {
 	"export-error-title": "Veri aktarımı hatası",
 
 	// Other
-	"invalid-date": "Geçersiz tarih",
 	"loading": "Yükleniyor",
 };
 

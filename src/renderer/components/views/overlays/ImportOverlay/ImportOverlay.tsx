@@ -37,7 +37,6 @@ const fields = {
 		),
 	},
 };
-const tBackupInfo = translate("import-backup-info", { appName: APP_NAME });
 
 export interface StateProps {
 	importFormat: ImportFormat;
@@ -85,7 +84,6 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 			<Overlay className="import-overlay" onClose={hideImportOverlay}>
 				<h1>{fields[importFormat].title}</h1>
 				{fields[importFormat].instructions}
-				<p>{tBackupInfo}</p>
 				<button type="button" className="button button-main" onClick={this.selectAndImportFile}>
 					{translations["start-import"]}
 				</button>

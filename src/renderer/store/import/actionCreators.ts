@@ -1,4 +1,3 @@
-import { createBackup } from "../../files/diary/backupFile";
 import { readFile } from "../../files/fileAccess";
 import { parseDayOneJson, parseJrnlJson, parseMiniDiaryJson } from "../../files/import/json";
 import { parseDayOneTxt } from "../../files/import/txt";
@@ -63,7 +62,6 @@ export function showImportOverlay(importFormat: ImportFormat): SetImportOverlayA
 export const runImport = (importFilePath: string): ThunkActionT => (dispatch, getState) => {
 	const { importFormat } = getState().import;
 
-	createBackup();
 	dispatch(setImportInProgress());
 	try {
 		const fileContent = readFile(importFilePath);

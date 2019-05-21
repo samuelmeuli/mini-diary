@@ -1,13 +1,9 @@
 import semver from "semver";
 
-import { createBackup } from "./backupFile";
-
 /**
  * v2.0.0: Migrate plain text entries to Markdown entries (replace \n with \n\n)
  */
 function migrateToMarkdown(data: MiniDiaryJson): MiniDiaryJson {
-	createBackup();
-
 	const { metadata, entries } = data;
 	const dataMigrated: MiniDiaryJson = {
 		metadata,
@@ -15,14 +11,16 @@ function migrateToMarkdown(data: MiniDiaryJson): MiniDiaryJson {
 	};
 
 	// Replace \n with \n\n in the text part of all diary entries
-	Object.entries(entries).forEach(([indexDate, entry]) => {
-		const { text } = entry;
-		const entryUpdated = {
-			...entry,
-			text: text.replace(/\n/g, "\n\n"),
-		};
-		dataMigrated.entries[indexDate] = entryUpdated;
-	});
+	Object.entries(entries).forEach(
+		([indexDate, entry]): void => {
+			const { text } = entry;
+			const entryUpdated = {
+				...entry,
+				text: text.replace(/\n/g, "\n\n"),
+			};
+			dataMigrated.entries[indexDate] = entryUpdated;
+		},
+	);
 
 	return dataMigrated;
 }

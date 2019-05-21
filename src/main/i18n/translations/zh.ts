@@ -86,7 +86,6 @@ const translationsZh: Translations = {
 	"wrong-password": "密码错误",
 
 	// Import
-	"import-backup-info": "{appName}在导入前将会您的数据制作备份.",
 	"import-error-msg": "导入过程中发生了错误",
 	"import-error-title": "导入错误",
 	"import-instructions-day-one": "打开Day One并依次点击File → Export → {format}，导出数据文件并解压，然后选择解压后的文件并导入到{appName}.",
@@ -99,7 +98,6 @@ const translationsZh: Translations = {
 	"export-error-title": "导出错误",
 
 	// Other
-	"invalid-date": "无效日期",
 	"loading": "启动中",
 };
 

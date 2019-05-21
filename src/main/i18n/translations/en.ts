@@ -86,7 +86,6 @@ const translationsEn: Translations = {
 	"wrong-password": "Wrong password",
 
 	// Import
-	"import-backup-info": "{appName} will create a backup of your data before the import.",
 	"import-error-msg": "An error occurred during the import",
 	"import-error-title": "Import error",
 	"import-instructions-day-one": "Open the Day One app and export your diary under File → Export → {format}. Unzip the created file. Select the resulting {format} file in the next step to import it into {appName}.",
@@ -99,7 +98,6 @@ const translationsEn: Translations = {
 	"export-error-title": "Export error",
 
 	// Other
-	"invalid-date": "Invalid date",
 	"loading": "Loading",
 };
 
