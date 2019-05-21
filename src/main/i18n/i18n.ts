@@ -1,6 +1,7 @@
 import { app } from "electron";
 
 import translationsDe from "./translations/de";
+import translationsEl from "./translations/el";
 import translationsEn from "./translations/en";
 import translationsEs from "./translations/es";
 import translationsFr from "./translations/fr";
@@ -12,6 +13,7 @@ import { Translations } from "./translations/types";
 
 const ALL_TRANSLATIONS: Record<string, Translations> = {
 	de: translationsDe,
+	el: translationsEl,
 	en: translationsEn,
 	es: translationsEs,
 	fr: translationsFr,
