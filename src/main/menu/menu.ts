@@ -3,13 +3,14 @@ import { Menu } from "electron";
 import { getMenuTemplate } from "./template";
 
 const DISABLED_MENU_ITEMS = [
-	"exportToJson",
-	"exportToMd",
-	"exportToPdf",
-	"exportToTxt",
-	"importFromDayOne",
-	"importFromJrnl",
-	"importFromJson",
+	"exportJsonMiniDiary",
+	"exportMd",
+	"exportPdf",
+	"exportTxtDayOne",
+	"importJsonDayOne",
+	"importJsonJrnl",
+	"importJsonMiniDiary",
+	"importTxtDayOne",
 	"lock",
 	"previousDay",
 	"nextDay",

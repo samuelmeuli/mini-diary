@@ -1,22 +1,24 @@
 import { getMetadata } from "../diary/diaryFile";
+import sortEntries from "./sortEntries";
 
 /**
- * Convert entries to a JSON string
+ * Convert entries to a Mini Diary JSON string
  */
-export function convertToJson(entries: [string, DiaryEntry][]): Promise<string> {
+export function convertToMiniDiaryJson(entries: Entries): Promise<string> {
 	return new Promise(resolve => {
-		const jsonEntries: Entries = {};
+		const entriesSorted = sortEntries(entries);
+		const entriesJson: Entries = {};
 
 		// Convert sorted array back to object
-		entries.forEach(([indexDate, entry]) => {
-			jsonEntries[indexDate] = entry;
+		entriesSorted.forEach(([indexDate, entry]) => {
+			entriesJson[indexDate] = entry;
 		});
 
 		// Add metadata
-		const content: DiaryFile = {
+		const content: MiniDiaryJson = {
 			metadata: getMetadata(),
-			entries: jsonEntries,
+			entries: entriesJson,
 		};
-		resolve(JSON.stringify(content, null, "\t"));
+		resolve(`${JSON.stringify(content, null, "\t")}\n`);
 	});
 }

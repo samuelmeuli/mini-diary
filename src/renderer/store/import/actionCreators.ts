@@ -1,8 +1,7 @@
 import { createBackup } from "../../files/diary/backupFile";
 import { readFile } from "../../files/fileAccess";
-import { parseDayOneJson } from "../../files/import/dayOne";
-import { parseJrnlJson } from "../../files/import/jrnl";
-import { parseJson } from "../../files/import/json";
+import { parseDayOneJson, parseJrnlJson, parseMiniDiaryJson } from "../../files/import/json";
+import { parseDayOneTxt } from "../../files/import/txt";
 import { mergeUpdateFile } from "../file/actionCreators";
 import { ThunkActionT } from "../store";
 import {
@@ -67,27 +66,27 @@ export const runImport = (importFilePath: string): ThunkActionT => (dispatch, ge
 	createBackup();
 	dispatch(setImportInProgress());
 	try {
-		const importJsonStr = readFile(importFilePath);
-		if (importJsonStr instanceof Buffer) {
-			throw Error("Import file must be JSON file, not binary");
+		const fileContent = readFile(importFilePath);
+		if (fileContent instanceof Buffer) {
+			throw Error("Import file cannot be binary");
 		}
-		// Parse JSON file from string
-		const importJson = JSON.parse(importJsonStr);
 
-		// Get JSON parser function for import format
+		// Get parser function for import format
 		let parseFunc;
-		if (importFormat === "dayOne") {
+		if (importFormat === "jsonDayOne") {
 			parseFunc = parseDayOneJson;
-		} else if (importFormat === "jrnl") {
+		} else if (importFormat === "jsonJrnl") {
 			parseFunc = parseJrnlJson;
-		} else if (importFormat === "json") {
-			parseFunc = parseJson;
+		} else if (importFormat === "jsonMiniDiary") {
+			parseFunc = parseMiniDiaryJson;
+		} else if (importFormat === "txtDayOne") {
+			parseFunc = parseDayOneTxt;
 		} else {
 			throw Error(`Unrecognized importFormat "${importFormat}"`);
 		}
 
 		// Parse file and make it compatible with Mini Diary
-		const json = parseFunc(importJson);
+		const json = parseFunc(fileContent);
 		dispatch(mergeUpdateFile(json));
 		dispatch(setImportSuccess());
 		dispatch(hideImportOverlay());

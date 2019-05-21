@@ -16,11 +16,6 @@ interface Metadata {
 	dateUpdated: string;
 }
 
-interface DiaryFile {
-	metadata: Metadata;
-	entries: Entries;
-}
-
 interface SearchResult {
 	ref: string;
 	title: string;
@@ -33,16 +28,54 @@ type Theme = "light" | "dark";
 
 type ThemePref = "auto" | Theme;
 
-// Status of import/export/encryption/decryption
+// Banner
+
+type BannerType = "error" | "info";
+
+// Process status (import/export/encryption/decryption)
 
 type Status = "idle" | "inProgress" | "error";
 
 // Import and export
 
-type ImportFormat = "dayOne" | "jrnl" | "json";
+type ImportFormat = "jsonDayOne" | "jsonJrnl" | "jsonMiniDiary" | "txtDayOne";
 
-type ExportFormat = "json" | "md" | "pdf" | "txt";
+type ExportFormat = "jsonMiniDiary" | "md" | "pdf" | "txtDayOne";
 
-// Banner
+interface DayOneEntry {
+	creationDevice: string;
+	text: string;
+	richText: string;
+	uuid: string;
+	modifiedDate: string;
+	creationDeviceType: string;
+	starred: boolean;
+	duration: number;
+	creationDeviceModel: string;
+	creationDate: string;
+	creationOSVersion: string;
+	creationOSName: string;
+	timeZone: string;
+}
 
-type BannerType = "error" | "info";
+interface DayOneJson {
+	metadata: {
+		version: string;
+	};
+	entries: DayOneEntry[];
+}
+
+interface JrnlJson {
+	tags: Record<string, string>;
+	entries: {
+		date: string;
+		title: string;
+		body: string;
+		[key: string]: string;
+	}[];
+}
+
+interface MiniDiaryJson {
+	metadata: Metadata;
+	entries: Entries;
+}

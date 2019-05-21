@@ -89,9 +89,9 @@ const translationsTr: Translations  = {
 	"import-backup-info": "{appName} veri alımı öncesinde verilerinizi yedekleyecek.",
 	"import-error-msg": "Veri alımı sırasında bir hata oluştu",
 	"import-error-title": "Veri alımı hatası",
-	"import-instructions-day-one": "Day One uygulamasını açıp Klasör → Veri Aktar → JSON seçeneği ile günlüğünüzü aktarın. Oluşan sıkıştırılmış dosyayı çıkartın. {appName}'ye aktarmak için elde ettiğiniz JSON dosyasını sonraki adımda seçin.",
+	"import-instructions-day-one": "Day One uygulamasını açıp Klasör → Veri Aktar → {format} seçeneği ile günlüğünüzü aktarın. Oluşan sıkıştırılmış dosyayı çıkartın. {appName}'ye aktarmak için elde ettiğiniz {format} dosyasını sonraki adımda seçin.",
 	"import-instructions-jrnl": "jrnl günlüğünüzdeki verileri aktarmak için şu komutu kullanın {command}. {appName}'ye aktarmak için oluşturulan JSON dosyasını sonraki adımda seçin.",
-	"import-instructions-json": "Daha önceden {appName} veri aktarımı ile oluşturmuş olduğunuz veya aynı formata sahip başka bir JSON dosyasını kullanarak veri alımı yapabilirsiniz.",
+	"import-instructions-mini-diary": "Daha önceden {appName} veri aktarımı ile oluşturmuş olduğunuz veya aynı formata sahip başka bir JSON dosyasını kullanarak veri alımı yapabilirsiniz.",
 	"start-import": "Veri alımını başlat",
 
 	// Export

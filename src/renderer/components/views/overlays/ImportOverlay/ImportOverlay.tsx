@@ -6,13 +6,15 @@ import Overlay from "../Overlay";
 
 const APP_NAME = remote.app.getName();
 const fields = {
-	dayOne: {
-		title: translate("import-from-format", { format: "Day One" }),
+	jsonDayOne: {
+		title: translate("import-from-format", { format: "JSON (Day One)" }),
 		extension: "json",
-		instructions: <p>{translate("import-instructions-day-one", { appName: APP_NAME })}</p>,
+		instructions: (
+			<p>{translate("import-instructions-day-one", { appName: APP_NAME, format: "JSON" })}</p>
+		),
 	},
-	jrnl: {
-		title: translate("import-from-format", { format: "jrnl" }),
+	jsonJrnl: {
+		title: translate("import-from-format", { format: "JSON (jrnl)" }),
 		extension: "json",
 		instructions: (
 			<p>
@@ -22,10 +24,17 @@ const fields = {
 			</p>
 		),
 	},
-	json: {
-		title: translate("import-from-format", { format: "JSON" }),
+	jsonMiniDiary: {
+		title: translate("import-from-format", { format: "JSON (Mini Diary)" }),
 		extension: "json",
-		instructions: <p>{translate("import-instructions-json", { appName: APP_NAME })}</p>,
+		instructions: <p>{translate("import-instructions-mini-diary", { appName: APP_NAME })}</p>,
+	},
+	txtDayOne: {
+		title: translate("import-from-format", { format: "TXT (Day One)" }),
+		extension: "txt",
+		instructions: (
+			<p>{translate("import-instructions-day-one", { appName: APP_NAME, format: "Plain Text" })}</p>
+		),
 	},
 };
 const tBackupInfo = translate("import-backup-info", { appName: APP_NAME });

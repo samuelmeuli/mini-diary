@@ -3,16 +3,16 @@ import is from "electron-is/is";
 
 import { setPrefVisibility, setTheme } from "../../store/app/actionCreators";
 import {
+	setDateSelectedPrevious,
 	setDaySelectedNext,
 	setMonthSelectedNext,
-	setDateSelectedPrevious,
 	setMonthSelectedPrevious,
 } from "../../store/diary/actionCreators";
 import {
-	exportToJson,
+	exportToJsonMiniDiary,
 	exportToMd,
 	exportToPdf,
-	exportToTxt,
+	exportToTxtDayOne,
 } from "../../store/export/actionCreators";
 import { lock } from "../../store/file/actionCreators";
 import { showImportOverlay } from "../../store/import/actionCreators";
@@ -43,34 +43,38 @@ function initIpcListeners(): void {
 
 	// Export
 
-	ipcRenderer.on("exportToJson", () => {
-		dispatchThunk(exportToJson());
+	ipcRenderer.on("exportJsonMiniDiary", () => {
+		dispatchThunk(exportToJsonMiniDiary());
 	});
 
-	ipcRenderer.on("exportToMd", () => {
+	ipcRenderer.on("exportMd", () => {
 		dispatchThunk(exportToMd());
 	});
 
-	ipcRenderer.on("exportToPdf", () => {
+	ipcRenderer.on("exportPdf", () => {
 		dispatchThunk(exportToPdf());
 	});
 
-	ipcRenderer.on("exportToTxt", () => {
-		dispatchThunk(exportToTxt());
+	ipcRenderer.on("exportTxtDayOne", () => {
+		dispatchThunk(exportToTxtDayOne());
 	});
 
 	// Import
 
-	ipcRenderer.on("importDayOne", () => {
-		dispatchThunk(showImportOverlay("dayOne"));
+	ipcRenderer.on("importJsonDayOne", () => {
+		dispatchThunk(showImportOverlay("jsonDayOne"));
 	});
 
-	ipcRenderer.on("importJrnl", () => {
-		dispatchThunk(showImportOverlay("jrnl"));
+	ipcRenderer.on("importJsonJrnl", () => {
+		dispatchThunk(showImportOverlay("jsonJrnl"));
 	});
 
-	ipcRenderer.on("importJson", () => {
-		dispatchThunk(showImportOverlay("json"));
+	ipcRenderer.on("importJsonMiniDiary", () => {
+		dispatchThunk(showImportOverlay("jsonMiniDiary"));
+	});
+
+	ipcRenderer.on("importTxtDayOne", () => {
+		dispatchThunk(showImportOverlay("txtDayOne"));
 	});
 
 	// Lock

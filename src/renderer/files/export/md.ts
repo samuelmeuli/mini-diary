@@ -1,3 +1,6 @@
+import { toLocaleWeekday } from "../../utils/dateFormat";
+import sortEntries from "./sortEntries";
+
 /**
  * Convert entries to a Markdown string of the following form:
  *
@@ -9,13 +12,12 @@
  *
  *   [Text]
  */
-import { toLocaleWeekday } from "../../utils/dateFormat";
-
-export function convertToMd(entries: [string, DiaryEntry][]): Promise<string> {
+export function convertToMd(entries: Entries): Promise<string> {
 	return new Promise(resolve => {
+		const entriesSorted = sortEntries(entries);
 		let md = "# Mini Diary\n\n";
 
-		entries.forEach(([indexDate, entry]) => {
+		entriesSorted.forEach(([indexDate, entry]) => {
 			const { text, title } = entry;
 
 			// Format date

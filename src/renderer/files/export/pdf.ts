@@ -17,7 +17,7 @@ const GITHUB_CSS =
 /**
  * Convert entries to PDF buffer
  */
-export function convertToPdf(entries: [string, DiaryEntry][]): Promise<Buffer> {
+export function convertToPdf(entries: Entries): Promise<Buffer> {
 	return convertToMd(entries).then(md => {
 		return mdToPdfBuffer(md, {
 			cssString: GITHUB_CSS,

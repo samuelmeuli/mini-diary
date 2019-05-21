@@ -1,5 +1,6 @@
 import { toDayOneDate } from "../../utils/dateFormat";
 import mdToTxt from "../../utils/mdToTxt";
+import sortEntries from "./sortEntries";
 
 /**
  * Convert entries to a text string in a format compatible with Day One's TXT import:
@@ -10,12 +11,13 @@ import mdToTxt from "../../utils/mdToTxt";
  *
  *   [Text]
  */
-export async function convertToTxt(entries: [string, DiaryEntry][]): Promise<string> {
+export async function convertToDayOneTxt(entries: Entries): Promise<string> {
 	return new Promise(async resolve => {
+		const entriesSorted = sortEntries(entries);
 		let txt = "";
 
-		for (let i = 0; i < entries.length; i += 1) {
-			const [indexDate, entry] = entries[i];
+		for (let i = 0; i < entriesSorted.length; i += 1) {
+			const [indexDate, entry] = entriesSorted[i];
 			const { text, title } = entry;
 
 			// Format date

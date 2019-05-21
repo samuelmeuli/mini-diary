@@ -120,7 +120,7 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 	const hashedPassword = hashPassword(password);
 	try {
 		const fileContent = readEncryptedFile(filePath, hashedPassword);
-		let data: DiaryFile = JSON.parse(fileContent);
+		let data: MiniDiaryJson = JSON.parse(fileContent);
 
 		// On success: Save password
 		dispatch(setHashedPassword(hashedPassword));
@@ -151,7 +151,7 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 export const createEncryptedFile = (password: string): ThunkActionT => dispatch => {
 	const entries = {};
 	const filePath = getDiaryFilePath();
-	const content: DiaryFile = {
+	const content: MiniDiaryJson = {
 		metadata: getMetadata(),
 		entries,
 	};
@@ -177,7 +177,7 @@ const writeEntriesEncrypted = (
 	hashedPassword: string,
 ): ThunkActionT => dispatch => {
 	const filePath = getDiaryFilePath();
-	const fileContent: DiaryFile = {
+	const fileContent: MiniDiaryJson = {
 		metadata: getMetadata(),
 		entries,
 	};

@@ -20,34 +20,38 @@ export const setMonthSelectedPrevious = (): void => {
 
 // Export
 
-export const exportToJson = (): void => {
-	getWindow().webContents.send("exportToJson");
+export const exportJsonMiniDiary = (): void => {
+	getWindow().webContents.send("exportJsonMiniDiary");
 };
 
-export const exportToMd = (): void => {
-	getWindow().webContents.send("exportToMd");
+export const exportMd = (): void => {
+	getWindow().webContents.send("exportMd");
 };
 
-export const exportToPdf = (): void => {
-	getWindow().webContents.send("exportToPdf");
+export const exportPdf = (): void => {
+	getWindow().webContents.send("exportPdf");
 };
 
-export const exportToTxt = (): void => {
-	getWindow().webContents.send("exportToTxt");
+export const exportTxtDayOne = (): void => {
+	getWindow().webContents.send("exportTxtDayOne");
 };
 
 // Import
 
-export const importDayOne = (): void => {
-	getWindow().webContents.send("importDayOne");
+export const importJsonDayOne = (): void => {
+	getWindow().webContents.send("importJsonDayOne");
 };
 
-export const importJrnl = (): void => {
-	getWindow().webContents.send("importJrnl");
+export const importJsonJrnl = (): void => {
+	getWindow().webContents.send("importJsonJrnl");
 };
 
-export const importJson = (): void => {
-	getWindow().webContents.send("importJson");
+export const importJsonMiniDiary = (): void => {
+	getWindow().webContents.send("importJsonMiniDiary");
+};
+
+export const importTxtDayOne = (): void => {
+	getWindow().webContents.send("importTxtDayOne");
 };
 
 // Lock

@@ -89,7 +89,7 @@ export interface Translations {
 	"import-error-title": string,
 	"import-instructions-day-one": string,
 	"import-instructions-jrnl": string,
-	"import-instructions-json": string,
+	"import-instructions-mini-diary": string,
 	"start-import": string,
 
 	// Export

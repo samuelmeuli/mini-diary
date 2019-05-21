@@ -1,9 +1,11 @@
-import { showExportDialog } from "../../files/export/exportDialog";
-import { convertToJson } from "../../files/export/json";
+import { remote } from "electron";
+
+import { convertToMiniDiaryJson } from "../../files/export/json";
 import { convertToMd } from "../../files/export/md";
 import { convertToPdf } from "../../files/export/pdf";
-import { convertToTxt } from "../../files/export/txt";
+import { convertToDayOneTxt } from "../../files/export/txt";
 import { writeFile } from "../../files/fileAccess";
+import { translations } from "../../utils/i18n";
 import { ThunkActionT } from "../store";
 import {
 	EXPORT_ERROR,
@@ -13,6 +15,13 @@ import {
 	SetExportInProgressAction,
 	SetExportSuccessAction,
 } from "./types";
+
+const fileExtensions: Record<ExportFormat, string> = {
+	jsonMiniDiary: "json",
+	md: "md",
+	pdf: "pdf",
+	txtDayOne: "txt",
+};
 
 // Action creators
 
@@ -40,10 +49,14 @@ function setExportSuccess(): SetExportSuccessAction {
 // Thunks
 
 const exportToFile = (
-	converterFunc: (entriesSorted: [string, DiaryEntry][]) => Promise<string | Buffer>,
-	fileExtension: ExportFormat,
+	converterFunc: (entries: Entries) => Promise<string | Buffer>,
+	exportFormat: ExportFormat,
 ): ThunkActionT => (dispatch, getState) => {
-	const fileName = showExportDialog(fileExtension);
+	const fileExtension = fileExtensions[exportFormat];
+	const fileName = remote.dialog.showSaveDialog({
+		defaultPath: `*/mini-diary-export.${fileExtension}`,
+		buttonLabel: translations.export,
+	});
 	if (fileName) {
 		dispatch(setExportInProgress());
 		// Build file name
@@ -55,8 +68,7 @@ const exportToFile = (
 		}
 		// Sort and convert entries to the specified format, then write them to disk
 		const { entries } = getState().file;
-		const entriesSorted = Object.entries(entries).sort((a, b) => a[0].localeCompare(b[0]));
-		converterFunc(entriesSorted)
+		converterFunc(entries)
 			.then(entriesConverted => {
 				writeFile(filePath, entriesConverted);
 				dispatch(setExportSuccess());
@@ -67,18 +79,18 @@ const exportToFile = (
 	}
 };
 
-export const exportToJson = (): ThunkActionT => dispatch => {
-	dispatch(exportToFile(convertToJson, "json"));
+export const exportToJsonMiniDiary = (): ThunkActionT => dispatch => {
+	dispatch(exportToFile(convertToMiniDiaryJson, "jsonMiniDiary"));
 };
 
 export const exportToMd = (): ThunkActionT => dispatch => {
 	dispatch(exportToFile(convertToMd, "md"));
 };
 
-export const exportToTxt = (): ThunkActionT => dispatch => {
-	dispatch(exportToFile(convertToTxt, "txt"));
-};
-
 export const exportToPdf = (): ThunkActionT => dispatch => {
 	dispatch(exportToFile(convertToPdf, "pdf"));
+};
+
+export const exportToTxtDayOne = (): ThunkActionT => dispatch => {
+	dispatch(exportToFile(convertToDayOneTxt, "txtDayOne"));
 };

@@ -89,9 +89,9 @@ const translationsIs: Translations  = {
 	"import-backup-info": "{appName} mun búa til afrit af gögnunum þínum fyrir innflutninginn.",
 	"import-error-msg": "Villa varð við innflutninginn",
 	"import-error-title": "Innfærsluvilla",
-	"import-instructions-day-one": "Opnaðu Day One forritið og fluttu út dagbókina þúna undir File → Export → JSON. Afþjappaðu skrána sem varð til. Veldu JSON skrána í næsta skrefi til að færa hana inn í {appName}.",
+	"import-instructions-day-one": "Opnaðu Day One forritið og fluttu út dagbókina þúna undir File → Export → {format}. Afþjappaðu skrána sem varð til. Veldu {format} skrána í næsta skrefi til að færa hana inn í {appName}.",
 	"import-instructions-jrnl": "Til að flytja út jrnl dagbókina, keyrðu {command}. Veldu JSON skrána sem varð til í næsta skrefi til að færa hana inn í {appName}.",
-	"import-instructions-json": "Þú getur flutt inn gögn úr fyrri {appName} JSON útflutningi eða úr annarri JSON skrá með sama sniði.",
+	"import-instructions-mini-diary": "Þú getur flutt inn gögn úr fyrri {appName} JSON útflutningi eða úr annarri JSON skrá með sama sniði.",
 	"start-import": "Hefja innflutning",
 
 	// Export
