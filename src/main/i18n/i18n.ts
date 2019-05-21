@@ -80,7 +80,7 @@ export function translate(i18nKey: string, substitutions?: Record<string, string
 	//   Function call: translate('test', { var: 'World' })
 	//   Result: 'Hello World'
 	Object.entries(substitutions).forEach(([toReplace, replacement]) => {
-		translation = translation.replace(`{${toReplace}}`, replacement);
+		translation = translation.replace(new RegExp(`{${toReplace}}`, "g"), replacement);
 	});
 	return translation;
 }
