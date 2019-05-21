@@ -1,0 +1,19 @@
+{
+	"tags": {},
+	"entries": [
+		{
+			"title": "Diary Entry 1",
+			"body": "This text is bold and italic.\n",
+			"date": "2019-01-01",
+			"time": "00:00",
+			"starred": false
+		},
+		{
+			"title": "Diary Entry 2",
+			"body": "Here's a bulleted list:\n\n- One\n- Two\n- Three\n\nAnd here's a numbered list:\n\n1. One\n2. Two\n3. Three\n",
+			"date": "2019-01-02",
+			"time": "00:00",
+			"starred": false
+		}
+	]
+}

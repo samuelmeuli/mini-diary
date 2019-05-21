@@ -8,6 +8,7 @@ extends:
 env:
   browser: true
   node: true
+  jest: true
 
 settings:
   import/core-modules:
@@ -17,4 +18,5 @@ rules:
   import/no-extraneous-dependencies:
     - error
     - devDependencies:
+        - "tests/**/*"
         - "webpack.*.js"
