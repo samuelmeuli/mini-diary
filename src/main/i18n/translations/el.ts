@@ -1,7 +1,7 @@
 import { Translations } from "./types";
 
 // prettier-ignore
-const translationsEn: Translations = {
+const translationsEl: Translations = {
 	// Menu (defined by macOS)
 	"about-app": "Πληροφορίες για το {appName}",
 	"bring-all-to-front": "Επαναφορά όλων στο προσκήνιο",
@@ -89,9 +89,9 @@ const translationsEn: Translations = {
 	"import-backup-info": "{appName} θα δημιουργήσει ένα αντίγραφο ασφαλείας των δεδομένων σας πρίν την εισαγωγή.",
 	"import-error-msg": "Προέκυψε ένα σφάλμα κατά την εισαγωγή",
 	"import-error-title": "Σφάλμα εισαγωγής",
-	"import-instructions-day-one": "Ανοίξτε την εφαρμογή Day One και εξάγετε το ημερολόγιο σας από το Αρχείο → Εξαγωγή → JSON. Αποσυμπιέστε το αρχείο που θα δημιουργηθεί. Επιλέξτε το αρχείο JSON που δημιουργήθηκε στο επόμενο βήμα για να το εισάγετε στο {appName}.",
+	"import-instructions-day-one": "Ανοίξτε την εφαρμογή Day One και εξάγετε το ημερολόγιο σας από το Αρχείο → Εξαγωγή → {format}. Αποσυμπιέστε το αρχείο που θα δημιουργηθεί. Επιλέξτε το αρχείο {format} που δημιουργήθηκε στο επόμενο βήμα για να το εισάγετε στο {appName}.",
 	"import-instructions-jrnl": "Για να εξάγετε το jrnl ημερολόγιο σας, τρέξτε την εντολή {command}. Επιλέξτε το αρχείο JSON που δημιουργήθηκε στο επόμενο βήμα για να το εισάγετε στο {appName}.",
-	"import-instructions-json": "Μπορείτε να εισάγετε τα δεδομένα σας από κάποια παλαιότερη εξαγωγή {appName} JSON ή από ένα άλλη JSON με την ίδια μορφή.",
+	"import-instructions-mini-diary": "Μπορείτε να εισάγετε τα δεδομένα σας από κάποια παλαιότερη εξαγωγή {appName} JSON ή από ένα άλλη JSON με την ίδια μορφή.",
 	"start-import": "Εκκίνηση εισαγωγής",
 
 	// Export
@@ -103,4 +103,4 @@ const translationsEn: Translations = {
 	"loading": "Φορτώνει",
 };
 
-export default translationsEn;
+export default translationsEl;
