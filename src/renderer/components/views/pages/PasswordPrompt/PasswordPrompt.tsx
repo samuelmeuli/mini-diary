@@ -21,6 +21,8 @@ interface State {
 }
 
 export default class PasswordPrompt extends PureComponent<Props, State> {
+	input: HTMLInputElement;
+
 	constructor(props: Props) {
 		super(props);
 
@@ -63,8 +65,6 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 		this.input.select();
 	}
 
-	input: HTMLInputElement;
-
 	render(): React.ReactNode {
 		const { decryptErrorMsg, decryptStatus } = this.props;
 		const { isSubmitted, password } = this.state;
@@ -79,8 +79,8 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 						placeholder={translations.password}
 						autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 						required
-						ref={i => {
-							this.input = i;
+						ref={(input: HTMLInputElement): void => {
+							this.input = input;
 						}}
 					/>
 					<button type="submit" className="button button-main">

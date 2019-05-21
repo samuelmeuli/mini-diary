@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default class Overlay extends PureComponent<Props, {}> {
+	overlayElement: HTMLDivElement;
+
 	constructor(props: Props) {
 		super(props);
 
@@ -59,8 +61,6 @@ export default class Overlay extends PureComponent<Props, {}> {
 		}
 	}
 
-	overlayElement: HTMLDivElement;
-
 	render(): React.ReactNode {
 		const { children, className, onClose } = this.props;
 
@@ -68,8 +68,8 @@ export default class Overlay extends PureComponent<Props, {}> {
 			<div className="overlay-outer">
 				<div
 					className={`overlay-inner ${className || ""}`}
-					ref={el => {
-						this.overlayElement = el;
+					ref={(overlayElement: HTMLDivElement): void => {
+						this.overlayElement = overlayElement;
 					}}
 				>
 					<button

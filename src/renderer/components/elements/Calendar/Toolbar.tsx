@@ -25,6 +25,8 @@ interface State {
 }
 
 export default class Toolbar extends PureComponent<Props, State> {
+	updateSearchKeyDebounced: (newSearchKey: string) => void;
+
 	constructor(props: Props) {
 		super(props);
 
@@ -70,8 +72,6 @@ export default class Toolbar extends PureComponent<Props, State> {
 
 		search(newSearchKey);
 	}
-
-	updateSearchKeyDebounced: (newSearchKey: string) => void;
 
 	render(): React.ReactNode {
 		const { dateSelected, monthSelected } = this.props;

@@ -83,6 +83,10 @@ export default class Editor extends PureComponent<Props, State> {
 		return getDefaultKeyBinding(e);
 	}
 
+	saveEntryDebounced: () => void;
+
+	textEditor: DraftJsEditor;
+
 	constructor(props: Props) {
 		super(props);
 		const { dateSelected, entries } = props;
@@ -102,9 +106,12 @@ export default class Editor extends PureComponent<Props, State> {
 		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
 
 		// Save entry before app is closed
-		window.addEventListener("unload", () => {
-			this.saveEntry();
-		});
+		window.addEventListener(
+			"unload",
+			(): void => {
+				this.saveEntry();
+			},
+		);
 	}
 
 	onTextChange(textEditorState: EditorState): void {
@@ -120,8 +127,6 @@ export default class Editor extends PureComponent<Props, State> {
 		});
 		this.saveEntryDebounced();
 	}
-
-	textEditor: DraftJsEditor;
 
 	handleTextKeyCommand(command: DraftEditorCommand, editorState: EditorState): DraftHandleValue {
 		let newState: EditorState;
@@ -157,8 +162,6 @@ export default class Editor extends PureComponent<Props, State> {
 		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
-	saveEntryDebounced: () => void;
-
 	render(): React.ReactNode {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
 
@@ -188,7 +191,7 @@ export default class Editor extends PureComponent<Props, State> {
 							handleKeyCommand={this.handleTextKeyCommand}
 							onBlur={this.saveEntry}
 							onChange={this.onTextChange}
-							ref={(textEditor: DraftJsEditor) => {
+							ref={(textEditor: DraftJsEditor): void => {
 								this.textEditor = textEditor;
 							}}
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
