@@ -4,6 +4,7 @@ import { getDiaryFilePath, getMetadata } from "../../files/diary/diaryFile";
 import { hashPassword } from "../../files/diary/hashPassword";
 import { performMigrations } from "../../files/diary/migrations";
 import { fileExists, readEncryptedFile, writeEncryptedFile } from "../../files/fileAccess";
+import mergeEntries from "../../files/import/mergeEntries";
 import { translations } from "../../utils/i18n";
 import { createIndex, createOrUpdateIndexDoc, deleteIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
@@ -107,7 +108,7 @@ function setHashedPassword(hashedPassword: string): SetHashedPasswordAction {
 /**
  * Test whether a diary file exists at the path specified in the preferences
  */
-export const testFileExists = (): ThunkActionT => dispatch => {
+export const testFileExists = (): ThunkActionT => (dispatch): void => {
 	const filePath = getDiaryFilePath();
 	dispatch(setFileExists(fileExists(filePath)));
 };
@@ -115,7 +116,7 @@ export const testFileExists = (): ThunkActionT => dispatch => {
 /**
  * Read diary entries from disk
  */
-export const decryptFile = (password: string): ThunkActionT => dispatch => {
+export const decryptFile = (password: string): ThunkActionT => (dispatch): void => {
 	const filePath = getDiaryFilePath();
 	dispatch(setDecryptInProgress());
 	const hashedPassword = hashPassword(password);
@@ -150,7 +151,7 @@ export const decryptFile = (password: string): ThunkActionT => dispatch => {
 /**
  * Create new encrypted diary file and index with the provided password
  */
-export const createEncryptedFile = (password: string): ThunkActionT => dispatch => {
+export const createEncryptedFile = (password: string): ThunkActionT => (dispatch): void => {
 	const entries = {};
 	const filePath = getDiaryFilePath();
 	const content: MiniDiaryJson = {
@@ -174,10 +175,9 @@ export const createEncryptedFile = (password: string): ThunkActionT => dispatch 
 /**
  * Write diary entries to disk
  */
-const writeEntriesEncrypted = (
-	entries: Entries,
-	hashedPassword: string,
-): ThunkActionT => dispatch => {
+const writeEntriesEncrypted = (entries: Entries, hashedPassword: string): ThunkActionT => (
+	dispatch,
+): void => {
 	const filePath = getDiaryFilePath();
 	const fileContent: MiniDiaryJson = {
 		metadata: getMetadata(),
@@ -196,7 +196,7 @@ const writeEntriesEncrypted = (
 /**
  * Write diary entries to disk with a new password. Update the password in the store
  */
-export const updatePassword = (newPassword: string): ThunkActionT => (dispatch, getState) => {
+export const updatePassword = (newPassword: string): ThunkActionT => (dispatch, getState): void => {
 	const { entries } = getState().file;
 	const hashedPassword = hashPassword(newPassword);
 	dispatch(writeEntriesEncrypted(entries, hashedPassword));
@@ -210,7 +210,7 @@ export const updatePassword = (newPassword: string): ThunkActionT => (dispatch, 
 export const updateEntry = (entryDate: IndexDate, title: string, text: string): ThunkActionT => (
 	dispatch,
 	getState,
-) => {
+): void => {
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
@@ -250,31 +250,25 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
  * Merge the provided diary JSON with the one in the Redux state. For each entry, use the new one if
  * none exists yet. Otherwise, append the new title and text to the existing ones
  */
-export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (dispatch, getState) => {
-	// Check whether newEntries is an object
-	if (typeof newEntries !== "object" || newEntries === null) {
-		throw Error("Entries are not an object");
-	}
-
+export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (
+	dispatch,
+	getState,
+): void => {
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
-	Object.entries(newEntries).forEach(([indexDate, newEntry]) => {
-		let entryUpdated;
-		if (indexDate in entriesUpdated) {
-			// Entry exists -> merge
-			const oldEntry = entriesUpdated[indexDate];
-			entryUpdated = {
-				dateUpdated: newEntry.dateUpdated,
-				title: `${oldEntry.title} | ${newEntry.title}`,
-				text: `${oldEntry.text}\n\n----------\n\n${newEntry.text}`,
-			};
-		} else {
-			// Entry does not exist yet -> add
-			entryUpdated = newEntry;
-		}
-		entriesUpdated[indexDate] = entryUpdated;
-	});
+	Object.entries(newEntries).forEach(
+		([indexDate, newEntry]): void => {
+			if (indexDate in entriesUpdated) {
+				// Entry exists -> merge
+				const oldEntry = entriesUpdated[indexDate];
+				entriesUpdated[indexDate] = mergeEntries(oldEntry, newEntry);
+			} else {
+				// Entry does not exist yet -> add
+				entriesUpdated[indexDate] = newEntry;
+			}
+		},
+	);
 	dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 	createIndex(entriesUpdated); // Recreate index
 };
@@ -282,7 +276,7 @@ export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (dispatch,
 /**
  * Lock the diary: Remove password and diary entries from state
  */
-export const lock = (): ThunkActionT => dispatch => {
+export const lock = (): ThunkActionT => (dispatch): void => {
 	dispatch(clearFileState());
 	disableMenuItems();
 };

@@ -10,6 +10,11 @@ interface DiaryEntry {
 
 type Entries = Record<IndexDate, DiaryEntry>;
 
+interface MiniDiaryJson {
+	metadata: Metadata;
+	entries: Entries;
+}
+
 interface Metadata {
 	application: string;
 	version: string;
@@ -65,17 +70,22 @@ interface DayOneJson {
 	entries: DayOneEntry[];
 }
 
-interface JrnlJson {
-	tags: Record<string, string>;
-	entries: {
-		date: string;
-		title: string;
-		body: string;
-		[key: string]: string;
-	}[];
+interface JrnlEntry {
+	date: string;
+	title: string;
+	body: string;
+	[key: string]: string;
 }
 
-interface MiniDiaryJson {
-	metadata: Metadata;
-	entries: Entries;
+interface JrnlJson {
+	tags: Record<string, string>;
+	entries: JrnlEntry[];
 }
+
+// DiaryEntry after conversion of MiniDiaryJson's entries into array (required for MiniDiaryJson
+// import)
+interface ListDiaryEntry extends DiaryEntry {
+	indexDate: string;
+}
+
+type ImportEntry = string | DayOneEntry | DiaryEntry | JrnlEntry;
