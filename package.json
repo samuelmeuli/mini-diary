@@ -87,7 +87,7 @@
 		"babel-loader": "^8.0.6",
 		"cross-env": "^5.2.0",
 		"css-loader": "^2.1.1",
-		"electron": "^5.0.1",
+		"electron": "^4.2.2",
 		"electron-builder": "^20.39.0",
 		"eslint": "^5.15.2",
 		"eslint-config-airbnb": "^17.0.0",
