@@ -65,6 +65,10 @@ const translationsZh: Translations = {
 	"no-title": "无标题",
 	"search": "查找",
 
+	// Preferences
+	"diary-entries": "日记条目",
+	"allow-future-entries": "允许将来创建条目",
+
 	// Password and directory
 	"change-directory": "更改路径",
 	"change-password": "更改密码",

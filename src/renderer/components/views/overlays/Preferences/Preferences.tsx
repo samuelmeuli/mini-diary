@@ -1,8 +1,8 @@
 import { remote } from "electron";
-import React, { ChangeEvent, PureComponent } from "react";
 import is from "electron-is";
+import React, { ChangeEvent, PureComponent } from "react";
 
-import { getDiaryFilePath, FILE_NAME } from "../../../../files/diary/diaryFile";
+import { FILE_NAME, getDiaryFilePath } from "../../../../files/diary/diaryFile";
 import { moveFile } from "../../../../files/fileAccess";
 import { saveDirPref } from "../../../../files/preferences/preferences";
 import { translations } from "../../../../utils/i18n";
@@ -11,6 +11,7 @@ import Banner from "../../../elements/Banner";
 import Overlay from "../Overlay";
 
 export interface StateProps {
+	allowFutureEntries: boolean;
 	hashedPassword: string;
 	themePref: ThemePref;
 }
@@ -18,6 +19,7 @@ export interface StateProps {
 export interface DispatchProps {
 	setPrefVisibility: (showPref: boolean) => void;
 	testFileExists: () => void;
+	updateFutureEntriesPref: (allowFutureEntries: boolean) => void;
 	updatePassword: (newPassword: string) => void;
 	updateThemePref: (themePref: ThemePref) => void;
 }
@@ -49,6 +51,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		this.setThemePrefAuto = this.setThemePrefAuto.bind(this);
 		this.setThemePrefDark = this.setThemePrefDark.bind(this);
 		this.setThemePrefLight = this.setThemePrefLight.bind(this);
+		this.toggleAllowFutureEntries = this.toggleAllowFutureEntries.bind(this);
 		this.updateDir = this.updateDir.bind(this);
 		this.updatePassword = this.updatePassword.bind(this);
 	}
@@ -129,6 +132,12 @@ export default class Preferences extends PureComponent<Props, State> {
 		}
 	}
 
+	toggleAllowFutureEntries(): void {
+		const { allowFutureEntries, updateFutureEntriesPref } = this.props;
+
+		updateFutureEntriesPref(!allowFutureEntries);
+	}
+
 	updateDir(dir: string): void {
 		saveDirPref(dir);
 		this.setState({
@@ -158,7 +167,7 @@ export default class Preferences extends PureComponent<Props, State> {
 	}
 
 	render(): React.ReactNode {
-		const { hashedPassword, themePref } = this.props;
+		const { allowFutureEntries, hashedPassword, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
 
 		const isLocked = hashedPassword === "";
@@ -209,6 +218,25 @@ export default class Preferences extends PureComponent<Props, State> {
 							</label>
 						</div>
 					</fieldset>
+					{/* Future diary entries (only when unlocked) */
+					!isLocked && (
+						<fieldset className="fieldset-future-entries">
+							<legend>{translations["diary-entries"]}</legend>
+							<div className="fieldset-content">
+								<label htmlFor="checkbox-future-entries">
+									<input
+										type="checkbox"
+										name="checkbox-future-entries"
+										id="checkbox-future-entries"
+										className="checkbox"
+										checked={allowFutureEntries}
+										onChange={this.toggleAllowFutureEntries}
+									/>
+									{translations["allow-future-entries"]}
+								</label>
+							</div>
+						</fieldset>
+					)}
 					{/*
 						File directory
 						When locked: Change directory

@@ -65,6 +65,10 @@ const translationsTr: Translations  = {
 	"no-title": "Başlıksız",
 	"search": "Arama",
 
+	// Preferences
+	"diary-entries": "Günlük girişleri",
+	"allow-future-entries": "Gelecekte giriş oluşturmaya izin ver",
+
 	// Password and directory
 	"change-directory": "Klasörü değiştir",
 	"change-password": "Parolayı değiştir",

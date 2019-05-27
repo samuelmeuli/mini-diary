@@ -65,6 +65,10 @@ const translationsDe: Translations = {
 	"no-title": "Kein Titel",
 	"search": "Suche",
 
+	// Preferences
+	"diary-entries": "Tagebucheinträge",
+	"allow-future-entries": "Einträge in der Zukunft erlauben",
+
 	// Password and directory
 	"change-directory": "Ordner ändern",
 	"change-password": "Passwort ändern",

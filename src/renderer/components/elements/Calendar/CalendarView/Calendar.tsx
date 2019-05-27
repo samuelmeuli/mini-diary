@@ -3,11 +3,12 @@ import React, { PureComponent } from "react";
 import DayPicker from "react-day-picker";
 import MomentLocaleUtils from "react-day-picker/moment";
 
-import { lang } from "../../../../utils/i18n";
 import { toIndexDate } from "../../../../utils/dateFormat";
+import { lang } from "../../../../utils/i18n";
 import CalendarNavContainer from "./CalendarNavContainer";
 
 export interface StateProps {
+	allowFutureEntries: boolean;
 	dateSelected: Date;
 	entries: Entries;
 	monthSelected: Date;
@@ -28,15 +29,15 @@ export default class Calendar extends PureComponent<Props, {}> {
 	}
 
 	onDateSelection(date: Date): void {
-		const { setDateSelected } = this.props;
+		const { allowFutureEntries, setDateSelected } = this.props;
 
-		if (moment(date).isSameOrBefore(moment(), "day")) {
+		if (allowFutureEntries || moment(date).isSameOrBefore(moment(), "day")) {
 			setDateSelected(date);
 		}
 	}
 
 	render(): React.ReactNode {
-		const { dateSelected, entries, monthSelected } = this.props;
+		const { allowFutureEntries, dateSelected, entries, monthSelected } = this.props;
 
 		const today = new Date();
 		const daysWithEntries = Object.keys(entries);
@@ -48,10 +49,10 @@ export default class Calendar extends PureComponent<Props, {}> {
 		return (
 			<DayPicker
 				selectedDays={dateSelected}
-				disabledDays={{ after: today }}
+				disabledDays={allowFutureEntries ? null : { after: today }}
 				month={monthSelected}
 				toMonth={today}
-				captionElement={() => null}
+				captionElement={(): null => null}
 				modifiers={{ hasEntry }}
 				locale={lang}
 				localeUtils={MomentLocaleUtils}

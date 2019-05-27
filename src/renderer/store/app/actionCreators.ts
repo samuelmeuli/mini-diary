@@ -1,16 +1,27 @@
 import { getSystemTheme } from "../../electron/systemTheme";
-import { saveThemePref } from "../../files/preferences/preferences";
+import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/preferences";
 import { ThunkActionT } from "../store";
 import {
-	SET_PREF_VISIBILITY,
-	SET_THEME,
-	SET_THEME_PREF,
+	SetAllowFutureEntriesAction,
 	SetPrefVisibilityAction,
 	SetThemeAction,
 	SetThemePrefAction,
+	SET_ALLOW_FUTURE_ENTRIES,
+	SET_PREF_VISIBILITY,
+	SET_THEME,
+	SET_THEME_PREF,
 } from "./types";
 
 // Action creators
+
+function setAllowFutureEntries(allowFutureEntries: boolean): SetAllowFutureEntriesAction {
+	return {
+		type: SET_ALLOW_FUTURE_ENTRIES,
+		payload: {
+			allowFutureEntries,
+		},
+	};
+}
 
 export function setTheme(theme: Theme): SetThemeAction {
 	return {
@@ -41,7 +52,14 @@ export function setPrefVisibility(showPref: boolean): SetPrefVisibilityAction {
 
 // Thunks
 
-export const updateThemePref = (themePref: ThemePref): ThunkActionT => dispatch => {
+export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActionT => (
+	dispatch,
+): void => {
+	dispatch(setAllowFutureEntries(allowFutureEntries));
+	saveFutureEntriesPref(allowFutureEntries);
+};
+
+export const updateThemePref = (themePref: ThemePref): ThunkActionT => (dispatch): void => {
 	// Apply theme to app
 	const theme = themePref === "auto" ? getSystemTheme() : themePref;
 	dispatch(setTheme(theme));

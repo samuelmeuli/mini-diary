@@ -4,10 +4,11 @@ import moment from "moment";
 import React, { FunctionComponent } from "react";
 import SimpleSvg from "react-simple-svg";
 
-import { translations } from "../../../../utils/i18n";
 import { toMonthYear } from "../../../../utils/dateFormat";
+import { translations } from "../../../../utils/i18n";
 
 export interface StateProps {
+	allowFutureEntries: boolean;
 	monthSelected: Date;
 }
 
@@ -19,13 +20,18 @@ export interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 const CalendarNav: FunctionComponent<Props> = (props: Props): JSX.Element => {
-	const { monthSelected, setMonthSelectedNext, setMonthSelectedPrevious } = props;
+	const {
+		allowFutureEntries,
+		monthSelected,
+		setMonthSelectedNext,
+		setMonthSelectedPrevious,
+	} = props;
 
 	const month = moment(monthSelected);
 
-	// Disable "next" button if current month is reached
+	// If future entries are disallowed: Disable "next" button if current month is reached
 	const today = moment();
-	const disableNextButton = month.isSame(today, "month");
+	const disableNextButton = !allowFutureEntries && month.isSame(today, "month");
 
 	return (
 		<div className="calendar-nav">

@@ -65,6 +65,10 @@ const translationsIs: Translations  = {
 	"no-title": "Án titils",
 	"search": "Leita",
 
+	// Preferences
+	"diary-entries": "Dagbókarfærslur",
+	"allow-future-entries": "Leyfa að búa til færslur í framtíðinni",
+
 	// Password and directory
 	"change-directory": "Breyta möppu",
 	"change-password": "Breyta lykilorði",

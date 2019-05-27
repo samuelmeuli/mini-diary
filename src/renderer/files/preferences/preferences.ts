@@ -4,6 +4,7 @@ import settings from "electron-settings";
 
 import { isAtLeastMojave } from "../../utils/os";
 
+const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
 const DEFAULT_THEME_PREF: ThemePref = "light";
 const PREF_DIR = remote.app.getPath("userData");
 
@@ -29,6 +30,29 @@ export function loadDirPref(): string {
  */
 export function saveDirPref(filePath: string): void {
 	settings.set("filePath", filePath);
+}
+
+// Future entries
+
+/**
+ * Return the preference for whether diary entries can be written for days in the future
+ */
+export function loadFutureEntriesPref(): boolean {
+	let allowFutureEntries: boolean;
+	if (settings.has("allowFutureEntries")) {
+		allowFutureEntries = settings.get("allowFutureEntries") as boolean;
+	} else {
+		allowFutureEntries = DEFAULT_ALLOW_FUTURE_ENTRIES;
+		settings.set("allowFutureEntries", allowFutureEntries);
+	}
+	return allowFutureEntries;
+}
+
+/**
+ * Update the future entries preference
+ */
+export function saveFutureEntriesPref(allowFutureEntries: boolean): void {
+	settings.set("allowFutureEntries", allowFutureEntries);
 }
 
 // Theme

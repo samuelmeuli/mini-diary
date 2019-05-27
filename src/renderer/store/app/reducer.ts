@@ -1,11 +1,20 @@
 import { getSystemTheme } from "../../electron/systemTheme";
-import { loadThemePref } from "../../files/preferences/preferences";
-import { AppAction, AppState, SET_PREF_VISIBILITY, SET_THEME, SET_THEME_PREF } from "./types";
+import { loadFutureEntriesPref, loadThemePref } from "../../files/preferences/preferences";
+import {
+	AppAction,
+	AppState,
+	SET_ALLOW_FUTURE_ENTRIES,
+	SET_PREF_VISIBILITY,
+	SET_THEME,
+	SET_THEME_PREF,
+} from "./types";
 
+const allowFutureEntries = loadFutureEntriesPref();
 const themePref = loadThemePref();
 const theme = themePref === "auto" ? getSystemTheme() : themePref;
 
 const initialState: AppState = {
+	allowFutureEntries,
 	theme,
 	themePref,
 	showPref: false,
@@ -13,6 +22,12 @@ const initialState: AppState = {
 
 function appReducer(state = initialState, action: AppAction): AppState {
 	switch (action.type) {
+		case SET_ALLOW_FUTURE_ENTRIES: {
+			return {
+				...state,
+				allowFutureEntries: action.payload.allowFutureEntries,
+			};
+		}
 		case SET_THEME: {
 			return {
 				...state,

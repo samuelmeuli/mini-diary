@@ -63,6 +63,10 @@ export interface Translations {
 	"no-title": string,
 	"search": string,
 
+	// Preferences
+	"diary-entries": string;
+	"allow-future-entries": string;
+
 	// Password and directory
 	"change-directory": string,
 	"change-password": string,

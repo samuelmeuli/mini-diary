@@ -65,6 +65,10 @@ const translationsEl: Translations = {
 	"no-title": "Χωρίς Τίτλο",
 	"search": "Αναζήτηση",
 
+	// Preferences
+	"diary-entries": "Εγγραφές ημερολογίου",
+	"allow-future-entries": "Να επιτρέπεται η δημιουργία καταχωρήσεων στο μέλλον",
+
 	// Password and directory
 	"change-directory": "Αλλαγή τοποθεσίας",
 	"change-password": "Αλλαγή κωδικού",

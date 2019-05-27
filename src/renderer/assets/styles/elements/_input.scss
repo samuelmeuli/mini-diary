@@ -9,14 +9,14 @@ textarea {
 	outline: none;
 }
 
-input:not([type="radio"]),
+input:not([type="checkbox"]):not([type="radio"]),
 textarea {
 	@include background-color("background-editor");
 	box-shadow: $box-shadow-inset;
 }
 
 .button,
-input:not([type="radio"]) {
+input:not([type="checkbox"]):not([type="radio"]) {
 	height: $calendar-cell-size;
 	padding: (0.75 * $spacing-medium) $spacing-medium;
 	line-height: 1;
@@ -87,6 +87,7 @@ input {
 	}
 }
 
+.checkbox,
 .radio {
 	margin-right: 8px;
 }
