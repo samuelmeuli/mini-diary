@@ -112,6 +112,93 @@
 		"webpack": "^4.32.0",
 		"webpack-cli": "^3.3.0"
 	},
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"node": "10"
+					}
+				}
+			],
+			"@babel/preset-react",
+			"@babel/preset-typescript"
+		]
+	},
+	"jest": {
+		"moduleNameMapper": {
+			"electron": "<rootDir>/tests/setup/electron-mock.js"
+		},
+		"setupFiles": [
+			"<rootDir>/tests/setup/setup.js"
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"extends": [
+			"@samuelmeuli/eslint-config/react-typescript",
+			"prettier",
+			"prettier/@typescript-eslint"
+		],
+		"env": {
+			"browser": true,
+			"node": true,
+			"jest": true
+		},
+		"settings": {
+			"import/core-modules": "electron"
+		},
+		"rules": {
+			"import/no-extraneous-dependencies": [
+				"error",
+				{
+					"devDependencies": [
+						"tests/**/*",
+						"webpack.*.js"
+					]
+				}
+			]
+		}
+	},
+	"stylelint": {
+		"extends": "@samuelmeuli/stylelint-config"
+	},
+	"prettier": {
+		"printWidth": 100,
+		"trailingComma": "all"
+	},
+	"lint-staged": {
+		"*.{js,jsx}": [
+			"yarn lint:js",
+			"yarn format",
+			"git add"
+		],
+		"*.{ts,tsx}": [
+			"yarn lint:ts",
+			"yarn format",
+			"git add"
+		],
+		"*.css": [
+			"yarn lint:css",
+			"yarn format",
+			"git add"
+		],
+		"*.scss": [
+			"yarn lint:scss",
+			"yarn format",
+			"git add"
+		],
+		"*.{json,md,yml}": [
+			"yarn format",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "run-s staged typecheck"
+		}
+	},
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
 		"extraResources": [
@@ -169,36 +256,5 @@
 		"dmg": {
 			"icon": false
 		}
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "run-s staged typecheck"
-		}
-	},
-	"lint-staged": {
-		"*.{ts,tsx}": [
-			"yarn lint:ts",
-			"yarn format",
-			"git add"
-		],
-		"*.{js,jsx}": [
-			"yarn lint:js",
-			"yarn format",
-			"git add"
-		],
-		"*.css": [
-			"yarn lint:css",
-			"yarn format",
-			"git add"
-		],
-		"*.scss": [
-			"yarn lint:scss",
-			"yarn format",
-			"git add"
-		],
-		"*.{json,md,yml}": [
-			"yarn format",
-			"git add"
-		]
 	}
 }
