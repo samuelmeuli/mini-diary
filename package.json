@@ -3,7 +3,7 @@
 	"productName": "Mini Diary",
 	"version": "2.2.0",
 	"description": "Simple and secure journal app",
-	"main": "bundle/main.js",
+	"main": "./bundle/main.js",
 	"author": "Samuel Meuli <me@samuelmeuli.com>",
 	"repository": "github:samuelmeuli/mini-diary",
 	"homepage": "https://minidiary.app",
@@ -11,31 +11,30 @@
 	"private": true,
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
-		"start": "npm-run-all --parallel start:main start:renderer --parallel start:app start:main-watch start:renderer-watch",
-		"start:main": "webpack --config webpack.main.js --mode development",
-		"start:main-watch": "yarn start:main --watch",
-		"start:renderer": "webpack --config webpack.renderer.js --mode development",
-		"start:renderer-watch": "yarn start:renderer --watch",
+		"start": "npm-run-all start:js --parallel start:app 'start:js:* --watch'",
+		"start:js": "run-p start:js:*",
+		"start:js:main": "webpack --config ./webpack.main.js --mode development",
+		"start:js:renderer": "webpack --config ./webpack.renderer.js --mode development",
 		"start:app": "electron .",
-		"build": "npm-run-all build:clean --parallel build:main build:renderer --sequential build:app",
-		"build:clean": "rm -rf bundle dist",
-		"build:main": "webpack --config webpack.main.js --mode production",
-		"build:renderer": "webpack --config webpack.renderer.js --mode production",
+		"build": "run-s build:*",
+		"build:clean": "rm -rf ./bundle ./dist",
+		"build:js": "run-p build:js:*",
+		"build:js:main": "webpack --config ./webpack.main.js --mode production",
+		"build:js:renderer": "webpack --config ./webpack.renderer.js --mode production",
 		"build:app": "electron-builder --mac --windows --linux",
-		"release": "npm-run-all build:clean --parallel build:main build:renderer --sequential 'build:app --publish always'",
+		"release": "run-s build:clean build:js 'build:app --publish always'",
 		"website": "run-s website:*",
-		"website:build": "cp node_modules/minireset.css/minireset.min.css website/styles/",
-		"website:serve": "serve website --listen 3000",
+		"website:build": "cp ./node_modules/minireset.css/minireset.min.css ./website/styles/",
+		"website:serve": "serve ./website --listen 3000",
+		"typecheck": "run-p typecheck:*",
+		"typecheck:main": "tsc --project ./src/main",
+		"typecheck:renderer": "tsc --project ./src/renderer",
 		"format": "prettier --write",
 		"lint:css": "stylelint --fix --max-warnings 0",
 		"lint:scss": "stylelint --fix --max-warnings 0 --syntax scss",
 		"lint:js": "eslint --ext .js,.jsx --fix --max-warnings 0",
 		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0",
-		"staged": "lint-staged",
-		"typecheck": "run-p typecheck:*",
-		"typecheck:main": "tsc --project src/main",
-		"typecheck:renderer": "tsc --project src/renderer",
-		"test": "cross-env TZ=GMT jest"
+		"test": "TZ=GMT jest"
 	},
 	"dependencies": {
 		"@types/draft-js": "^0.10.32",
@@ -80,12 +79,11 @@
 		"@babel/preset-env": "^7.4.4",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/preset-typescript": "^7.3.3",
-		"@samuelmeuli/eslint-config": "~2.0.0",
-		"@samuelmeuli/stylelint-config": "~1.0.0",
+		"@samuelmeuli/eslint-config": "^2.0.1",
+		"@samuelmeuli/stylelint-config": "^1.0.2",
 		"@typescript-eslint/eslint-plugin": "^1.9.0",
 		"@typescript-eslint/parser": "^1.9.0",
 		"babel-loader": "^8.0.6",
-		"cross-env": "^5.2.0",
 		"css-loader": "^2.1.1",
 		"electron": "^4.2.2",
 		"electron-builder": "^20.39.0",
@@ -196,24 +194,24 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "run-s staged typecheck"
+			"pre-commit": "yarn typecheck && lint-staged"
 		}
 	},
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
 		"extraResources": [
 			{
-				"from": "bundle/licenses-main.txt",
-				"to": "licenses-main.txt"
+				"from": "./bundle/licenses-main.txt",
+				"to": "./licenses-main.txt"
 			},
 			{
-				"from": "bundle/licenses-renderer.txt",
-				"to": "licenses-renderer.txt"
+				"from": "./bundle/licenses-renderer.txt",
+				"to": "./licenses-renderer.txt"
 			}
 		],
 		"files": [
 			"!**/*",
-			"bundle/**/*"
+			"./bundle/**/*"
 		],
 		"mac": {
 			"target": [
