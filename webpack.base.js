@@ -22,7 +22,12 @@ module.exports = (env, argv) => {
 		},
 		plugins: [
 			...(argv.mode === "production"
-				? [new LicenseCheckerWebpackPlugin({ outputFilename: `licenses-${configName}.txt` })]
+				? [
+						new LicenseCheckerWebpackPlugin({
+							allow: "(Apache-2.0 OR BSD-2-Clause OR BSD-3-Clause OR ISC OR MIT OR Zlib)",
+							outputFilename: `licenses-${configName}.txt`,
+						}),
+				  ]
 				: []),
 		],
 	};
