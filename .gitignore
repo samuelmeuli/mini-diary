@@ -1,9 +1,3 @@
-# OS
-.DS_Store
-
-# Logs
-*.log
-
 # Node
 node_modules/
 
@@ -12,7 +6,11 @@ bundle/
 
 # electron-builder
 dist/
-*.p12
+
+# Credentials
+.env
+
+# Provisioning profile
 *.provisionprofile
 
 # Website
