@@ -2,7 +2,7 @@ const LicenseCheckerWebpackPlugin = require("license-checker-webpack-plugin");
 const path = require("path");
 
 module.exports = (env, argv) => {
-	const configName = argv.config.split[2];
+	const configName = argv.config.split(".")[2];
 	return {
 		output: {
 			path: path.resolve(__dirname, "bundle"),
