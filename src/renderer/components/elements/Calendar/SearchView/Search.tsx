@@ -1,9 +1,9 @@
 import moment from "moment";
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 
+import { toDateString } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../Banner";
-import { toDateString } from "../../../../utils/dateFormat";
 
 export interface StateProps {
 	dateSelected: Date;
@@ -28,10 +28,10 @@ export default class Search extends PureComponent<Props, {}> {
 	/**
 	 * Generate list of search result elements
 	 */
-	generateSearchResults(): SearchResult[] {
+	generateSearchResults(): ReactNode[] {
 		const { dateSelected, entries, searchResults, setDateSelected } = this.props;
 
-		return searchResults.reduce((r, searchResult) => {
+		return searchResults.reduce((r: ReactNode[], searchResult): ReactNode[] => {
 			if (searchResult.ref in entries) {
 				// Create search result element if a corresponding diary entry exists
 				// (When deleting a diary entry after a search, it is still part of the search results
@@ -45,7 +45,7 @@ export default class Search extends PureComponent<Props, {}> {
 						<button
 							type="button"
 							className={`button ${isSelected ? "button-main" : ""}`}
-							onClick={() => setDateSelected(date.toDate())}
+							onClick={(): void => setDateSelected(date.toDate())}
 						>
 							<p className="search-date text-faded">{toDateString(date)}</p>
 							<p className={`search-title ${!title ? "text-faded" : ""}`}>
@@ -59,7 +59,7 @@ export default class Search extends PureComponent<Props, {}> {
 		}, []);
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const searchResultsEl = this.generateSearchResults();
 		return (
 			<ul className="search-results">

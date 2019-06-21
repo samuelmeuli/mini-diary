@@ -1,5 +1,5 @@
 import { remote } from "electron";
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 
 import { translate, translations } from "../../../../utils/i18n";
 import Overlay from "../Overlay";
@@ -39,7 +39,7 @@ const fields = {
 };
 
 export interface StateProps {
-	importFormat: ImportFormat;
+	importFormat: ImportFormat | null;
 }
 
 export interface DispatchProps {
@@ -50,6 +50,10 @@ export interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 export default class ImportOverlay extends PureComponent<Props, {}> {
+	static showImportFormatError(): void {
+		remote.dialog.showErrorBox(translations["import-error-title"], "No import format selected");
+	}
+
 	constructor(props: Props) {
 		super(props);
 
@@ -59,6 +63,11 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 
 	selectAndImportFile(): void {
 		const { importFormat, runImport } = this.props;
+
+		if (!importFormat) {
+			ImportOverlay.showImportFormatError();
+			return;
+		}
 
 		// Show dialog for selecting file to import
 		const fileNameArray = remote.dialog.showOpenDialog({
@@ -77,8 +86,13 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { hideImportOverlay, importFormat } = this.props;
+
+		if (!importFormat) {
+			ImportOverlay.showImportFormatError();
+			return null;
+		}
 
 		return (
 			<Overlay className="import-overlay" onClose={hideImportOverlay}>

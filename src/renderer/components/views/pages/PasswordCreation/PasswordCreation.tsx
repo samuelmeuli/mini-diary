@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, PureComponent } from "react";
+import React, { ChangeEvent, FormEvent, PureComponent, ReactNode } from "react";
 
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../../elements/Banner";
@@ -60,7 +60,7 @@ export default class PasswordCreation extends PureComponent<Props, State> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { password1, password2 } = this.state;
 
 		const passwordsMatch = password1 === password2;

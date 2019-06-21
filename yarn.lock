@@ -891,6 +891,11 @@
     stylelint-config-rational-order "^0.1.2"
     stylelint-config-sass-guidelines "^6.0.0"
 
+"@samuelmeuli/tsconfig@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@samuelmeuli/tsconfig/-/tsconfig-0.1.1.tgz#2af8a6e3e9a815bdacf22e428a5ae1b06451e1d9"
+  integrity sha512-KIRqNxYOaMob+ohcGjDbrq8eRj+S+wVLe0iWEyeFkIIFekTXZofjVehaWayLb6DZ3lJJtqNDz+as7AoK4Aqshg==
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

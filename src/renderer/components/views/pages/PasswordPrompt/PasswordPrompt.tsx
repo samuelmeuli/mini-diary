@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, PureComponent } from "react";
+import React, { ChangeEvent, FormEvent, PureComponent, ReactNode } from "react";
 
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../../elements/Banner";
@@ -65,7 +65,7 @@ export default class PasswordPrompt extends PureComponent<Props, State> {
 		this.input.select();
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { decryptErrorMsg, decryptStatus } = this.props;
 		const { isSubmitted, password } = this.state;
 

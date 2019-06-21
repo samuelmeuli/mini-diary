@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 
 import CalendarContainer from "./CalendarView/CalendarContainer";
 import SearchContainer from "./SearchView/SearchContainer";
@@ -11,7 +11,7 @@ export interface StateProps {
 type Props = StateProps;
 
 export default class Sidebar extends PureComponent<Props, {}> {
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { searchKey } = this.props;
 		return (
 			<div className="sidebar">

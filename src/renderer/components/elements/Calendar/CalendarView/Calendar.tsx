@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 import DayPicker from "react-day-picker";
 import MomentLocaleUtils from "react-day-picker/moment";
 
@@ -36,7 +36,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { allowFutureEntries, dateSelected, entries, monthSelected } = this.props;
 
 		const today = new Date();

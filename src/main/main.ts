@@ -12,6 +12,7 @@ contextMenu();
 
 function onClosed(): void {
 	// Dereference the window
+	// @ts-ignore
 	setWindow(null);
 }
 
@@ -28,7 +29,7 @@ function createMainWindow(): BrowserWindow {
 		},
 	});
 	window.loadURL(`file://${__dirname}/index.html`);
-	window.once("ready-to-show", () => {
+	window.once("ready-to-show", (): void => {
 		window.show();
 	});
 	window.on("closed", onClosed);
@@ -46,16 +47,16 @@ function run(): void {
 	autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on("window-all-closed", () => {
+app.on("window-all-closed", (): void => {
 	app.quit();
 });
 
-app.on("activate", () => {
+app.on("activate", (): void => {
 	if (!getWindow()) {
 		run();
 	}
 });
 
-app.on("ready", () => {
+app.on("ready", (): void => {
 	run();
 });

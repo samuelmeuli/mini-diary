@@ -4,7 +4,7 @@ import { Action } from "redux";
 
 export interface ImportState {
 	importErrorMsg: string;
-	importFormat: ImportFormat;
+	importFormat: ImportFormat | null;
 	importStatus: Status;
 	showImportOverlay: boolean;
 }
@@ -36,7 +36,7 @@ export interface SetImportSuccessAction extends Action {
 export interface SetImportOverlayAction extends Action {
 	type: typeof SET_IMPORT_DIALOG;
 	payload: {
-		importFormat: ImportFormat;
+		importFormat: ImportFormat | null;
 		showImportOverlay: boolean;
 	};
 }

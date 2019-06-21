@@ -1,5 +1,5 @@
 import { remote } from "electron";
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 
 import { toggleWindowSize } from "../electron/ipcRenderer/senders";
 import { translations } from "../utils/i18n";
@@ -94,7 +94,7 @@ export default class App extends Component<Props, State> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { fileExists, hashedPassword, showImportOverlay, showPref, theme } = this.props;
 		const { isLoading } = this.state;
 

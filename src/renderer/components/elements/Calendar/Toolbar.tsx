@@ -1,7 +1,7 @@
 import iconClear from "feather-icons/dist/icons/x.svg";
 import debounce from "lodash.debounce";
 import moment from "moment";
-import React, { ChangeEvent, PureComponent } from "react";
+import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 import SimpleSvg from "react-simple-svg";
 
 import iconToday from "../../../assets/icons/today.svg";
@@ -73,7 +73,7 @@ export default class Toolbar extends PureComponent<Props, State> {
 		search(newSearchKey);
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { dateSelected, monthSelected } = this.props;
 		const { newSearchKey } = this.state;
 

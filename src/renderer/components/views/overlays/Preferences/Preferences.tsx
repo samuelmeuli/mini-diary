@@ -1,6 +1,6 @@
 import { remote } from "electron";
 import is from "electron-is";
-import React, { ChangeEvent, PureComponent } from "react";
+import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 
 import { FILE_NAME, getDiaryFilePath } from "../../../../files/diary/diaryFile";
 import { moveFile } from "../../../../files/fileAccess";
@@ -166,7 +166,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		setPrefVisibility(false);
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { allowFutureEntries, hashedPassword, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
 

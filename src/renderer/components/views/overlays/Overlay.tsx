@@ -38,17 +38,21 @@ export default class Overlay extends PureComponent<Props, {}> {
 		const { onClose } = this.props;
 		let targetElement = e.target as Node; // Clicked element
 
-		do {
+		/* eslint-disable-next-line no-constant-condition */
+		while (true) {
 			if (targetElement === this.overlayElement) {
-				// Click inside overlay
+				// Click inside overlay: Exit
 				return;
 			}
-			// Move up the DOM
-			targetElement = targetElement.parentNode;
-		} while (targetElement);
-
-		// Click outside overlay
-		onClose();
+			if (targetElement.parentNode) {
+				// Click outside overlay: Move up the DOM
+				targetElement = targetElement.parentNode;
+			} else {
+				// DOM root is reached: Close overlay, exit
+				onClose();
+				return;
+			}
+		}
 	}
 
 	/**
@@ -61,7 +65,7 @@ export default class Overlay extends PureComponent<Props, {}> {
 		}
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { children, className, onClose } = this.props;
 
 		return (

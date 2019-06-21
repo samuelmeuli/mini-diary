@@ -14,7 +14,7 @@ import PluginEditor from "draft-js-plugins-editor";
 import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
-import React, { PureComponent } from "react";
+import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
 
 import { toIndexDate, toLocaleWeekday } from "../../../utils/dateFormat";
 import { translations } from "../../../utils/i18n";
@@ -44,7 +44,7 @@ interface State {
 }
 
 export default class Editor extends PureComponent<Props, State> {
-	static getDerivedStateFromProps(props: Props, state: State): State {
+	static getDerivedStateFromProps(props: Props, state: State): State | null {
 		const { dateSelected: dateProps, entries } = props;
 		const { dateSelected: dateState } = state;
 
@@ -76,7 +76,7 @@ export default class Editor extends PureComponent<Props, State> {
 		};
 	}
 
-	static titleKeyBindingFn(e: React.KeyboardEvent): DraftEditorCommandExtended {
+	static titleKeyBindingFn(e: KeyboardEvent): DraftEditorCommandExtended | null {
 		if (e.key === "Enter") {
 			return "enter";
 		}
@@ -106,12 +106,9 @@ export default class Editor extends PureComponent<Props, State> {
 		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
 
 		// Save entry before app is closed
-		window.addEventListener(
-			"unload",
-			(): void => {
-				this.saveEntry();
-			},
-		);
+		window.addEventListener("unload", (): void => {
+			this.saveEntry();
+		});
 	}
 
 	onTextChange(textEditorState: EditorState): void {
@@ -134,13 +131,11 @@ export default class Editor extends PureComponent<Props, State> {
 			newState = RichUtils.toggleInlineStyle(editorState, "BOLD");
 		} else if (command === "italic") {
 			newState = RichUtils.toggleInlineStyle(editorState, "ITALIC");
+		} else {
+			return "not-handled";
 		}
-
-		if (newState) {
-			this.onTextChange(newState);
-			return "handled";
-		}
-		return "not-handled";
+		this.onTextChange(newState);
+		return "handled";
 	}
 
 	handleTitleKeyCommand(command: DraftEditorCommandExtended): DraftHandleValue {
@@ -162,7 +157,7 @@ export default class Editor extends PureComponent<Props, State> {
 		updateEntry(indexDate, title.trim(), text.trim());
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
 
 		// Detect active inline/block styles

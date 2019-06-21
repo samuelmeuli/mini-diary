@@ -3,7 +3,7 @@ import "draft-js/dist/Draft.css";
 import iconBold from "feather-icons/dist/icons/bold.svg";
 import iconItalic from "feather-icons/dist/icons/italic.svg";
 import iconUl from "feather-icons/dist/icons/list.svg";
-import React, { PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 import SimpleSvg from "react-simple-svg";
 
 import iconOl from "../../../assets/icons/ordered-list.svg";
@@ -54,7 +54,7 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 		onTextChange(RichUtils.toggleBlockType(textEditorState, "unordered-list-item"));
 	}
 
-	render(): React.ReactNode {
+	render(): ReactNode {
 		const { textEditorState } = this.props;
 
 		// Detect active inline/block styles
@@ -68,7 +68,7 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 		return (
 			<div
 				className="editor-buttons-wrapper"
-				onMouseDown={e => {
+				onMouseDown={(e): void => {
 					e.preventDefault(); // Keep focus on editor when a button is clicked
 				}}
 				role="none"
