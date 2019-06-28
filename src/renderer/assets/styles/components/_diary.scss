@@ -1,9 +1,10 @@
 .diary {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	height: 100%;
 
-	@media (max-width: 650px) {
+	@media (max-width: $screen-tablet) {
 		flex-direction: column;
 		margin: 0 auto;
 		padding: 2 * $spacing-large;
@@ -19,7 +20,7 @@
 		}
 	}
 
-	@media (min-width: 651px) {
+	@media (min-width: $screen-tablet + 1px) {
 		padding: $spacing-rel-large;
 
 		.sidebar {
@@ -30,6 +31,10 @@
 			height: 100%;
 			margin-left: $spacing-rel-large;
 		}
+	}
+
+	@media (min-width: $screen-large) {
+		padding: $spacing-rel-small;
 	}
 
 	.sidebar {
