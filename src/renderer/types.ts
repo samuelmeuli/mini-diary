@@ -27,6 +27,10 @@ interface SearchResult {
 	text: string;
 }
 
+// Overlay
+
+type OverlayType = "none" | "import" | "preferences";
+
 // Theme
 
 type Theme = "light" | "dark";

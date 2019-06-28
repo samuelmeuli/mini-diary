@@ -2,7 +2,7 @@ import { remote } from "electron";
 import React, { PureComponent, ReactNode } from "react";
 
 import { translate, translations } from "../../../../utils/i18n";
-import Overlay from "../Overlay";
+import OverlayContainer from "../OverlayContainer";
 
 const APP_NAME = remote.app.getName();
 const fields = {
@@ -39,11 +39,10 @@ const fields = {
 };
 
 export interface StateProps {
-	importFormat: ImportFormat | null;
+	importFormat: ImportFormat;
 }
 
 export interface DispatchProps {
-	hideImportOverlay: () => void;
 	runImport: (importFilePath: string) => void;
 }
 
@@ -87,7 +86,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 	}
 
 	render(): ReactNode {
-		const { hideImportOverlay, importFormat } = this.props;
+		const { importFormat } = this.props;
 
 		if (!importFormat) {
 			ImportOverlay.showImportFormatError();
@@ -95,13 +94,13 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		}
 
 		return (
-			<Overlay className="import-overlay" onClose={hideImportOverlay}>
+			<OverlayContainer className="import-overlay">
 				<h1>{fields[importFormat].title}</h1>
 				{fields[importFormat].instructions}
 				<button type="button" className="button button-main" onClick={this.selectAndImportFile}>
 					{translations["start-import"]}
 				</button>
-			</Overlay>
+			</OverlayContainer>
 		);
 	}
 }

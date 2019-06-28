@@ -1,14 +1,9 @@
 import { connect } from "react-redux";
 
-import {
-	setPrefVisibility,
-	updateFutureEntriesPref,
-	updateThemePref,
-} from "../../../../store/app/actionCreators";
-import { SetPrefVisibilityAction } from "../../../../store/app/types";
+import { updateFutureEntriesPref, updateThemePref } from "../../../../store/app/actionCreators";
 import { testFileExists, updatePassword } from "../../../../store/file/actionCreators";
 import { RootState, ThunkDispatchT } from "../../../../store/store";
-import Preferences, { DispatchProps, StateProps } from "./Preferences";
+import PrefOverlay, { DispatchProps, StateProps } from "./PrefOverlay";
 
 const mapStateToProps = (state: RootState): StateProps => ({
 	allowFutureEntries: state.app.allowFutureEntries,
@@ -17,8 +12,6 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
-	setPrefVisibility: (showPref: boolean): SetPrefVisibilityAction =>
-		dispatch(setPrefVisibility(showPref)),
 	testFileExists: (): void => dispatch(testFileExists()),
 	updateFutureEntriesPref: (allowFutureEntries: boolean): void =>
 		dispatch(updateFutureEntriesPref(allowFutureEntries)),
@@ -29,4 +22,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(Preferences);
+)(PrefOverlay);

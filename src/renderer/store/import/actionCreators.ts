@@ -1,6 +1,7 @@
 import { readFile } from "../../files/fileAccess";
 import { parseDayOneJson, parseJrnlJson, parseMiniDiaryJson } from "../../files/import/json";
 import { parseDayOneTxt } from "../../files/import/txt";
+import { closeOverlay } from "../app/actionCreators";
 import { mergeUpdateFile } from "../file/actionCreators";
 import { ThunkActionT } from "../store";
 import {
@@ -8,10 +9,10 @@ import {
 	IMPORT_IN_PROGRESS,
 	IMPORT_SUCCESS,
 	SetImportErrorAction,
+	SetImportFormatAction,
 	SetImportInProgressAction,
-	SetImportOverlayAction,
 	SetImportSuccessAction,
-	SET_IMPORT_DIALOG,
+	SET_IMPORT_FORMAT,
 } from "./types";
 
 // Action creators
@@ -37,29 +38,18 @@ function setImportSuccess(): SetImportSuccessAction {
 	};
 }
 
-export function hideImportOverlay(): SetImportOverlayAction {
+export function setImportFormat(importFormat: ImportFormat): SetImportFormatAction {
 	return {
-		type: SET_IMPORT_DIALOG,
-		payload: {
-			importFormat: null,
-			showImportOverlay: false,
-		},
-	};
-}
-
-export function showImportOverlay(importFormat: ImportFormat): SetImportOverlayAction {
-	return {
-		type: SET_IMPORT_DIALOG,
+		type: SET_IMPORT_FORMAT,
 		payload: {
 			importFormat,
-			showImportOverlay: true,
 		},
 	};
 }
 
 // Thunks
 
-export const runImport = (importFilePath: string): ThunkActionT => (dispatch, getState) => {
+export const runImport = (importFilePath: string): ThunkActionT => (dispatch, getState): void => {
 	const { importFormat } = getState().import;
 
 	dispatch(setImportInProgress());
@@ -87,7 +77,7 @@ export const runImport = (importFilePath: string): ThunkActionT => (dispatch, ge
 		const json = parseFunc(fileContent);
 		dispatch(mergeUpdateFile(json));
 		dispatch(setImportSuccess());
-		dispatch(hideImportOverlay());
+		dispatch(closeOverlay());
 	} catch (err) {
 		dispatch(setImportError(err.toString()));
 	}

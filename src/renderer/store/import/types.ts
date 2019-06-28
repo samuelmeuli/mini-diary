@@ -4,9 +4,8 @@ import { Action } from "redux";
 
 export interface ImportState {
 	importErrorMsg: string;
-	importFormat: ImportFormat | null;
+	importFormat: ImportFormat;
 	importStatus: Status;
-	showImportOverlay: boolean;
 }
 
 // Action types
@@ -14,9 +13,16 @@ export interface ImportState {
 export const IMPORT_IN_PROGRESS = "IMPORT_IN_PROGRESS";
 export const IMPORT_ERROR = "IMPORT_ERROR";
 export const IMPORT_SUCCESS = "IMPORT_SUCCESS";
-export const SET_IMPORT_DIALOG = "SET_IMPORT_DIALOG";
+export const SET_IMPORT_FORMAT = "SET_IMPORT_FORMAT";
 
 // Actions
+
+export interface SetImportFormatAction extends Action {
+	type: typeof SET_IMPORT_FORMAT;
+	payload: {
+		importFormat: ImportFormat;
+	};
+}
 
 export interface SetImportInProgressAction extends Action {
 	type: typeof IMPORT_IN_PROGRESS;
@@ -33,16 +39,8 @@ export interface SetImportSuccessAction extends Action {
 	type: typeof IMPORT_SUCCESS;
 }
 
-export interface SetImportOverlayAction extends Action {
-	type: typeof SET_IMPORT_DIALOG;
-	payload: {
-		importFormat: ImportFormat | null;
-		showImportOverlay: boolean;
-	};
-}
-
 export type ImportAction =
+	| SetImportFormatAction
 	| SetImportInProgressAction
 	| SetImportErrorAction
-	| SetImportSuccessAction
-	| SetImportOverlayAction;
+	| SetImportSuccessAction;

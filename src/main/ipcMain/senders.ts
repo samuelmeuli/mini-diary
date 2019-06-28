@@ -62,6 +62,6 @@ export const lock = (): void => {
 
 // Preferences
 
-export const showPref = (): void => {
-	getWindow().webContents.send("showPref");
+export const showPrefOverlay = (): void => {
+	getWindow().webContents.send("showPrefOverlay");
 };

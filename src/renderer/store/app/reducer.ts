@@ -4,7 +4,7 @@ import {
 	AppAction,
 	AppState,
 	SET_ALLOW_FUTURE_ENTRIES,
-	SET_PREF_VISIBILITY,
+	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
 } from "./types";
@@ -15,9 +15,9 @@ const theme = themePref === "auto" ? getSystemTheme() : themePref;
 
 const initialState: AppState = {
 	allowFutureEntries,
+	overlay: "none",
 	theme,
 	themePref,
-	showPref: false,
 };
 
 function appReducer(state = initialState, action: AppAction): AppState {
@@ -26,6 +26,12 @@ function appReducer(state = initialState, action: AppAction): AppState {
 			return {
 				...state,
 				allowFutureEntries: action.payload.allowFutureEntries,
+			};
+		}
+		case SET_OVERLAY: {
+			return {
+				...state,
+				overlay: action.payload.overlay,
 			};
 		}
 		case SET_THEME: {
@@ -38,12 +44,6 @@ function appReducer(state = initialState, action: AppAction): AppState {
 			return {
 				...state,
 				themePref: action.payload.themePref,
-			};
-		}
-		case SET_PREF_VISIBILITY: {
-			return {
-				...state,
-				showPref: action.payload.showPref,
 			};
 		}
 		default:

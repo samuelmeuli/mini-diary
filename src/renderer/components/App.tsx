@@ -5,7 +5,7 @@ import { toggleWindowSize } from "../electron/ipcRenderer/senders";
 import { translations } from "../utils/i18n";
 import ThemeContext from "./ThemeContext";
 import ImportOverlayContainer from "./views/overlays/ImportOverlay/ImportOverlayContainer";
-import Preferences from "./views/overlays/Preferences/PreferencesContainer";
+import PrefOverlayContainer from "./views/overlays/PrefOverlay/PrefOverlayContainer";
 import Diary from "./views/pages/Diary/Diary";
 import PasswordCreationContainer from "./views/pages/PasswordCreation/PasswordCreationContainer";
 import PasswordPromptContainer from "./views/pages/PasswordPrompt/PasswordPromptContainer";
@@ -17,8 +17,7 @@ export interface StateProps {
 	hashedPassword: string;
 	importErrorMsg: string;
 	importStatus: Status;
-	showImportOverlay: boolean;
-	showPref: boolean;
+	overlay: OverlayType;
 	theme: Theme;
 }
 
@@ -33,6 +32,19 @@ interface State {
 }
 
 export default class App extends Component<Props, State> {
+	static createOverlayComp(overlay: OverlayType): ReactNode {
+		switch (overlay) {
+			case "none":
+				return null;
+			case "preferences":
+				return <PrefOverlayContainer />;
+			case "import":
+				return <ImportOverlayContainer />;
+			default:
+				throw Error(`Cannot display overlay: Overlay type "${overlay}" does not exist`);
+		}
+	}
+
 	static hideSpinningCursor(): void {
 		document.body.style.cursor = "auto";
 	}
@@ -95,7 +107,7 @@ export default class App extends Component<Props, State> {
 	}
 
 	render(): ReactNode {
-		const { fileExists, hashedPassword, showImportOverlay, showPref, theme } = this.props;
+		const { fileExists, hashedPassword, overlay, theme } = this.props;
 		const { isLoading } = this.state;
 
 		// Render app page
@@ -114,20 +126,17 @@ export default class App extends Component<Props, State> {
 			page = <Diary />;
 		}
 
-		// Render overlay (e.g. preferences or import dialog) over page if necessary
-		let overlay;
-		if (showPref) {
-			overlay = <Preferences />;
-		} else if (showImportOverlay) {
-			overlay = <ImportOverlayContainer />;
-		}
+		const overlayComp = App.createOverlayComp(overlay);
 
 		return (
 			<ThemeContext.Provider value={theme}>
 				<div className={`app theme-${theme}`}>
 					<header onDoubleClick={toggleWindowSize} />
 					{page}
-					{overlay}
+					{
+						/* Render overlay (e.g. preferences or import dialog) over page if necessary */
+						overlayComp
+					}
 				</div>
 			</ThemeContext.Provider>
 		);

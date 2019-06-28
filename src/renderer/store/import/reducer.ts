@@ -1,21 +1,26 @@
 import {
+	ImportAction,
+	ImportState,
 	IMPORT_ERROR,
 	IMPORT_IN_PROGRESS,
 	IMPORT_SUCCESS,
-	ImportAction,
-	ImportState,
-	SET_IMPORT_DIALOG,
+	SET_IMPORT_FORMAT,
 } from "./types";
 
 const initialState: ImportState = {
 	importErrorMsg: "",
-	importFormat: null,
+	importFormat: "jsonMiniDiary",
 	importStatus: "idle",
-	showImportOverlay: false,
 };
 
 function importReducer(state = initialState, action: ImportAction): ImportState {
 	switch (action.type) {
+		case SET_IMPORT_FORMAT: {
+			return {
+				...state,
+				importFormat: action.payload.importFormat,
+			};
+		}
 		case IMPORT_IN_PROGRESS: {
 			return {
 				...state,
@@ -35,13 +40,6 @@ function importReducer(state = initialState, action: ImportAction): ImportState 
 				...state,
 				importErrorMsg: "",
 				importStatus: "idle",
-			};
-		}
-		case SET_IMPORT_DIALOG: {
-			return {
-				...state,
-				importFormat: action.payload.importFormat,
-				showImportOverlay: action.payload.showImportOverlay,
 			};
 		}
 		default:

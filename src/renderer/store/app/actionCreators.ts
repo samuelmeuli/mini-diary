@@ -3,11 +3,11 @@ import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/pr
 import { ThunkActionT } from "../store";
 import {
 	SetAllowFutureEntriesAction,
-	SetPrefVisibilityAction,
+	SetOverlayAction,
 	SetThemeAction,
 	SetThemePrefAction,
 	SET_ALLOW_FUTURE_ENTRIES,
-	SET_PREF_VISIBILITY,
+	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
 } from "./types";
@@ -19,6 +19,24 @@ function setAllowFutureEntries(allowFutureEntries: boolean): SetAllowFutureEntri
 		type: SET_ALLOW_FUTURE_ENTRIES,
 		payload: {
 			allowFutureEntries,
+		},
+	};
+}
+
+export function closeOverlay(): SetOverlayAction {
+	return {
+		type: SET_OVERLAY,
+		payload: {
+			overlay: "none",
+		},
+	};
+}
+
+export function openOverlay(overlay: OverlayType): SetOverlayAction {
+	return {
+		type: SET_OVERLAY,
+		payload: {
+			overlay,
 		},
 	};
 }
@@ -37,15 +55,6 @@ export function setThemePref(themePref: ThemePref): SetThemePrefAction {
 		type: SET_THEME_PREF,
 		payload: {
 			themePref,
-		},
-	};
-}
-
-export function setPrefVisibility(showPref: boolean): SetPrefVisibilityAction {
-	return {
-		type: SET_PREF_VISIBILITY,
-		payload: {
-			showPref,
 		},
 	};
 }

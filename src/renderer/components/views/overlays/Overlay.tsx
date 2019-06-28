@@ -4,11 +4,16 @@ import SimpleSvg from "react-simple-svg";
 
 import { translations } from "../../../utils/i18n";
 
-interface Props {
+export interface DispatchProps {
+	closeOverlay: () => void;
+}
+
+export interface CustomProps {
 	children: ReactNode;
 	className?: string;
-	onClose: () => void;
 }
+
+type Props = DispatchProps & CustomProps;
 
 export default class Overlay extends PureComponent<Props, {}> {
 	overlayElement: HTMLDivElement;
@@ -18,6 +23,7 @@ export default class Overlay extends PureComponent<Props, {}> {
 
 		// Function bindings
 		this.onClick = this.onClick.bind(this);
+		this.onClose = this.onClose.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
 	}
 
@@ -35,7 +41,6 @@ export default class Overlay extends PureComponent<Props, {}> {
 	 * Close the overlay if the user clicks outside it
 	 */
 	onClick(e: MouseEvent): void {
-		const { onClose } = this.props;
 		let targetElement = e.target as Node; // Clicked element
 
 		/* eslint-disable-next-line no-constant-condition */
@@ -49,10 +54,16 @@ export default class Overlay extends PureComponent<Props, {}> {
 				targetElement = targetElement.parentNode;
 			} else {
 				// DOM root is reached: Close overlay, exit
-				onClose();
+				this.onClose();
 				return;
 			}
 		}
+	}
+
+	onClose(): void {
+		const { closeOverlay } = this.props;
+
+		closeOverlay();
 	}
 
 	/**
@@ -60,13 +71,12 @@ export default class Overlay extends PureComponent<Props, {}> {
 	 */
 	onKeyDown(e: KeyboardEvent): void {
 		if (e.key === "Escape") {
-			const { onClose } = this.props;
-			onClose();
+			this.onClose();
 		}
 	}
 
 	render(): ReactNode {
-		const { children, className, onClose } = this.props;
+		const { children, className } = this.props;
 
 		return (
 			<div className="overlay-outer">
@@ -79,7 +89,7 @@ export default class Overlay extends PureComponent<Props, {}> {
 					<button
 						type="button"
 						className="button button-invisible overlay-close-button"
-						onClick={onClose}
+						onClick={this.onClose}
 					>
 						<SimpleSvg src={iconClear} height={20} width={20} title={translations.close} />
 					</button>

@@ -1,7 +1,7 @@
 import { ipcRenderer, remote } from "electron";
 import is from "electron-is/is";
 
-import { setPrefVisibility, setTheme } from "../../store/app/actionCreators";
+import { openOverlay, setTheme } from "../../store/app/actionCreators";
 import {
 	setDateSelectedPrevious,
 	setDaySelectedNext,
@@ -15,7 +15,7 @@ import {
 	exportToTxtDayOne,
 } from "../../store/export/actionCreators";
 import { lock } from "../../store/file/actionCreators";
-import { showImportOverlay } from "../../store/import/actionCreators";
+import { setImportFormat } from "../../store/import/actionCreators";
 import store, { ThunkDispatchT } from "../../store/store";
 import { isAtLeastMojave } from "../../utils/os";
 import { getSystemTheme } from "../systemTheme";
@@ -25,75 +25,79 @@ const dispatchThunk = store.dispatch as ThunkDispatchT;
 function initIpcListeners(): void {
 	// Date
 
-	ipcRenderer.on("nextDay", () => {
+	ipcRenderer.on("nextDay", (): void => {
 		dispatchThunk(setDaySelectedNext());
 	});
 
-	ipcRenderer.on("nextMonth", () => {
+	ipcRenderer.on("nextMonth", (): void => {
 		dispatchThunk(setMonthSelectedNext());
 	});
 
-	ipcRenderer.on("previousDay", () => {
+	ipcRenderer.on("previousDay", (): void => {
 		dispatchThunk(setDateSelectedPrevious());
 	});
 
-	ipcRenderer.on("previousMonth", () => {
+	ipcRenderer.on("previousMonth", (): void => {
 		dispatchThunk(setMonthSelectedPrevious());
 	});
 
 	// Export
 
-	ipcRenderer.on("exportJsonMiniDiary", () => {
+	ipcRenderer.on("exportJsonMiniDiary", (): void => {
 		dispatchThunk(exportToJsonMiniDiary());
 	});
 
-	ipcRenderer.on("exportMd", () => {
+	ipcRenderer.on("exportMd", (): void => {
 		dispatchThunk(exportToMd());
 	});
 
-	ipcRenderer.on("exportPdf", () => {
+	ipcRenderer.on("exportPdf", (): void => {
 		dispatchThunk(exportToPdf());
 	});
 
-	ipcRenderer.on("exportTxtDayOne", () => {
+	ipcRenderer.on("exportTxtDayOne", (): void => {
 		dispatchThunk(exportToTxtDayOne());
 	});
 
 	// Import
 
-	ipcRenderer.on("importJsonDayOne", () => {
-		dispatchThunk(showImportOverlay("jsonDayOne"));
+	ipcRenderer.on("importJsonDayOne", (): void => {
+		dispatchThunk(setImportFormat("jsonDayOne"));
+		dispatchThunk(openOverlay("import"));
 	});
 
-	ipcRenderer.on("importJsonJrnl", () => {
-		dispatchThunk(showImportOverlay("jsonJrnl"));
+	ipcRenderer.on("importJsonJrnl", (): void => {
+		dispatchThunk(setImportFormat("jsonJrnl"));
+		dispatchThunk(openOverlay("import"));
 	});
 
-	ipcRenderer.on("importJsonMiniDiary", () => {
-		dispatchThunk(showImportOverlay("jsonMiniDiary"));
+	ipcRenderer.on("importJsonMiniDiary", (): void => {
+		dispatchThunk(setImportFormat("jsonMiniDiary"));
+		dispatchThunk(openOverlay("import"));
 	});
 
-	ipcRenderer.on("importTxtDayOne", () => {
-		dispatchThunk(showImportOverlay("txtDayOne"));
+	ipcRenderer.on("importTxtDayOne", (): void => {
+		dispatchThunk(setImportFormat("txtDayOne"));
+		dispatchThunk(openOverlay("import"));
 	});
 
 	// Lock
 
-	ipcRenderer.on("lock", () => {
+	ipcRenderer.on("lock", (): void => {
 		dispatchThunk(lock());
 	});
 
 	// Preferences
 
-	ipcRenderer.on("showPref", () => {
-		dispatchThunk(setPrefVisibility(true));
+	ipcRenderer.on("showPrefOverlay", (): void => {
+		dispatchThunk(openOverlay("preferences"));
 	});
 
 	// Screen lock
 	// Lock diary when screen is locked
 
 	if (is.macOS() || is.windows()) {
-		remote.powerMonitor.on("lock-screen", () => {
+		remote.powerMonitor.on("lock-screen", (): void => {
 			dispatchThunk(lock());
 		});
 	}
@@ -102,10 +106,13 @@ function initIpcListeners(): void {
 	// Listen to system theme changes and update the app theme accordingly
 
 	if (is.macOS() && isAtLeastMojave()) {
-		remote.systemPreferences.subscribeNotification("AppleInterfaceThemeChangedNotification", () => {
-			const theme = getSystemTheme();
-			dispatchThunk(setTheme(theme));
-		});
+		remote.systemPreferences.subscribeNotification(
+			"AppleInterfaceThemeChangedNotification",
+			(): void => {
+				const theme = getSystemTheme();
+				dispatchThunk(setTheme(theme));
+			},
+		);
 	}
 }
 

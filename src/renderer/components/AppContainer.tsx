@@ -11,13 +11,12 @@ const mapStateToProps = (state: RootState): StateProps => ({
 	hashedPassword: state.file.hashedPassword,
 	importErrorMsg: state.import.importErrorMsg,
 	importStatus: state.import.importStatus,
-	showImportOverlay: state.import.showImportOverlay,
-	showPref: state.app.showPref,
+	overlay: state.app.overlay,
 	theme: state.app.theme,
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
-	testFileExists: () => dispatch(testFileExists()),
+	testFileExists: (): void => dispatch(testFileExists()),
 });
 
 export default connect(

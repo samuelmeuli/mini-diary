@@ -8,7 +8,7 @@ import { saveDirPref } from "../../../../files/preferences/preferences";
 import { translations } from "../../../../utils/i18n";
 import { isAtLeastMojave } from "../../../../utils/os";
 import Banner from "../../../elements/Banner";
-import Overlay from "../Overlay";
+import OverlayContainer from "../OverlayContainer";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
@@ -17,7 +17,6 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-	setPrefVisibility: (showPref: boolean) => void;
 	testFileExists: () => void;
 	updateFutureEntriesPref: (allowFutureEntries: boolean) => void;
 	updatePassword: (newPassword: string) => void;
@@ -32,7 +31,7 @@ interface State {
 	password2: string;
 }
 
-export default class Preferences extends PureComponent<Props, State> {
+export default class PrefOverlay extends PureComponent<Props, State> {
 	constructor(props: Props) {
 		super(props);
 
@@ -45,7 +44,6 @@ export default class Preferences extends PureComponent<Props, State> {
 		// Function bindings
 		this.onChangePassword1 = this.onChangePassword1.bind(this);
 		this.onChangePassword2 = this.onChangePassword2.bind(this);
-		this.hidePreferences = this.hidePreferences.bind(this);
 		this.selectDir = this.selectDir.bind(this);
 		this.selectMoveDir = this.selectMoveDir.bind(this);
 		this.setThemePrefAuto = this.setThemePrefAuto.bind(this);
@@ -160,12 +158,6 @@ export default class Preferences extends PureComponent<Props, State> {
 		}
 	}
 
-	hidePreferences(): void {
-		const { setPrefVisibility } = this.props;
-
-		setPrefVisibility(false);
-	}
-
 	render(): ReactNode {
 		const { allowFutureEntries, hashedPassword, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
@@ -174,7 +166,7 @@ export default class Preferences extends PureComponent<Props, State> {
 		const passwordsMatch = password1 === password2;
 
 		return (
-			<Overlay onClose={this.hidePreferences}>
+			<OverlayContainer className="pref-overlay">
 				<h1>{translations.preferences}</h1>
 				<form className="preferences-form">
 					{/* Theme */}
@@ -295,7 +287,7 @@ export default class Preferences extends PureComponent<Props, State> {
 						</fieldset>
 					)}
 				</form>
-			</Overlay>
+			</OverlayContainer>
 		);
 	}
 }
