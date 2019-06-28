@@ -13,10 +13,11 @@ const DISABLED_MENU_ITEMS = [
 	"importJsonMiniDiary",
 	"importTxtDayOne",
 	"lock",
-	"previousDay",
 	"nextDay",
-	"previousMonth",
 	"nextMonth",
+	"previousDay",
+	"previousMonth",
+	"statistics",
 ];
 
 // Application menu

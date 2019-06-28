@@ -60,8 +60,12 @@ export const lock = (): void => {
 	getWindow().webContents.send("lock");
 };
 
-// Preferences
+// Overlays
 
 export const showPrefOverlay = (): void => {
 	getWindow().webContents.send("showPrefOverlay");
+};
+
+export const showStatsOverlay = (): void => {
+	getWindow().webContents.send("showStatsOverlay");
 };

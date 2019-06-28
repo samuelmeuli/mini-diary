@@ -9,6 +9,7 @@ import {
 	importJsonMiniDiary,
 	importTxtDayOne,
 	lock,
+	showStatsOverlay,
 } from "../../ipcMain/senders";
 
 const fileMenu: Electron.MenuItemConstructorOptions = {
@@ -18,7 +19,7 @@ const fileMenu: Electron.MenuItemConstructorOptions = {
 			label: translate("lock-diary"),
 			id: "lock",
 			accelerator: "CmdOrCtrl+L",
-			click() {
+			click(): void {
 				lock();
 			},
 		},
@@ -29,28 +30,28 @@ const fileMenu: Electron.MenuItemConstructorOptions = {
 				{
 					label: `${translate("import-from-format", { format: "JSON (Day One)" })}…`,
 					id: "importJsonDayOne",
-					click() {
+					click(): void {
 						importJsonDayOne();
 					},
 				},
 				{
 					label: `${translate("import-from-format", { format: "JSON (jrnl)" })}…`,
 					id: "importJsonJrnl",
-					click() {
+					click(): void {
 						importJsonJrnl();
 					},
 				},
 				{
 					label: `${translate("import-from-format", { format: "JSON (Mini Diary)" })}…`,
 					id: "importJsonMiniDiary",
-					click() {
+					click(): void {
 						importJsonMiniDiary();
 					},
 				},
 				{
 					label: `${translate("import-from-format", { format: "TXT (Day One)" })}…`,
 					id: "importTxtDayOne",
-					click() {
+					click(): void {
 						importTxtDayOne();
 					},
 				},
@@ -63,32 +64,40 @@ const fileMenu: Electron.MenuItemConstructorOptions = {
 				{
 					label: `${translate("export-to-format", { format: "JSON (Mini Diary)" })}…`,
 					id: "exportJsonMiniDiary",
-					click() {
+					click(): void {
 						exportJsonMiniDiary();
 					},
 				},
 				{
 					label: `${translate("export-to-format", { format: "Markdown" })}…`,
 					id: "exportMd",
-					click() {
+					click(): void {
 						exportMd();
 					},
 				},
 				{
 					label: `${translate("export-to-format", { format: "PDF" })}…`,
 					id: "exportPdf",
-					click() {
+					click(): void {
 						exportPdf();
 					},
 				},
 				{
 					label: `${translate("export-to-format", { format: "TXT (Day One)" })}…`,
 					id: "exportTxtDayOne",
-					click() {
+					click(): void {
 						exportTxtDayOne();
 					},
 				},
 			],
+		},
+		{ type: "separator" },
+		{
+			label: translate("statistics"),
+			id: "statistics",
+			click(): void {
+				showStatsOverlay();
+			},
 		},
 	],
 };

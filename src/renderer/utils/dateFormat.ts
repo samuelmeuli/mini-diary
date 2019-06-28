@@ -1,5 +1,14 @@
 import moment from "moment";
 
+const INDEX_DATE_FORMAT = "YYYY-MM-DD";
+
+/**
+ * Create and return moment object from diary index string
+ */
+export function momentIndex(dateStr: string): moment.Moment {
+	return moment(dateStr, INDEX_DATE_FORMAT);
+}
+
 /**
  * Format date as locale-dependent string
  */
@@ -22,10 +31,10 @@ export function toFilenameDate(date: Date | moment.Moment): string {
 }
 
 /**
- * Format date as diary object index
+ * Format date as diary index string
  */
 export function toIndexDate(date: Date | moment.Moment): IndexDate {
-	return moment(date).format("YYYY-MM-DD");
+	return moment(date).format(INDEX_DATE_FORMAT);
 }
 
 /**

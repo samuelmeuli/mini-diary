@@ -6,6 +6,7 @@ import { translations } from "../utils/i18n";
 import ThemeContext from "./ThemeContext";
 import ImportOverlayContainer from "./views/overlays/ImportOverlay/ImportOverlayContainer";
 import PrefOverlayContainer from "./views/overlays/PrefOverlay/PrefOverlayContainer";
+import StatsOverlayContainer from "./views/overlays/StatsOverlay/StatsOverlayContainer";
 import Diary from "./views/pages/Diary/Diary";
 import PasswordCreationContainer from "./views/pages/PasswordCreation/PasswordCreationContainer";
 import PasswordPromptContainer from "./views/pages/PasswordPrompt/PasswordPromptContainer";
@@ -36,10 +37,12 @@ export default class App extends Component<Props, State> {
 		switch (overlay) {
 			case "none":
 				return null;
-			case "preferences":
-				return <PrefOverlayContainer />;
 			case "import":
 				return <ImportOverlayContainer />;
+			case "preferences":
+				return <PrefOverlayContainer />;
+			case "statistics":
+				return <StatsOverlayContainer />;
 			default:
 				throw Error(`Cannot display overlay: Overlay type "${overlay}" does not exist`);
 		}

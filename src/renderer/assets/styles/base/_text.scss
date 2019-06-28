@@ -1,7 +1,7 @@
 .app {
 	@include color("text");
 	font-weight: $font-weight-normal;
-	font-size: $font-size;
+	font-size: $font-size-base;
 	font-family: $font-family;
 	line-height: $line-height;
 	user-select: none;
@@ -14,7 +14,7 @@ a {
 
 h1 {
 	font-weight: $font-weight-bold;
-	font-size: 150%;
+	font-size: $font-size-h1;
 }
 
 abbr {
