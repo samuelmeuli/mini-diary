@@ -150,7 +150,9 @@
 			"jest": true
 		},
 		"settings": {
-			"import/core-modules": "electron"
+			"import/core-modules": [
+				"electron"
+			]
 		},
 		"rules": {
 			"import/no-extraneous-dependencies": [
