@@ -1,10 +1,10 @@
-/* eslint-disable global-require */
-
 import { app, BrowserWindow } from "electron";
 import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
 import { autoUpdater } from "electron-updater";
 
+import initIpcListeners from "./ipcMain/listeners";
+import { buildMenu } from "./menu/menu";
 import { getWindow, setWindow } from "./window";
 
 electronDebug();
@@ -35,8 +35,8 @@ function createMainWindow(): BrowserWindow {
 	window.on("closed", onClosed);
 
 	// Set up IPC and menu items
-	require("./ipcMain/listeners");
-	require("./menu/menu");
+	initIpcListeners();
+	buildMenu();
 
 	return window;
 }
