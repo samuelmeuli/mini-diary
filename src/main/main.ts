@@ -4,11 +4,13 @@ import electronDebug from "electron-debug";
 import { autoUpdater } from "electron-updater";
 import path from "path";
 
+import initReportDialog from "../shared/reportDialog";
 import { initI18n } from "./i18n/i18n";
 import initIpcListeners from "./ipcMain/listeners";
 import { buildMenu } from "./menu/menu";
 import { getWindow, setWindow } from "./window";
 
+initReportDialog();
 electronDebug();
 contextMenu();
 
