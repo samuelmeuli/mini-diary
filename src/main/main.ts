@@ -2,6 +2,7 @@ import { app, BrowserWindow } from "electron";
 import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
 import { autoUpdater } from "electron-updater";
+import { enforceMacOSAppLocation } from "electron-util";
 import path from "path";
 
 import initReportDialog from "../shared/reportDialog";
@@ -59,6 +60,9 @@ app.on(
 (async (): Promise<void> => {
 	// Wait for Electron to be initialized
 	await app.whenReady();
+
+	// macOS: Prompt user to move app if it's outside the "Applications" folder
+	enforceMacOSAppLocation();
 
 	// Set up translations, messaging between main and renderer processes, and application menu
 	initI18n();
