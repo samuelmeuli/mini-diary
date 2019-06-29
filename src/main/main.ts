@@ -2,7 +2,9 @@ import { app, BrowserWindow } from "electron";
 import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
 import { autoUpdater } from "electron-updater";
+import path from "path";
 
+import { initI18n } from "./i18n/i18n";
 import initIpcListeners from "./ipcMain/listeners";
 import { buildMenu } from "./menu/menu";
 import { getWindow, setWindow } from "./window";
@@ -10,14 +12,8 @@ import { getWindow, setWindow } from "./window";
 electronDebug();
 contextMenu();
 
-function onClosed(): void {
-	// Dereference the window
-	// @ts-ignore
-	setWindow(null);
-}
-
-function createMainWindow(): BrowserWindow {
-	const window = new BrowserWindow({
+async function createWindow(): Promise<BrowserWindow> {
+	const win = new BrowserWindow({
 		width: 1100,
 		minWidth: 400,
 		height: 600,
@@ -28,35 +24,48 @@ function createMainWindow(): BrowserWindow {
 			nodeIntegration: true,
 		},
 	});
-	window.loadURL(`file://${__dirname}/index.html`);
-	window.once("ready-to-show", (): void => {
-		window.show();
+	win.on("ready-to-show", (): void => {
+		win.show();
 	});
-	window.on("closed", onClosed);
+	win.on("closed", (): void => {
+		// Dereference the window
+		// @ts-ignore
+		setWindow(null);
+	});
 
-	// Set up IPC and menu items
-	initIpcListeners();
-	buildMenu();
+	// Load HTML file
+	await win.loadFile(path.join(__dirname, "index.html"));
 
-	return window;
+	return win;
 }
 
-function run(): void {
-	const window = createMainWindow();
-	setWindow(window);
-	autoUpdater.checkForUpdatesAndNotify();
-}
-
+// Quit app when all of its windows have been closed
 app.on("window-all-closed", (): void => {
 	app.quit();
 });
 
-app.on("activate", (): void => {
-	if (!getWindow()) {
-		run();
-	}
-});
+// On app activation (e.g. when clicking dock icon), re-create BrowserWindow if necessary
+app.on(
+	"activate",
+	async (): Promise<void> => {
+		if (!getWindow()) {
+			setWindow(await createWindow());
+		}
+	},
+);
 
-app.on("ready", (): void => {
-	run();
-});
+(async (): Promise<void> => {
+	// Wait for Electron to be initialized
+	await app.whenReady();
+
+	// Set up translations, messaging between main and renderer processes, and application menu
+	initI18n();
+	buildMenu();
+	initIpcListeners();
+
+	// Create and show BrowserWindow
+	setWindow(await createWindow());
+
+	// Check if app has updates available. If so, download latest one and notify user
+	autoUpdater.checkForUpdatesAndNotify();
+})();

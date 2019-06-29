@@ -6,43 +6,43 @@ import {
 	setMonthSelectedPrevious,
 } from "../../ipcMain/senders";
 
-const viewMenu: Electron.MenuItemConstructorOptions = {
-	label: translate("view"),
-	submenu: [
-		{
-			label: translate("previous-day"),
-			id: "previousDay",
-			accelerator: "Left",
-			click() {
-				setDaySelectedPrevious();
+export default function getViewMenu(): Electron.MenuItemConstructorOptions {
+	return {
+		label: translate("view"),
+		submenu: [
+			{
+				label: translate("previous-day"),
+				id: "previousDay",
+				accelerator: "Left",
+				click(): void {
+					setDaySelectedPrevious();
+				},
 			},
-		},
-		{
-			label: translate("next-day"),
-			id: "nextDay",
-			accelerator: "Right",
-			click() {
-				setDaySelectedNext();
+			{
+				label: translate("next-day"),
+				id: "nextDay",
+				accelerator: "Right",
+				click(): void {
+					setDaySelectedNext();
+				},
 			},
-		},
-		{ type: "separator" },
-		{
-			label: translate("previous-month"),
-			id: "previousMonth",
-			accelerator: "CmdOrCtrl+Left",
-			click() {
-				setMonthSelectedPrevious();
+			{ type: "separator" },
+			{
+				label: translate("previous-month"),
+				id: "previousMonth",
+				accelerator: "CmdOrCtrl+Left",
+				click(): void {
+					setMonthSelectedPrevious();
+				},
 			},
-		},
-		{
-			label: translate("next-month"),
-			id: "nextMonth",
-			accelerator: "CmdOrCtrl+Right",
-			click() {
-				setMonthSelectedNext();
+			{
+				label: translate("next-month"),
+				id: "nextMonth",
+				accelerator: "CmdOrCtrl+Right",
+				click(): void {
+					setMonthSelectedNext();
+				},
 			},
-		},
-	],
-};
-
-export default viewMenu;
+		],
+	};
+}

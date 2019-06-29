@@ -1,7 +1,7 @@
 import { remote } from "electron";
 import React, { Component, ReactNode } from "react";
 
-import { toggleWindowSize } from "../electron/ipcRenderer/senders";
+import { toggleWindowSize } from "../electron/window";
 import { translations } from "../utils/i18n";
 import ThemeContext from "./ThemeContext";
 import ImportOverlayContainer from "./views/overlays/ImportOverlay/ImportOverlayContainer";

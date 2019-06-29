@@ -1,8 +1,8 @@
 import { ipcMain, IpcMessageEvent } from "electron";
 
 import { getTranslations, getUsedLang, translate } from "../i18n/i18n";
+import { Translations } from "../../shared/types";
 import { disableMenuItems, enableMenuItems } from "../menu/menu";
-import { getWindow } from "../window";
 
 export default function initIpcListeners(): void {
 	// Localization
@@ -13,7 +13,11 @@ export default function initIpcListeners(): void {
 
 	ipcMain.on(
 		"getTranslation",
-		(e: IpcMessageEvent, i18nKey: string, substitutions: Record<string, string>): void => {
+		(
+			e: IpcMessageEvent,
+			i18nKey: keyof Translations,
+			substitutions: Record<string, string>,
+		): void => {
 			e.returnValue = translate(i18nKey, substitutions);
 		},
 	);
@@ -30,16 +34,5 @@ export default function initIpcListeners(): void {
 
 	ipcMain.on("enableMenuItems", (): void => {
 		enableMenuItems();
-	});
-
-	// Window
-
-	ipcMain.on("toggleWindowSize", (): void => {
-		const window = getWindow();
-		if (window.isMaximized()) {
-			window.unmaximize();
-		} else {
-			window.maximize();
-		}
 	});
 }

@@ -1,4 +1,4 @@
-import { Translations } from "./types";
+import { Translations } from "../../../shared/types";
 
 // prettier-ignore
 const translationsZh: Translations = {

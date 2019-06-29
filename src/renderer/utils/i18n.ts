@@ -1,5 +1,6 @@
 import moment from "moment";
 
+import { Translations } from "../../shared/types";
 import { getLang, getTranslation, getTranslations } from "../electron/ipcRenderer/senders";
 
 export const lang = getLang();
@@ -10,6 +11,9 @@ export function initI18n(): void {
 	moment.locale(lang);
 }
 
-export function translate(i18nKey: string, substitutions: Record<string, string>): string {
+export function translate(
+	i18nKey: keyof Translations,
+	substitutions: Record<string, string>,
+): string {
 	return getTranslation(i18nKey, substitutions);
 }

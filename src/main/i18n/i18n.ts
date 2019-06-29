@@ -1,5 +1,6 @@
 import { app } from "electron";
 
+import { Translations } from "../../shared/types";
 import translationsDe from "./translations/de";
 import translationsEl from "./translations/el";
 import translationsEn from "./translations/en";
@@ -9,7 +10,6 @@ import translationsIs from "./translations/is";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
 import translationsZh from "./translations/zh";
-import { Translations } from "./translations/types";
 
 const ALL_TRANSLATIONS: Record<string, Translations> = {
 	de: translationsDe,
@@ -22,12 +22,12 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	tr: translationsTr,
 	zh: translationsZh,
 };
-const DEFAULT_LANG = "en";
+let translations: Translations; // String translations for langNoRegion
 
-const systemLang = app.getLocale();
+const FALLBACK_LANG = "en";
+let systemLang;
 let lang: string; // Language used by app (e.g. 'en-US'), used for dates/calendar
 let langNoRegion: string; // Language used by app without region string (e.g. 'en'), used for translations
-let translations: Translations; // String translations for langNoRegion
 
 /**
  * Return language to use for the app
@@ -40,9 +40,10 @@ export function getUsedLang(): string {
  * Determine language to use for the app (use system language if translations are available,
  * otherwise fall back to default language
  */
-function setUsedLang(): void {
+export function initI18n(): void {
+	systemLang = app.getLocale();
 	const systemLangNoRegion = systemLang.split("-")[0];
-	const defaultTranslations = ALL_TRANSLATIONS[DEFAULT_LANG];
+	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
 
 	if (systemLangNoRegion in ALL_TRANSLATIONS) {
 		// Use system language if translations are available
@@ -54,8 +55,8 @@ function setUsedLang(): void {
 		};
 	} else {
 		// Otherwise, fall back to default language
-		lang = DEFAULT_LANG;
-		langNoRegion = DEFAULT_LANG;
+		lang = FALLBACK_LANG;
+		langNoRegion = FALLBACK_LANG;
 		translations = defaultTranslations;
 	}
 }
@@ -64,14 +65,20 @@ function setUsedLang(): void {
  * Return translation for string with the provided translation key. Perform string substitutions if
  * required
  */
-export function translate(i18nKey: string, substitutions?: Record<string, string>): string {
-	if (!(i18nKey in translations)) {
+export function translate(
+	i18nKey: keyof Translations,
+	substitutions?: Record<string, string>,
+): string {
+	let translation = translations[i18nKey];
+
+	// Log error and return `i18nKey` if translation string is missing both in current and fallback
+	// language
+	if (!translation) {
 		console.error(`Missing translation of i18nKey "${i18nKey}"`);
 		return i18nKey;
 	}
 
 	// Return translation if no `substitutions` object is provided
-	let translation = translations[i18nKey];
 	if (!substitutions) {
 		return translation;
 	}
@@ -81,8 +88,8 @@ export function translate(i18nKey: string, substitutions?: Record<string, string
 	//   Translation definition: { test: 'Hello {var}' }
 	//   Function call: translate('test', { var: 'World' })
 	//   Result: 'Hello World'
-	Object.entries(substitutions).forEach(([toReplace, replacement]) => {
-		translation = translation.replace(new RegExp(`{${toReplace}}`, "g"), replacement);
+	Object.entries(substitutions).forEach(([toReplace, replacement]): void => {
+		translation = (translation as string).replace(new RegExp(`{${toReplace}}`, "g"), replacement);
 	});
 	return translation;
 }
@@ -93,5 +100,3 @@ export function translate(i18nKey: string, substitutions?: Record<string, string
 export function getTranslations(): Translations {
 	return translations;
 }
-
-setUsedLang();
