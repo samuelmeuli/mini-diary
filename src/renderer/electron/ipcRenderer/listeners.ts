@@ -1,5 +1,5 @@
 import { ipcRenderer, remote } from "electron";
-import is from "electron-is/is";
+import { darkMode, is } from "electron-util";
 
 import { openOverlay, setTheme } from "../../store/app/actionCreators";
 import {
@@ -17,8 +17,6 @@ import {
 import { lock } from "../../store/file/actionCreators";
 import { setImportFormat } from "../../store/import/actionCreators";
 import store, { ThunkDispatchT } from "../../store/store";
-import { isAtLeastMojave } from "../../utils/os";
-import { getSystemTheme } from "../systemTheme";
 
 const dispatchThunk = store.dispatch as ThunkDispatchT;
 
@@ -100,7 +98,7 @@ function initIpcListeners(): void {
 	// Screen lock
 	// Lock diary when screen is locked
 
-	if (is.macOS() || is.windows()) {
+	if (is.macos || is.windows) {
 		remote.powerMonitor.on("lock-screen", (): void => {
 			dispatchThunk(lock());
 		});
@@ -109,15 +107,9 @@ function initIpcListeners(): void {
 	// Theme
 	// Listen to system theme changes and update the app theme accordingly
 
-	if (is.macOS() && isAtLeastMojave()) {
-		remote.systemPreferences.subscribeNotification(
-			"AppleInterfaceThemeChangedNotification",
-			(): void => {
-				const theme = getSystemTheme();
-				dispatchThunk(setTheme(theme));
-			},
-		);
-	}
+	darkMode.onChange((): void => {
+		dispatchThunk(setTheme(darkMode.isEnabled ? "dark" : "light"));
+	});
 }
 
 export default initIpcListeners;

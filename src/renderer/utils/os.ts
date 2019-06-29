@@ -1,10 +1,25 @@
-import is from "electron-is";
+import { is } from "electron-util";
+import { release } from "os";
+import { gte } from "semver";
 
 const MOJAVE_VERSION = "10.14.0";
 
 /**
- * Return whether the OS is macOS and runs at least Mojave (v10.14)
+ * Identify and return version of macOS
+ * Source: electron-is by delvedor, MIT License
+ */
+function getMacosVersion(): string {
+	const actual = release().split(".");
+	return `10.${parseInt(actual[0], 10) - 4}.${actual[1]}`;
+}
+
+/**
+ * Determine whether the current version of macOS is at least Mojave (which is the first version to
+ * support Dark Mode)
  */
 export function isAtLeastMojave(): boolean {
-	return !is.gtRelease(MOJAVE_VERSION);
+	if (!is.macos) {
+		throw Error("The `isAtLeastMojave` function should only be called on macOS");
+	}
+	return gte(getMacosVersion(), MOJAVE_VERSION);
 }

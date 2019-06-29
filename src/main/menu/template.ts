@@ -1,4 +1,4 @@
-import is from "electron-is";
+import { is } from "electron-util";
 
 import { translate } from "../i18n/i18n";
 import getAppMenu from "./menus/app";
@@ -18,7 +18,7 @@ export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[]
 	const viewMenu = getViewMenu();
 	const windowMenu = getWindowMenu();
 
-	if (is.macOS()) {
+	if (is.macos) {
 		// Add macOS-specific items
 		(editMenu.submenu as Electron.MenuItemConstructorOptions[]).push(
 			{ type: "separator" },
@@ -60,5 +60,5 @@ export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[]
 		(fileMenu.submenu as Electron.MenuItemConstructorOptions[]).push(preferencesItem);
 	}
 
-	return [...(is.macOS() ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
+	return [...(is.macos ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
 }

@@ -1,6 +1,6 @@
 import { remote } from "electron";
-import is from "electron-is";
 import settings from "electron-settings";
+import { is } from "electron-util";
 
 import { isAtLeastMojave } from "../../utils/os";
 
@@ -66,7 +66,7 @@ export function loadThemePref(): ThemePref {
 	if (settings.has("theme")) {
 		themePref = settings.get("theme") as ThemePref;
 	} else {
-		if (is.macOS() && isAtLeastMojave()) {
+		if (is.macos && isAtLeastMojave()) {
 			// On macOS Mojave and later: Use system theme
 			themePref = "auto";
 		} else {
