@@ -40,6 +40,7 @@ const translationsDe: Translations = {
 	"previous-day": "Vorheriger Tag",
 	"previous-month": "Vorheriger Monat",
 	"privacy-policy": "Datenschutzbestimmungen",
+	"statistics": "Statistiken",
 	"website": "Website",
 
 	// Theme
@@ -88,6 +89,14 @@ const translationsDe: Translations = {
 	"set-password": "Passwort setzen",
 	"unlock": "Entsperren",
 	"wrong-password": "Falsches Passwort",
+
+	// Statistics
+	"total-entries": "Einträge total",
+	"entries-per-week": "Einträge pro Woche",
+	"streak-best": "Einträge in Folge (Rekord)",
+	"streak-current": "Einträge in Folge (aktuell)",
+	"total-words": "Wörter total",
+	"words-per-entry": "Wörter pro Eintrag",
 
 	// Import
 	"import-error-msg": "Beim Importieren ist ein Fehler aufgetreten",

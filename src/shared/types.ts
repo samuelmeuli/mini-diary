@@ -38,6 +38,7 @@ export interface Translations {
 	"previous-day"?: string,
 	"previous-month"?: string,
 	"privacy-policy"?: string,
+	"statistics"?: string;
 	"website"?: string,
 
 	// Theme
@@ -86,6 +87,14 @@ export interface Translations {
 	"set-password"?: string,
 	"unlock"?: string,
 	"wrong-password"?: string,
+
+	// Statistics
+	"total-entries"?: string,
+	"entries-per-week"?: string,
+	"streak-best"?: string,
+	"streak-current"?: string,
+	"total-words"?: string,
+	"words-per-entry"?: string,
 
 	// Import
 	"import-error-msg"?: string,

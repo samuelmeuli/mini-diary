@@ -40,6 +40,7 @@ const translationsEn: Translations = {
 	"previous-day": "Previous Day",
 	"previous-month": "Previous Month",
 	"privacy-policy": "Privacy Policy",
+	"statistics": "Statistics",
 	"website": "Website",
 
 	// Theme
@@ -88,6 +89,14 @@ const translationsEn: Translations = {
 	"set-password": "Set password",
 	"unlock": "Unlock",
 	"wrong-password": "Wrong password",
+
+	// Statistics
+	"total-entries": "total entries",
+	"entries-per-week": "entries per week",
+	"streak-best": "entries in a row (record streak)",
+	"streak-current": "entries in a row (current streak)",
+	"total-words": "total words",
+	"words-per-entry": "words per entry",
 
 	// Import
 	"import-error-msg": "An error occurred during the import",
