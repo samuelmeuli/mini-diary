@@ -39,10 +39,6 @@
 	margin-top: $spacing-medium;
 }
 
-.search-title:not(.text-faded) {
-	font-weight: $font-weight-semibold;
-}
-
 ::-webkit-search-cancel-button {
 	-webkit-appearance: none; // stylelint-disable-line property-no-vendor-prefix
 }
