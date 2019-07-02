@@ -1,6 +1,7 @@
 .editor {
 	@include background-color("background-editor");
 	position: relative;
+	width: 100%;
 	border-radius: $border-radius-input;
 	box-shadow: $box-shadow-inset;
 }
