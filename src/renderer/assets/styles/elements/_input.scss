@@ -42,7 +42,7 @@ input {
 	}
 
 	&.button-main {
-		color: #ffffff;
+		@include color("text-button");
 
 		&:not([disabled]) {
 			@include background-color("main");

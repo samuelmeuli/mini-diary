@@ -65,14 +65,6 @@
 			@include background-color("background-hover");
 		}
 	}
-
-	&.DayPicker-Day--selected:not(.DayPicker-Day--outside) {
-		@include background-color("main");
-
-		&:hover {
-			@include background-color("main-hover");
-		}
-	}
 }
 
 .DayPicker-Day--disabled {
@@ -80,8 +72,11 @@
 }
 
 .DayPicker-Day--hasEntry {
-	@include color("main");
 	font-weight: $font-weight-bold;
+
+	&:not(.DayPicker-Day--selected) {
+		@include color("main");
+	}
 }
 
 .DayPicker-Day--today:not(.DayPicker-Day--outside) {
@@ -95,6 +90,11 @@
 }
 
 .DayPicker-Day--selected {
-	color: #ffffff !important; // stylelint-disable-line declaration-no-important
+	@include color("text-button");
+	@include background-color("main");
 	box-shadow: $box-shadow;
+
+	&:hover {
+		@include background-color("main-hover");
+	}
 }
