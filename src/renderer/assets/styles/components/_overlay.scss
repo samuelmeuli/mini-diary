@@ -30,7 +30,7 @@
 
 		h1,
 		p {
-			margin-bottom: $spacing-medium;
+			margin-bottom: $spacing-abs-medium;
 		}
 	}
 }
@@ -57,7 +57,7 @@
 	}
 
 	.stat-number {
-		padding-right: $spacing-small;
+		padding-right: $spacing-abs-small;
 		font-size: $font-size-h1;
 		text-align: right;
 	}

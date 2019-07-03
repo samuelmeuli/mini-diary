@@ -1,10 +1,10 @@
 fieldset {
-	margin-top: $spacing-large;
+	margin-top: $spacing-abs-large;
 	border: 0;
 }
 
 legend {
-	margin-bottom: $spacing-small;
+	margin-bottom: $spacing-abs-small;
 	font-weight: $font-weight-bold;
 }
 
@@ -12,11 +12,11 @@ legend {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	margin-right: $spacing-medium;
-	margin-bottom: -$spacing-small;
+	margin-right: $spacing-abs-medium;
+	margin-bottom: -$spacing-abs-small;
 }
 
 .fieldset-content > * {
-	margin-right: $spacing-medium;
-	margin-bottom: $spacing-small;
+	margin-right: $spacing-abs-medium;
+	margin-bottom: $spacing-abs-small;
 }

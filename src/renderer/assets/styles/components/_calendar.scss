@@ -3,7 +3,7 @@
 .view-selector {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 1.5 * $spacing-large;
+	margin-bottom: 1.5 * $spacing-abs-large;
 }
 
 .DayPicker * {
@@ -20,13 +20,13 @@
 	}
 
 	.button-today {
-		width: $calendar-cell-size;
+		width: $input-height;
 	}
 }
 
 .DayPicker-Body {
 	display: grid;
-	grid-template-rows: repeat(6, $calendar-cell-size);
+	grid-template-rows: repeat(6, $input-height);
 }
 
 .DayPicker-Months {
@@ -36,7 +36,7 @@
 .DayPicker-Week,
 .DayPicker-WeekdaysRow {
 	display: grid;
-	grid-template-columns: repeat(7, $calendar-cell-size);
+	grid-template-columns: repeat(7, $input-height);
 }
 
 .DayPicker-Day,
@@ -47,7 +47,7 @@
 }
 
 .DayPicker-WeekdaysRow {
-	height: $calendar-cell-size;
+	height: $input-height;
 }
 
 .DayPicker-Weekday {

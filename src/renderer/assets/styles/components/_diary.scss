@@ -7,12 +7,12 @@
 	@media (max-width: $screen-tablet) {
 		flex-direction: column;
 		margin: 0 auto;
-		padding: 2 * $spacing-large;
+		padding: 2 * $spacing-abs-large;
 		overflow-y: scroll;
 
 		.sidebar {
 			flex-shrink: 0;
-			margin: 0 auto (1.5 * $spacing-large);
+			margin: 0 auto (1.5 * $spacing-abs-large);
 		}
 
 		.editor {
@@ -40,7 +40,7 @@
 	.sidebar {
 		display: flex;
 		flex-direction: column;
-		width: 7 * $calendar-cell-size;
+		width: 7 * $input-height;
 	}
 
 	.editor {

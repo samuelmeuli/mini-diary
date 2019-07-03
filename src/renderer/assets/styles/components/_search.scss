@@ -2,7 +2,7 @@
 	position: relative;
 	flex: 1;
 	width: 100%;
-	margin-right: $spacing-small;
+	margin-right: $spacing-abs-small;
 }
 
 .search-input {
@@ -25,7 +25,7 @@
 	.button {
 		width: 100%;
 		height: 100%;
-		padding: $spacing-small $spacing-medium;
+		padding: $spacing-abs-small $spacing-abs-medium;
 		font-weight: $font-weight-normal;
 		line-height: $line-height;
 	}
@@ -36,7 +36,7 @@
 }
 
 .search-result + .search-result {
-	margin-top: $spacing-medium;
+	margin-top: $spacing-abs-medium;
 }
 
 ::-webkit-search-cancel-button {

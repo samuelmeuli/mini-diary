@@ -17,8 +17,8 @@ textarea {
 
 .button,
 input:not([type="checkbox"]):not([type="radio"]) {
-	height: $calendar-cell-size;
-	padding: (0.75 * $spacing-medium) $spacing-medium;
+	height: $input-height;
+	padding: (0.75 * $spacing-abs-medium) $spacing-abs-medium;
 	line-height: 1;
 }
 
@@ -59,8 +59,8 @@ input {
 	}
 
 	&.button-invisible {
-		width: $calendar-cell-size;
-		height: $calendar-cell-size;
+		width: $input-height;
+		height: $input-height;
 		padding: 0;
 		line-height: 0;
 		text-align: center;
