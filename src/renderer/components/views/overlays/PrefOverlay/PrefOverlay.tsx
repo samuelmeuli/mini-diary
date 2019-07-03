@@ -1,5 +1,5 @@
 import { remote } from "electron";
-import is from "electron-is";
+import { is } from "electron-util";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 
 import { FILE_NAME, getDiaryFilePath } from "../../../../files/diary/diaryFile";
@@ -173,7 +173,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 					<fieldset className="fieldset-theme">
 						<legend>{translations.theme}</legend>
 						<div className="fieldset-content">
-							{is.macOS() && isAtLeastMojave() && (
+							{is.macos && isAtLeastMojave() && (
 								<label htmlFor="radio-theme-auto">
 									<input
 										type="radio"
@@ -236,7 +236,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 						Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
 						file without an open dialog after changing the diary path)
 					 */
-					!is.mas() && (
+					!is.macAppStore && (
 						<fieldset className="fieldset-file-dir">
 							<legend>{translations["diary-file"]}</legend>
 							<div className="fieldset-content">

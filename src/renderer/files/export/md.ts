@@ -1,4 +1,4 @@
-import { toLocaleWeekday } from "../../utils/dateFormat";
+import { momentIndex, toLocaleWeekday } from "../../utils/dateFormat";
 import sortEntries from "./sortEntries";
 
 /**
@@ -13,15 +13,15 @@ import sortEntries from "./sortEntries";
  *   [Text]
  */
 export function convertToMd(entries: Entries): Promise<string> {
-	return new Promise(resolve => {
+	return new Promise((resolve): void => {
 		const entriesSorted = sortEntries(entries);
 		let md = "# Mini Diary\n\n";
 
-		entriesSorted.forEach(([indexDate, entry]) => {
+		entriesSorted.forEach(([indexDate, entry]): void => {
 			const { text, title } = entry;
 
 			// Format date
-			const dateStr = toLocaleWeekday(new Date(indexDate));
+			const dateStr = toLocaleWeekday(momentIndex(indexDate));
 
 			// Build Markdown string
 			md += `## ${dateStr}\n\n`; // Date

@@ -88,6 +88,10 @@
 	@include border-color("main");
 	border-style: solid;
 	border-width: 2px;
+
+	&:hover {
+		@include border-color("main-hover");
+	}
 }
 
 .DayPicker-Day--selected {

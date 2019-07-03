@@ -1,12 +1,17 @@
 import { ipcRenderer } from "electron";
 
+import { Translations } from "../../../shared/types";
+
 // Localization
 
 export function getLang(): string {
 	return ipcRenderer.sendSync("getLang");
 }
 
-export function getTranslation(i18nKey: string, substitutions: Record<string, string>): string {
+export function getTranslation(
+	i18nKey: keyof Translations,
+	substitutions: Record<string, string>,
+): string {
 	return ipcRenderer.sendSync("getTranslation", i18nKey, substitutions);
 }
 
@@ -22,10 +27,4 @@ export function disableMenuItems(): void {
 
 export function enableMenuItems(): void {
 	ipcRenderer.send("enableMenuItems");
-}
-
-// Window
-
-export function toggleWindowSize(): void {
-	ipcRenderer.send("toggleWindowSize");
 }

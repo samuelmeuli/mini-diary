@@ -1,7 +1,6 @@
-import moment from "moment";
 import React, { PureComponent, ReactNode } from "react";
 
-import { toDateString } from "../../../../utils/dateFormat";
+import { momentIndex, toDateString } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../Banner";
 
@@ -37,7 +36,7 @@ export default class Search extends PureComponent<Props, {}> {
 				// (When deleting a diary entry after a search, it is still part of the search results
 				// until a new search is performed. That's why it needs to be filtered out here)
 				const indexDate = searchResult.ref;
-				const date = moment(indexDate);
+				const date = momentIndex(indexDate);
 				const { title } = entries[indexDate];
 				const isSelected = date.isSame(dateSelected, "day");
 				r.push(

@@ -1,16 +1,24 @@
-import is from "electron-is";
+import { is } from "electron-util";
 
 import { translate } from "../i18n/i18n";
-import appMenu from "./menus/app";
-import editMenu from "./menus/edit";
-import fileMenu from "./menus/file";
-import helpMenu from "./menus/help";
-import viewMenu from "./menus/view";
-import windowMenu from "./menus/window";
-import preferencesItem from "./preferencesItem";
+import getAppMenu from "./menus/app";
+import getEditMenu from "./menus/edit";
+import getFileMenu from "./menus/file";
+import getHelpMenu from "./menus/help";
+import getViewMenu from "./menus/view";
+import getWindowMenu from "./menus/window";
+import getPreferencesItem from "./preferencesItem";
 
-export const getMenuTemplate = (): Electron.MenuItemConstructorOptions[] => {
-	if (is.macOS()) {
+export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[] {
+	const appMenu = getAppMenu();
+	const editMenu = getEditMenu();
+	const fileMenu = getFileMenu();
+	const helpMenu = getHelpMenu();
+	const preferencesItem = getPreferencesItem();
+	const viewMenu = getViewMenu();
+	const windowMenu = getWindowMenu();
+
+	if (is.macos) {
 		// Add macOS-specific items
 		(editMenu.submenu as Electron.MenuItemConstructorOptions[]).push(
 			{ type: "separator" },
@@ -52,5 +60,5 @@ export const getMenuTemplate = (): Electron.MenuItemConstructorOptions[] => {
 		(fileMenu.submenu as Electron.MenuItemConstructorOptions[]).push(preferencesItem);
 	}
 
-	return [...(is.macOS() ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
-};
+	return [...(is.macos ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
+}

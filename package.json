@@ -53,10 +53,11 @@
 		"elasticlunr": "^0.9.5",
 		"electron-context-menu": "^0.12.1",
 		"electron-debug": "^3.0.0",
-		"electron-is": "^3.0.0",
 		"electron-md-to-pdf": "^1.0.1",
 		"electron-settings": "^3.2.0",
+		"electron-unhandled": "^2.2.0",
 		"electron-updater": "^4.0.14",
+		"electron-util": "^0.12.1",
 		"feather-icons": "^4.22.1",
 		"license-checker-webpack-plugin": "^0.0.9",
 		"lodash.debounce": "^4.0.8",
@@ -74,7 +75,8 @@
 		"remark": "^10.0.1",
 		"remark-stringify": "^6.0.4",
 		"semver": "^6.1.2",
-		"strip-markdown": "https://github.com/samuelmeuli/strip-markdown"
+		"strip-markdown": "https://github.com/samuelmeuli/strip-markdown",
+		"type-fest": "^0.5.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",

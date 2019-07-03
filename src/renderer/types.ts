@@ -29,7 +29,7 @@ interface SearchResult {
 
 // Overlay
 
-type OverlayType = "none" | "import" | "preferences";
+type OverlayType = "none" | "import" | "preferences" | "statistics";
 
 // Theme
 

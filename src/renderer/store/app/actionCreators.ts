@@ -1,5 +1,5 @@
-import { getSystemTheme } from "../../electron/systemTheme";
 import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/preferences";
+import getThemeFromPref from "../../utils/theme";
 import { ThunkActionT } from "../store";
 import {
 	SetAllowFutureEntriesAction,
@@ -70,7 +70,7 @@ export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActio
 
 export const updateThemePref = (themePref: ThemePref): ThunkActionT => (dispatch): void => {
 	// Apply theme to app
-	const theme = themePref === "auto" ? getSystemTheme() : themePref;
+	const theme = getThemeFromPref(themePref);
 	dispatch(setTheme(theme));
 
 	// Update theme preference in state and preferences file

@@ -1,6 +1,6 @@
 import { Menu } from "electron";
 
-import { getMenuTemplate } from "./template";
+import getMenuTemplate from "./template";
 
 // IDs of menu items to disable when the diary is locked
 const DISABLED_MENU_ITEMS = [
@@ -13,10 +13,11 @@ const DISABLED_MENU_ITEMS = [
 	"importJsonMiniDiary",
 	"importTxtDayOne",
 	"lock",
-	"previousDay",
 	"nextDay",
-	"previousMonth",
 	"nextMonth",
+	"previousDay",
+	"previousMonth",
+	"statistics",
 ];
 
 // Application menu

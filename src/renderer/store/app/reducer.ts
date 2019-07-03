@@ -1,5 +1,5 @@
-import { getSystemTheme } from "../../electron/systemTheme";
 import { loadFutureEntriesPref, loadThemePref } from "../../files/preferences/preferences";
+import getThemeFromPref from "../../utils/theme";
 import {
 	AppAction,
 	AppState,
@@ -11,7 +11,7 @@ import {
 
 const allowFutureEntries = loadFutureEntriesPref();
 const themePref = loadThemePref();
-const theme = themePref === "auto" ? getSystemTheme() : themePref;
+const theme = getThemeFromPref(themePref);
 
 const initialState: AppState = {
 	allowFutureEntries,

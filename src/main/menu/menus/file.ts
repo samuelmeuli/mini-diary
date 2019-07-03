@@ -9,88 +9,97 @@ import {
 	importJsonMiniDiary,
 	importTxtDayOne,
 	lock,
+	showStatsOverlay,
 } from "../../ipcMain/senders";
 
-const fileMenu: Electron.MenuItemConstructorOptions = {
-	label: translate("file"),
-	submenu: [
-		{
-			label: translate("lock-diary"),
-			id: "lock",
-			accelerator: "CmdOrCtrl+L",
-			click() {
-				lock();
+export default function getFileMenu(): Electron.MenuItemConstructorOptions {
+	return {
+		label: translate("file"),
+		submenu: [
+			{
+				label: translate("lock-diary"),
+				id: "lock",
+				accelerator: "CmdOrCtrl+L",
+				click(): void {
+					lock();
+				},
 			},
-		},
-		{ type: "separator" },
-		{
-			label: translate("import"),
-			submenu: [
-				{
-					label: `${translate("import-from-format", { format: "JSON (Day One)" })}…`,
-					id: "importJsonDayOne",
-					click() {
-						importJsonDayOne();
+			{ type: "separator" },
+			{
+				label: translate("import"),
+				submenu: [
+					{
+						label: `${translate("import-from-format", { format: "JSON (Day One)" })}…`,
+						id: "importJsonDayOne",
+						click(): void {
+							importJsonDayOne();
+						},
 					},
-				},
-				{
-					label: `${translate("import-from-format", { format: "JSON (jrnl)" })}…`,
-					id: "importJsonJrnl",
-					click() {
-						importJsonJrnl();
+					{
+						label: `${translate("import-from-format", { format: "JSON (jrnl)" })}…`,
+						id: "importJsonJrnl",
+						click(): void {
+							importJsonJrnl();
+						},
 					},
-				},
-				{
-					label: `${translate("import-from-format", { format: "JSON (Mini Diary)" })}…`,
-					id: "importJsonMiniDiary",
-					click() {
-						importJsonMiniDiary();
+					{
+						label: `${translate("import-from-format", { format: "JSON (Mini Diary)" })}…`,
+						id: "importJsonMiniDiary",
+						click(): void {
+							importJsonMiniDiary();
+						},
 					},
-				},
-				{
-					label: `${translate("import-from-format", { format: "TXT (Day One)" })}…`,
-					id: "importTxtDayOne",
-					click() {
-						importTxtDayOne();
+					{
+						label: `${translate("import-from-format", { format: "TXT (Day One)" })}…`,
+						id: "importTxtDayOne",
+						click(): void {
+							importTxtDayOne();
+						},
 					},
-				},
-			],
-		},
-		{
-			label: translate("export"),
-			id: "export",
-			submenu: [
-				{
-					label: `${translate("export-to-format", { format: "JSON (Mini Diary)" })}…`,
-					id: "exportJsonMiniDiary",
-					click() {
-						exportJsonMiniDiary();
+				],
+			},
+			{
+				label: translate("export"),
+				id: "export",
+				submenu: [
+					{
+						label: `${translate("export-to-format", { format: "JSON (Mini Diary)" })}…`,
+						id: "exportJsonMiniDiary",
+						click(): void {
+							exportJsonMiniDiary();
+						},
 					},
-				},
-				{
-					label: `${translate("export-to-format", { format: "Markdown" })}…`,
-					id: "exportMd",
-					click() {
-						exportMd();
+					{
+						label: `${translate("export-to-format", { format: "Markdown" })}…`,
+						id: "exportMd",
+						click(): void {
+							exportMd();
+						},
 					},
-				},
-				{
-					label: `${translate("export-to-format", { format: "PDF" })}…`,
-					id: "exportPdf",
-					click() {
-						exportPdf();
+					{
+						label: `${translate("export-to-format", { format: "PDF" })}…`,
+						id: "exportPdf",
+						click(): void {
+							exportPdf();
+						},
 					},
-				},
-				{
-					label: `${translate("export-to-format", { format: "TXT (Day One)" })}…`,
-					id: "exportTxtDayOne",
-					click() {
-						exportTxtDayOne();
+					{
+						label: `${translate("export-to-format", { format: "TXT (Day One)" })}…`,
+						id: "exportTxtDayOne",
+						click(): void {
+							exportTxtDayOne();
+						},
 					},
+				],
+			},
+			{ type: "separator" },
+			{
+				label: translate("statistics"),
+				id: "statistics",
+				click(): void {
+					showStatsOverlay();
 				},
-			],
-		},
-	],
-};
-
-export default fileMenu;
+			},
+		],
+	};
+}
