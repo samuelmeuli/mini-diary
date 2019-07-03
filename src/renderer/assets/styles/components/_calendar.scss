@@ -84,7 +84,7 @@
 	font-weight: $font-weight-bold;
 }
 
-.DayPicker-Day--today {
+.DayPicker-Day--today:not(.DayPicker-Day--outside) {
 	@include border-color("main");
 	border-style: solid;
 	border-width: 2px;
