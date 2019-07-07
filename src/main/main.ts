@@ -18,7 +18,7 @@ contextMenu();
 async function createWindow(): Promise<BrowserWindow> {
 	const win = new BrowserWindow({
 		width: 1100,
-		minWidth: 400,
+		minWidth: 500,
 		height: 600,
 		minHeight: 500,
 		show: false,

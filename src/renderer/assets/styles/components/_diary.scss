@@ -1,41 +1,7 @@
 .diary {
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	height: 100%;
-
-	@media (max-width: $screen-tablet) {
-		flex-direction: column;
-		margin: 0 auto;
-		padding: 2 * $spacing-abs-large;
-		overflow-y: scroll;
-
-		.sidebar {
-			flex-shrink: 0;
-			margin: 0 auto (1.5 * $spacing-abs-large);
-		}
-
-		.editor {
-			min-height: 300px;
-		}
-	}
-
-	@media (min-width: $screen-tablet + 1px) {
-		padding: $spacing-rel-large;
-
-		.sidebar {
-			height: 100%;
-		}
-
-		.editor {
-			height: 100%;
-			margin-left: $spacing-rel-large;
-		}
-	}
-
-	@media (min-width: $screen-large) {
-		padding: $spacing-rel-small;
-	}
 
 	.sidebar {
 		display: flex;
@@ -44,6 +10,42 @@
 	}
 
 	.editor {
-		flex: 1;
+		width: 100%;
+	}
+
+	@media (max-width: $screen-tablet) {
+		flex-direction: column;
+		margin: 0 auto;
+		padding: 2 * $spacing-abs-large;
+		overflow-y: auto;
+
+		.sidebar {
+			flex-shrink: 0;
+			margin: 0 auto $spacing-abs-large;
+		}
+
+		.editor {
+			flex: 1;
+			height: 500px;
+		}
+	}
+
+	@media (min-width: $screen-tablet + 1px) {
+		justify-content: center;
+		padding: $spacing-rel-large;
+
+		.sidebar,
+		.editor {
+			height: 100%;
+		}
+
+		.editor {
+			max-width: $editor-max-width;
+			margin-left: $spacing-rel-large;
+		}
+	}
+
+	@media (min-width: $screen-large) {
+		padding: $spacing-rel-small;
 	}
 }
