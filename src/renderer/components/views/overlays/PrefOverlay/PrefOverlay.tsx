@@ -240,7 +240,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 						<fieldset className="fieldset-file-dir">
 							<legend>{translations["diary-file"]}</legend>
 							<div className="fieldset-content">
-								<p>{fileDir}</p>
+								<p className="file-dir">{fileDir}</p>
 								<button
 									type="button"
 									className="button button-main"

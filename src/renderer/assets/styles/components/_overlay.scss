@@ -29,7 +29,7 @@
 		padding: $spacing-rel-small;
 
 		h1,
-		p {
+		p:not(.file-dir):not(.banner-message) {
 			margin-bottom: $spacing-abs-medium;
 		}
 	}
@@ -43,10 +43,8 @@
 
 // Preferences overlay
 
-.fieldset-file-dir {
-	p {
-		word-break: break-all;
-	}
+.file-dir {
+	word-break: break-all;
 }
 
 // Statistics overlay

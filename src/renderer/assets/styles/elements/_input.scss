@@ -89,6 +89,7 @@ input {
 .checkbox,
 .radio {
 	margin-right: 8px;
+	vertical-align: 0.1em; // Align vertically with label
 }
 
 textarea {

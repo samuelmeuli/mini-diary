@@ -15,7 +15,7 @@ const Banner: FunctionComponent<Props> = (props: Props): JSX.Element => {
 	return (
 		<div className={`banner banner-${bannerType} ${className || ""}`}>
 			<SimpleSvg src={bannerType === "error" ? iconError : iconInfo} height={20} width={20} />
-			<p>{message}</p>
+			<p className="banner-message">{message}</p>
 		</div>
 	);
 };

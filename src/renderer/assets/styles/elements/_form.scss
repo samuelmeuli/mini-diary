@@ -4,7 +4,6 @@ fieldset {
 }
 
 legend {
-	margin-bottom: $spacing-abs-small;
 	font-weight: $font-weight-bold;
 }
 
@@ -12,11 +11,11 @@ legend {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	margin-right: $spacing-abs-medium;
+	margin-right: -$spacing-abs-small;
 	margin-bottom: -$spacing-abs-small;
 }
 
 .fieldset-content > * {
-	margin-right: $spacing-abs-medium;
+	margin-right: $spacing-abs-small;
 	margin-bottom: $spacing-abs-small;
 }
