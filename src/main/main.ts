@@ -72,6 +72,13 @@ app.on(
 	// Create and show BrowserWindow
 	setWindow(await createWindow());
 
-	// Check if app has updates available. If so, download latest one and notify user
-	autoUpdater.checkForUpdatesAndNotify();
+	try {
+		// Check if app has updates available. If so, download latest one and notify user
+		await autoUpdater.checkForUpdatesAndNotify();
+	} catch (e) {
+		// Ignore errors thrown because user is not connected to internet
+		if (e.message !== "net::ERR_INTERNET_DISCONNECTED") {
+			throw e;
+		}
+	}
 })();
