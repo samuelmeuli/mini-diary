@@ -223,6 +223,7 @@
 			"!**/*",
 			"./bundle/**/*"
 		],
+		"afterPack": "./scripts/after-pack.js",
 		"mac": {
 			"target": [
 				"dmg",
