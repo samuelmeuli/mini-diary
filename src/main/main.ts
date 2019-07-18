@@ -1,7 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
-import { autoUpdater } from "electron-updater";
 import { enforceMacOSAppLocation } from "electron-util";
 import path from "path";
 
@@ -9,6 +8,7 @@ import initReportDialog from "../shared/reportDialog";
 import { initI18n } from "./i18n/i18n";
 import initIpcListeners from "./ipcMain/listeners";
 import { buildMenu } from "./menu/menu";
+import updateApp from "./updater";
 import { getWindow, setWindow } from "./window";
 
 initReportDialog();
@@ -72,13 +72,5 @@ app.on(
 	// Create and show BrowserWindow
 	setWindow(await createWindow());
 
-	try {
-		// Check if app has updates available. If so, download latest one and notify user
-		await autoUpdater.checkForUpdatesAndNotify();
-	} catch (e) {
-		// Ignore errors thrown because user is not connected to internet
-		if (e.message !== "net::ERR_INTERNET_DISCONNECTED") {
-			throw e;
-		}
-	}
+	updateApp();
 })();
