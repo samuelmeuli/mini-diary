@@ -6,7 +6,7 @@ export interface DiaryState {
 	dateSelected: Date;
 	monthSelected: Date;
 	searchKey: string;
-	searchResults: SearchResult[];
+	searchResults: string[];
 }
 
 // Action types
@@ -34,7 +34,7 @@ export interface SetSearchKeyAction extends Action {
 export interface SetSearchResultsAction extends Action {
 	type: typeof SET_SEARCH_RESULTS;
 	payload: {
-		searchResults: SearchResult[];
+		searchResults: string[];
 	};
 }
 

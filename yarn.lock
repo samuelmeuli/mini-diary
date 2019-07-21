@@ -3255,11 +3255,6 @@ ejs@^2.6.2:
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.2.tgz#3a32c63d1cd16d11266cd4703b14fec4e74ab4f6"
   integrity sha512-PcW2a0tyTuPHz3tWyYqtK6r1fZ3gp+3Sop8Ph+ZYN81Ob5rwmbHEzaqs10N3BEsaGTkh/ooniXK+WwszGlc2+Q==
 
-elasticlunr@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/elasticlunr/-/elasticlunr-0.9.5.tgz#65541bb309dddd0cf94f2d1c8861b2be651bb0d5"
-  integrity sha1-ZVQbswnd3Qz5Ty0ciGGyvmUbsNU=
-
 electron-builder@^21.1.1:
   version "21.1.1"
   resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-21.1.1.tgz#eecfd9473ee9ab58fd445a0eb512aef759d509e6"
@@ -6563,6 +6558,11 @@ minireset.css@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/minireset.css/-/minireset.css-0.0.5.tgz#90ac7315fe2513855fd9e30af524e00a1ee76a16"
   integrity sha512-q3Z1aXZaZyrXeHqg8+LeKvrmCVC3D295RLhYeLNFP9MUKndNAmQXRJXAbu4JhhDdErZPTLDxDt4kTVpWBRaB6A==
+
+minisearch@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-2.0.3.tgz#eb33805aeab19fef99a03346132642fcaca84559"
+  integrity sha512-cnzp6fttVo/bQrsJmQ0oGVgU0aU4rd1tMw30jslqQxt5lJM/jYijS7bEzmNfjSpyU+v/2Uq8K0/yIAYIy9OtoA==
 
 minizlib@^1.2.1:
   version "1.2.1"

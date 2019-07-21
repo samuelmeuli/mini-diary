@@ -6,7 +6,7 @@ import { performMigrations } from "../../files/diary/migrations";
 import { fileExists, readEncryptedFile, writeEncryptedFile } from "../../files/fileAccess";
 import mergeEntries from "../../files/import/mergeEntries";
 import { translations } from "../../utils/i18n";
-import { createIndex, createOrUpdateIndexDoc, deleteIndexDoc } from "../../utils/searchIndex";
+import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
 import {
 	ClearFileStateAction,
@@ -223,22 +223,32 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
 		// Empty entry
 		if (entryDate in entries) {
 			// If existing entry: Delete entry from file and index
+			const entryRemoved = entriesUpdated[entryDate];
 			delete entriesUpdated[entryDate];
-			deleteIndexDoc(entryDate);
+			removeIndexDoc(entryDate, entryRemoved);
 		}
+	} else if (!(entryDate in entries)) {
+		// Entry doesn't exist yet
+		const entryAdded = {
+			dateUpdated: new Date().toString(),
+			title,
+			text,
+		};
+		entriesUpdated[entryDate] = entryAdded;
+		addIndexDoc(entryDate, entryAdded);
 	} else if (
-		!(entryDate in entries) || // Entry doesn't exist yet
 		title !== entries[entryDate].title || // Title has changed
 		text !== entries[entryDate].text // Text has changed
 	) {
-		// Non-empty and new/updated entry: Write to file and add to index
+		// Entry has been updated
+		const entryOld = entries[entryDate];
 		const entryUpdated = {
 			dateUpdated: new Date().toString(),
 			title,
 			text,
 		};
 		entriesUpdated[entryDate] = entryUpdated;
-		createOrUpdateIndexDoc(entryDate, entryUpdated);
+		updateIndexDoc(entryDate, entryOld, entryUpdated);
 	} else {
 		return;
 	}
@@ -257,18 +267,16 @@ export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
-	Object.entries(newEntries).forEach(
-		([indexDate, newEntry]): void => {
-			if (indexDate in entriesUpdated) {
-				// Entry exists -> merge
-				const oldEntry = entriesUpdated[indexDate];
-				entriesUpdated[indexDate] = mergeEntries(oldEntry, newEntry);
-			} else {
-				// Entry does not exist yet -> add
-				entriesUpdated[indexDate] = newEntry;
-			}
-		},
-	);
+	Object.entries(newEntries).forEach(([indexDate, newEntry]): void => {
+		if (indexDate in entriesUpdated) {
+			// Entry exists -> merge
+			const oldEntry = entriesUpdated[indexDate];
+			entriesUpdated[indexDate] = mergeEntries(oldEntry, newEntry);
+		} else {
+			// Entry does not exist yet -> add
+			entriesUpdated[indexDate] = newEntry;
+		}
+	});
 	dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 	createIndex(entriesUpdated); // Recreate index
 };

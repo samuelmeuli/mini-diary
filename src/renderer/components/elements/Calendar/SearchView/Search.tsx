@@ -7,7 +7,7 @@ import Banner from "../../Banner";
 export interface StateProps {
 	dateSelected: Date;
 	entries: Entries;
-	searchResults: SearchResult[];
+	searchResults: string[];
 }
 
 export interface DispatchProps {
@@ -31,16 +31,15 @@ export default class Search extends PureComponent<Props, {}> {
 		const { dateSelected, entries, searchResults, setDateSelected } = this.props;
 
 		return searchResults.reduce((r: ReactNode[], searchResult): ReactNode[] => {
-			if (searchResult.ref in entries) {
+			if (searchResult in entries) {
 				// Create search result element if a corresponding diary entry exists
 				// (When deleting a diary entry after a search, it is still part of the search results
 				// until a new search is performed. That's why it needs to be filtered out here)
-				const indexDate = searchResult.ref;
-				const date = momentIndex(indexDate);
-				const { title } = entries[indexDate];
+				const date = momentIndex(searchResult);
+				const { title } = entries[searchResult];
 				const isSelected = date.isSame(dateSelected, "day");
 				r.push(
-					<li key={searchResult.ref} className="search-result">
+					<li key={searchResult} className="search-result">
 						<button
 							type="button"
 							className={`button ${isSelected ? "button-main" : ""}`}

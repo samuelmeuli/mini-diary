@@ -31,7 +31,7 @@ function setSearchKey(searchKey: string): SetSearchKeyAction {
 	};
 }
 
-function setSearchResults(searchResults: SearchResult[]): SetSearchResultsAction {
+function setSearchResults(searchResults: string[]): SetSearchResultsAction {
 	return {
 		type: SET_SEARCH_RESULTS,
 		payload: {

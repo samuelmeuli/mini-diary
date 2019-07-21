@@ -21,12 +21,6 @@ interface Metadata {
 	dateUpdated: string;
 }
 
-interface SearchResult {
-	ref: string;
-	title: string;
-	text: string;
-}
-
 // Overlay
 
 type OverlayType = "none" | "import" | "preferences" | "statistics";
