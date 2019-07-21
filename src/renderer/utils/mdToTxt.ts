@@ -14,5 +14,5 @@ export default async function mdToTxt(md: string): Promise<string> {
 			listItemIndent: "1",
 		})
 		.process(md);
-	return txt.contents;
+	return txt.contents.toString();
 }
