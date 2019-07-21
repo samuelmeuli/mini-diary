@@ -65,7 +65,7 @@
 		"minisearch": "^2.0.3",
 		"moment": "^2.22.2",
 		"react": "^16.8.4",
-		"react-day-picker": "https://github.com/samuelmeuli/react-day-picker",
+		"react-day-picker": "github:samuelmeuli/react-day-picker",
 		"react-dom": "^16.8.4",
 		"react-redux": "^7.1.0",
 		"react-simple-svg": "^1.0.2",
@@ -75,7 +75,7 @@
 		"remark": "^11.0.0",
 		"remark-stringify": "^7.0.0",
 		"semver": "^6.1.2",
-		"strip-markdown": "https://github.com/samuelmeuli/strip-markdown",
+		"strip-markdown": "github:samuelmeuli/strip-markdown",
 		"type-fest": "^0.6.0"
 	},
 	"devDependencies": {
