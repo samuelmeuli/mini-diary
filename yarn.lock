@@ -7927,9 +7927,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.1, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-"react-day-picker@https://github.com/samuelmeuli/react-day-picker":
+"react-day-picker@github:samuelmeuli/react-day-picker":
   version "7.3.0"
-  resolved "https://github.com/samuelmeuli/react-day-picker#1c4f4fcd4a16b640d6fb9dc47e16727d0bec6d05"
+  resolved "https://codeload.github.com/samuelmeuli/react-day-picker/tar.gz/1c4f4fcd4a16b640d6fb9dc47e16727d0bec6d05"
   dependencies:
     prop-types "^15.6.2"
 
@@ -9298,9 +9298,9 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-"strip-markdown@https://github.com/samuelmeuli/strip-markdown":
+"strip-markdown@github:samuelmeuli/strip-markdown":
   version "3.0.3"
-  resolved "https://github.com/samuelmeuli/strip-markdown#ba9c9355efb405276ed0b823761f0eb9beb8d40f"
+  resolved "https://codeload.github.com/samuelmeuli/strip-markdown/tar.gz/ba9c9355efb405276ed0b823761f0eb9beb8d40f"
 
 style-loader@^0.23.0:
   version "0.23.1"
