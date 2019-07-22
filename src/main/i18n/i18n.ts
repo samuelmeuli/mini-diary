@@ -6,6 +6,7 @@ import translationsEl from "./translations/el";
 import translationsEn from "./translations/en";
 import translationsEs from "./translations/es";
 import translationsFr from "./translations/fr";
+import translationsId from "./translations/id";
 import translationsIs from "./translations/is";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
@@ -17,6 +18,7 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	en: translationsEn,
 	es: translationsEs,
 	fr: translationsFr,
+	id: translationsId,
 	is: translationsIs,
 	pt: translationsPt,
 	tr: translationsTr,
