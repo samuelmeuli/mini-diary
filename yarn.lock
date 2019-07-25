@@ -6566,9 +6566,9 @@ minireset.css@^0.0.5:
   integrity sha512-q3Z1aXZaZyrXeHqg8+LeKvrmCVC3D295RLhYeLNFP9MUKndNAmQXRJXAbu4JhhDdErZPTLDxDt4kTVpWBRaB6A==
 
 minisearch@^2.0.3:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-2.0.4.tgz#87f24f3ea80652ab8b05945ee8f14eb6a05ec112"
-  integrity sha512-KqllWJtmCyAWrIjd/iqYhs7QgHzBd2Tk5gdqXqGH7yc1ZubpqfYea5POYJZooKa9LoYN565luGtdCOwXV75IHA==
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-2.0.6.tgz#9ea2783a9111022dbeb1ea83fecb4f47153643d5"
+  integrity sha512-60hCpALbkk7qdWxpyGnyQLR+F6CR4XatQwanvm86A8rvMK2oa44YyPBWvQnRc4ACwxEVgfakGWzx2uizoMvLEA==
 
 minizlib@^1.2.1:
   version "1.2.1"
