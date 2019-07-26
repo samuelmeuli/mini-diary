@@ -91,7 +91,7 @@
 		"babel-loader": "^8.0.6",
 		"css-loader": "^3.0.0",
 		"electron": "^5.0.3",
-		"electron-builder": "^21.1.1",
+		"electron-builder": "^20.44.4",
 		"env-cmd": "^9.0.3",
 		"eslint": "^5.0.0",
 		"eslint-config-airbnb": "^17.0.0",
