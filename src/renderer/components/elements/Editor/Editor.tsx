@@ -104,11 +104,15 @@ export default class Editor extends PureComponent<Props, State> {
 		this.onTitleChange = this.onTitleChange.bind(this);
 		this.saveEntry = this.saveEntry.bind(this);
 		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
+	}
 
+	componentDidMount(): void {
 		// Save entry before app is closed
-		window.addEventListener("unload", (): void => {
-			this.saveEntry();
-		});
+		window.addEventListener("unload", this.saveEntry);
+	}
+
+	componentWillUnmount(): void {
+		window.removeEventListener("unload", this.saveEntry);
 	}
 
 	onTextChange(textEditorState: EditorState): void {
