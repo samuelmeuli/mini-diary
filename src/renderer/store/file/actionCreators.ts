@@ -3,7 +3,12 @@ import createBackup from "../../files/diary/backupFile";
 import { getDiaryFilePath, getMetadata } from "../../files/diary/diaryFile";
 import { hashPassword } from "../../files/diary/hashPassword";
 import { performMigrations } from "../../files/diary/migrations";
-import { fileExists, readEncryptedFile, writeEncryptedFile } from "../../files/fileAccess";
+import {
+	deleteFile,
+	fileExists,
+	readEncryptedFile,
+	writeEncryptedFile,
+} from "../../files/fileAccess";
 import mergeEntries from "../../files/import/mergeEntries";
 import { translations } from "../../utils/i18n";
 import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
@@ -114,6 +119,14 @@ export const testFileExists = (): ThunkActionT => (dispatch): void => {
 };
 
 /**
+ * Lock the diary: Remove password and diary entries from state
+ */
+export const lock = (): ThunkActionT => (dispatch): void => {
+	dispatch(clearFileState());
+	disableMenuItems();
+};
+
+/**
  * Read diary entries from disk
  */
 export const decryptFile = (password: string): ThunkActionT => (dispatch): void => {
@@ -191,6 +204,15 @@ const writeEntriesEncrypted = (entries: Entries, hashedPassword: string): ThunkA
 		console.error(err);
 		dispatch(setEncryptError(err.message));
 	}
+};
+
+/**
+ * Delete the diary file in the currently selected directory
+ */
+export const resetDiary = (): ThunkActionT => (dispatch): void => {
+	const filePath = getDiaryFilePath();
+	deleteFile(filePath);
+	dispatch(lock());
 };
 
 /**
@@ -279,12 +301,4 @@ export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (
 	});
 	dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
 	createIndex(entriesUpdated); // Recreate index
-};
-
-/**
- * Lock the diary: Remove password and diary entries from state
- */
-export const lock = (): ThunkActionT => (dispatch): void => {
-	dispatch(clearFileState());
-	disableMenuItems();
 };

@@ -44,3 +44,7 @@ export function writeEncryptedFile(
 	const encrypted = Buffer.concat([cipher.update(Buffer.from(content, "utf8")), cipher.final()]);
 	fs.writeFileSync(filePath, encrypted);
 }
+
+export function deleteFile(filePath: string): void {
+	fs.unlinkSync(filePath);
+}

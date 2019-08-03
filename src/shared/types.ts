@@ -65,8 +65,12 @@ export interface Translations {
 	"search"?: string,
 
 	// Preferences
-	"diary-entries"?: string;
-	"allow-future-entries"?: string;
+	"allow-future-entries"?: string,
+	"diary-entries"?: string,
+	"no"?: string,
+	"reset-diary"?: string,
+	"reset-diary-confirm"?: string,
+	"reset-diary-msg"?: string,
 
 	// Password and directory
 	"change-directory"?: string,

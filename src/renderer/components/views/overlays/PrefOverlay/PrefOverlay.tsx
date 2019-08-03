@@ -12,11 +12,13 @@ import OverlayContainer from "../OverlayContainer";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
+	fileExists: boolean;
 	hashedPassword: string;
 	themePref: ThemePref;
 }
 
 export interface DispatchProps {
+	resetDiary: () => void;
 	testFileExists: () => void;
 	updateFutureEntriesPref: (allowFutureEntries: boolean) => void;
 	updatePassword: (newPassword: string) => void;
@@ -49,6 +51,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 		this.setThemePrefAuto = this.setThemePrefAuto.bind(this);
 		this.setThemePrefDark = this.setThemePrefDark.bind(this);
 		this.setThemePrefLight = this.setThemePrefLight.bind(this);
+		this.showResetPrompt = this.showResetPrompt.bind(this);
 		this.toggleAllowFutureEntries = this.toggleAllowFutureEntries.bind(this);
 		this.updateDir = this.updateDir.bind(this);
 		this.updatePassword = this.updatePassword.bind(this);
@@ -130,6 +133,25 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 		}
 	}
 
+	showResetPrompt(): void {
+		const { resetDiary, testFileExists } = this.props;
+
+		// Show warning prompt asking whether user really wants to reset
+		const clickIndex = remote.dialog.showMessageBox({
+			type: "warning",
+			buttons: [translations["reset-diary-confirm"], translations.no],
+			defaultId: 1,
+			title: translations["reset-diary"],
+			message: translations["reset-diary-msg"],
+		});
+
+		// If confirm button was clicked: Delete diary and show lock screen
+		if (clickIndex === 0) {
+			resetDiary();
+			testFileExists();
+		}
+	}
+
 	toggleAllowFutureEntries(): void {
 		const { allowFutureEntries, updateFutureEntriesPref } = this.props;
 
@@ -159,7 +181,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 	}
 
 	render(): ReactNode {
-		const { allowFutureEntries, hashedPassword, themePref } = this.props;
+		const { allowFutureEntries, fileExists, hashedPassword, themePref } = this.props;
 		const { fileDir, password1, password2 } = this.state;
 
 		const isLocked = hashedPassword === "";
@@ -229,28 +251,39 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 							</div>
 						</fieldset>
 					)}
-					{/*
-						File directory
-						When locked: Change directory
-						When unlocked: Move diary file and change directory
-						Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
-						file without an open dialog after changing the diary path)
-					 */
-					!is.macAppStore && (
-						<fieldset className="fieldset-file-dir">
-							<legend>{translations["diary-file"]}</legend>
-							<div className="fieldset-content">
-								<p className="file-dir">{fileDir}</p>
-								<button
-									type="button"
-									className="button button-main"
-									onClick={isLocked ? this.selectDir : this.selectMoveDir}
-								>
-									{isLocked ? translations["change-directory"] : translations["move-file"]}
-								</button>
-							</div>
-						</fieldset>
-					)}
+					<fieldset className="fieldset-file-dir">
+						<legend>{translations["diary-file"]}</legend>
+						<div className="fieldset-content">
+							{/*
+								File directory
+								When locked: Change directory
+								When unlocked: Move diary file and change directory
+								Not accessible in MAS build due to sandboxing (would not be able to reopen the diary
+								file without an open dialog after changing the diary path)
+							*/
+							!is.macAppStore && (
+								<>
+									<p className="file-dir">{fileDir}</p>
+									<button
+										type="button"
+										className="button button-main"
+										onClick={isLocked ? this.selectDir : this.selectMoveDir}
+									>
+										{isLocked ? translations["change-directory"] : translations["move-file"]}
+									</button>
+								</>
+							)}
+							{/* Reset diary (delete file in selected directory) */}
+							<button
+								type="button"
+								className="button button-main"
+								disabled={!fileExists}
+								onClick={this.showResetPrompt}
+							>
+								{translations["reset-diary"]}
+							</button>
+						</div>
+					</fieldset>
 					{/* Password (only when unlocked) */
 					!isLocked && (
 						<fieldset className="fieldset-password">

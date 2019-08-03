@@ -67,8 +67,12 @@ const translationsEn: Translations = {
 	"search": "Search",
 
 	// Preferences
-	"diary-entries": "Diary entries",
 	"allow-future-entries": "Allow entries in the future",
+	"diary-entries": "Diary entries",
+	"no": "No",
+	"reset-diary": "Reset diary",
+	"reset-diary-confirm": "Yes, I am sure",
+	"reset-diary-msg": "Are you sure you want to reset your diary? This will delete all of your content. The data cannot be restored.",
 
 	// Password and directory
 	"change-directory": "Change directory",

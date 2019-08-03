@@ -67,8 +67,12 @@ const translationsDe: Translations = {
 	"search": "Suche",
 
 	// Preferences
-	"diary-entries": "Tagebucheinträge",
 	"allow-future-entries": "Einträge in der Zukunft erlauben",
+	"diary-entries": "Tagebucheinträge",
+	"no": "Nein",
+	"reset-diary": "Tagebuch zurücksetzen",
+	"reset-diary-confirm": "Ja, ich bin mir sicher",
+	"reset-diary-msg": "Bist du sicher, dass du dein Tagebuch zurücksetzen möchtest? Diese Aktion wird all deine Einträge unwiderruflich löschen.",
 
 	// Password and directory
 	"change-directory": "Ordner ändern",
