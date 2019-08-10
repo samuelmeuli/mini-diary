@@ -1,11 +1,11 @@
-import iconClear from "feather-icons/dist/icons/x.svg";
+import ClearIcon from "feather-icons/dist/icons/x.svg";
 import debounce from "lodash.debounce";
 import moment from "moment";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";
-import SimpleSvg from "react-simple-svg";
 
-import iconToday from "../../../assets/icons/today.svg";
+import TodayIcon from "../../../assets/icons/today.svg";
 import { translations } from "../../../utils/i18n";
+import { iconProps } from "../../../utils/icons";
 
 export interface StateProps {
 	dateSelected: Date;
@@ -98,7 +98,7 @@ export default class Toolbar extends PureComponent<Props, State> {
 								className="button button-invisible"
 								onClick={this.clearSearchKey}
 							>
-								<SimpleSvg src={iconClear} height={20} width={20} title={translations.clear} />
+								<ClearIcon {...iconProps} title={translations.clear} />
 							</button>
 						</span>
 					)}
@@ -109,7 +109,7 @@ export default class Toolbar extends PureComponent<Props, State> {
 					disabled={isToday && isCurrentMonth}
 					onClick={this.onTodaySelection}
 				>
-					<SimpleSvg src={iconToday} height={20} width={20} title={translations.today} />
+					<TodayIcon {...iconProps} title={translations.today} />
 				</button>
 			</div>
 		);

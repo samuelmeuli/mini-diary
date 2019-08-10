@@ -1,13 +1,13 @@
 import { EditorState, RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
-import iconBold from "feather-icons/dist/icons/bold.svg";
-import iconItalic from "feather-icons/dist/icons/italic.svg";
-import iconUl from "feather-icons/dist/icons/list.svg";
+import BoldIcon from "feather-icons/dist/icons/bold.svg";
+import ItalicIcon from "feather-icons/dist/icons/italic.svg";
+import UlIcon from "feather-icons/dist/icons/list.svg";
 import React, { PureComponent, ReactNode } from "react";
-import SimpleSvg from "react-simple-svg";
 
-import iconOl from "../../../assets/icons/ordered-list.svg";
+import OlIcon from "../../../assets/icons/ordered-list.svg";
 import { translations } from "../../../utils/i18n";
+import { iconProps } from "../../../utils/icons";
 
 const STROKE_WIDTH_DEFAULT = 2;
 const STROKE_WIDTH_SELECTED = 3;
@@ -78,10 +78,8 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 					className={`button button-invisible ${isBold ? "button-active" : ""}`}
 					onClick={this.onBoldClick}
 				>
-					<SimpleSvg
-						src={iconBold}
-						width={20}
-						height={20}
+					<BoldIcon
+						{...iconProps}
 						strokeWidth={isBold ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
 						title={translations.bold}
 					/>
@@ -91,10 +89,8 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 					className={`button button-invisible ${isItalic ? "button-active" : ""}`}
 					onClick={this.onItalicClick}
 				>
-					<SimpleSvg
-						src={iconItalic}
-						width={20}
-						height={20}
+					<ItalicIcon
+						{...iconProps}
 						strokeWidth={isItalic ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
 						title={translations.italic}
 					/>
@@ -104,10 +100,8 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 					className={`button button-invisible ${isUl ? "button-active" : ""}`}
 					onClick={this.onUlClick}
 				>
-					<SimpleSvg
-						src={iconUl}
-						width={20}
-						height={20}
+					<UlIcon
+						{...iconProps}
 						strokeWidth={isUl ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
 						title={translations.bullets}
 					/>
@@ -117,10 +111,8 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 					className={`button button-invisible ${isOl ? "button-active" : ""}`}
 					onClick={this.onOlClick}
 				>
-					<SimpleSvg
-						src={iconOl}
-						width={20}
-						height={20}
+					<OlIcon
+						{...iconProps}
 						strokeWidth={isOl ? STROKE_WIDTH_SELECTED : STROKE_WIDTH_DEFAULT}
 						title={translations.list}
 					/>

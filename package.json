@@ -40,6 +40,7 @@
 		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0"
 	},
 	"dependencies": {
+		"@svgr/webpack": "^4.3.2",
 		"@types/draft-js": "^0.10.34",
 		"@types/electron-settings": "^3.1.1",
 		"@types/lodash.debounce": "^4.0.6",
@@ -69,7 +70,6 @@
 		"react-day-picker": "github:samuelmeuli/react-day-picker",
 		"react-dom": "^16.8.4",
 		"react-redux": "^7.1.0",
-		"react-simple-svg": "^1.0.2",
 		"redux": "^4.0.0",
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
@@ -112,7 +112,6 @@
 		"serve": "^11.0.2",
 		"style-loader": "^1.0.0",
 		"stylelint": "^10.1.0",
-		"svg-inline-loader": "^0.8.0",
 		"typescript": "^3.5.2",
 		"webpack": "^4.35.0",
 		"webpack-cli": "^3.3.5",

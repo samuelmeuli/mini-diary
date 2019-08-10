@@ -1,8 +1,8 @@
-import iconClear from "feather-icons/dist/icons/x.svg";
+import ClearIcon from "feather-icons/dist/icons/x.svg";
 import React, { PureComponent, ReactNode } from "react";
-import SimpleSvg from "react-simple-svg";
 
 import { translations } from "../../../utils/i18n";
+import { iconProps } from "../../../utils/icons";
 
 export interface DispatchProps {
 	closeOverlay: () => void;
@@ -91,7 +91,7 @@ export default class Overlay extends PureComponent<Props, {}> {
 						className="button button-invisible overlay-close-button"
 						onClick={this.onClose}
 					>
-						<SimpleSvg src={iconClear} height={20} width={20} title={translations.close} />
+						<ClearIcon {...iconProps} title={translations.close} />
 					</button>
 					<div className="overlay-content">{children}</div>
 				</div>

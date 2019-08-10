@@ -18,7 +18,17 @@ module.exports = (env, argv) =>
 				},
 				{
 					test: /\.svg$/,
-					loader: "svg-inline-loader",
+					use: {
+						loader: "@svgr/webpack",
+						options: {
+							titleProp: true,
+							svgoConfig: {
+								plugins: {
+									removeViewBox: false,
+								},
+							},
+						},
+					},
 				},
 			],
 		},

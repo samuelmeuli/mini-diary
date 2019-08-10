@@ -11,6 +11,4 @@ declare module "electron-md-to-pdf";
 
 declare module "markdown-draft-js";
 
-declare module "react-simple-svg";
-
 declare module "strip-markdown";

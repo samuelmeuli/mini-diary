@@ -1,11 +1,11 @@
-import iconPrev from "feather-icons/dist/icons/chevron-left.svg";
-import iconNext from "feather-icons/dist/icons/chevron-right.svg";
+import PrevIcon from "feather-icons/dist/icons/chevron-left.svg";
+import NextIcon from "feather-icons/dist/icons/chevron-right.svg";
 import moment from "moment";
 import React, { FunctionComponent } from "react";
-import SimpleSvg from "react-simple-svg";
 
 import { toMonthYear } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
+import { iconProps } from "../../../../utils/icons";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
@@ -36,7 +36,7 @@ const CalendarNav: FunctionComponent<Props> = (props: Props): JSX.Element => {
 	return (
 		<div className="calendar-nav">
 			<button type="button" className="button button-invisible" onClick={setMonthSelectedPrevious}>
-				<SimpleSvg src={iconPrev} title={translations["previous-month"]} height={20} width={20} />
+				<PrevIcon {...iconProps} title={translations["previous-month"]} />
 			</button>
 			<h1 className="month-name">{toMonthYear(month)}</h1>
 			<button
@@ -45,7 +45,7 @@ const CalendarNav: FunctionComponent<Props> = (props: Props): JSX.Element => {
 				disabled={disableNextButton}
 				onClick={setMonthSelectedNext}
 			>
-				<SimpleSvg src={iconNext} title={translations["next-month"]} height={20} width={20} />
+				<NextIcon {...iconProps} title={translations["next-month"]} />
 			</button>
 		</div>
 	);
