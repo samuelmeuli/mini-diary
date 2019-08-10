@@ -30,13 +30,14 @@
 		"website": "run-s website:*",
 		"website:build": "cp ./node_modules/minireset.css/minireset.min.css ./website/styles/",
 		"website:serve": "serve ./website --listen 3000",
-		"typecheck": "tsc --noEmit",
+		"test": "run-s test:*",
+		"test:jest": "TZ=GMT jest",
+		"test:types": "tsc --noEmit",
 		"format": "prettier --write",
 		"lint:css": "stylelint --fix --max-warnings 0",
 		"lint:scss": "stylelint --fix --max-warnings 0 --syntax scss",
 		"lint:js": "eslint --ext .js,.jsx --fix --max-warnings 0",
-		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0",
-		"test": "TZ=GMT jest"
+		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0"
 	},
 	"dependencies": {
 		"@types/draft-js": "^0.10.34",
@@ -204,7 +205,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn typecheck && lint-staged"
+			"pre-commit": "yarn test && lint-staged"
 		}
 	},
 	"build": {
