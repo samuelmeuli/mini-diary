@@ -9402,9 +9402,10 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-"strip-markdown@github:samuelmeuli/strip-markdown":
-  version "3.0.3"
-  resolved "https://codeload.github.com/samuelmeuli/strip-markdown/tar.gz/ba9c9355efb405276ed0b823761f0eb9beb8d40f"
+strip-markdown@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/strip-markdown/-/strip-markdown-3.1.0.tgz#c721b3568ad4751a4540df7016bd63dc411be728"
+  integrity sha512-yKVGyloosIjDuDi2DHybQ6W8Vk411x8/78k617GuQBwO4O8BnY2Q4zOYhNDL5t5J7z1fLT5Cvlv7vD5Rhhx8JA==
 
 style-loader@^0.23.0:
   version "0.23.1"
