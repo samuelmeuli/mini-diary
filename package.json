@@ -50,7 +50,7 @@
 		"draft-js": "^0.10.5",
 		"draft-js-autolist-plugin": "^2.0.0",
 		"draft-js-plugins-editor": "^2.1.1",
-		"electron-context-menu": "^0.13.0",
+		"electron-context-menu": "^0.14.0",
 		"electron-debug": "^3.0.0",
 		"electron-md-to-pdf": "^1.0.1",
 		"electron-settings": "^3.2.0",
@@ -60,7 +60,7 @@
 		"feather-icons": "^4.22.1",
 		"license-checker-webpack-plugin": "^0.0.9",
 		"lodash.debounce": "^4.0.8",
-		"markdown-draft-js": "^1.4.1",
+		"markdown-draft-js": "^2.0.0",
 		"minireset.css": "^0.0.5",
 		"minisearch": "^2.0.3",
 		"moment": "^2.22.2",
@@ -76,7 +76,7 @@
 		"remark-stringify": "^7.0.0",
 		"semver": "^6.1.2",
 		"strip-markdown": "^3.1.0",
-		"type-fest": "^0.6.0"
+		"type-fest": "^0.7.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
@@ -109,7 +109,7 @@
 		"prettier": "^1.18.2",
 		"sass-loader": "^7.0.3",
 		"serve": "^11.0.2",
-		"style-loader": "^0.23.0",
+		"style-loader": "^1.0.0",
 		"stylelint": "^10.1.0",
 		"svg-inline-loader": "^0.8.0",
 		"typescript": "^3.5.2",
