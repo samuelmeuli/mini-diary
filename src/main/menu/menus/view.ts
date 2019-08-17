@@ -1,3 +1,5 @@
+import { MenuItemConstructorOptions } from "electron";
+
 import { translate } from "../../i18n/i18n";
 import {
 	setDaySelectedNext,
@@ -6,7 +8,7 @@ import {
 	setMonthSelectedPrevious,
 } from "../../ipcMain/senders";
 
-export default function getViewMenu(): Electron.MenuItemConstructorOptions {
+export default function getViewMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("view"),
 		submenu: [

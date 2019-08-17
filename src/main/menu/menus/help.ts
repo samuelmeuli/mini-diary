@@ -1,4 +1,4 @@
-import { shell } from "electron";
+import { MenuItemConstructorOptions, shell } from "electron";
 
 import { translate } from "../../i18n/i18n";
 
@@ -6,7 +6,7 @@ const URL_LICENSE = "https://github.com/samuelmeuli/mini-diary/blob/master/LICEN
 const URL_PRIVACY_POLICY = "https://github.com/samuelmeuli/mini-diary/blob/master/PRIVACY.md";
 const URL_WEBSITE = "https://minidiary.app";
 
-export default function getHelpMenu(): Electron.MenuItemConstructorOptions {
+export default function getHelpMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("help"),
 		role: "help",

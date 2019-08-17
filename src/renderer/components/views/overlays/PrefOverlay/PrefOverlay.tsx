@@ -34,14 +34,14 @@ interface State {
 }
 
 export default class PrefOverlay extends PureComponent<Props, State> {
+	state: Readonly<State> = {
+		fileDir: getDiaryFilePath(),
+		password1: "",
+		password2: "",
+	};
+
 	constructor(props: Props) {
 		super(props);
-
-		this.state = {
-			fileDir: getDiaryFilePath(),
-			password1: "",
-			password2: "",
-		};
 
 		// Function bindings
 		this.onChangePassword1 = this.onChangePassword1.bind(this);
@@ -91,35 +91,35 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 		updateThemePref("light");
 	}
 
-	selectDir(): void {
+	async selectDir(): Promise<void> {
 		const { testFileExists } = this.props;
 
 		// Show dialog for selecting directory
-		const fileDirArray = remote.dialog.showOpenDialog({
+		const { filePaths } = await remote.dialog.showOpenDialog({
 			buttonLabel: translations["select-directory"],
 			properties: ["openDirectory"],
 		});
 
-		if (fileDirArray && fileDirArray.length === 1) {
+		if (filePaths && filePaths.length === 1) {
 			// Use mini-diary.txt file from selected directory
-			const newDir = fileDirArray[0];
+			const newDir = filePaths[0];
 			this.updateDir(newDir);
 			testFileExists();
 		}
 	}
 
-	selectMoveDir(): void {
+	async selectMoveDir(): Promise<void> {
 		const { fileDir } = this.state;
 
 		// Show dialog for selecting directory
-		const fileDirArray = remote.dialog.showOpenDialog({
+		const { filePaths } = await remote.dialog.showOpenDialog({
 			buttonLabel: translations["move-file"],
 			properties: ["openDirectory"],
 		});
 
-		if (fileDirArray && fileDirArray.length === 1) {
+		if (filePaths && filePaths.length === 1) {
 			// Move mini-diary.txt file to selected directory
-			const newDir = fileDirArray[0];
+			const newDir = filePaths[0];
 			try {
 				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
 			} catch (err) {
@@ -133,11 +133,11 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 		}
 	}
 
-	showResetPrompt(): void {
+	async showResetPrompt(): Promise<void> {
 		const { resetDiary, testFileExists } = this.props;
 
 		// Show warning prompt asking whether user really wants to reset
-		const clickIndex = remote.dialog.showMessageBox({
+		const { response: clickIndex } = await remote.dialog.showMessageBox({
 			type: "warning",
 			buttons: [translations["reset-diary-confirm"], translations.no],
 			defaultId: 1,

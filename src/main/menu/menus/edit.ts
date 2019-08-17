@@ -1,6 +1,8 @@
+import { MenuItemConstructorOptions } from "electron";
+
 import { translate } from "../../i18n/i18n";
 
-export default function getEditMenu(): Electron.MenuItemConstructorOptions {
+export default function getEditMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("edit"),
 		submenu: [
@@ -27,7 +29,7 @@ export default function getEditMenu(): Electron.MenuItemConstructorOptions {
 			},
 			{
 				label: translate("select-all"),
-				role: "selectall",
+				role: "selectAll",
 			},
 		],
 	};

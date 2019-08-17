@@ -1,3 +1,5 @@
+import { MenuItemConstructorOptions } from "electron";
+
 import { translate } from "../../i18n/i18n";
 import {
 	exportJsonMiniDiary,
@@ -12,7 +14,7 @@ import {
 	showStatsOverlay,
 } from "../../ipcMain/senders";
 
-export default function getFileMenu(): Electron.MenuItemConstructorOptions {
+export default function getFileMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("file"),
 		submenu: [

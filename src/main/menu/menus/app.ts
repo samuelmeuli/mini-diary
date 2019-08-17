@@ -1,11 +1,11 @@
-import { app } from "electron";
+import { app, MenuItemConstructorOptions } from "electron";
 
 import { translate } from "../../i18n/i18n";
 import getPreferencesItem from "../preferencesItem";
 
 const appName = app.getName();
 
-export default function getAppMenu(): Electron.MenuItemConstructorOptions {
+export default function getAppMenu(): MenuItemConstructorOptions {
 	const preferencesItem = getPreferencesItem();
 
 	return {
@@ -24,7 +24,7 @@ export default function getAppMenu(): Electron.MenuItemConstructorOptions {
 			},
 			{
 				label: translate("hide-others"),
-				role: "hideothers",
+				role: "hideOthers",
 			},
 			{
 				label: translate("show-all"),

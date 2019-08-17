@@ -17,14 +17,13 @@ const GITHUB_CSS =
 /**
  * Convert entries to PDF buffer
  */
-export function convertToPdf(entries: Entries): Promise<Buffer> {
-	return convertToMd(entries).then(md => {
-		return mdToPdfBuffer(md, {
-			cssString: GITHUB_CSS,
-			pdfOptions: {
-				pageSize: "A4",
-			},
-			wrapperClasses: "markdown-body",
-		});
+export async function convertToPdf(entries: Entries): Promise<Buffer> {
+	const md = await convertToMd(entries);
+	return mdToPdfBuffer(md, {
+		cssString: GITHUB_CSS,
+		pdfOptions: {
+			pageSize: "A4",
+		},
+		wrapperClasses: "markdown-body",
 	});
 }

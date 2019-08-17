@@ -60,7 +60,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		this.selectAndImportFile = this.selectAndImportFile.bind(this);
 	}
 
-	selectAndImportFile(): void {
+	async selectAndImportFile(): Promise<void> {
 		const { importFormat, runImport } = this.props;
 
 		if (!importFormat) {
@@ -69,7 +69,7 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 		}
 
 		// Show dialog for selecting file to import
-		const fileNameArray = remote.dialog.showOpenDialog({
+		const { filePaths } = await remote.dialog.showOpenDialog({
 			properties: ["openFile"],
 			filters: [
 				{
@@ -79,9 +79,8 @@ export default class ImportOverlay extends PureComponent<Props, {}> {
 			],
 		});
 
-		// Run import if exactly one file has been selected
-		if (fileNameArray && fileNameArray.length === 1) {
-			runImport(fileNameArray[0]);
+		if (filePaths && filePaths.length === 1) {
+			runImport(filePaths[0]);
 		}
 	}
 

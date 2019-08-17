@@ -54,7 +54,7 @@
 		"draft-js-plugins-editor": "^2.1.1",
 		"electron-context-menu": "^0.14.0",
 		"electron-debug": "^3.0.0",
-		"electron-md-to-pdf": "^1.0.1",
+		"electron-md-to-pdf": "^2.0.0",
 		"electron-settings": "^3.2.0",
 		"electron-unhandled": "^3.0.0",
 		"electron-updater": "^4.0.14",
@@ -81,6 +81,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
 		"@babel/preset-env": "^7.4.5",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/preset-typescript": "^7.3.3",
@@ -91,7 +92,7 @@
 		"@typescript-eslint/parser": "^2.0.0",
 		"babel-loader": "^8.0.6",
 		"css-loader": "^3.0.0",
-		"electron": "^5.0.3",
+		"electron": "^6.0.2",
 		"electron-builder": "^20.44.4",
 		"env-cmd": "^9.0.3",
 		"eslint": "6.1.0",
@@ -131,6 +132,9 @@
 			],
 			"@babel/preset-react",
 			"@babel/preset-typescript"
+		],
+		"plugins": [
+			"@babel/plugin-proposal-class-properties"
 		]
 	},
 	"jest": {

@@ -1,3 +1,4 @@
+import { MenuItemConstructorOptions } from "electron";
 import { is } from "electron-util";
 
 import { translate } from "../i18n/i18n";
@@ -9,7 +10,7 @@ import getViewMenu from "./menus/view";
 import getWindowMenu from "./menus/window";
 import getPreferencesItem from "./preferencesItem";
 
-export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[] {
+export default function getMenuTemplate(): MenuItemConstructorOptions[] {
 	const appMenu = getAppMenu();
 	const editMenu = getEditMenu();
 	const fileMenu = getFileMenu();
@@ -20,18 +21,18 @@ export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[]
 
 	if (is.macos) {
 		// Add macOS-specific items
-		(editMenu.submenu as Electron.MenuItemConstructorOptions[]).push(
+		(editMenu.submenu as MenuItemConstructorOptions[]).push(
 			{ type: "separator" },
 			{
 				label: translate("speech"),
 				submenu: [
 					{
 						label: translate("start-speaking"),
-						role: "startspeaking",
+						role: "startSpeaking",
 					},
 					{
 						label: translate("stop-speaking"),
-						role: "stopspeaking",
+						role: "stopSpeaking",
 					},
 				],
 			},
@@ -57,7 +58,7 @@ export default function getMenuTemplate(): Electron.MenuItemConstructorOptions[]
 		];
 	} else {
 		// Add preferences under "File" (will be added under "Mini Diary" for macOS)
-		(fileMenu.submenu as Electron.MenuItemConstructorOptions[]).push(preferencesItem);
+		(fileMenu.submenu as MenuItemConstructorOptions[]).push(preferencesItem);
 	}
 
 	return [...(is.macos ? [appMenu] : []), fileMenu, editMenu, viewMenu, windowMenu, helpMenu];
