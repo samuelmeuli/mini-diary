@@ -1,3 +1,5 @@
+import "draft-js/dist/Draft.css";
+
 import {
 	ContentState,
 	convertFromRaw,
@@ -11,7 +13,6 @@ import {
 } from "draft-js";
 import createAutoListPlugin from "draft-js-autolist-plugin";
 import PluginEditor from "draft-js-plugins-editor";
-import "draft-js/dist/Draft.css";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
@@ -85,7 +86,7 @@ export default class Editor extends PureComponent<Props, State> {
 
 	saveEntryDebounced: () => void;
 
-	textEditor: DraftJsEditor;
+	textEditor: PluginEditor;
 
 	constructor(props: Props) {
 		super(props);
@@ -190,7 +191,7 @@ export default class Editor extends PureComponent<Props, State> {
 							handleKeyCommand={this.handleTextKeyCommand}
 							onBlur={this.saveEntry}
 							onChange={this.onTextChange}
-							ref={(textEditor: DraftJsEditor): void => {
+							ref={(textEditor: PluginEditor): void => {
 								this.textEditor = textEditor;
 							}}
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
