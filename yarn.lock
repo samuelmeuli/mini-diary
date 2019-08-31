@@ -3414,10 +3414,10 @@ dotenv@^6.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
-draft-js-autolist-plugin@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/draft-js-autolist-plugin/-/draft-js-autolist-plugin-2.0.0.tgz#2b0bf6d6cf8d4b6cfb0e6154218807e92894569b"
-  integrity sha1-Kwv21s+NS2z7DmFUIYgH6SiUVps=
+draft-js-list-plugin@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/draft-js-list-plugin/-/draft-js-list-plugin-1.0.1.tgz#70ae93e0b80ac7586d27038041f70591e84f5029"
+  integrity sha512-OM23dDj1Mmlw54H+5o2hGzVB3vtyyO5pS6kvg0e0vzPxJHrtJIsb83UUqjM3VkHlzAkJzLngoqOILDMn4t7nuA==
 
 draft-js-plugins-editor@^3.0.0:
   version "3.0.0"

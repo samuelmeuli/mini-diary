@@ -11,7 +11,7 @@ import {
 	getDefaultKeyBinding,
 	RichUtils,
 } from "draft-js";
-import createAutoListPlugin from "draft-js-autolist-plugin";
+import createListPlugin from "draft-js-list-plugin";
 import PluginEditor from "draft-js-plugins-editor";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
@@ -25,7 +25,9 @@ type DraftEditorCommandExtended = DraftEditorCommand | "enter";
 
 const AUTOSAVE_INTERVAL = 500;
 
-const plugins = [createAutoListPlugin()];
+// Draft.js plugins
+const listPlugin = createListPlugin();
+const plugins = [listPlugin];
 
 export interface StateProps {
 	dateSelected: Date;

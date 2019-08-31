@@ -50,7 +50,7 @@
 		"@types/redux-logger": "^3.0.7",
 		"@types/semver": "^6.0.1",
 		"draft-js": "^0.11.0",
-		"draft-js-autolist-plugin": "^2.0.0",
+		"draft-js-list-plugin": "^1.0.0",
 		"draft-js-plugins-editor": "^3.0.0",
 		"electron-context-menu": "^0.14.0",
 		"electron-debug": "^3.0.0",
