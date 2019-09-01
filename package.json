@@ -30,7 +30,7 @@
 		"website:start": "run-p website:start:*",
 		"website:start:serve": "serve ./website --listen 3000",
 		"website:start:ts": "tsc ./website/index.ts --watch",
-		"website:build": "website:build:*",
+		"website:build": "run-p website:build:*",
 		"website:build:css": "cp ./node_modules/minireset.css/minireset.min.css ./website/styles/",
 		"website:build:ts": "tsc ./website/index.ts",
 		"test": "run-s test:*",
