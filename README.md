@@ -1,20 +1,15 @@
 <div align="center">
-  <img src="website/img/app-icon.png" height="140">
+  <img src="website/img/app-icon.png" height="120">
   <h1>Mini Diary</h1>
   <strong>Simple and secure journal app</strong>
   <img src="website/img/screenshot-1.png" width="100%" alt="Screenshot">
-  <strong><a href="https://minidiary.app">Website</a></strong>
 </div>
 
 ## Download
 
-- **Mac:**
-  - [App Store](https://itunes.apple.com/app/mini-diary/id1450296884) (sandboxed)
-  - [DMG](https://github.com/samuelmeuli/mini-diary/releases/latest) (not sandboxed, allows storing diary file anywhere on disk)
-- **[Windows](https://minidiary.app)**
-- **[Linux](https://minidiary.app)**
+**Features and download links can be found on the website:**
 
-You can find all available download formats [here](https://github.com/samuelmeuli/mini-diary/releases/latest).
+→ [**minidiary.app**](https://minidiary.app)
 
 ## Development
 
