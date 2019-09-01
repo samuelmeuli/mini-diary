@@ -67,8 +67,8 @@ header {
 	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
-main {
-	padding: var(--spacing-rel-medium) 0;
+section {
+	margin: var(--spacing-rel-medium) 0;
 }
 
 footer {
@@ -179,12 +179,26 @@ footer svg {
 	margin-right: 7px;
 }
 
-/* Highlights */
+/* Screenshots */
 
-.highlight-list {
-	margin-top: var(--spacing-rel-medium);
-	margin-bottom: var(--spacing-rel-medium);
+.section-screenshots {
+	text-align: center;
 }
+
+.screenshot {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.screenshot-large {
+	width: 900px;
+}
+
+.screenshot-small {
+	width: 650px;
+}
+
+/* Highlights */
 
 .highlight {
 	display: flex;
@@ -217,24 +231,6 @@ footer svg {
 
 .highlight div {
 	flex: 1;
-}
-
-.screenshot-section-1,
-.screenshot-section-2 {
-	text-align: center;
-}
-
-.screenshot {
-	display: inline-block;
-	max-width: 100%;
-}
-
-.screenshot-section-1 .screenshot {
-	width: 900px;
-}
-
-.screenshot-section-2 .screenshot {
-	width: 650px;
 }
 
 /* Features */
