@@ -1,17 +1,18 @@
-# Node
+# NPM
 node_modules/
 
-# Webpack (React bundle)
+# React bundle (Webpack)
 bundle/
 
-# electron-builder
+# Packaged app (electron-builder)
 dist/
 
 # Credentials
 .env
 
-# Provisioning profile
+# Apple provisioning profile
 *.provisionprofile
 
-# Website
-minireset.*
+# Generated website assets
+website/index.js
+website/styles/minireset.min.css
