@@ -1,0 +1,26 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+
+    # Platforms to test on
+    strategy:
+      matrix:
+        os: [macos-10.14, windows-2019, ubuntu-18.04]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Run tests
+        run: |
+          yarn
+          yarn test
