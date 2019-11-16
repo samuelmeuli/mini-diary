@@ -266,10 +266,7 @@
 			]
 		},
 		"linux": {
-			"target": [
-				"AppImage"
-			],
-			"category": "Office"
+			"category": "Utility"
 		},
 		"dmg": {
 			"icon": false

@@ -1,5 +1,6 @@
 const API_URL = "https://api.github.com/repos/samuelmeuli/mini-diary/releases/latest";
 const APP_STORE_URL = "https://itunes.apple.com/app/mini-diary/id1450296884";
+const SNAPCRAFT_URL = "https://snapcraft.io/mini-diary";
 
 interface Asset {
 	browser_download_url: string;
@@ -28,12 +29,12 @@ enum Platform {
 
 const FIXED_URLS: Partial<Record<Platform, string>> = {
 	[Platform.Mas]: APP_STORE_URL,
+	[Platform.Linux]: SNAPCRAFT_URL,
 };
 
 const PLATFORM_EXTENSIONS: Partial<Record<Platform, Extension>> = {
 	[Platform.Mac]: "dmg",
 	[Platform.Windows]: "exe",
-	[Platform.Linux]: "AppImage",
 };
 
 function getCurrentPlatform(): Platform {
