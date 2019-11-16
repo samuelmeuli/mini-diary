@@ -3727,10 +3727,10 @@ electron-updater@^4.0.14:
     pako "^1.0.10"
     semver "^6.3.0"
 
-electron-util@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/electron-util/-/electron-util-0.13.0.tgz#bce9032ab07cab3bc3448451f2a48a766ef51cce"
-  integrity sha512-3jpvw72quwKMI5fBSE+9oQvtcBmjLZZq5wlOuUujEbV6gRD2Vzrfqmiu0PSwO7+ki7E6xsnrWHg85vMJ/rL/GA==
+electron-util@^0.12.3:
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/electron-util/-/electron-util-0.12.3.tgz#e2c0059b4109b512542d66261888c2beb2fc2b29"
+  integrity sha512-6Vq8UzUFcwghVpXazIY4cD5TkTvqXOTvJpzsoeiQY051Twdwu6ofHHP/shEFkpxf8X81M6F8/cdeoT+2XYpTBg==
   dependencies:
     electron-is-dev "^1.1.0"
     new-github-issue-url "^0.2.1"
