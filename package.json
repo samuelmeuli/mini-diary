@@ -1,7 +1,7 @@
 {
 	"name": "mini-diary",
 	"productName": "Mini Diary",
-	"version": "2.4.2",
+	"version": "2.4.3",
 	"description": "Simple and secure journal app",
 	"main": "./bundle/main.js",
 	"author": {
