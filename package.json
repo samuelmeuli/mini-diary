@@ -96,7 +96,7 @@
 		"css-loader": "^3.0.0",
 		"electron": "^6.0.12",
 		"electron-builder": "^22.1.0",
-		"env-cmd": "^10.0.1",
+		"electron-notarize": "^0.2.0",
 		"eslint": "6.5.1",
 		"eslint-config-airbnb": "18.0.1",
 		"eslint-config-prettier": "^6.4.0",
@@ -215,6 +215,10 @@
 	},
 	"build": {
 		"appId": "com.samuelmeuli.minidiary",
+		"files": [
+			"!**/*",
+			"./bundle/**/*"
+		],
 		"extraResources": [
 			{
 				"from": "./bundle/licenses-main.txt",
@@ -225,11 +229,8 @@
 				"to": "./licenses-renderer.txt"
 			}
 		],
-		"files": [
-			"!**/*",
-			"./bundle/**/*"
-		],
 		"afterPack": "./scripts/after-pack.js",
+		"afterSign": "./scripts/notarize.js",
 		"mac": {
 			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true,
@@ -258,7 +259,11 @@
 				"pt_PT",
 				"tr",
 				"zh"
-			]
+			],
+			"entitlements": "./build/entitlements.mac.plist",
+			"entitlementsInherit": "./build/entitlements.mac.plist",
+			"hardenedRuntime": true,
+			"gatekeeperAssess": false
 		},
 		"linux": {
 			"category": "Utility"

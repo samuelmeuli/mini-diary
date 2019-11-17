@@ -28,9 +28,20 @@ jobs:
           # Log in to Snap Store
           snapcraft_token: ${{ secrets.snapcraft_token }}
 
+      - name: Prepare for app notarization (macOS)
+        if: startsWith(matrix.os, 'macos')
+        # Import Apple API key for app notarization on macOS
+        run: |
+          mkdir -p ~/private_keys/
+          echo '${{ secrets.apple_api_key }}' > ~/private_keys/AuthKey_${{ secrets.apple_api_key_id }}.p8
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
+          # macOS notarization API key
+          apple_api_key_id: ${{ secrets.apple_api_key_id }}
+          apple_api_key_issuer: ${{ secrets.apple_api_key_issuer }}
+
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
