@@ -231,11 +231,6 @@
 		],
 		"afterPack": "./scripts/after-pack.js",
 		"mac": {
-			"target": [
-				"dmg",
-				"mas",
-				"zip"
-			],
 			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true,
 			"electronLanguages": [
