@@ -25,7 +25,7 @@
 		"build:ts": "run-p build:ts:*",
 		"build:ts:main": "webpack --config ./webpack.main.js --mode production",
 		"build:ts:renderer": "webpack --config ./webpack.renderer.js --mode production",
-		"website:start": "run-p website:start:*",
+		"website:start": "npm-run-all website:build:css --parallel website:start:*",
 		"website:start:serve": "serve ./website --listen 3000",
 		"website:start:ts": "tsc ./website/index.ts --watch",
 		"website:build": "run-p website:build:*",
