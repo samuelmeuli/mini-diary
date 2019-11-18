@@ -5,7 +5,7 @@ import { loadDirPref } from "../preferences/preferences";
 
 export const FILE_NAME = "mini-diary.txt";
 const METADATA = {
-	application: remote.app.getName(),
+	application: remote.app.name,
 	version: remote.app.getVersion(),
 };
 

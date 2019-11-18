@@ -4,36 +4,34 @@ import React, { PureComponent, ReactNode } from "react";
 import { translate, translations } from "../../../../utils/i18n";
 import OverlayContainer from "../OverlayContainer";
 
-const APP_NAME = remote.app.getName();
+const appName = remote.app.name;
 const fields = {
 	jsonDayOne: {
 		title: translate("import-from-format", { format: "JSON (Day One)" }),
 		extension: "json",
-		instructions: (
-			<p>{translate("import-instructions-day-one", { appName: APP_NAME, format: "JSON" })}</p>
-		),
+		instructions: <p>{translate("import-instructions-day-one", { appName, format: "JSON" })}</p>,
 	},
 	jsonJrnl: {
 		title: translate("import-from-format", { format: "JSON (jrnl)" }),
 		extension: "json",
 		instructions: (
 			<p>
-				{translate("import-instructions-jrnl", { appName: APP_NAME }).split(/{.*?}/)[0]}
+				{translate("import-instructions-jrnl", { appName }).split(/{.*?}/)[0]}
 				<code>jrnl --export json -o jrnl-export.json</code>
-				{translate("import-instructions-jrnl", { appName: APP_NAME }).split(/{.*?}/)[1]}
+				{translate("import-instructions-jrnl", { appName }).split(/{.*?}/)[1]}
 			</p>
 		),
 	},
 	jsonMiniDiary: {
 		title: translate("import-from-format", { format: "JSON (Mini Diary)" }),
 		extension: "json",
-		instructions: <p>{translate("import-instructions-mini-diary", { appName: APP_NAME })}</p>,
+		instructions: <p>{translate("import-instructions-mini-diary", { appName })}</p>,
 	},
 	txtDayOne: {
 		title: translate("import-from-format", { format: "TXT (Day One)" }),
 		extension: "txt",
 		instructions: (
-			<p>{translate("import-instructions-day-one", { appName: APP_NAME, format: "Plain Text" })}</p>
+			<p>{translate("import-instructions-day-one", { appName, format: "Plain Text" })}</p>
 		),
 	},
 };

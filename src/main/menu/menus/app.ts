@@ -3,7 +3,7 @@ import { app, MenuItemConstructorOptions } from "electron";
 import { translate } from "../../i18n/i18n";
 import getPreferencesItem from "../preferencesItem";
 
-const appName = app.getName();
+const appName = app.name;
 
 export default function getAppMenu(): MenuItemConstructorOptions {
 	const preferencesItem = getPreferencesItem();
