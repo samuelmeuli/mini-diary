@@ -52,26 +52,16 @@ export function initI18n(): void {
 		lang = systemLang;
 		langNoRegion = systemLangNoRegion;
 
-		// For Testing
-		// console.log(lang);
-		// console.log(langNoRegion);
-
 		if (ALL_TRANSLATIONS[lang] !== undefined) {
 			// As the localization for Zh-TW (Traditional Chinese)  is quite different rom the original Zh (Chinese) localization, I added this statement to select Zh-TW for Zh-TW users.
 
 			// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
-
-			// For Testing
-			// console.log("Action TRUE");
 
 			translations = {
 				...defaultTranslations,
 				...ALL_TRANSLATIONS[lang],
 			};
 		} else {
-			// For testing
-			// console.log("Action FALSE");
-
 			translations = {
 				...defaultTranslations,
 				...ALL_TRANSLATIONS[langNoRegion],
