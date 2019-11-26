@@ -10,6 +10,7 @@ import translationsIs from "./translations/is";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
 import translationsZh from "./translations/zh";
+import translationsZhTW from "./translations/zh-TW";
 
 const ALL_TRANSLATIONS: Record<string, Translations> = {
 	de: translationsDe,
@@ -21,6 +22,7 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	pt: translationsPt,
 	tr: translationsTr,
 	zh: translationsZh,
+	"zh-TW": translationsZhTW,
 };
 let translations: Translations; // String translations for langNoRegion
 
@@ -49,10 +51,32 @@ export function initI18n(): void {
 		// Use system language if translations are available
 		lang = systemLang;
 		langNoRegion = systemLangNoRegion;
-		translations = {
-			...defaultTranslations,
-			...ALL_TRANSLATIONS[langNoRegion],
-		};
+
+		// For Testing
+		// console.log(lang);
+		// console.log(langNoRegion);
+
+		if (ALL_TRANSLATIONS[lang] !== undefined) {
+			// As the localization for Zh-TW (Traditional Chinese)  is quite different rom the original Zh (Chinese) localization, I added this statement to select Zh-TW for Zh-TW users.
+
+			// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
+
+			// For Testing
+			// console.log("Action TRUE");
+
+			translations = {
+				...defaultTranslations,
+				...ALL_TRANSLATIONS[lang],
+			};
+		} else {
+			// For testing
+			// console.log("Action FALSE");
+
+			translations = {
+				...defaultTranslations,
+				...ALL_TRANSLATIONS[langNoRegion],
+			};
+		}
 	} else {
 		// Otherwise, fall back to default language
 		lang = FALLBACK_LANG;
