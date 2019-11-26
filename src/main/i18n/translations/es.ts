@@ -52,12 +52,12 @@ const translationsEs: Translations = {
 	"today": "Hoy",
 
 	// Editor
-	"add-a-title": "Pon un título",
+	"add-a-title": "Añade un título",
 	"bold": "Negrita",
 	"bullets": "Lista con viñetas",
 	"italic": "Cursiva",
 	"list": "Lista numerada",
-	"write-something": "Escribe alguna cosa",
+	"write-something": "Escribe algo",
 
 	// Search
 	"clear": "Borrar",
@@ -71,23 +71,23 @@ const translationsEs: Translations = {
 
 	// Password and directory
 	"change-directory": "Cambiar carpeta",
-	"change-password": "Cambiar clave",
-	"choose-password": "Por favor, elija una clave para su diario",
+	"change-password": "Cambiar contraseña",
+	"choose-password": "Por favor, elija una contraseña para su diario",
 	"decryption-error": "Error al descifrar el fichero para el diario",
 	"diary-file": "Fichero para el diario",
-	"file-exists": "Otro fichero existe en la carpeta seleccionada",
+	"file-exists": "Ya existe otro en la carpeta seleccionada",
 	"move-error-msg": "Ha ocurrido un error al mover el fichero",
 	"move-error-title": "Error al mover fichero",
 	"move-file": "Mover fichero",
-	"new-password": "Nueva clave",
+	"new-password": "Nueva contraseña",
 	"password": "Clave",
-	"passwords-no-match": "Las claves no coinciden",
-	"repeat-new-password": "Repite nueva clave",
-	"repeat-password": "Repite clave",
+	"passwords-no-match": "Las contraseñas no coinciden",
+	"repeat-new-password": "Repite nueva contraseña",
+	"repeat-password": "Repite contraseña",
 	"select-directory": "Selecciona carpeta",
-	"set-password": "Establecer clave",
+	"set-password": "Establecer contraseña",
 	"unlock": "Desbloquear",
-	"wrong-password": "Clave incorrecta",
+	"wrong-password": "Contraseña incorrecta",
 
 	// Import
 	"import-error-msg": "Ha ocurrido un error durante la importación",
