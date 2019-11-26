@@ -16,3 +16,4 @@ dist/
 # Generated website assets
 website/index.js
 website/styles/minireset.min.css
+src/main/i18n/.DS_Store
