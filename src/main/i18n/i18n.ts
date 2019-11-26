@@ -50,7 +50,6 @@ export function initI18n(): void {
 	if (ALL_TRANSLATIONS[systemLang] !== undefined) {
 		// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
 		lang = systemLang;
-
 		translations = {
 			...defaultTranslations,
 			...ALL_TRANSLATIONS[lang],
@@ -59,14 +58,12 @@ export function initI18n(): void {
 		// Use system language if translations are available
 		lang = systemLang;
 		langNoRegion = systemLangNoRegion;
-
 		translations = {
 			...defaultTranslations,
 			...ALL_TRANSLATIONS[langNoRegion],
 		};
 	} else {
 		// Otherwise, fall back to default language
-
 		lang = FALLBACK_LANG;
 		langNoRegion = FALLBACK_LANG;
 		translations = defaultTranslations;
