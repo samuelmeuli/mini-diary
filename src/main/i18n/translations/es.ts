@@ -15,7 +15,7 @@ const translationsEs: Translations = {
 	"hide-others": "Ocultar otros",
 	"minimize": "Minimizar",
 	"paste": "Pegar",
-	"preferences": "Configuración",
+	"preferences": "Preferencias",
 	"quit-app": "Salir de {appName}",
 	"redo": "Rehacer",
 	"select-all": "Seleccionar todo",
@@ -24,7 +24,7 @@ const translationsEs: Translations = {
 	"start-speaking": "Iniciar locución",
 	"stop-speaking": "Detener locución",
 	"undo": "Deshacer",
-	"view": "Ver",
+	"view": "Visualización",
 	"window": "Ventana",
 	"zoom": "Zoom",
 
