@@ -16,4 +16,6 @@ dist/
 # Generated website assets
 website/index.js
 website/styles/minireset.min.css
+
+# Apple OS generated DS_Store file
 src/main/i18n/.DS_Store
