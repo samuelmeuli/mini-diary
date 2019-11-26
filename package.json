@@ -258,7 +258,8 @@
 				"pt_BR",
 				"pt_PT",
 				"tr",
-				"zh"
+				"zh",
+				"zh_TW"
 			],
 			"entitlements": "./build/entitlements.mac.plist",
 			"entitlementsInherit": "./build/entitlements.mac.plist",
