@@ -1,7 +1,7 @@
 import { Translations } from "../../../shared/types";
 
 // prettier-ignore
-const translationsZh: Translations = {
+const translationsZhTW: Translations = {
 	// Menu (defined by macOS)
 	"about-app": "關於{appName}",
 	"bring-all-to-front": "將此程式所有視窗移至最前",
@@ -110,4 +110,4 @@ const translationsZh: Translations = {
 	"loading": "讀取中",
 };
 
-export default translationsZh;
+export default translationsZhTW;
