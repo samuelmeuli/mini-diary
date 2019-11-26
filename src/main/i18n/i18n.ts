@@ -47,26 +47,22 @@ export function initI18n(): void {
 	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
 
-	if (systemLangNoRegion in ALL_TRANSLATIONS) {
+	if (ALL_TRANSLATIONS[lang] !== undefined) {
+		// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
+
+		translations = {
+			...defaultTranslations,
+			...ALL_TRANSLATIONS[systemLang],
+		};
+	} else if (systemLangNoRegion in ALL_TRANSLATIONS) {
 		// Use system language if translations are available
 		lang = systemLang;
 		langNoRegion = systemLangNoRegion;
 
-		if (ALL_TRANSLATIONS[lang] !== undefined) {
-			// As the localization for Zh-TW (Traditional Chinese)  is quite different rom the original Zh (Chinese) localization, I added this statement to select Zh-TW for Zh-TW users.
-
-			// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
-
-			translations = {
-				...defaultTranslations,
-				...ALL_TRANSLATIONS[lang],
-			};
-		} else {
-			translations = {
-				...defaultTranslations,
-				...ALL_TRANSLATIONS[langNoRegion],
-			};
-		}
+		translations = {
+			...defaultTranslations,
+			...ALL_TRANSLATIONS[langNoRegion],
+		};
 	} else {
 		// Otherwise, fall back to default language
 		lang = FALLBACK_LANG;
