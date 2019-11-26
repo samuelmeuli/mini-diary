@@ -47,12 +47,13 @@ export function initI18n(): void {
 	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
 
-	if (ALL_TRANSLATIONS[lang] !== undefined) {
+	if (ALL_TRANSLATIONS[systemLang] !== undefined) {
 		// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
+		lang = systemLang;
 
 		translations = {
 			...defaultTranslations,
-			...ALL_TRANSLATIONS[systemLang],
+			...ALL_TRANSLATIONS[lang],
 		};
 	} else if (systemLangNoRegion in ALL_TRANSLATIONS) {
 		// Use system language if translations are available
@@ -65,6 +66,7 @@ export function initI18n(): void {
 		};
 	} else {
 		// Otherwise, fall back to default language
+
 		lang = FALLBACK_LANG;
 		langNoRegion = FALLBACK_LANG;
 		translations = defaultTranslations;
