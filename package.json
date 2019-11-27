@@ -258,6 +258,7 @@
 				"pt_BR",
 				"pt_PT",
 				"tr",
+				"uk",
 				"zh"
 			],
 			"entitlements": "./build/entitlements.mac.plist",
