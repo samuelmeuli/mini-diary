@@ -34,7 +34,7 @@ const translationsUk: Translations = {
 	"import": "Імпорт",
 	"import-from-format": "Імпортувати з {format}",
 	"license": "Ліцензія",
-	"lock-diary": "Заблокувати Mini Diary",
+	"lock-diary": "Заблокувати {appName}",
 	"next-day": "Наступний день",
 	"next-month": "Наступний місяць",
 	"previous-day": "Попередній день",
