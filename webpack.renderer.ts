@@ -31,6 +31,10 @@ export default (_: any, argv: Record<string, string>): Configuration =>
 						},
 					},
 				},
+				{
+					test: /\.(png|jpe?g|gif)$/i,
+					use: "file-loader",
+				},
 			],
 		},
 		plugins: [

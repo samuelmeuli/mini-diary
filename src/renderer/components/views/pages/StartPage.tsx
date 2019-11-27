@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react";
 
-import AppIcon from "../../../assets/icons/app-icon.svg";
+import appIcon from "../../../assets/icons/app-icon.png";
 
 interface Props {
 	children: ReactNode;
@@ -11,7 +11,7 @@ const StartPage: FunctionComponent<Props> = (props: Props): JSX.Element => {
 	return (
 		<div className="page-centered-outer">
 			<div className="page-centered-inner">
-				<AppIcon className="app-icon" width={140} height={140} />
+				<img src={appIcon} alt="App icon" className="app-icon" width={140} height={140} />
 				<div className="page-centered-content">{children}</div>
 			</div>
 		</div>
