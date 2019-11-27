@@ -1,11 +1,12 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const merge = require("webpack-merge");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { Configuration } from "webpack";
+import merge from "webpack-merge";
 
-const pkg = require("./package.json");
-const base = require("./webpack.base");
+import pkg from "./package.json";
+import base from "./webpack.base";
 
-module.exports = (env, argv) =>
-	merge(base(env, argv), {
+export default (_: any, argv: Record<string, string>): Configuration =>
+	merge(base(_, argv), {
 		entry: "./src/renderer/renderer.tsx",
 		output: {
 			filename: "renderer.js",

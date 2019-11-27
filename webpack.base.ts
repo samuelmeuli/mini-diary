@@ -1,7 +1,8 @@
-const LicenseCheckerWebpackPlugin = require("license-checker-webpack-plugin");
-const path = require("path");
+import LicenseCheckerWebpackPlugin from "license-checker-webpack-plugin";
+import path from "path";
+import { Configuration } from "webpack";
 
-module.exports = (env, argv) => {
+export default (_: any, argv: Record<string, string>): Configuration => {
 	const configName = argv.config.split(".")[2];
 	return {
 		output: {
