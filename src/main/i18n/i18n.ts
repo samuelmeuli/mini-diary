@@ -10,7 +10,7 @@ import translationsIs from "./translations/is";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
 import translationsZh from "./translations/zh";
-import translationsZhTW from "./translations/zh-TW";
+import translationsZhTw from "./translations/zhTw";
 
 const ALL_TRANSLATIONS: Record<string, Translations> = {
 	de: translationsDe,
@@ -22,7 +22,7 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	pt: translationsPt,
 	tr: translationsTr,
 	zh: translationsZh,
-	"zh-TW": translationsZhTW,
+	"zh-TW": translationsZhTw,
 };
 let translations: Translations; // String translations for langNoRegion
 
@@ -47,8 +47,9 @@ export function initI18n(): void {
 	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
 
-	if (ALL_TRANSLATIONS[systemLang] !== undefined) {
-		// This if-else statement can ensure that if there is any region-specified localizations found, the system will detect and choose the regional localization, instead of the more general one.
+	if (systemLang in ALL_TRANSLATIONS) {
+		// This if-else statement can ensure that if there is any region-specified localizations found,
+		// the system will detect and choose the regional localization, instead of the more general one
 		lang = systemLang;
 		translations = {
 			...defaultTranslations,
