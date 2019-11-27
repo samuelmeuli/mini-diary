@@ -16,6 +16,3 @@ dist/
 # Generated website assets
 website/index.js
 website/styles/minireset.min.css
-
-# IDEs from IntelliJ IDEA (like, WebStorm)
-.idea/
