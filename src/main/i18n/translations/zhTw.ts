@@ -67,7 +67,7 @@ const translationsZhTw: Translations = {
 	"search": "搜尋",
 
 	// Preferences
-	"allow-future-entries": "允許未來新增條目",
+	"allow-future-entries": "允許新增未來的條目",
 	"diary-entries": "日記條目",
 	"no": "取消",
 	"reset-diary": "重置日記本",

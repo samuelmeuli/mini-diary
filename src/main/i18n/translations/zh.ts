@@ -67,7 +67,7 @@ const translationsZh: Translations = {
 
 	// Preferences
 	"diary-entries": "日记条目",
-	"allow-future-entries": "允许将来创建条目",
+	"allow-future-entries": "允许创建将来的条目",
 
 	// Password and directory
 	"change-directory": "更改路径",
