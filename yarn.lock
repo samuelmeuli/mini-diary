@@ -3747,13 +3747,13 @@ electron-localshortcut@^3.1.0:
     keyboardevent-from-electron-accelerator "^2.0.0"
     keyboardevents-areequal "^0.2.1"
 
-electron-md-to-pdf@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/electron-md-to-pdf/-/electron-md-to-pdf-2.0.0.tgz#1a4261838bb00c20e1c899b7f4444e9c404f1075"
-  integrity sha512-W6tW8o2beo0QuQtAnThAQiLSu7ufF4Cj8nqZPIDpF+jc+zx38HDeM5hAjVtowaJxZFEKpFg84gEStRtFqwLaAg==
+electron-md-to-pdf@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/electron-md-to-pdf/-/electron-md-to-pdf-2.1.0.tgz#b199028677e56041b7081a9ce12cf66144a1a762"
+  integrity sha512-/9sB6WJle1VLL4xTT/JRcKJYmC2Ae+rWnka4IQpWvLDalQfAQpFI4Y5SnupRYFgyhX1G+wdzB9JOvABKpXKwSA==
   dependencies:
     "@types/showdown" "^1.9.3"
-    showdown "^1.9.0"
+    showdown "^1.9.1"
 
 electron-notarize@^0.2.1:
   version "0.2.1"
@@ -9394,7 +9394,7 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-showdown@^1.9.0:
+showdown@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/showdown/-/showdown-1.9.1.tgz#134e148e75cd4623e09c21b0511977d79b5ad0ef"
   integrity sha512-9cGuS382HcvExtf5AHk7Cb4pAeQQ+h0eTr33V1mu+crYWV4KvWAw6el92bDrqGEk5d46Ai/fhbEUwqJ/mTCNEA==
