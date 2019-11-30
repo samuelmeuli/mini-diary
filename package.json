@@ -90,6 +90,7 @@
 		"@samuelmeuli/stylelint-config": "^1.0.3",
 		"@samuelmeuli/tsconfig": "^0.2.0",
 		"@types/html-webpack-plugin": "^3.2.1",
+		"@types/jest": "^24.0.23",
 		"@types/license-checker-webpack-plugin": "^0.0.2",
 		"@types/webpack": "^4.41.0",
 		"@types/webpack-merge": "^4.1.5",
@@ -147,10 +148,10 @@
 	},
 	"jest": {
 		"moduleNameMapper": {
-			"electron": "<rootDir>/tests/setup/electron-mock.js"
+			"electron": "<rootDir>/test/setup/electron-mock.ts"
 		},
 		"setupFiles": [
-			"<rootDir>/tests/setup/setup.js"
+			"<rootDir>/test/setup/setup.ts"
 		]
 	},
 	"eslintConfig": {
@@ -173,7 +174,8 @@
 				"error",
 				{
 					"devDependencies": [
-						"tests/**/*",
+						"scripts/**/*",
+						"test/**/*",
 						"webpack.*.ts"
 					]
 				}
