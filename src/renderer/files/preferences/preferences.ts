@@ -1,9 +1,8 @@
 import { remote } from "electron";
 import settings from "electron-settings";
-import { is } from "electron-util";
 import { JsonValue } from "type-fest";
 
-import { isAtLeastMojave } from "../../utils/os";
+import { supportsNativeTheme } from "../../utils/native-theme";
 
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
 const DEFAULT_THEME_PREF: ThemePref = "light";
@@ -69,7 +68,7 @@ export function saveFutureEntriesPref(allowFutureEntries: boolean): void {
  * When set to 'auto', the system theme will be used
  */
 export function loadThemePref(): ThemePref {
-	const defaultPref = is.macos && isAtLeastMojave() ? "auto" : DEFAULT_THEME_PREF;
+	const defaultPref = supportsNativeTheme() ? "auto" : DEFAULT_THEME_PREF;
 	return getPref("theme", defaultPref);
 }
 

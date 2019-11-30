@@ -1,5 +1,5 @@
 import { loadFutureEntriesPref, loadThemePref } from "../../files/preferences/preferences";
-import getThemeFromPref from "../../utils/theme";
+import { getThemeFromPref } from "../../utils/native-theme";
 import {
 	AppAction,
 	AppState,

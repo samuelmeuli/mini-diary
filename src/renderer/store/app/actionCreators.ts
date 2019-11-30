@@ -1,5 +1,5 @@
 import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/preferences";
-import getThemeFromPref from "../../utils/theme";
+import { getThemeFromPref } from "../../utils/native-theme";
 import { ThunkActionT } from "../store";
 import {
 	SET_ALLOW_FUTURE_ENTRIES,

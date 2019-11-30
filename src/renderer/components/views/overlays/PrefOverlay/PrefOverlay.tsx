@@ -6,7 +6,7 @@ import { FILE_NAME, getDiaryFilePath } from "../../../../files/diary/diaryFile";
 import { moveFile } from "../../../../files/fileAccess";
 import { saveDirPref } from "../../../../files/preferences/preferences";
 import { translations } from "../../../../utils/i18n";
-import { isAtLeastMojave } from "../../../../utils/os";
+import { supportsNativeTheme } from "../../../../utils/native-theme";
 import Banner from "../../../elements/Banner";
 import OverlayContainer from "../OverlayContainer";
 
@@ -195,7 +195,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 					<fieldset className="fieldset-theme">
 						<legend>{translations.theme}</legend>
 						<div className="fieldset-content">
-							{is.macos && isAtLeastMojave() && (
+							{supportsNativeTheme() && (
 								<label htmlFor="radio-theme-auto">
 									<input
 										type="radio"
