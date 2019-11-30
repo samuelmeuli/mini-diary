@@ -67,6 +67,7 @@
 		"minireset.css": "^0.0.6",
 		"minisearch": "^2.1.1",
 		"moment": "^2.22.2",
+		"move-file": "^1.2.0",
 		"react": "^16.10.2",
 		"react-day-picker": "github:samuelmeuli/react-day-picker",
 		"react-dom": "^16.10.2",

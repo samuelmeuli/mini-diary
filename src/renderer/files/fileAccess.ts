@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import fs from "fs";
+import mv from "move-file";
 
 import { translations } from "../utils/i18n";
 
@@ -17,7 +18,7 @@ export function moveFile(sourcePath: string, destinationPath: string): void {
 	if (fileExists(destinationPath)) {
 		throw Error(translations["file-exists"]);
 	}
-	fs.renameSync(sourcePath, destinationPath);
+	mv.sync(sourcePath, destinationPath);
 }
 
 export function readFile(filePath: string): string | Buffer {
