@@ -42,9 +42,10 @@ jobs:
           apple_api_key_id: ${{ secrets.apple_api_key_id }}
           apple_api_key_issuer: ${{ secrets.apple_api_key_issuer }}
 
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+          # GitHub token
+          # TODO: Currently passed in manually, switch back to automatically provided token once
+          # https://github.com/electron-userland/electron-builder/issues/4176 is resolved
+          github_token: ${{ secrets.manual_github_token }}
 
           # macOS code signing certificate
           mac_certs: ${{ secrets.mac_certs }}
