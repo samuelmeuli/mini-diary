@@ -1,9 +1,9 @@
 import {
-	ImportAction,
-	ImportState,
 	IMPORT_ERROR,
 	IMPORT_IN_PROGRESS,
 	IMPORT_SUCCESS,
+	ImportAction,
+	ImportState,
 	SET_IMPORT_FORMAT,
 } from "./types";
 

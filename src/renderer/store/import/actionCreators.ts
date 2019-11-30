@@ -8,11 +8,11 @@ import {
 	IMPORT_ERROR,
 	IMPORT_IN_PROGRESS,
 	IMPORT_SUCCESS,
+	SET_IMPORT_FORMAT,
 	SetImportErrorAction,
 	SetImportFormatAction,
 	SetImportInProgressAction,
 	SetImportSuccessAction,
-	SET_IMPORT_FORMAT,
 } from "./types";
 
 // Action creators

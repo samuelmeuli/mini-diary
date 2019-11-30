@@ -177,8 +177,7 @@
 						"webpack.*.ts"
 					]
 				}
-			],
-			"jsx-a11y/no-autofocus": "off"
+			]
 		}
 	},
 	"stylelint": {

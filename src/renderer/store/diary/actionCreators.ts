@@ -3,12 +3,12 @@ import moment from "moment";
 import { searchIndex } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
 import {
-	SetDateSelectedAction,
-	SetSearchKeyAction,
-	SetSearchResultsAction,
 	SET_DATE_SELECTED,
 	SET_SEARCH_KEY,
 	SET_SEARCH_RESULTS,
+	SetDateSelectedAction,
+	SetSearchKeyAction,
+	SetSearchResultsAction,
 } from "./types";
 
 // Action creators

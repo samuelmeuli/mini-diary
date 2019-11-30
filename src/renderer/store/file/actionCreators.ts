@@ -14,14 +14,16 @@ import { translations } from "../../utils/i18n";
 import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
 import {
-	ClearFileStateAction,
 	CLEAR_FILE_STATE,
+	ClearFileStateAction,
 	DECRYPT_ERROR,
 	DECRYPT_IN_PROGRESS,
 	DECRYPT_SUCCESS,
 	ENCRYPT_ERROR,
 	ENCRYPT_IN_PROGRESS,
 	ENCRYPT_SUCCESS,
+	SET_FILE_EXISTS,
+	SET_HASHED_PASSWORD,
 	SetDecryptErrorAction,
 	SetDecryptInProgressAction,
 	SetDecryptSuccessAction,
@@ -30,8 +32,6 @@ import {
 	SetEncryptSuccessAction,
 	SetFileExistsAction,
 	SetHashedPasswordAction,
-	SET_FILE_EXISTS,
-	SET_HASHED_PASSWORD,
 } from "./types";
 
 // Action creators

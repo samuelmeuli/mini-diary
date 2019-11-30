@@ -10,11 +10,8 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
-	updateEntry: (entryDate: IndexDate, title: string, text: string) =>
+	updateEntry: (entryDate: IndexDate, title: string, text: string): void =>
 		dispatch(updateEntry(entryDate, title, text)),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(Editor);
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

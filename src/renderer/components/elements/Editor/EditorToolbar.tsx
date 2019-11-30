@@ -1,5 +1,6 @@
-import { EditorState, RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
+
+import { EditorState, RichUtils } from "draft-js";
 import BoldIcon from "feather-icons/dist/icons/bold.svg";
 import ItalicIcon from "feather-icons/dist/icons/italic.svg";
 import UlIcon from "feather-icons/dist/icons/list.svg";

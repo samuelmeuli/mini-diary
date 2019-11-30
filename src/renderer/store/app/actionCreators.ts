@@ -2,14 +2,14 @@ import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/pr
 import getThemeFromPref from "../../utils/theme";
 import { ThunkActionT } from "../store";
 import {
-	SetAllowFutureEntriesAction,
-	SetOverlayAction,
-	SetThemeAction,
-	SetThemePrefAction,
 	SET_ALLOW_FUTURE_ENTRIES,
 	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
+	SetAllowFutureEntriesAction,
+	SetOverlayAction,
+	SetThemeAction,
+	SetThemePrefAction,
 } from "./types";
 
 // Action creators
