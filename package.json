@@ -101,7 +101,7 @@
 		"cross-env": "^6.0.3",
 		"css-loader": "^3.0.0",
 		"electron": "^7.1.2",
-		"electron-builder": "^21.2.0",
+		"electron-builder": "^22.1.0",
 		"electron-notarize": "^0.2.1",
 		"eslint": "6.1.0",
 		"eslint-config-airbnb": "18.0.1",
