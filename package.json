@@ -88,6 +88,7 @@
 		"@babel/preset-react": "^7.7.4",
 		"@babel/preset-typescript": "^7.7.4",
 		"@samuelmeuli/eslint-config": "^5.0.2",
+		"@samuelmeuli/prettier-config": "^1.0.0",
 		"@samuelmeuli/stylelint-config": "^2.0.1",
 		"@samuelmeuli/tsconfig": "^0.2.0",
 		"@types/html-webpack-plugin": "^3.2.1",
@@ -186,10 +187,7 @@
 	"stylelint": {
 		"extends": "@samuelmeuli/stylelint-config"
 	},
-	"prettier": {
-		"printWidth": 100,
-		"trailingComma": "all"
-	},
+	"prettier": "@samuelmeuli/prettier-config",
 	"lint-staged": {
 		"*.{ts,tsx}": [
 			"yarn lint:ts",
