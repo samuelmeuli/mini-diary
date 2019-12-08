@@ -131,16 +131,12 @@
 		"webpack-cli": "^3.3.9",
 		"webpack-merge": "^4.2.2"
 	},
+	"browserslist": [
+		"electron 7.0"
+	],
 	"babel": {
 		"presets": [
-			[
-				"@babel/preset-env",
-				{
-					"targets": {
-						"node": "10"
-					}
-				}
-			],
+			"@babel/preset-env",
 			"@babel/preset-react",
 			"@babel/preset-typescript"
 		],
