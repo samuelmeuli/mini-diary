@@ -6747,7 +6747,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-license-checker-webpack-plugin@^0.1.2:
+license-checker-webpack-plugin@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/license-checker-webpack-plugin/-/license-checker-webpack-plugin-0.1.4.tgz#2b984e0a4b7dcf9d8729fa1add58f58ad535f175"
   integrity sha512-FExcCJnxIXX5stAIKtnm6y0N42WMtusV6mjDIjNr5qvC3wSw/tmxC11cSGzVjtPCkk3tO5Z6ysf3Ut7HheNNaw==
