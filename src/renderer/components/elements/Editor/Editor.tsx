@@ -6,7 +6,6 @@ import {
 	convertToRaw,
 	DraftEditorCommand,
 	DraftHandleValue,
-	Editor as DraftJsEditor,
 	EditorState,
 	getDefaultKeyBinding,
 	Modifier,
@@ -207,7 +206,7 @@ export default class Editor extends PureComponent<Props, State> {
 				<div className="editor-scrollable">
 					<p className="text-faded">{weekdayDate}</p>
 					<div className="editor-title-wrapper">
-						<DraftJsEditor
+						<PluginEditor
 							editorState={titleEditorState}
 							handleBeforeInput={this.handleBeforeTitleInput}
 							handleKeyCommand={this.handleTitleKeyCommand}
