@@ -87,8 +87,6 @@ export default class Editor extends PureComponent<Props, State> {
 		return getDefaultKeyBinding(e);
 	}
 
-	saveEntryDebounced: () => void;
-
 	textEditor: PluginEditor;
 
 	constructor(props: Props) {
@@ -100,38 +98,30 @@ export default class Editor extends PureComponent<Props, State> {
 			...entryState,
 			dateSelected,
 		};
-
-		// Function bindings
-		this.handleTextKeyCommand = this.handleTextKeyCommand.bind(this);
-		this.handleTitleKeyCommand = this.handleTitleKeyCommand.bind(this);
-		this.onTextChange = this.onTextChange.bind(this);
-		this.onTitleChange = this.onTitleChange.bind(this);
-		this.saveEntry = this.saveEntry.bind(this);
-		this.saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
 	}
 
-	componentDidMount(): void {
+	componentDidMount = (): void => {
 		// Save entry before app is closed
 		window.addEventListener("unload", this.saveEntry);
-	}
+	};
 
-	componentWillUnmount(): void {
+	componentWillUnmount = (): void => {
 		window.removeEventListener("unload", this.saveEntry);
-	}
+	};
 
-	onTextChange(textEditorState: EditorState): void {
+	onTextChange = (textEditorState: EditorState): void => {
 		this.setState({
 			textEditorState,
 		});
 		this.saveEntryDebounced();
-	}
+	};
 
-	onTitleChange(titleEditorState: EditorState): void {
+	onTitleChange = (titleEditorState: EditorState): void => {
 		this.setState({
 			titleEditorState,
 		});
 		this.saveEntryDebounced();
-	}
+	};
 
 	/**
 	 * Workaround for "Failed to execute 'removeChild' on 'Node'" error when deleting multiple lines.
@@ -165,7 +155,10 @@ export default class Editor extends PureComponent<Props, State> {
 	handleBeforeTitleInput = (chars: string, editorState: EditorState): DraftHandleValue =>
 		this.handleBeforeInput(chars, editorState, this.onTitleChange);
 
-	handleTextKeyCommand(command: DraftEditorCommand, editorState: EditorState): DraftHandleValue {
+	handleTextKeyCommand = (
+		command: DraftEditorCommand,
+		editorState: EditorState,
+	): DraftHandleValue => {
 		let newState: EditorState;
 		if (command === "bold") {
 			newState = RichUtils.toggleInlineStyle(editorState, "BOLD");
@@ -176,18 +169,18 @@ export default class Editor extends PureComponent<Props, State> {
 		}
 		this.onTextChange(newState);
 		return "handled";
-	}
+	};
 
-	handleTitleKeyCommand(command: DraftEditorCommandExtended): DraftHandleValue {
+	handleTitleKeyCommand = (command: DraftEditorCommandExtended): DraftHandleValue => {
 		// Move focus to text editor when enter key is pressed in title editor
 		if (command === "enter") {
 			this.textEditor.focus();
 			return "handled";
 		}
 		return "not-handled";
-	}
+	};
 
-	saveEntry(): void {
+	saveEntry = (): void => {
 		const { dateSelected, updateEntry } = this.props;
 		const { textEditorState, titleEditorState } = this.state;
 
@@ -195,9 +188,12 @@ export default class Editor extends PureComponent<Props, State> {
 		const title = titleEditorState.getCurrentContent().getPlainText();
 		const text = draftToMarkdown(convertToRaw(textEditorState.getCurrentContent()));
 		updateEntry(indexDate, title.trim(), text.trim());
-	}
+	};
 
-	render(): ReactNode {
+	// eslint-disable-next-line react/sort-comp
+	saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
+
+	render = (): ReactNode => {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
 
 		// Detect active inline/block styles
@@ -239,5 +235,5 @@ export default class Editor extends PureComponent<Props, State> {
 				<EditorToolbar onTextChange={this.onTextChange} textEditorState={textEditorState} />
 			</form>
 		);
-	}
+	};
 }
