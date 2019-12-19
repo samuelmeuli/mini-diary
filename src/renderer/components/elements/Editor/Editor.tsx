@@ -8,7 +8,6 @@ import {
 	DraftHandleValue,
 	EditorState,
 	getDefaultKeyBinding,
-	Modifier,
 	RichUtils,
 } from "draft-js";
 import createListPlugin from "draft-js-list-plugin";
@@ -122,38 +121,6 @@ export default class Editor extends PureComponent<Props, State> {
 		this.saveEntryDebounced();
 	};
 
-	/**
-	 * Workaround for "Failed to execute 'removeChild' on 'Node'" error when deleting multiple lines.
-	 * Draft.js issue: https://github.com/facebook/draft-js/issues/1320
-	 * TODO: Remove this function once the bug is fixed in Draft.js
-	 */
-	handleBeforeInput = (
-		chars: string,
-		editorState: EditorState,
-		onChange: (editorState: EditorState) => void,
-	): DraftHandleValue => {
-		const currentContentState = editorState.getCurrentContent();
-		const selectionState = editorState.getSelection();
-
-		const contentState = Modifier.replaceText(currentContentState, selectionState, chars);
-		const newState = EditorState.push(editorState, contentState, "insert-characters");
-		onChange(newState);
-
-		return "handled";
-	};
-
-	/**
-	 * @see handleBeforeInput
-	 */
-	handleBeforeTextInput = (chars: string, editorState: EditorState): DraftHandleValue =>
-		this.handleBeforeInput(chars, editorState, this.onTextChange);
-
-	/**
-	 * @see handleBeforeInput
-	 */
-	handleBeforeTitleInput = (chars: string, editorState: EditorState): DraftHandleValue =>
-		this.handleBeforeInput(chars, editorState, this.onTitleChange);
-
 	handleTextKeyCommand = (
 		command: DraftEditorCommand,
 		editorState: EditorState,
@@ -208,7 +175,6 @@ export default class Editor extends PureComponent<Props, State> {
 					<div className="editor-title-wrapper">
 						<PluginEditor
 							editorState={titleEditorState}
-							handleBeforeInput={this.handleBeforeTitleInput}
 							handleKeyCommand={this.handleTitleKeyCommand}
 							keyBindingFn={Editor.titleKeyBindingFn}
 							onBlur={this.saveEntry}
@@ -219,7 +185,6 @@ export default class Editor extends PureComponent<Props, State> {
 					<div className="editor-text-wrapper">
 						<PluginEditor
 							editorState={textEditorState}
-							handleBeforeInput={this.handleBeforeTextInput}
 							handleKeyCommand={this.handleTextKeyCommand}
 							onBlur={this.saveEntry}
 							onChange={this.onTextChange}
