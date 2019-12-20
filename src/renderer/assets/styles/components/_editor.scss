@@ -13,13 +13,13 @@
 	overflow-y: auto;
 
 	@media (max-width: $screen-desktop) {
-		padding: 1.25 * $spacing-abs-large (1.25 * $spacing-abs-large + $editor-buttons-width) 1.25 *
-			$spacing-abs-large 1.25 * $spacing-abs-large;
+		padding: 1.25 * $spacing-abs-large (1.25 * $spacing-abs-large + $editor-buttons-width) 0 1.25 *
+			$spacing-abs-large;
 	}
 
 	@media (min-width: $screen-desktop + 1px) {
-		padding: (2 * $spacing-abs-large) (2 * $spacing-abs-large + $editor-buttons-width)
-			(2 * $spacing-abs-large) (2 * $spacing-abs-large);
+		padding: (2 * $spacing-abs-large) (2 * $spacing-abs-large + $editor-buttons-width) 0
+			(2 * $spacing-abs-large);
 	}
 }
 
@@ -44,14 +44,36 @@
 
 // stylelint-disable selector-class-pattern
 
+// Fill editor height (and compensate for paragraph spacing between the title and text)
 .DraftEditor-root {
-	height: 100% !important; // stylelint-disable-line declaration-no-important
+	height: calc(100% - 1rem) !important; // stylelint-disable-line declaration-no-important
 }
 
+// Fill editor height
+.DraftEditor-editorContainer {
+	height: 100%;
+}
+
+// Placeholder text
 .public-DraftEditorPlaceholder-inner {
 	@include color("text-placeholder");
 }
 
-.editor-text-wrapper .public-DraftStyleDefault-block {
-	margin-top: $paragraph-spacing;
+// Text editor
+.editor-text-wrapper {
+	// Spacing
+	.DraftEditor-root {
+		@media (max-width: $screen-desktop) {
+			padding-bottom: 1.25 * $spacing-abs-large;
+		}
+
+		@media (min-width: $screen-desktop + 1px) {
+			padding-bottom: 2 * $spacing-abs-large;
+		}
+	}
+
+	// Paragraph spacing
+	.public-DraftStyleDefault-block {
+		margin-top: $paragraph-spacing;
+	}
 }
