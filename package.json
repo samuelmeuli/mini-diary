@@ -57,7 +57,6 @@
 		"electron-debug": "^3.0.0",
 		"electron-md-to-pdf": "^2.1.1",
 		"electron-settings": "^3.2.0",
-		"electron-unhandled": "^3.0.0",
 		"electron-updater": "^4.0.14",
 		"electron-util": "^0.13.1",
 		"feather-icons": "^4.25.0",
