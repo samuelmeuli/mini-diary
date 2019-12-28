@@ -258,10 +258,7 @@
 				"zh",
 				"zh_TW"
 			],
-			"entitlements": "./build/entitlements.mac.plist",
-			"entitlementsInherit": "./build/entitlements.mac.plist",
-			"hardenedRuntime": true,
-			"gatekeeperAssess": false
+			"hardenedRuntime": true
 		},
 		"linux": {
 			"category": "Utility"
