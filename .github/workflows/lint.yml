@@ -1,0 +1,28 @@
+name: Lint
+
+on: push
+
+jobs:
+  run-linters:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run linters
+        uses: samuelmeuli/lint-action@v0.3
+        with:
+          github_token: ${{ secrets.github_token }}
+          eslint: true
+          prettier: true
+          stylelint: true
+          stylelint_extensions: css,scss
