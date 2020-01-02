@@ -1,3 +1,5 @@
+import logger from "electron-log";
+
 import { readFile } from "../../files/fileAccess";
 import { parseDayOneJson, parseJrnlJson, parseMiniDiaryJson } from "../../files/import/json";
 import { parseDayOneTxt } from "../../files/import/txt";
@@ -79,6 +81,7 @@ export const runImport = (importFilePath: string): ThunkActionT => (dispatch, ge
 		dispatch(setImportSuccess());
 		dispatch(closeOverlay());
 	} catch (err) {
+		logger.error("Error importing diary file: ", err);
 		dispatch(setImportError(err.toString()));
 	}
 };

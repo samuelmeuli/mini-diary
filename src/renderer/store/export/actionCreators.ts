@@ -1,4 +1,5 @@
 import { remote } from "electron";
+import logger from "electron-log";
 
 import { convertToMiniDiaryJson } from "../../files/export/json";
 import { convertToMd } from "../../files/export/md";
@@ -67,6 +68,7 @@ const exportToFile = (
 				dispatch(setExportSuccess());
 			})
 			.catch(err => {
+				logger.error("Error exporting diary file: ", err);
 				dispatch(setExportError(err.toString()));
 			});
 	}

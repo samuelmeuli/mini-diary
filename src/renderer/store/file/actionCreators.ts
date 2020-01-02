@@ -159,6 +159,7 @@ export const decryptFile = (password: string): ThunkActionT => (dispatch): void 
 		} else {
 			errorMsg = `${translations["decryption-error"]}: ${err.message}`;
 		}
+		logger.error("Error decrypting diary file: ", err);
 		dispatch(setDecryptError(errorMsg));
 	}
 };
@@ -182,7 +183,7 @@ export const createEncryptedFile = (password: string): ThunkActionT => (dispatch
 		createIndex(entries);
 		enableMenuItems();
 	} catch (err) {
-		logger.error(err);
+		logger.error("Error creating encrypted diary file: ", err);
 		dispatch(setEncryptError(err.message));
 	}
 };
@@ -203,7 +204,7 @@ const writeEntriesEncrypted = (entries: Entries, hashedPassword: string): ThunkA
 		writeEncryptedFile(filePath, hashedPassword, JSON.stringify(fileContent));
 		dispatch(setEncryptSuccess(entries));
 	} catch (err) {
-		logger.error(err);
+		logger.error("Error updating encrypted diary file: ", err);
 		dispatch(setEncryptError(err.message));
 	}
 };

@@ -124,7 +124,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 			try {
 				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
 			} catch (err) {
-				logger.error("Error while moving diary file: ", err);
+				logger.error("Error moving diary file: ", err);
 				remote.dialog.showErrorBox(
 					translations["move-error-title"],
 					`${translations["move-error-msg"]}: ${err.message}`,

@@ -50,7 +50,7 @@ type Props = StateProps & DispatchProps;
 export default class ImportOverlay extends PureComponent<Props, {}> {
 	static showImportFormatError(): void {
 		const errMsg = "No import format selected";
-		logger.error(`Import error: ${errMsg}`);
+		logger.error(`Error importing diary file: ${errMsg}`);
 		remote.dialog.showErrorBox(translations["import-error-title"], errMsg);
 	}
 
