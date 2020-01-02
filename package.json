@@ -15,10 +15,10 @@
 	"private": true,
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
-		"start": "npm-run-all start:ts --parallel start:app 'start:ts:* --watch'",
+		"start": "npm-run-all build:ts --parallel start:*",
 		"start:ts": "run-p start:ts:*",
-		"start:ts:main": "webpack --config ./webpack.main.ts --mode development",
-		"start:ts:renderer": "webpack --config ./webpack.renderer.ts --mode development",
+		"start:ts:main": "webpack --config ./webpack.main.ts --mode development --watch",
+		"start:ts:renderer": "webpack --config ./webpack.renderer.ts --mode development --watch",
 		"start:app": "electron .",
 		"build": "run-s build:*",
 		"build:clean": "rm -rf ./bundle ./dist",
