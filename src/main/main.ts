@@ -3,12 +3,14 @@ import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
 import path from "path";
 
+import { initLogger } from "../shared/logger";
 import { initI18n } from "./i18n/i18n";
 import initIpcListeners from "./ipcMain/listeners";
 import { buildMenu } from "./menu/menu";
 import updateApp from "./updater";
 import { getWindow, setWindow } from "./window";
 
+initLogger();
 electronDebug();
 contextMenu();
 

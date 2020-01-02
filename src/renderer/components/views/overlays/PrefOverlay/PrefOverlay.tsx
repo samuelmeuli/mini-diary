@@ -1,4 +1,5 @@
 import { remote } from "electron";
+import logger from "electron-log";
 import { is } from "electron-util";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 
@@ -123,6 +124,7 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 			try {
 				moveFile(fileDir, `${newDir}/${FILE_NAME}`);
 			} catch (err) {
+				logger.error("Error while moving diary file: ", err);
 				remote.dialog.showErrorBox(
 					translations["move-error-title"],
 					`${translations["move-error-msg"]}: ${err.message}`,

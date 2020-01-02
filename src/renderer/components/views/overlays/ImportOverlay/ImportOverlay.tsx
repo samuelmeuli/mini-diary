@@ -1,4 +1,5 @@
 import { remote } from "electron";
+import logger from "electron-log";
 import React, { PureComponent, ReactNode } from "react";
 
 import { translate, translations } from "../../../../utils/i18n";
@@ -48,7 +49,9 @@ type Props = StateProps & DispatchProps;
 
 export default class ImportOverlay extends PureComponent<Props, {}> {
 	static showImportFormatError(): void {
-		remote.dialog.showErrorBox(translations["import-error-title"], "No import format selected");
+		const errMsg = "No import format selected";
+		logger.error(`Import error: ${errMsg}`);
+		remote.dialog.showErrorBox(translations["import-error-title"], errMsg);
 	}
 
 	constructor(props: Props) {

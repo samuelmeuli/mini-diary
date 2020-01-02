@@ -1,3 +1,5 @@
+import logger from "electron-log";
+
 import { disableMenuItems, enableMenuItems } from "../../electron/ipcRenderer/senders";
 import createBackup from "../../files/diary/backupFile";
 import { getDiaryFilePath, getMetadata } from "../../files/diary/diaryFile";
@@ -180,7 +182,7 @@ export const createEncryptedFile = (password: string): ThunkActionT => (dispatch
 		createIndex(entries);
 		enableMenuItems();
 	} catch (err) {
-		console.error(err);
+		logger.error(err);
 		dispatch(setEncryptError(err.message));
 	}
 };
@@ -201,7 +203,7 @@ const writeEntriesEncrypted = (entries: Entries, hashedPassword: string): ThunkA
 		writeEncryptedFile(filePath, hashedPassword, JSON.stringify(fileContent));
 		dispatch(setEncryptSuccess(entries));
 	} catch (err) {
-		console.error(err);
+		logger.error(err);
 		dispatch(setEncryptError(err.message));
 	}
 };

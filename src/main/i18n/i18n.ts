@@ -1,4 +1,5 @@
 import { app } from "electron";
+import logger from "electron-log";
 
 import { Translations } from "../../shared/types";
 import translationsDe from "./translations/de";
@@ -86,7 +87,7 @@ export function translate(
 	// Log error and return `i18nKey` if translation string is missing both in current and fallback
 	// language
 	if (!translation) {
-		console.error(`Missing translation of i18nKey "${i18nKey}"`);
+		logger.error(`Missing translation of i18nKey "${i18nKey}"`);
 		return i18nKey;
 	}
 
