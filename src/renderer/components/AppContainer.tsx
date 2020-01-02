@@ -19,7 +19,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	testFileExists: (): void => dispatch(testFileExists()),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

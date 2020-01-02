@@ -21,7 +21,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	updateThemePref: (themePref: ThemePref): void => dispatch(updateThemePref(themePref)),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(PrefOverlay);
+export default connect(mapStateToProps, mapDispatchToProps)(PrefOverlay);

@@ -17,7 +17,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	setMonthSelectedPrevious: (): void => dispatch(setMonthSelectedPrevious()),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(CalendarNav);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarNav);

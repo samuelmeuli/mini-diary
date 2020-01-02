@@ -9,7 +9,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	closeOverlay: (): SetOverlayAction => dispatch(closeOverlay()),
 });
 
-export default connect(
-	null,
-	mapDispatchToProps,
-)(Overlay);
+export default connect(null, mapDispatchToProps)(Overlay);

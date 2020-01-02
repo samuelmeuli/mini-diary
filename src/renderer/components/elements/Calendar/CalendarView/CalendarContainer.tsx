@@ -16,7 +16,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	setDateSelected: (date: Date): SetDateSelectedAction => dispatch(setDateSelected(date)),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

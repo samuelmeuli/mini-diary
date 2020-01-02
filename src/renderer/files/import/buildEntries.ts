@@ -11,19 +11,17 @@ export default function buildEntries(
 ): Entries {
 	const entriesToImport: Entries = {};
 
-	parsedEntries.forEach(
-		(parsedEntry: ImportEntry): void => {
-			// Get date, title and text from entry
-			const { indexDate, entry: entryNew } = getContent(parsedEntry);
+	parsedEntries.forEach((parsedEntry: ImportEntry): void => {
+		// Get date, title and text from entry
+		const { indexDate, entry: entryNew } = getContent(parsedEntry);
 
-			if (indexDate in entriesToImport) {
-				const entryOld = entriesToImport[indexDate];
-				entriesToImport[indexDate] = mergeEntries(entryOld, entryNew);
-			} else {
-				entriesToImport[indexDate] = entryNew;
-			}
-		},
-	);
+		if (indexDate in entriesToImport) {
+			const entryOld = entriesToImport[indexDate];
+			entriesToImport[indexDate] = mergeEntries(entryOld, entryNew);
+		} else {
+			entriesToImport[indexDate] = entryNew;
+		}
+	});
 
 	return entriesToImport;
 }
