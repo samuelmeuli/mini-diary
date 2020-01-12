@@ -1,16 +1,19 @@
 name: Lint
 
-on: push
+on:
+  - push
+  - pull_request
 
 jobs:
   run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js, NPM and Yarn
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -19,10 +22,14 @@ jobs:
         run: yarn install
 
       - name: Run linters
-        uses: samuelmeuli/lint-action@v0.3
+        uses: samuelmeuli/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
+          auto_fix: ${{ github.event_name == 'pull_request' }}
           eslint: true
+          eslint_args: --ignore-path ./.gitignore
+          eslint_extensions: ts,tsx
           prettier: true
+          prettier_args: --ignore-path ./.gitignore
           stylelint: true
-          stylelint_extensions: css,scss
+          stylelint_args: --ignore-path ./.gitignore

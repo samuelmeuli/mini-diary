@@ -34,9 +34,9 @@
 		"test": "run-s test:*",
 		"test:jest": "cross-env TZ=GMT jest",
 		"test:types": "tsc --noEmit",
-		"format": "prettier --write",
 		"lint:css": "stylelint --fix --max-warnings 0",
-		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0"
+		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0",
+		"format": "prettier --write"
 	},
 	"dependencies": {
 		"@svgr/webpack": "^5.0.1",
