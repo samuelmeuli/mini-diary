@@ -50,6 +50,7 @@ export function initI18n(): void {
 	systemLang = app.getLocale();
 	const systemLangNoRegion = systemLang.split("-")[0];
 	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
+	logger.log(`System language is "${systemLang}" ("${systemLangNoRegion}" without region)`);
 
 	if (systemLang in ALL_TRANSLATIONS) {
 		// This if-else statement can ensure that if there is any region-specified localizations found,
@@ -59,6 +60,7 @@ export function initI18n(): void {
 			...defaultTranslations,
 			...ALL_TRANSLATIONS[lang],
 		};
+		logger.log(`Using "${lang}" locale and translations`);
 	} else if (systemLangNoRegion in ALL_TRANSLATIONS) {
 		// Use system language if translations are available
 		lang = systemLang;
@@ -67,11 +69,13 @@ export function initI18n(): void {
 			...defaultTranslations,
 			...ALL_TRANSLATIONS[langNoRegion],
 		};
+		logger.log(`Using "${lang}" locale and "${langNoRegion}" translations`);
 	} else {
 		// Otherwise, fall back to default language
 		lang = FALLBACK_LANG;
 		langNoRegion = FALLBACK_LANG;
 		translations = defaultTranslations;
+		logger.log(`Using default locale and translations ("${FALLBACK_LANG}")`);
 	}
 }
 

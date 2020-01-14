@@ -247,6 +247,7 @@
 				"tr",
 				"uk",
 				"zh",
+				"zh_CN",
 				"zh_TW"
 			],
 			"hardenedRuntime": true
