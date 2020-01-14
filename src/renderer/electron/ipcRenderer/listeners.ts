@@ -1,4 +1,5 @@
 import { ipcRenderer, remote } from "electron";
+
 import { darkMode, is } from "electron-util";
 
 import { openOverlay, setTheme } from "../../store/app/actionCreators";

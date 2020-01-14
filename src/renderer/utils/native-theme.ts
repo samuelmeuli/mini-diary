@@ -1,5 +1,6 @@
-import { darkMode, is } from "electron-util";
 import { release } from "os";
+
+import { darkMode, is } from "electron-util";
 import { gte } from "semver";
 
 // macOS supports dark mode since Mojave (10.14)

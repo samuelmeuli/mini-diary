@@ -1,4 +1,5 @@
 import { MenuItemConstructorOptions } from "electron";
+
 import { is } from "electron-util";
 
 import { translate } from "../i18n/i18n";

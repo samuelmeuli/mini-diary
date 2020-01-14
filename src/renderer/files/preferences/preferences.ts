@@ -1,4 +1,5 @@
 import { remote } from "electron";
+
 import settings from "electron-settings";
 import { JsonValue } from "type-fest";
 

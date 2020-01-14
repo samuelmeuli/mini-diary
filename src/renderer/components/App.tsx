@@ -1,4 +1,5 @@
 import { remote } from "electron";
+
 import React, { Component, ReactNode } from "react";
 
 import { toggleWindowSize } from "../electron/window";

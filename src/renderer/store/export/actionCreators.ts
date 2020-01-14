@@ -1,4 +1,5 @@
 import { remote } from "electron";
+
 import logger from "electron-log";
 
 import { convertToMiniDiaryJson } from "../../files/export/json";

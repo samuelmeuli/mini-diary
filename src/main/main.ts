@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from "electron";
+import path from "path";
+
 import contextMenu from "electron-context-menu";
 import electronDebug from "electron-debug";
-import path from "path";
 
 import { initLogger } from "../shared/logger";
 import { initI18n } from "./i18n/i18n";

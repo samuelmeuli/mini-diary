@@ -1,4 +1,5 @@
 import { remote } from "electron";
+
 import logger from "electron-log";
 import { is } from "electron-util";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";

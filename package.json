@@ -86,7 +86,7 @@
 		"@babel/preset-env": "^7.7.7",
 		"@babel/preset-react": "^7.7.4",
 		"@babel/preset-typescript": "^7.7.7",
-		"@samuelmeuli/eslint-config": "^5.0.2",
+		"@samuelmeuli/eslint-config": "^6.0.0",
 		"@samuelmeuli/prettier-config": "^1.0.0",
 		"@samuelmeuli/stylelint-config": "^3.0.0",
 		"@samuelmeuli/tsconfig": "^0.2.0",
@@ -106,11 +106,10 @@
 		"eslint": "6.8.0",
 		"eslint-config-airbnb": "18.0.1",
 		"eslint-config-prettier": "^6.9.0",
-		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-import": "^2.20.0",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.14.3",
 		"eslint-plugin-react-hooks": "^1.7.0",
-		"eslint-plugin-simple-import-sort": "^5.0.0",
 		"file-loader": "^5.0.2",
 		"html-webpack-plugin": "^3.2.0",
 		"husky": "^3.0.9",
@@ -155,17 +154,13 @@
 	"eslintConfig": {
 		"root": true,
 		"extends": [
-			"@samuelmeuli/eslint-config/typescript-react"
+			"@samuelmeuli/eslint-config/typescript-react",
+			"plugin:import/electron"
 		],
 		"env": {
 			"browser": true,
 			"node": true,
 			"jest": true
-		},
-		"settings": {
-			"import/core-modules": [
-				"electron"
-			]
 		},
 		"rules": {
 			"import/no-extraneous-dependencies": [

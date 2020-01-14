@@ -1,5 +1,6 @@
-import LicenseCheckerWebpackPlugin from "license-checker-webpack-plugin";
 import path from "path";
+
+import LicenseCheckerWebpackPlugin from "license-checker-webpack-plugin";
 import { Configuration } from "webpack";
 
 export default (_: any, argv: Record<string, string>): Configuration => {
