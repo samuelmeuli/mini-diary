@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+	width: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	@include background-color("scrollbar");
+	background-clip: content-box;
+	border: $scrollbar-padding solid transparent;
+	border-radius: $border-radius-button;
+
+	&:hover {
+		@include background-color("scrollbar-hover");
+	}
+}

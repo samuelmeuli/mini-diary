@@ -14,6 +14,8 @@ $themes: (
 		"text-disabled": #b7b7b7,
 		"text-faded": #727272,
 		"text-placeholder": #757575,
+		"scrollbar": rgba(0, 0, 0, 0.2),
+		"scrollbar-hover": rgba(0, 0, 0, 0.3),
 	),
 	"dark": (
 		"background": #242326,
@@ -29,6 +31,8 @@ $themes: (
 		"text-disabled": #4e4e4e,
 		"text-faded": #a1a1a1,
 		"text-placeholder": #757575,
+		"scrollbar": rgba(0, 0, 0, 0.4),
+		"scrollbar-hover": rgba(0, 0, 0, 0.5),
 	),
 ) !default;
 
@@ -55,6 +59,8 @@ $header-height: 37px;
 $input-height: 40px;
 $input-width: 210px;
 $editor-buttons-width: $input-height + $spacing-abs-medium;
+$scrollbar-padding: 4px;
+$scrollbar-width: 14px;
 
 // Screen sizes (media query breakpoints)
 $screen-tablet: 800px;
