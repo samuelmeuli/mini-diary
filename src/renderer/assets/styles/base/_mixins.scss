@@ -2,7 +2,6 @@
 	// Loop over themes
 	@each $theme, $colors in $themes {
 		// Create selector for all themes
-		&.theme-#{$theme},
 		.theme-#{$theme} & {
 			#{$property}: map-get($colors, $key);
 		}

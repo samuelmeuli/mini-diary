@@ -134,13 +134,16 @@ export default class App extends Component<Props, State> {
 
 		return (
 			<ThemeContext.Provider value={theme}>
-				<div className={`app theme-${theme}`}>
-					<header onDoubleClick={toggleWindowSize} />
-					{page}
-					{
-						/* Render overlay (e.g. preferences or import dialog) over page if necessary */
-						overlayComp
-					}
+				{/* Everything below the "theme-*" div can be styled based on the theme */}
+				<div className={`theme-${theme}`}>
+					<div className="app">
+						<header onDoubleClick={toggleWindowSize} />
+						{page}
+						{
+							/* Render overlay (e.g. preferences or import dialog) over page if necessary */
+							overlayComp
+						}
+					</div>
 				</div>
 			</ThemeContext.Provider>
 		);
