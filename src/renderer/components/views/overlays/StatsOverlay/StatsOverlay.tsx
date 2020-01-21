@@ -76,7 +76,7 @@ export default class StatsOverlay extends PureComponent<Props, {}> {
 		}
 
 		// Calc number of weeks since first entry
-		const nrWeeks = today.diff(indexDatesSorted[0], "weeks");
+		const nrWeeks = today.diff(indexDatesSorted[0], "weeks") + 1;
 
 		return {
 			nrEntries,
