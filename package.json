@@ -78,7 +78,8 @@
 		"remark-stringify": "^7.0.3",
 		"semver": "^6.1.2",
 		"strip-markdown": "^3.1.0",
-		"type-fest": "^0.8.1"
+		"type-fest": "^0.8.1",
+		"word-count": "^0.2.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.7",

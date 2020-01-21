@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { PureComponent, ReactNode } from "react";
+import countWords from "word-count";
 
 import { getLang } from "../../../../electron/ipcRenderer/senders";
 import { momentIndex } from "../../../../utils/dateFormat";
@@ -24,13 +25,6 @@ interface Stats {
 }
 
 export default class StatsOverlay extends PureComponent<Props, {}> {
-	/**
-	 * Count and return the number of words in the provided text
-	 */
-	static countWords(text: string): number {
-		return text.split(" ").filter((word): boolean => word !== "").length;
-	}
-
 	/**
 	 * Return a string representation of the provided number, with thousands separators and at most
 	 * one digit after the decimal point
@@ -71,7 +65,7 @@ export default class StatsOverlay extends PureComponent<Props, {}> {
 			}
 
 			// Count number of words in title and text, add to total
-			nrWords += StatsOverlay.countWords(title) + StatsOverlay.countWords(text);
+			nrWords += countWords(`${title}\n${text}`);
 
 			prevDate = date;
 		});

@@ -11780,6 +11780,11 @@ widest-line@^2.0.0:
   dependencies:
     string-width "^2.1.1"
 
+word-count@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/word-count/-/word-count-0.2.2.tgz#699192fca6829fe936d41cb0d95db9248c570451"
+  integrity sha1-aZGS/KaCn+k21Byw2V25JIxXBFE=
+
 word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
