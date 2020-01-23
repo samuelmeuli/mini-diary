@@ -62,10 +62,6 @@ export const lock = (): void => {
 
 // Overlays
 
-export const showPrefOverlay = (): void => {
-	getWindow().webContents.send("showPrefOverlay");
-};
-
-export const showStatsOverlay = (): void => {
-	getWindow().webContents.send("showStatsOverlay");
+export const openOverlay = (overlayType: OverlayType): void => {
+	getWindow().webContents.send("openOverlay", overlayType);
 };

@@ -4,6 +4,7 @@ import React, { Component, ReactNode } from "react";
 
 import { toggleWindowSize } from "../electron/window";
 import { translations } from "../utils/i18n";
+import GoToDateOverlayContainer from "./overlays/go-to-date-overlay/GoToDateOverlayContainer";
 import ImportOverlayContainer from "./overlays/import-overlay/ImportOverlayContainer";
 import PrefOverlayContainer from "./overlays/pref-overlay/PrefOverlayContainer";
 import StatsOverlayContainer from "./overlays/stats-overlay/StatsOverlayContainer";
@@ -38,6 +39,8 @@ export default class App extends Component<Props, State> {
 		switch (overlay) {
 			case "none":
 				return null;
+			case "go-to-date":
+				return <GoToDateOverlayContainer />;
 			case "import":
 				return <ImportOverlayContainer />;
 			case "preferences":

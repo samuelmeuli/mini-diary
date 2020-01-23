@@ -23,7 +23,7 @@ interface Metadata {
 
 // Overlay
 
-type OverlayType = "none" | "import" | "preferences" | "statistics";
+type OverlayType = "none" | "go-to-date" | "import" | "preferences" | "statistics";
 
 // Theme
 

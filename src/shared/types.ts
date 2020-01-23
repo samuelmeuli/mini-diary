@@ -29,6 +29,7 @@ export interface Translations {
 	// Menu (app-specific)
 	"export": string,
 	"export-to-format": string,
+	"go-to-date": string,
 	"import": string,
 	"import-from-format": string,
 	"license": string,
@@ -68,6 +69,7 @@ export interface Translations {
 	"allow-future-entries": string,
 	"diary-entries": string,
 	"no": string,
+	"ok": string,
 	"reset-diary": string,
 	"reset-diary-confirm": string,
 	"reset-diary-msg": string,

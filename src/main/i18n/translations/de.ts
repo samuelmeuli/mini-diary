@@ -31,6 +31,7 @@ const translationsDe: Partial<Translations> = {
 	// Menu (app-specific)
 	"export": "Exportieren",
 	"export-to-format": "Als {format} exportieren",
+	"go-to-date": "Zu Datum gehen",
 	"import": "Importieren",
 	"import-from-format": "Von {format} importieren",
 	"license": "Lizenz",
@@ -70,6 +71,7 @@ const translationsDe: Partial<Translations> = {
 	"allow-future-entries": "Einträge in der Zukunft erlauben",
 	"diary-entries": "Tagebucheinträge",
 	"no": "Nein",
+	"ok": "OK",
 	"reset-diary": "Tagebuch zurücksetzen",
 	"reset-diary-confirm": "Ja, ich bin mir sicher",
 	"reset-diary-msg": "Bist du sicher, dass du dein Tagebuch zurücksetzen möchtest? Diese Aktion wird all deine Einträge unwiderruflich löschen.",

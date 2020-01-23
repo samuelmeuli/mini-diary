@@ -11,7 +11,7 @@ import {
 	importJsonMiniDiary,
 	importTxtDayOne,
 	lock,
-	showStatsOverlay,
+	openOverlay,
 } from "../../ipcMain/senders";
 
 export default function getFileMenu(): MenuItemConstructorOptions {
@@ -99,7 +99,7 @@ export default function getFileMenu(): MenuItemConstructorOptions {
 				label: translate("statistics"),
 				id: "statistics",
 				click(): void {
-					showStatsOverlay();
+					openOverlay("statistics");
 				},
 			},
 		],

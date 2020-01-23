@@ -6,12 +6,21 @@ import {
 	setDaySelectedPrevious,
 	setMonthSelectedNext,
 	setMonthSelectedPrevious,
+	openOverlay,
 } from "../../ipcMain/senders";
 
 export default function getViewMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("view"),
 		submenu: [
+			{
+				label: `${translate("go-to-date")}…`,
+				id: "goToDate",
+				click(): void {
+					openOverlay("go-to-date");
+				},
+			},
+			{ type: "separator" },
 			{
 				label: translate("previous-day"),
 				id: "previousDay",

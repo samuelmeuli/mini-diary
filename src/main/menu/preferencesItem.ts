@@ -1,7 +1,7 @@
 import { MenuItemConstructorOptions } from "electron";
 
 import { translate } from "../i18n/i18n";
-import { showPrefOverlay } from "../ipcMain/senders";
+import { openOverlay } from "../ipcMain/senders";
 
 export default function getPreferencesItem(): MenuItemConstructorOptions {
 	return {
@@ -9,7 +9,7 @@ export default function getPreferencesItem(): MenuItemConstructorOptions {
 		id: "preferences",
 		accelerator: "CmdOrCtrl+,",
 		click(): void {
-			showPrefOverlay();
+			openOverlay("preferences");
 		},
 	};
 }

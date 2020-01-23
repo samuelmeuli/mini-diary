@@ -88,12 +88,8 @@ function initIpcListeners(): void {
 
 	// Overlays
 
-	ipcRenderer.on("showPrefOverlay", (): void => {
-		dispatchThunk(openOverlay("preferences"));
-	});
-
-	ipcRenderer.on("showStatsOverlay", (): void => {
-		dispatchThunk(openOverlay("statistics"));
+	ipcRenderer.on("openOverlay", (_, overlayType: OverlayType): void => {
+		dispatchThunk(openOverlay(overlayType));
 	});
 
 	// Screen lock

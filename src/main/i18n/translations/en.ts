@@ -31,6 +31,7 @@ const translationsEn: Translations = {
 	// Menu (app-specific)
 	"export": "Export",
 	"export-to-format": "Export to {format}",
+	"go-to-date": "Go to Date",
 	"import": "Import",
 	"import-from-format": "Import from {format}",
 	"license": "License",
@@ -70,6 +71,7 @@ const translationsEn: Translations = {
 	"allow-future-entries": "Allow entries in the future",
 	"diary-entries": "Diary entries",
 	"no": "No",
+	"ok": "OK",
 	"reset-diary": "Reset diary",
 	"reset-diary-confirm": "Yes, I am sure",
 	"reset-diary-msg": "Are you sure you want to reset your diary? This will delete all of your content. The data cannot be restored.",
