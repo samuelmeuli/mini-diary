@@ -24,9 +24,11 @@ export default (_: any, argv: Record<string, string>): Configuration =>
 						options: {
 							titleProp: true,
 							svgoConfig: {
-								plugins: {
-									removeViewBox: false,
-								},
+								plugins: [
+									{
+										removeViewBox: false,
+									},
+								],
 							},
 						},
 					},
