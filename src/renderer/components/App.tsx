@@ -4,13 +4,13 @@ import React, { Component, ReactNode } from "react";
 
 import { toggleWindowSize } from "../electron/window";
 import { translations } from "../utils/i18n";
+import ImportOverlayContainer from "./overlays/import-overlay/ImportOverlayContainer";
+import PrefOverlayContainer from "./overlays/pref-overlay/PrefOverlayContainer";
+import StatsOverlayContainer from "./overlays/stats-overlay/StatsOverlayContainer";
+import Diary from "./pages/diary/Diary";
+import PasswordCreationContainer from "./pages/start-page/password-creation/PasswordCreationContainer";
+import PasswordPromptContainer from "./pages/start-page/password-prompt/PasswordPromptContainer";
 import ThemeContext from "./ThemeContext";
-import ImportOverlayContainer from "./views/overlays/ImportOverlay/ImportOverlayContainer";
-import PrefOverlayContainer from "./views/overlays/PrefOverlay/PrefOverlayContainer";
-import StatsOverlayContainer from "./views/overlays/StatsOverlay/StatsOverlayContainer";
-import Diary from "./views/pages/Diary/Diary";
-import PasswordCreationContainer from "./views/pages/PasswordCreation/PasswordCreationContainer";
-import PasswordPromptContainer from "./views/pages/PasswordPrompt/PasswordPromptContainer";
 
 export interface StateProps {
 	exportErrorMsg: string;
@@ -116,10 +116,10 @@ export default class App extends Component<Props, State> {
 
 		// Render app page
 		let page;
-		if (isLoading === true) {
+		if (isLoading) {
 			// Looking for diary file
 			page = <p>{`${translations.loading}…`}</p>;
-		} else if (fileExists === false) {
+		} else if (!fileExists) {
 			// Diary file has not yet been created
 			page = <PasswordCreationContainer />;
 		} else if (hashedPassword === "") {
