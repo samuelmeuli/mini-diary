@@ -99,3 +99,10 @@ textarea {
 	background: none;
 	resize: none;
 }
+
+// Date input
+
+// Hide arrow button which displays Chrome's date picker popup
+input::-webkit-calendar-picker-indicator {
+	display: none;
+}
