@@ -15,7 +15,7 @@ import translationsUk from "./translations/uk";
 import translationsZh from "./translations/zh";
 import translationsZhTw from "./translations/zhTw";
 
-const ALL_TRANSLATIONS: Record<string, Translations> = {
+const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	de: translationsDe,
 	el: translationsEl,
 	en: translationsEn,
@@ -28,7 +28,7 @@ const ALL_TRANSLATIONS: Record<string, Translations> = {
 	zh: translationsZh,
 	"zh-TW": translationsZhTw,
 };
-let translations: Translations; // String translations for langNoRegion
+let translations: Partial<Translations>; // String translations for langNoRegion
 
 const FALLBACK_LANG = "en";
 let systemLang;
@@ -115,6 +115,6 @@ export function translate(
 /**
  * Return all translations for the detected language
  */
-export function getTranslations(): Translations {
+export function getTranslations(): Partial<Translations> {
 	return translations;
 }

@@ -1,7 +1,7 @@
 import { Translations } from "../../../shared/types";
 
 // prettier-ignore
-const translationsFr: Translations = {
+const translationsFr: Partial<Translations> = {
 	// Menu (defined by macOS)
 	"about-app": "À propos de {appName}",
 	"bring-all-to-front": "Tout ramener au premier plan",
