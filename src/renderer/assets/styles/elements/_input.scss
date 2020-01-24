@@ -1,3 +1,11 @@
+@mixin input-fixed-height {
+	height: $input-height;
+	padding: (0.75 * $spacing-abs-medium) $spacing-abs-medium;
+	line-height: 1;
+}
+
+// All input types
+
 button,
 input,
 textarea {
@@ -9,29 +17,10 @@ textarea {
 	outline: none;
 }
 
-input:not([type="checkbox"]):not([type="radio"]),
-textarea {
-	@include background-color("background-editor");
-	box-shadow: $box-shadow-inset;
-}
-
-.button,
-input:not([type="checkbox"]):not([type="radio"]) {
-	height: $input-height;
-	padding: (0.75 * $spacing-abs-medium) $spacing-abs-medium;
-	line-height: 1;
-}
-
-input {
-	border-radius: $border-radius-input;
-
-	&[type="password"],
-	&[type="text"] {
-		width: $input-width;
-	}
-}
+// Button
 
 .button {
+	@include input-fixed-height;
 	@include background-color("background-editor");
 	border-radius: $border-radius-button;
 	box-shadow: $box-shadow;
@@ -86,23 +75,30 @@ input {
 	}
 }
 
-.checkbox,
-.radio {
+// Text input
+
+input:not([type="checkbox"]):not([type="radio"]) {
+	@include input-fixed-height;
+	@include background-color("background-editor");
+	width: $input-width;
+	border-radius: $border-radius-input;
+	box-shadow: $box-shadow-inset;
+
+	// Date input: Hide arrow button which displays Chrome's date picker popup
+	&[type="date"]::-webkit-calendar-picker-indicator {
+		display: none;
+	}
+
+	// Search input: Hide "cancel" button (replaced with a custom icon)
+	&[type="search"]::-webkit-search-cancel-button {
+		display: none;
+	}
+}
+
+// Checkbox & radio button
+
+input[type="checkbox"],
+input[type="radio"] {
 	margin-right: 8px;
 	vertical-align: 0.1em; // Align vertically with label
-}
-
-textarea {
-	width: 100%;
-	height: auto;
-	overflow: hidden;
-	background: none;
-	resize: none;
-}
-
-// Date input
-
-// Hide arrow button which displays Chrome's date picker popup
-input::-webkit-calendar-picker-indicator {
-	display: none;
 }

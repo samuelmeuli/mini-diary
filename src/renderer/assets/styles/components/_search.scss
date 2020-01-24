@@ -7,7 +7,7 @@
 
 .search-input {
 	position: absolute;
-	width: 100%;
+	width: 100% !important; // stylelint-disable-line declaration-no-important
 }
 
 .search-input-clear {
@@ -37,8 +37,4 @@
 
 .search-result + .search-result {
 	margin-top: $spacing-abs-medium;
-}
-
-::-webkit-search-cancel-button {
-	-webkit-appearance: none; // stylelint-disable-line property-no-vendor-prefix
 }

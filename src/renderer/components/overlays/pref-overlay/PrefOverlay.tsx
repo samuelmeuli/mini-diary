@@ -204,7 +204,6 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 										type="radio"
 										name="radio-theme-auto"
 										id="radio-theme-auto"
-										className="radio"
 										checked={themePref === "auto"}
 										onChange={this.setThemePrefAuto}
 									/>
@@ -216,7 +215,6 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 									type="radio"
 									name="radio-theme-light"
 									id="radio-theme-light"
-									className="radio"
 									checked={themePref === "light"}
 									onChange={this.setThemePrefLight}
 								/>
@@ -227,7 +225,6 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 									type="radio"
 									name="radio-theme-dark"
 									id="radio-theme-dark"
-									className="radio"
 									checked={themePref === "dark"}
 									onChange={this.setThemePrefDark}
 								/>
@@ -245,7 +242,6 @@ export default class PrefOverlay extends PureComponent<Props, State> {
 										type="checkbox"
 										name="checkbox-future-entries"
 										id="checkbox-future-entries"
-										className="checkbox"
 										checked={allowFutureEntries}
 										onChange={this.toggleAllowFutureEntries}
 									/>
