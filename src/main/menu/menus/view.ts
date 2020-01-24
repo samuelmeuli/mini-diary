@@ -4,6 +4,7 @@ import { translate } from "../../i18n/i18n";
 import {
 	setDaySelectedNext,
 	setDaySelectedPrevious,
+	setDaySelectedToday,
 	setMonthSelectedNext,
 	setMonthSelectedPrevious,
 	openOverlay,
@@ -13,6 +14,13 @@ export default function getViewMenu(): MenuItemConstructorOptions {
 	return {
 		label: translate("view"),
 		submenu: [
+			{
+				label: `${translate("go-to-today")}`,
+				id: "goToToday",
+				click(): void {
+					setDaySelectedToday();
+				},
+			},
 			{
 				label: `${translate("go-to-date")}…`,
 				id: "goToDate",

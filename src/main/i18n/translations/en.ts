@@ -32,6 +32,7 @@ const translationsEn: Translations = {
 	"export": "Export",
 	"export-to-format": "Export to {format}",
 	"go-to-date": "Go to Date",
+	"go-to-today": "Go to Today",
 	"import": "Import",
 	"import-from-format": "Import from {format}",
 	"license": "License",

@@ -64,6 +64,11 @@ export const setDateSelectedPrevious = (): ThunkActionT => (dispatch, getState):
 	dispatch(setDateSelected(previousDay.toDate()));
 };
 
+export const setDaySelectedToday = (): ThunkActionT => (dispatch): void => {
+	const today = new Date();
+	dispatch(setDateSelected(today));
+};
+
 export const setMonthSelectedNext = (): ThunkActionT => (dispatch, getState): void => {
 	const { app, diary } = getState();
 	const { allowFutureEntries } = app;

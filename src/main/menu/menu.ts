@@ -9,6 +9,7 @@ const DISABLED_MENU_ITEMS = [
 	"exportPdf",
 	"exportTxtDayOne",
 	"goToDate",
+	"goToToday",
 	"importJsonDayOne",
 	"importJsonJrnl",
 	"importJsonMiniDiary",

@@ -6,6 +6,7 @@ import { openOverlay, setTheme } from "../../store/app/actionCreators";
 import {
 	setDateSelectedPrevious,
 	setDaySelectedNext,
+	setDaySelectedToday,
 	setMonthSelectedNext,
 	setMonthSelectedPrevious,
 } from "../../store/diary/actionCreators";
@@ -21,7 +22,7 @@ import store, { ThunkDispatchT } from "../../store/store";
 
 const dispatchThunk = store.dispatch as ThunkDispatchT;
 
-function initIpcListeners(): void {
+export default function initIpcListeners(): void {
 	// Date
 
 	ipcRenderer.on("nextDay", (): void => {
@@ -30,6 +31,10 @@ function initIpcListeners(): void {
 
 	ipcRenderer.on("nextMonth", (): void => {
 		dispatchThunk(setMonthSelectedNext());
+	});
+
+	ipcRenderer.on("goToToday", (): void => {
+		dispatchThunk(setDaySelectedToday());
 	});
 
 	ipcRenderer.on("previousDay", (): void => {
@@ -108,5 +113,3 @@ function initIpcListeners(): void {
 		dispatchThunk(setTheme(darkMode.isEnabled ? "dark" : "light"));
 	});
 }
-
-export default initIpcListeners;

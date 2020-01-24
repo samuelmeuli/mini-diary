@@ -1,7 +1,7 @@
 import { Translations } from "../../../shared/types";
 
 // prettier-ignore
-const translationsDe: Partial<Translations> = {
+const translationsDe: Translations = {
 	// Menu (defined by macOS)
 	"about-app": "Über {appName}",
 	"bring-all-to-front": "Alle nach vorne bringen",
@@ -32,6 +32,7 @@ const translationsDe: Partial<Translations> = {
 	"export": "Exportieren",
 	"export-to-format": "Als {format} exportieren",
 	"go-to-date": "Zu Datum gehen",
+	"go-to-today": "Heute anzeigen",
 	"import": "Importieren",
 	"import-from-format": "Von {format} importieren",
 	"license": "Lizenz",

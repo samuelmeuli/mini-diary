@@ -30,6 +30,7 @@ export interface Translations {
 	"export": string,
 	"export-to-format": string,
 	"go-to-date": string,
+	"go-to-today": string,
 	"import": string,
 	"import-from-format": string,
 	"license": string,

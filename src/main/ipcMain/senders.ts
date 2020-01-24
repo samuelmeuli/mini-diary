@@ -10,6 +10,10 @@ export const setDaySelectedPrevious = (): void => {
 	getWindow().webContents.send("previousDay");
 };
 
+export const setDaySelectedToday = (): void => {
+	getWindow().webContents.send("goToToday");
+};
+
 export const setMonthSelectedNext = (): void => {
 	getWindow().webContents.send("nextMonth");
 };
