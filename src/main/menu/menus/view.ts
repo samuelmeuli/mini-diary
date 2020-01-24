@@ -17,6 +17,7 @@ export default function getViewMenu(): MenuItemConstructorOptions {
 			{
 				label: `${translate("go-to-today")}`,
 				id: "goToToday",
+				accelerator: "CmdOrCtrl+T",
 				click(): void {
 					setDaySelectedToday();
 				},
@@ -24,6 +25,7 @@ export default function getViewMenu(): MenuItemConstructorOptions {
 			{
 				label: `${translate("go-to-date")}…`,
 				id: "goToDate",
+				accelerator: "CmdOrCtrl+Shift+T",
 				click(): void {
 					openOverlay("go-to-date");
 				},
