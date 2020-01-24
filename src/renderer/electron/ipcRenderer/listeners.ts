@@ -4,7 +4,7 @@ import { darkMode, is } from "electron-util";
 
 import { openOverlay, setTheme } from "../../store/app/actionCreators";
 import {
-	setDateSelectedPrevious,
+	setDaySelectedPrevious,
 	setDaySelectedNext,
 	setDaySelectedToday,
 	setMonthSelectedNext,
@@ -29,16 +29,16 @@ export default function initIpcListeners(): void {
 		dispatchThunk(setDaySelectedNext());
 	});
 
-	ipcRenderer.on("nextMonth", (): void => {
-		dispatchThunk(setMonthSelectedNext());
+	ipcRenderer.on("previousDay", (): void => {
+		dispatchThunk(setDaySelectedPrevious());
 	});
 
 	ipcRenderer.on("goToToday", (): void => {
 		dispatchThunk(setDaySelectedToday());
 	});
 
-	ipcRenderer.on("previousDay", (): void => {
-		dispatchThunk(setDateSelectedPrevious());
+	ipcRenderer.on("nextMonth", (): void => {
+		dispatchThunk(setMonthSelectedNext());
 	});
 
 	ipcRenderer.on("previousMonth", (): void => {

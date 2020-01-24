@@ -65,7 +65,7 @@ export const setDaySelectedNext = (): ThunkActionT => (dispatch, getState): void
 	}
 };
 
-export const setDateSelectedPrevious = (): ThunkActionT => (dispatch, getState): void => {
+export const setDaySelectedPrevious = (): ThunkActionT => (dispatch, getState): void => {
 	const { dateSelected } = getState().diary;
 	const previousDay = moment(dateSelected).subtract(1, "days");
 	dispatch(setDateSelected(previousDay.toDate()));
