@@ -1,5 +1,6 @@
 import moment from "moment";
 
+import { MAX_DATE, MIN_DATE } from "../../constants";
 import { searchIndex } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
 import {
@@ -14,10 +15,16 @@ import {
 // Action creators
 
 export function setDateSelected(dateSelected: Date): SetDateSelectedAction {
+	let dateValidated = dateSelected;
+	if (dateSelected < MIN_DATE) {
+		dateValidated = MIN_DATE;
+	} else if (dateSelected > MAX_DATE) {
+		dateValidated = MAX_DATE;
+	}
 	return {
 		type: SET_DATE_SELECTED,
 		payload: {
-			dateSelected,
+			dateSelected: dateValidated,
 		},
 	};
 }
