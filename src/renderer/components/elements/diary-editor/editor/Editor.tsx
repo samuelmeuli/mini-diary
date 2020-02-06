@@ -180,6 +180,7 @@ export default class Editor extends PureComponent<Props, State> {
 							onBlur={this.saveEntry}
 							onChange={this.onTitleChange}
 							placeholder={translations["add-a-title"]}
+							spellCheck
 						/>
 					</div>
 					<div className="editor-text-wrapper">
@@ -193,6 +194,7 @@ export default class Editor extends PureComponent<Props, State> {
 							}}
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
 							plugins={plugins}
+							spellCheck
 						/>
 					</div>
 				</div>

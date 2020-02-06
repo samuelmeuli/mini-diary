@@ -25,6 +25,7 @@ async function createWindow(): Promise<BrowserWindow> {
 		titleBarStyle: "hiddenInset",
 		webPreferences: {
 			nodeIntegration: true,
+			spellcheck: true,
 		},
 	});
 	win.on("ready-to-show", (): void => {

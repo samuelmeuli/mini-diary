@@ -88,6 +88,7 @@ export default class SearchBar extends PureComponent<Props, State> {
 						type="search"
 						className="search-input"
 						placeholder={`${translations.search}…`}
+						spellCheck={false}
 						value={newSearchKey}
 						onChange={this.onChange}
 					/>
