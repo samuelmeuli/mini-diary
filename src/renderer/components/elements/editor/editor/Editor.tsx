@@ -18,7 +18,7 @@ import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
 
 import { toIndexDate, toLocaleWeekday } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
-import EditorToolbar from "../editor-toolbar/EditorToolbar";
+import EditorToolbar from "../editor-toolbar/editor-toolbar/EditorToolbar";
 
 type DraftEditorCommandExtended = DraftEditorCommand | "enter";
 

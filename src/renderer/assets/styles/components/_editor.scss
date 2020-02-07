@@ -29,7 +29,16 @@
 
 .editor-toolbar {
 	@include background-color("background-hover");
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	height: $input-height;
+}
+
+.word-count {
+	@include color("text-faded");
+	margin-right: $spacing-abs-medium;
+	line-height: 1;
 }
 
 // stylelint-disable selector-class-pattern
