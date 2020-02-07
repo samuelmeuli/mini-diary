@@ -21,13 +21,13 @@ textarea {
 
 .button {
 	@include input-fixed-height;
-	@include background-color("background-editor");
+	@include background-color("background-input");
 	border-radius: $border-radius-button;
 	box-shadow: $box-shadow;
 	transition: $transition;
 
 	&:not(.button-invisible):hover {
-		@include background-color("background-editor-hover");
+		@include background-color("background-input-hover");
 	}
 
 	&.button-main {
@@ -79,7 +79,7 @@ textarea {
 
 input:not([type="checkbox"]):not([type="radio"]) {
 	@include input-fixed-height;
-	@include background-color("background-editor");
+	@include background-color("background-input");
 	width: $input-width;
 	border-radius: $border-radius-input;
 	box-shadow: $box-shadow-inset;
