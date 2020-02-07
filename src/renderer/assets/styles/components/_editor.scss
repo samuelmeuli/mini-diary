@@ -1,25 +1,24 @@
 .editor {
 	@include background-color("background-input");
 	position: relative;
+	display: flex;
+	flex-direction: column;
 	border-radius: $border-radius-input;
 	box-shadow: $box-shadow-inset;
 }
 
 .editor-scrollable {
 	display: grid;
+	flex: 1;
 	grid-template-rows: auto auto 1fr;
-	width: 100%;
-	height: 100%;
 	overflow-y: auto;
 
 	@media (max-width: $screen-desktop) {
-		padding: 1.25 * $spacing-abs-large (1.25 * $spacing-abs-large + $editor-buttons-width) 0 1.25 *
-			$spacing-abs-large;
+		padding: (1.25 * $spacing-abs-large) (1.25 * $spacing-abs-large) 0 (1.25 * $spacing-abs-large);
 	}
 
 	@media (min-width: $screen-desktop + 1px) {
-		padding: (2 * $spacing-abs-large) (2 * $spacing-abs-large + $editor-buttons-width) 0
-			(2 * $spacing-abs-large);
+		padding: (2 * $spacing-abs-large) (2 * $spacing-abs-large) 0 (2 * $spacing-abs-large);
 	}
 }
 
@@ -28,18 +27,9 @@
 	font-size: 150%;
 }
 
-.editor-buttons-wrapper {
-	@include background-color("background");
-	position: absolute;
-	top: 0;
-	right: $spacing-abs-medium;
-	bottom: 0;
-	width: $input-height;
-	height: 4 * $input-height;
-	margin-top: auto;
-	margin-bottom: auto;
-	border-radius: $border-radius-button;
-	box-shadow: $box-shadow;
+.editor-toolbar {
+	@include background-color("background-hover");
+	height: $input-height;
 }
 
 // stylelint-disable selector-class-pattern

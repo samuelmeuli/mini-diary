@@ -68,7 +68,7 @@ export default class EditorToolbar extends PureComponent<Props, {}> {
 
 		return (
 			<div
-				className="editor-buttons-wrapper"
+				className="editor-toolbar"
 				onMouseDown={(e): void => {
 					e.preventDefault(); // Keep focus on editor when a button is clicked
 				}}
