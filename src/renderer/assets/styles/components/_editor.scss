@@ -1,3 +1,6 @@
+$editor-padding-small: 1.25 * $spacing-abs-large;
+$editor-padding-large: 2 * $spacing-abs-large;
+
 .editor {
 	@include background-color("background-input");
 	position: relative;
@@ -14,11 +17,11 @@
 	overflow-y: auto;
 
 	@media (max-width: $screen-desktop) {
-		padding: (1.25 * $spacing-abs-large) (1.25 * $spacing-abs-large) 0 (1.25 * $spacing-abs-large);
+		padding: $editor-padding-small $editor-padding-small 0 $editor-padding-small;
 	}
 
 	@media (min-width: $screen-desktop + 1px) {
-		padding: (2 * $spacing-abs-large) (2 * $spacing-abs-large) 0 (2 * $spacing-abs-large);
+		padding: $spacing-abs-large $spacing-abs-large 0 $spacing-abs-large;
 	}
 }
 
@@ -33,11 +36,18 @@
 	align-items: center;
 	justify-content: space-between;
 	height: $input-height;
+
+	@media (max-width: $screen-desktop) {
+		padding: 0 $editor-padding-small 0 ($editor-padding-small - $spacing-abs-medium);
+	}
+
+	@media (min-width: $screen-desktop + 1px) {
+		padding: 0 $spacing-abs-large 0 ($spacing-abs-large - $spacing-abs-medium);
+	}
 }
 
 .word-count {
 	@include color("text-faded");
-	margin-right: $spacing-abs-medium;
 	line-height: 1;
 }
 
@@ -63,11 +73,11 @@
 	// Spacing
 	.DraftEditor-root {
 		@media (max-width: $screen-desktop) {
-			padding-bottom: 1.25 * $spacing-abs-large;
+			padding-bottom: $editor-padding-small;
 		}
 
 		@media (min-width: $screen-desktop + 1px) {
-			padding-bottom: 2 * $spacing-abs-large;
+			padding-bottom: $editor-padding-large;
 		}
 	}
 
