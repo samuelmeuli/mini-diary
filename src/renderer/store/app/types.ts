@@ -4,6 +4,7 @@ import { Action } from "redux";
 
 export interface AppState {
 	allowFutureEntries: boolean;
+	firstDayOfWeek: Weekday | null;
 	overlay: OverlayType;
 	theme: Theme;
 	themePref: ThemePref;
@@ -12,6 +13,7 @@ export interface AppState {
 // Action types
 
 export const SET_ALLOW_FUTURE_ENTRIES = "SET_ALLOW_FUTURE_ENTRIES";
+export const SET_FIRST_DAY_OF_WEEK = "SET_FIRST_DAY_OF_WEEK";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const SET_THEME = "SET_THEME";
 export const SET_THEME_PREF = "SET_THEME_PREF";
@@ -22,6 +24,13 @@ export interface SetAllowFutureEntriesAction extends Action {
 	type: typeof SET_ALLOW_FUTURE_ENTRIES;
 	payload: {
 		allowFutureEntries: boolean;
+	};
+}
+
+export interface SetFirstDayOfWeekAction extends Action {
+	type: typeof SET_FIRST_DAY_OF_WEEK;
+	payload: {
+		firstDayOfWeek: Weekday | null;
 	};
 }
 
@@ -48,6 +57,7 @@ export interface SetThemePrefAction extends Action {
 
 export type AppAction =
 	| SetAllowFutureEntriesAction
+	| SetFirstDayOfWeekAction
 	| SetOverlayAction
 	| SetThemeAction
 	| SetThemePrefAction;

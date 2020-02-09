@@ -42,8 +42,16 @@ const translationsTr: Partial<Translations>  = {
 	"privacy-policy": "Gizlilik Politikası",
 	"website": "Web Sitesi",
 
+	// Weekdays
+	"sunday": "Pazar",
+	"monday": "Pazartesi",
+	"tuesday": "Salı",
+	"wednesday": "Çarşamba",
+	"thursday": "Perşembe",
+	"friday": "Cuma",
+	"saturday": "Cumartesi",
+
 	// Theme
-	"auto": "Otomatik",
 	"dark": "Karanlık",
 	"light": "Aydınlık",
 	"theme": "Tema",
@@ -66,8 +74,10 @@ const translationsTr: Partial<Translations>  = {
 	"search": "Arama",
 
 	// Preferences
-	"diary-entries": "Günlük girişleri",
 	"allow-future-entries": "Gelecekte giriş oluşturmaya izin ver",
+	"auto": "Otomatik",
+	"diary-entries": "Günlük girişleri",
+	"first-day-of-week": "Haftanın ilk günü",
 
 	// Password and directory
 	"change-directory": "Klasörü değiştir",

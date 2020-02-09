@@ -11,6 +11,7 @@ export interface StateProps {
 	allowFutureEntries: boolean;
 	dateSelected: Date;
 	entries: Entries;
+	firstDayOfWeek: Weekday | null;
 	monthSelected: Date;
 }
 
@@ -37,7 +38,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 	}
 
 	render(): ReactNode {
-		const { allowFutureEntries, dateSelected, entries, monthSelected } = this.props;
+		const { allowFutureEntries, dateSelected, entries, firstDayOfWeek, monthSelected } = this.props;
 
 		const today = new Date();
 		const daysWithEntries = Object.keys(entries);
@@ -54,6 +55,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 				toMonth={today}
 				captionElement={(): null => null}
 				modifiers={{ hasEntry }}
+				firstDayOfWeek={firstDayOfWeek ?? undefined}
 				locale={lang}
 				localeUtils={MomentLocaleUtils}
 				navbarElement={<CalendarNavContainer />}

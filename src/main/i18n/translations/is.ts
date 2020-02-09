@@ -42,8 +42,16 @@ const translationsIs: Partial<Translations>  = {
 	"privacy-policy": "Friðhelgistefna",
 	"website": "Vefsíða",
 
+	// Weekdays
+	"sunday": "Sunnudag",
+	"monday": "Mánudagur",
+	"tuesday": "Þriðjudag",
+	"wednesday": "Miðvikudag",
+	"thursday": "Fimmtudag",
+	"friday": "Föstudag",
+	"saturday": "Laugardag",
+
 	// Theme
-	"auto": "Sjálfgefið",
 	"dark": "Dökkt",
 	"light": "Ljóst",
 	"theme": "Þema",
@@ -66,8 +74,10 @@ const translationsIs: Partial<Translations>  = {
 	"search": "Leita",
 
 	// Preferences
-	"diary-entries": "Dagbókarfærslur",
 	"allow-future-entries": "Leyfa að búa til færslur í framtíðinni",
+	"auto": "Sjálfgefið",
+	"diary-entries": "Dagbókarfærslur",
+	"first-day-of-week": "Fyrsta dag vikunnar",
 
 	// Password and directory
 	"change-directory": "Breyta möppu",

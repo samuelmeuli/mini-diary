@@ -1,20 +1,25 @@
-import { loadFutureEntriesPref, loadThemePref } from "../../files/preferences/preferences";
+import {
+	loadFirstDayOfWeekPref,
+	loadFutureEntriesPref,
+	loadThemePref,
+} from "../../files/preferences/preferences";
 import { getThemeFromPref } from "../../utils/native-theme";
 import {
 	AppAction,
 	AppState,
 	SET_ALLOW_FUTURE_ENTRIES,
+	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
 } from "./types";
 
-const allowFutureEntries = loadFutureEntriesPref();
 const themePref = loadThemePref();
 const theme = getThemeFromPref(themePref);
 
 const initialState: AppState = {
-	allowFutureEntries,
+	allowFutureEntries: loadFutureEntriesPref(),
+	firstDayOfWeek: loadFirstDayOfWeekPref(),
 	overlay: "none",
 	theme,
 	themePref,
@@ -26,6 +31,12 @@ function appReducer(state = initialState, action: AppAction): AppState {
 			return {
 				...state,
 				allowFutureEntries: action.payload.allowFutureEntries,
+			};
+		}
+		case SET_FIRST_DAY_OF_WEEK: {
+			return {
+				...state,
+				firstDayOfWeek: action.payload.firstDayOfWeek,
 			};
 		}
 		case SET_OVERLAY: {

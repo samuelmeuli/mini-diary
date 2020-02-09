@@ -42,8 +42,16 @@ const translationsEl: Partial<Translations> = {
 	"privacy-policy": "Πολιτική Απορρήτου",
 	"website": "Ιστοσελίδα",
 
+	// Weekdays
+	"sunday": "Κυριακή",
+	"monday": "Δευτέρα",
+	"tuesday": "Τρίτη",
+	"wednesday": "Τετάρτη",
+	"thursday": "Πέμπτη",
+	"friday": "Παρασκευή",
+	"saturday": "Σάββατο",
+
 	// Theme
-	"auto": "Αυτόματο",
 	"dark": "Σκοτεινό",
 	"light": "Φωτεινό",
 	"theme": "Θέμα",
@@ -66,8 +74,10 @@ const translationsEl: Partial<Translations> = {
 	"search": "Αναζήτηση",
 
 	// Preferences
-	"diary-entries": "Εγγραφές ημερολογίου",
 	"allow-future-entries": "Να επιτρέπεται η δημιουργία καταχωρήσεων στο μέλλον",
+	"auto": "Αυτόματο",
+	"diary-entries": "Εγγραφές ημερολογίου",
+	"first-day-of-week": "πρώτη ημέρα της εβδομάδας",
 
 	// Password and directory
 	"change-directory": "Αλλαγή τοποθεσίας",

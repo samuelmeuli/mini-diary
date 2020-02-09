@@ -43,8 +43,16 @@ const translationsUk: Partial<Translations> = {
 	"statistics": "Статистика",
 	"website": "Веб-сайт",
 
+	// Weekdays
+	"sunday": "Неділя",
+	"monday": "Понеділок",
+	"tuesday": "Вівторок",
+	"wednesday": "Середа",
+	"thursday": "Четвер",
+	"friday": "П’ятниця",
+	"saturday": "Субота",
+
 	// Theme
-	"auto": "Автоматично",
 	"dark": "Темна",
 	"light": "Світла",
 	"theme": "Тема",
@@ -68,7 +76,9 @@ const translationsUk: Partial<Translations> = {
 
 	// Preferences
 	"allow-future-entries": "Дозволити записи в майбутньому часі",
+	"auto": "Автоматично",
 	"diary-entries": "Записи в щоденнику",
+	"first-day-of-week": "Перший день тижня",
 	"no": "Ні",
 	"reset-diary": "Скинути щоденник",
 	"reset-diary-confirm": "Так, скинути",

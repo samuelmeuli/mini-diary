@@ -42,8 +42,16 @@ const translationsZh: Partial<Translations> = {
 	"privacy-policy": "隐私条款",
 	"website": "官网",
 
+	// Weekdays
+	"sunday": "星期日",
+	"monday": "星期一",
+	"tuesday": "星期二",
+	"wednesday": "星期三",
+	"thursday": "星期四",
+	"friday": "星期五",
+	"saturday": "星期六",
+
 	// Theme
-	"auto": "自动",
 	"dark": "深色",
 	"light": "浅色",
 	"theme": "主题",
@@ -66,8 +74,10 @@ const translationsZh: Partial<Translations> = {
 	"search": "查找",
 
 	// Preferences
-	"diary-entries": "日记条目",
 	"allow-future-entries": "允许创建将来的条目",
+	"auto": "自动",
+	"diary-entries": "日记条目",
+	"first-day-of-week": "一周的第一天",
 
 	// Password and directory
 	"change-directory": "更改路径",

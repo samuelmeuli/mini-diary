@@ -43,8 +43,16 @@ const translationsZhTw: Partial<Translations> = {
 	"statistics": "統計數據",
 	"website": "官方網站",
 
+	// Weekdays
+	"sunday": "星期日",
+	"monday": "星期一",
+	"tuesday": "星期二",
+	"wednesday": "星期三",
+	"thursday": "星期四",
+	"friday": "星期五",
+	"saturday": "星期六",
+
 	// Theme
-	"auto": "自動",
 	"dark": "深色",
 	"light": "淺色",
 	"theme": "主題",
@@ -68,7 +76,9 @@ const translationsZhTw: Partial<Translations> = {
 
 	// Preferences
 	"allow-future-entries": "允許新增未來的條目",
+	"auto": "自動",
 	"diary-entries": "日記條目",
+	"first-day-of-week": "一周的第一天",
 	"no": "取消",
 	"reset-diary": "重置日記本",
 	"reset-diary-confirm": "好，我確定",

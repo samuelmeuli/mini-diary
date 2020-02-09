@@ -42,8 +42,16 @@ const translationsPt: Partial<Translations>  = {
 	"privacy-policy": "Política de privacidade",
 	"website": "Site",
 
+	// Weekdays
+	"sunday": "Domingo",
+	"monday": "Segunda-feira",
+	"tuesday": "Terça",
+	"wednesday": "Quarta-feira",
+	"thursday": "Quinta-feira",
+	"friday": "Sexta-feira",
+	"saturday": "Sábado",
+
 	// Theme
-	"auto": "Automático",
 	"dark": "Escuro",
 	"light": "Claro",
 	"theme": "Tema",
@@ -66,8 +74,10 @@ const translationsPt: Partial<Translations>  = {
 	"search": "Buscar",
 
 	// Preferences
-	"diary-entries": "Entradas diárias",
 	"allow-future-entries": "Permitir a criação de entradas no futuro",
+	"auto": "Automático",
+	"diary-entries": "Entradas diárias",
+	"first-day-of-week": "Primeiro dia da semana",
 
 	// Password and directory
 	"change-directory": "Alterar diretório",

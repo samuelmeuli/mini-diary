@@ -21,6 +21,10 @@ interface Metadata {
 	dateUpdated: string;
 }
 
+// App
+
+type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
 // Overlay
 
 type OverlayType = "none" | "go-to-date" | "import" | "preferences" | "statistics";

@@ -45,8 +45,16 @@ const translationsDe: Translations = {
 	"statistics": "Statistiken",
 	"website": "Website",
 
+	// Weekdays
+	"sunday": "Sonntag",
+	"monday": "Montag",
+	"tuesday": "Dienstag",
+	"wednesday": "Mittwoch",
+	"thursday": "Donnerstag",
+	"friday": "Freitag",
+	"saturday": "Samstag",
+
 	// Theme
-	"auto": "Automatisch",
 	"dark": "Dunkel",
 	"light": "Hell",
 	"theme": "Design",
@@ -70,7 +78,9 @@ const translationsDe: Translations = {
 
 	// Preferences
 	"allow-future-entries": "Einträge in der Zukunft erlauben",
+	"auto": "Automatisch",
 	"diary-entries": "Tagebucheinträge",
+	"first-day-of-week": "Erster Wochentag",
 	"no": "Nein",
 	"ok": "OK",
 	"reset-diary": "Tagebuch zurücksetzen",

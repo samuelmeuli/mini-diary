@@ -43,8 +43,16 @@ export interface Translations {
 	"statistics": string;
 	"website": string,
 
+	// Weekdays
+	"sunday": string,
+	"monday": string,
+	"tuesday": string,
+	"wednesday": string,
+	"thursday": string,
+	"friday": string,
+	"saturday": string,
+
 	// Theme
-	"auto": string,
 	"dark": string,
 	"light": string,
 	"theme": string,
@@ -68,7 +76,9 @@ export interface Translations {
 
 	// Preferences
 	"allow-future-entries": string,
+	"auto": string,
 	"diary-entries": string,
+	"first-day-of-week": string,
 	"no": string,
 	"ok": string,
 	"reset-diary": string,

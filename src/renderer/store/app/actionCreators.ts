@@ -1,12 +1,18 @@
-import { saveFutureEntriesPref, saveThemePref } from "../../files/preferences/preferences";
+import {
+	saveFirstDayOfWeekPref,
+	saveFutureEntriesPref,
+	saveThemePref,
+} from "../../files/preferences/preferences";
 import { getThemeFromPref } from "../../utils/native-theme";
 import { ThunkActionT } from "../store";
 import {
 	SET_ALLOW_FUTURE_ENTRIES,
+	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
 	SetAllowFutureEntriesAction,
+	SetFirstDayOfWeekAction,
 	SetOverlayAction,
 	SetThemeAction,
 	SetThemePrefAction,
@@ -19,6 +25,15 @@ function setAllowFutureEntries(allowFutureEntries: boolean): SetAllowFutureEntri
 		type: SET_ALLOW_FUTURE_ENTRIES,
 		payload: {
 			allowFutureEntries,
+		},
+	};
+}
+
+function setFirstDayOfWeek(firstDayOfWeek: Weekday | null): SetFirstDayOfWeekAction {
+	return {
+		type: SET_FIRST_DAY_OF_WEEK,
+		payload: {
+			firstDayOfWeek,
 		},
 	};
 }
@@ -66,6 +81,13 @@ export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActio
 ): void => {
 	dispatch(setAllowFutureEntries(allowFutureEntries));
 	saveFutureEntriesPref(allowFutureEntries);
+};
+
+export const updateFirstDayOfWeekPref = (firstDayOfWeek: Weekday | null): ThunkActionT => (
+	dispatch,
+): void => {
+	dispatch(setFirstDayOfWeek(firstDayOfWeek));
+	saveFirstDayOfWeekPref(firstDayOfWeek);
 };
 
 export const updateThemePref = (themePref: ThemePref): ThunkActionT => (dispatch): void => {

@@ -6,6 +6,7 @@ import { JsonValue } from "type-fest";
 import { supportsNativeTheme } from "../../utils/native-theme";
 
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
+const DEFAULT_FIRST_DAY_OF_WEEK = null; // Let the system locale determine the first day of the week
 const DEFAULT_THEME_PREF: ThemePref = "light";
 const PREF_DIR = remote.app.getPath("userData");
 
@@ -44,6 +45,22 @@ export function loadDirPref(): string {
  */
 export function saveDirPref(filePath: string): void {
 	setPref("filePath", filePath);
+}
+
+// First day of the week
+
+/**
+ * Return the preference for the first day of the week
+ */
+export function loadFirstDayOfWeekPref(): Weekday | null {
+	return getPref("firstDayOfWeek", DEFAULT_FIRST_DAY_OF_WEEK);
+}
+
+/**
+ * Update the preference for the first day of the week
+ */
+export function saveFirstDayOfWeekPref(firstDayOfWeek: Weekday | null): void {
+	setPref("firstDayOfWeek", firstDayOfWeek);
 }
 
 // Future entries

@@ -3,6 +3,7 @@ import React, { ReactElement } from "react";
 import { translations } from "../../../utils/i18n";
 import OverlayContainer from "../overlay-hoc/OverlayContainer";
 import FileDirPrefContainer from "./file-dir-pref/FileDirPrefContainer";
+import FirstDayOfWeekPrefContainer from "./first-day-of-week-pref/FirstDayOfWeekPrefContainer";
 import FutureEntriesPrefContainer from "./future-entries-pref/FutureEntriesPrefContainer";
 import PasswordPrefContainer from "./password-pref/PasswordPrefContainer";
 import ThemePrefContainer from "./theme-pref/ThemePrefContainer";
@@ -26,11 +27,10 @@ export default function PrefOverlay(props: Props): ReactElement {
 			<h1>{translations.preferences}</h1>
 			<form className="preferences-form">
 				<ThemePrefContainer />
-				{// Future diary entries (only when unlocked)
-				!isLocked && <FutureEntriesPrefContainer />}
+				{!isLocked && <FirstDayOfWeekPrefContainer />}
+				{!isLocked && <FutureEntriesPrefContainer />}
 				<FileDirPrefContainer />
-				{// Password (only when unlocked)
-				!isLocked && <PasswordPrefContainer />}
+				{!isLocked && <PasswordPrefContainer />}
 			</form>
 		</OverlayContainer>
 	);
