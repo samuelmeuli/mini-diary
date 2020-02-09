@@ -1,6 +1,5 @@
 @mixin input-fixed-height {
 	height: $input-height;
-	padding: (0.75 * $spacing-abs-medium) $spacing-abs-medium;
 	line-height: 1;
 }
 
@@ -10,6 +9,7 @@ button,
 input,
 select,
 textarea {
+	padding: (0.75 * $spacing-abs-medium) $spacing-abs-medium;
 	color: inherit;
 	font: inherit;
 	text-align: left;
