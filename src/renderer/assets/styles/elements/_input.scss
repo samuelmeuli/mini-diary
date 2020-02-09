@@ -43,7 +43,7 @@ textarea {
 		}
 
 		&:disabled {
-			@include background-color("button-disabled");
+			@include background-color("background-button-disabled");
 			box-shadow: none;
 		}
 	}
