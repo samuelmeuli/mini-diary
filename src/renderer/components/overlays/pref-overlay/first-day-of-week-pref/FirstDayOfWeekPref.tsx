@@ -37,7 +37,12 @@ export default function FirstDayOfWeekPref(props: Props): ReactElement {
 		<fieldset className="fieldset-first-day-of-week">
 			<legend>{translations["first-day-of-week"]}</legend>
 			<div className="fieldset-content">
-				<select id="weekday-select" value={firstDayOfWeek ?? "auto"} onChange={onChange}>
+				<select
+					id="weekday-select"
+					className="button button-main"
+					value={firstDayOfWeek ?? "auto"}
+					onChange={onChange}
+				>
 					<option value="auto">{translations.auto}</option>
 					{weekdayOptions}
 				</select>
