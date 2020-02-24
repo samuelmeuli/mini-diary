@@ -16,3 +16,8 @@
 		@include background-color("scrollbar-hover");
 	}
 }
+
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+	display: none;
+}
