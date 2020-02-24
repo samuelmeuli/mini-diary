@@ -15,4 +15,5 @@ dist/
 
 # Generated website assets
 website/index.js
+website/index.js.map
 website/styles/minireset.min.css
