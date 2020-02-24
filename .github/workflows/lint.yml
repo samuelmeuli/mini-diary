@@ -1,8 +1,6 @@
 name: Lint
 
-on:
-  - push
-  - pull_request
+on: push
 
 jobs:
   run-linters:
@@ -25,7 +23,6 @@ jobs:
         uses: samuelmeuli/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
-          auto_fix: ${{ github.event_name == 'pull_request' }}
           eslint: true
           eslint_args: --ignore-path ./.gitignore
           eslint_extensions: ts,tsx
