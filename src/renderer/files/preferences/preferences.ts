@@ -3,6 +3,7 @@ import { remote } from "electron";
 import settings from "electron-settings";
 
 import { JsonValue } from "../../../shared/types";
+import { ThemePref, Weekday } from "../../types";
 import { supportsNativeTheme } from "../../utils/native-theme";
 
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;

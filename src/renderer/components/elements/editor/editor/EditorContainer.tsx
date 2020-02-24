@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 
 import { updateEntry } from "../../../../store/file/actionCreators";
 import { RootState, ThunkDispatchT } from "../../../../store/store";
+import { IndexDate } from "../../../../types";
 import Editor, { DispatchProps, StateProps } from "./Editor";
 
 const mapStateToProps = (state: RootState): StateProps => ({

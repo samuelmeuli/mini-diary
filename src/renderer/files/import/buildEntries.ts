@@ -1,3 +1,4 @@
+import { ImportEntry, DiaryEntry, Entries } from "../../types";
 import mergeEntries from "./mergeEntries";
 
 /**

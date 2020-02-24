@@ -6,6 +6,10 @@ export interface JsonObject {
 export type JsonArray = Array<JsonValue>;
 export type JsonValue = string | number | boolean | null | JsonArray | JsonObject;
 
+// Overlay
+
+export type OverlayType = "none" | "go-to-date" | "import" | "preferences" | "statistics";
+
 // I18n
 
 // prettier-ignore

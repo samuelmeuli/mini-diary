@@ -1,5 +1,7 @@
 import moment from "moment";
 
+import { IndexDate } from "../types";
+
 const INDEX_DATE_FORMAT = "YYYY-MM-DD";
 
 /**

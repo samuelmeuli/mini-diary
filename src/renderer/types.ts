@@ -1,21 +1,21 @@
 // Diary
 
-type IndexDate = string;
+export type IndexDate = string;
 
-interface DiaryEntry {
+export interface DiaryEntry {
 	dateUpdated: string;
 	title: string;
 	text: string;
 }
 
-type Entries = Record<IndexDate, DiaryEntry>;
+export type Entries = Record<IndexDate, DiaryEntry>;
 
-interface MiniDiaryJson {
+export interface MiniDiaryJson {
 	metadata: Metadata;
 	entries: Entries;
 }
 
-interface Metadata {
+export interface Metadata {
 	application: string;
 	version: string;
 	dateUpdated: string;
@@ -23,33 +23,29 @@ interface Metadata {
 
 // App
 
-type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6;
-
-// Overlay
-
-type OverlayType = "none" | "go-to-date" | "import" | "preferences" | "statistics";
+export type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 // Theme
 
-type Theme = "light" | "dark";
+export type Theme = "light" | "dark";
 
-type ThemePref = "auto" | Theme;
+export type ThemePref = "auto" | Theme;
 
 // Banner
 
-type BannerType = "error" | "info";
+export type BannerType = "error" | "info";
 
 // Process status (import/export/encryption/decryption)
 
-type Status = "idle" | "inProgress" | "error";
+export type Status = "idle" | "inProgress" | "error";
 
 // Import and export
 
-type ImportFormat = "jsonDayOne" | "jsonJrnl" | "jsonMiniDiary" | "txtDayOne";
+export type ImportFormat = "jsonDayOne" | "jsonJrnl" | "jsonMiniDiary" | "txtDayOne";
 
-type ExportFormat = "jsonMiniDiary" | "md" | "pdf" | "txtDayOne";
+export type ExportFormat = "jsonMiniDiary" | "md" | "pdf" | "txtDayOne";
 
-interface DayOneEntry {
+export interface DayOneEntry {
 	creationDevice: string;
 	text: string;
 	richText: string;
@@ -65,29 +61,29 @@ interface DayOneEntry {
 	timeZone: string;
 }
 
-interface DayOneJson {
+export interface DayOneJson {
 	metadata: {
 		version: string;
 	};
 	entries: DayOneEntry[];
 }
 
-interface JrnlEntry {
+export interface JrnlEntry {
 	date: string;
 	title: string;
 	body: string;
 	[key: string]: string;
 }
 
-interface JrnlJson {
+export interface JrnlJson {
 	tags: Record<string, string>;
 	entries: JrnlEntry[];
 }
 
 // DiaryEntry after conversion of MiniDiaryJson's entries into array (required for MiniDiaryJson
 // import)
-interface ListDiaryEntry extends DiaryEntry {
+export interface ListDiaryEntry extends DiaryEntry {
 	indexDate: string;
 }
 
-type ImportEntry = string | DayOneEntry | DiaryEntry | JrnlEntry;
+export type ImportEntry = string | DayOneEntry | DiaryEntry | JrnlEntry;

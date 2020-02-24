@@ -16,6 +16,7 @@ import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
 
+import { Entries, IndexDate } from "../../../../types";
 import { toIndexDate, toLocaleWeekday } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import EditorToolbar from "../editor-toolbar/editor-toolbar/EditorToolbar";

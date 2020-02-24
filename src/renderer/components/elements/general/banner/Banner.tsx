@@ -2,6 +2,7 @@ import ErrorIcon from "feather-icons/dist/icons/alert-triangle.svg";
 import InfoIcon from "feather-icons/dist/icons/info.svg";
 import React, { FunctionComponent } from "react";
 
+import { BannerType } from "../../../../types";
 import { iconProps } from "../../../../utils/icons";
 
 interface Props {

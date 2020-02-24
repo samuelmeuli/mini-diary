@@ -1,5 +1,6 @@
 import MiniSearch, { SearchResult } from "minisearch";
 
+import { DiaryEntry, Entries, IndexDate } from "../types";
 import mdToTxt from "./mdToTxt";
 
 interface IndexDoc {

@@ -1,5 +1,7 @@
 import semver from "semver";
 
+import { MiniDiaryJson } from "../../types";
+
 /**
  * v2.0.0: Migrate plain text entries to Markdown entries (replace \n with \n\n)
  */

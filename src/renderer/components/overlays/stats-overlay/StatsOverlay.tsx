@@ -3,6 +3,7 @@ import React, { PureComponent, ReactNode } from "react";
 import countWords from "word-count";
 
 import { getLang } from "../../../electron/ipcRenderer/senders";
+import { Entries } from "../../../types";
 import { momentIndex } from "../../../utils/dateFormat";
 import { translations } from "../../../utils/i18n";
 import OverlayContainer from "../overlay-hoc/OverlayContainer";

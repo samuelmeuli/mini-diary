@@ -1,3 +1,5 @@
+import { Entries, DiaryEntry } from "../../types";
+
 /**
  * Convert an Entries object to an array of diary entries sorted by date
  */

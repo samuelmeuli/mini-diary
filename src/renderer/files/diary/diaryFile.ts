@@ -1,6 +1,7 @@
 import { remote } from "electron";
 import path from "path";
 
+import { Metadata } from "../../types";
 import { loadDirPref } from "../preferences/preferences";
 
 export const FILE_NAME = "mini-diary.txt";

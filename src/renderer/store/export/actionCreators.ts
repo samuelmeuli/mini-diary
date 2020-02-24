@@ -7,6 +7,7 @@ import { convertToMd } from "../../files/export/md";
 import { convertToPdf } from "../../files/export/pdf";
 import { convertToDayOneTxt } from "../../files/export/txt";
 import { writeFile } from "../../files/fileAccess";
+import { ExportFormat, Entries } from "../../types";
 import { translations } from "../../utils/i18n";
 import { ThunkActionT } from "../store";
 import {

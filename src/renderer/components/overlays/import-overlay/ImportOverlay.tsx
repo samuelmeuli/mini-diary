@@ -3,6 +3,7 @@ import { remote } from "electron";
 import logger from "electron-log";
 import React, { PureComponent, ReactNode } from "react";
 
+import { ImportFormat } from "../../../types";
 import { translate, translations } from "../../../utils/i18n";
 import OverlayContainer from "../overlay-hoc/OverlayContainer";
 

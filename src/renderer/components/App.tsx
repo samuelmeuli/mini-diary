@@ -2,7 +2,9 @@ import { remote } from "electron";
 
 import React, { Component, ReactNode } from "react";
 
+import { OverlayType } from "../../shared/types";
 import { toggleWindowSize } from "../electron/window";
+import { Status, Theme } from "../types";
 import { translations } from "../utils/i18n";
 import GoToDateOverlayContainer from "./overlays/go-to-date-overlay/GoToDateOverlayContainer";
 import ImportOverlayContainer from "./overlays/import-overlay/ImportOverlayContainer";

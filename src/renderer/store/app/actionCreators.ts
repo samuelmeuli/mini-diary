@@ -1,8 +1,10 @@
+import { OverlayType } from "../../../shared/types";
 import {
 	saveFirstDayOfWeekPref,
 	saveFutureEntriesPref,
 	saveThemePref,
 } from "../../files/preferences/preferences";
+import { Weekday, Theme, ThemePref } from "../../types";
 import { getThemeFromPref } from "../../utils/native-theme";
 import { ThunkActionT } from "../store";
 import {

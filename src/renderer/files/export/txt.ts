@@ -1,3 +1,4 @@
+import { Entries } from "../../types";
 import { momentIndex, toDayOneDate } from "../../utils/dateFormat";
 import mdToTxt from "../../utils/mdToTxt";
 import sortEntries from "./sortEntries";

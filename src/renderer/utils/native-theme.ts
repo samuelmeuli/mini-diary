@@ -3,6 +3,8 @@ import { release } from "os";
 import { darkMode, is } from "electron-util";
 import { gte } from "semver";
 
+import { ThemePref, Theme } from "../types";
+
 // macOS supports dark mode since Mojave (10.14)
 const MIN_MACOS_VERSION = "10.14.0";
 

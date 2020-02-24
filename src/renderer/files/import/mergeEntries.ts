@@ -1,3 +1,5 @@
+import { DiaryEntry } from "../../types";
+
 const INLINE_SEPARATOR = " | ";
 const MULTILINE_SEPARATOR = "\n\n––––––––––\n\n";
 

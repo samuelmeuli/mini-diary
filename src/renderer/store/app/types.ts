@@ -1,5 +1,8 @@
 import { Action } from "redux";
 
+import { OverlayType } from "../../../shared/types";
+import { Weekday, Theme, ThemePref } from "../../types";
+
 // State
 
 export interface AppState {

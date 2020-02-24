@@ -1,5 +1,7 @@
 import { Action } from "redux";
 
+import { ImportFormat, Status } from "../../types";
+
 // State
 
 export interface ImportState {

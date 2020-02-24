@@ -3,6 +3,7 @@ import React, { PureComponent, ReactNode } from "react";
 import DayPicker from "react-day-picker";
 import MomentLocaleUtils from "react-day-picker/moment";
 
+import { Entries, Weekday } from "../../../../types";
 import { toIndexDate } from "../../../../utils/dateFormat";
 import { lang } from "../../../../utils/i18n";
 import CalendarNavContainer from "../calendar-nav/CalendarNavContainer";

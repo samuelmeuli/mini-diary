@@ -1,5 +1,6 @@
 import moment from "moment";
 
+import { Entries, ImportEntry, DiaryEntry } from "../../types";
 import { toIndexDate } from "../../utils/dateFormat";
 import buildEntries from "./buildEntries";
 

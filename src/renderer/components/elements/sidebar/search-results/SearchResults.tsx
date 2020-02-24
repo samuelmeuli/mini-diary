@@ -1,5 +1,6 @@
 import React, { PureComponent, ReactNode } from "react";
 
+import { Entries } from "../../../../types";
 import { momentIndex, toDateString } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../general/banner/Banner";

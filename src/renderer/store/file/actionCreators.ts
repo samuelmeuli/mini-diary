@@ -12,6 +12,7 @@ import {
 	writeEncryptedFile,
 } from "../../files/fileAccess";
 import mergeEntries from "../../files/import/mergeEntries";
+import { Entries, MiniDiaryJson, IndexDate } from "../../types";
 import { translations } from "../../utils/i18n";
 import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";

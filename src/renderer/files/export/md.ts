@@ -1,3 +1,4 @@
+import { Entries } from "../../types";
 import { momentIndex, toLocaleWeekday } from "../../utils/dateFormat";
 import sortEntries from "./sortEntries";
 

@@ -1,3 +1,4 @@
+import { OverlayType } from "../../shared/types";
 import { getWindow } from "../window";
 
 // Date

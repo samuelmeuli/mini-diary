@@ -3,6 +3,7 @@ import logger from "electron-log";
 import { readFile } from "../../files/fileAccess";
 import { parseDayOneJson, parseJrnlJson, parseMiniDiaryJson } from "../../files/import/json";
 import { parseDayOneTxt } from "../../files/import/txt";
+import { ImportFormat } from "../../types";
 import { closeOverlay } from "../app/actionCreators";
 import { mergeUpdateFile } from "../file/actionCreators";
 import { ThunkActionT } from "../store";

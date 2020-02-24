@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 
+import { ThemePref } from "../../../../types";
 import { translations } from "../../../../utils/i18n";
 import { supportsNativeTheme } from "../../../../utils/native-theme";
 
@@ -16,7 +17,7 @@ type Props = StateProps & DispatchProps;
 /**
  * Preference fieldset for updating the app's theme
  */
-export default function ThemePref(props: Props): ReactElement {
+export default function ThemePrefComponent(props: Props): ReactElement {
 	const { themePref, updateThemePref } = props;
 
 	const setThemePrefAuto = (): void => updateThemePref("auto");
