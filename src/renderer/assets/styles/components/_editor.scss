@@ -3,11 +3,11 @@ $editor-padding-large: 2 * $spacing-abs-large;
 
 .editor {
 	@include background-color("background-input");
+	@include box-shadow($shadow-size-inner, "shadow-inner");
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	border-radius: $border-radius-input;
-	box-shadow: $box-shadow-inset;
 }
 
 .editor-scrollable {
@@ -32,6 +32,7 @@ $editor-padding-large: 2 * $spacing-abs-large;
 
 .editor-toolbar {
 	@include background-color("background-hover");
+	@include box-shadow(0 -1.5px 1px 0, "shadow-inner");
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

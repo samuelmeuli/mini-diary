@@ -1,25 +1,25 @@
-@mixin themify($property, $key, $themes: $themes) {
+@mixin themify($property, $color-id, $pre-args: null, $post-args: null) {
 	// Loop over themes
 	@each $theme, $colors in $themes {
 		// Create selector for all themes
 		.theme-#{$theme} & {
-			#{$property}: map-get($colors, $key);
+			#{$property}: $pre-args map-get($colors, $color-id) $post-args;
 		}
 	}
 }
 
-@mixin background-color($arguments...) {
-	@include themify("background-color", $arguments...);
+@mixin background-color($color-id) {
+	@include themify("background-color", $color-id);
 }
 
-@mixin border-color($arguments...) {
-	@include themify("border-color", $arguments...);
+@mixin border-color($color-id) {
+	@include themify("border-color", $color-id);
 }
 
-@mixin box-shadow($arguments...) {
-	@include themify("box-shadow", $arguments...);
+@mixin color($color-id) {
+	@include themify("color", $color-id);
 }
 
-@mixin color($arguments...) {
-	@include themify("color", $arguments...);
+@mixin box-shadow($sizes, $color-id) {
+	@include themify("box-shadow", $color-id, $sizes);
 }

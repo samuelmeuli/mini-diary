@@ -23,8 +23,8 @@ textarea {
 .button {
 	@include input-fixed-height;
 	@include background-color("background-input");
+	@include box-shadow($shadow-size-outer, "shadow-outer");
 	border-radius: $border-radius-button;
-	box-shadow: $box-shadow;
 	transition: $transition;
 
 	&:not(.button-invisible):hover {
@@ -81,9 +81,9 @@ textarea {
 input:not([type="checkbox"]):not([type="radio"]) {
 	@include input-fixed-height;
 	@include background-color("background-input");
+	@include box-shadow($shadow-size-inner, "shadow-inner");
 	width: $input-width;
 	border-radius: $border-radius-input;
-	box-shadow: $box-shadow-inset;
 
 	// Date input: Hide arrow button which displays Chrome's date picker popup
 	&[type="date"]::-webkit-calendar-picker-indicator {

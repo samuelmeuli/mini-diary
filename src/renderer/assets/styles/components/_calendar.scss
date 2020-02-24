@@ -92,7 +92,7 @@
 .DayPicker-Day--selected {
 	@include color("text-button");
 	@include background-color("main");
-	box-shadow: $box-shadow;
+	@include box-shadow($shadow-size-outer, "shadow-outer");
 
 	&:hover {
 		@include background-color("main-hover");

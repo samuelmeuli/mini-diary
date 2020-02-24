@@ -16,6 +16,8 @@ $themes: (
 		"text-placeholder": #757575,
 		"scrollbar": rgba(0, 0, 0, 0.2),
 		"scrollbar-hover": rgba(0, 0, 0, 0.3),
+		"shadow-inner": rgba(0, 0, 0, 0.13),
+		"shadow-outer": rgba(0, 0, 0, 0.18),
 	),
 	"dark": (
 		"background": #1d1d1f,
@@ -33,6 +35,8 @@ $themes: (
 		"text-placeholder": #757575,
 		"scrollbar": rgba(0, 0, 0, 0.4),
 		"scrollbar-hover": rgba(0, 0, 0, 0.5),
+		"shadow-inner": rgba(0, 0, 0, 0.2),
+		"shadow-outer": rgba(0, 0, 0, 0.4),
 	),
 ) !default;
 
@@ -70,6 +74,6 @@ $screen-large: 1824px;
 // Other
 $border-radius-button: 10px;
 $border-radius-input: 5px;
-$box-shadow: 0.5px 0.5px 1px 1px rgba(0, 0, 0, 0.18);
-$box-shadow-inset: inset 0.5px 0.5px 1px 1px rgba(0, 0, 0, 0.13);
+$shadow-size-inner: inset 0.5px 0.5px 1px 1px;
+$shadow-size-outer: 0.5px 0.5px 1px 1px;
 $transition: 0.2s;
