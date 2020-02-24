@@ -1,8 +1,8 @@
 import { remote } from "electron";
 
 import settings from "electron-settings";
-import { JsonValue } from "type-fest";
 
+import { JsonValue } from "../../../shared/types";
 import { supportsNativeTheme } from "../../utils/native-theme";
 
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;

@@ -1,3 +1,13 @@
+// General types
+
+export interface JsonObject {
+	[x: string]: JsonValue;
+}
+export type JsonArray = Array<JsonValue>;
+export type JsonValue = string | number | boolean | null | JsonArray | JsonObject;
+
+// I18n
+
 // prettier-ignore
 export interface Translations {
 	// Menu (defined by macOS)
