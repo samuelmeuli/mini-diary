@@ -31,7 +31,7 @@ $editor-padding-large: 2 * $spacing-abs-large;
 }
 
 .editor-toolbar {
-	@include background-color("background-hover");
+	@include background-color("background-toolbar");
 	@include box-shadow(0 -1.5px 1px 0, "shadow-inner");
 	display: flex;
 	align-items: center;
