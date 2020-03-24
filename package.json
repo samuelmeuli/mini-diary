@@ -258,7 +258,8 @@
 		},
 		"mas": {
 			"entitlements": "./build/entitlements.mas.plist",
-			"entitlementsInherit": "./build/entitlements.mas.inherit.plist"
+			"entitlementsInherit": "./build/entitlements.mas.inherit.plist",
+			"hardenedRuntime": false
 		},
 		"linux": {
 			"category": "Utility"
