@@ -216,6 +216,11 @@
 		"afterPack": "./scripts/after-pack.js",
 		"afterSign": "electron-builder-notarize",
 		"mac": {
+			"target": [
+				"dmg",
+				"mas",
+				"zip"
+			],
 			"category": "public.app-category.lifestyle",
 			"darkModeSupport": true,
 			"electronLanguages": [
