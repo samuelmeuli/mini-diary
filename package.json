@@ -252,7 +252,13 @@
 				"zh_CN",
 				"zh_TW"
 			],
+			"entitlements": "./build/entitlements.mac.plist",
+			"entitlementsInherit": "./build/entitlements.mac.plist",
 			"hardenedRuntime": true
+		},
+		"mas": {
+			"entitlements": "./build/entitlements.mas.plist",
+			"entitlementsInherit": "./build/entitlements.mas.plist"
 		},
 		"linux": {
 			"category": "Utility"
