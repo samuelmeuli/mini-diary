@@ -40,7 +40,7 @@ const PLATFORM_EXTENSIONS: Partial<Record<Platform, Extension>> = {
 function getCurrentPlatform(): Platform {
 	const userAgent = navigator.userAgent.toLowerCase();
 	if (userAgent.match(/(mac|os x)/)) {
-		return Platform.Mac;
+		return Platform.Mas;
 	}
 	if (userAgent.match(/windows/)) {
 		return Platform.Windows;
