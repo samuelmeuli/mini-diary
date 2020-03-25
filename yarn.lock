@@ -11029,10 +11029,9 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-word-count@^0.2.2:
+"word-count@github:samuelmeuli/word-count":
   version "0.2.2"
-  resolved "https://registry.yarnpkg.com/word-count/-/word-count-0.2.2.tgz#699192fca6829fe936d41cb0d95db9248c570451"
-  integrity sha1-aZGS/KaCn+k21Byw2V25JIxXBFE=
+  resolved "https://codeload.github.com/samuelmeuli/word-count/tar.gz/10765b790119ff0506db73f186b01a908e146a12"
 
 word-wrap@~1.2.3:
   version "1.2.3"

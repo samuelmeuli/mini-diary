@@ -11,8 +11,3 @@ declare module "*.svg" {
 declare module "markdown-draft-js";
 
 declare module "strip-markdown";
-
-// TODO: Remove once https://github.com/yuehu/word-count/pull/5 is merged
-declare module "word-count" {
-	export default function count(data: string): number;
-}
