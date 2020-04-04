@@ -9,6 +9,7 @@ import translationsEn from "./translations/en";
 import translationsEs from "./translations/es";
 import translationsFr from "./translations/fr";
 import translationsIs from "./translations/is";
+import translationsIt from "./translations/it";
 import translationsPt from "./translations/pt";
 import translationsTr from "./translations/tr";
 import translationsUk from "./translations/uk";
@@ -16,17 +17,18 @@ import translationsZh from "./translations/zh";
 import translationsZhTw from "./translations/zhTw";
 
 const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
-	de: translationsDe,
-	el: translationsEl,
-	en: translationsEn,
-	es: translationsEs,
-	fr: translationsFr,
-	is: translationsIs,
-	pt: translationsPt,
-	tr: translationsTr,
-	uk: translationsUk,
-	zh: translationsZh,
-	"zh-TW": translationsZhTw,
+    de: translationsDe,
+    el: translationsEl,
+    en: translationsEn,
+    es: translationsEs,
+    fr: translationsFr,
+    is: translationsIs,
+    it: translationsIt,
+    pt: translationsPt,
+    tr: translationsTr,
+    uk: translationsUk,
+    zh: translationsZh,
+    "zh-TW": translationsZhTw,
 };
 let translations: Partial<Translations>; // String translations for langNoRegion
 
@@ -39,7 +41,7 @@ let langNoRegion: string; // Language used by app without region string (e.g. 'e
  * Return language to use for the app
  */
 export function getUsedLang(): string {
-	return lang;
+    return lang;
 }
 
 /**
@@ -47,36 +49,36 @@ export function getUsedLang(): string {
  * otherwise fall back to default language
  */
 export function initI18n(): void {
-	systemLang = app.getLocale();
-	const systemLangNoRegion = systemLang.split("-")[0];
-	const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
-	logger.log(`System language is "${systemLang}" ("${systemLangNoRegion}" without region)`);
+    systemLang = app.getLocale();
+    const systemLangNoRegion = systemLang.split("-")[0];
+    const defaultTranslations = ALL_TRANSLATIONS[FALLBACK_LANG];
+    logger.log(`System language is "${systemLang}" ("${systemLangNoRegion}" without region)`);
 
-	if (systemLang in ALL_TRANSLATIONS) {
-		// This if-else statement can ensure that if there is any region-specified localizations found,
-		// the system will detect and choose the regional localization, instead of the more general one
-		lang = systemLang;
-		translations = {
-			...defaultTranslations,
-			...ALL_TRANSLATIONS[lang],
-		};
-		logger.log(`Using "${lang}" locale and translations`);
-	} else if (systemLangNoRegion in ALL_TRANSLATIONS) {
-		// Use system language if translations are available
-		lang = systemLang;
-		langNoRegion = systemLangNoRegion;
-		translations = {
-			...defaultTranslations,
-			...ALL_TRANSLATIONS[langNoRegion],
-		};
-		logger.log(`Using "${lang}" locale and "${langNoRegion}" translations`);
-	} else {
-		// Otherwise, fall back to default language
-		lang = FALLBACK_LANG;
-		langNoRegion = FALLBACK_LANG;
-		translations = defaultTranslations;
-		logger.log(`Using default locale and translations ("${FALLBACK_LANG}")`);
-	}
+    if (systemLang in ALL_TRANSLATIONS) {
+        // This if-else statement can ensure that if there is any region-specified localizations found,
+        // the system will detect and choose the regional localization, instead of the more general one
+        lang = systemLang;
+        translations = {
+            ...defaultTranslations,
+            ...ALL_TRANSLATIONS[lang],
+        };
+        logger.log(`Using "${lang}" locale and translations`);
+    } else if (systemLangNoRegion in ALL_TRANSLATIONS) {
+        // Use system language if translations are available
+        lang = systemLang;
+        langNoRegion = systemLangNoRegion;
+        translations = {
+            ...defaultTranslations,
+            ...ALL_TRANSLATIONS[langNoRegion],
+        };
+        logger.log(`Using "${lang}" locale and "${langNoRegion}" translations`);
+    } else {
+        // Otherwise, fall back to default language
+        lang = FALLBACK_LANG;
+        langNoRegion = FALLBACK_LANG;
+        translations = defaultTranslations;
+        logger.log(`Using default locale and translations ("${FALLBACK_LANG}")`);
+    }
 }
 
 /**
@@ -84,37 +86,37 @@ export function initI18n(): void {
  * required
  */
 export function translate(
-	i18nKey: keyof Translations,
-	substitutions?: Record<string, string>,
+    i18nKey: keyof Translations,
+    substitutions?: Record<string, string>,
 ): string {
-	let translation = translations[i18nKey];
+    let translation = translations[i18nKey];
 
-	// Log error and return `i18nKey` if translation string is missing both in current and fallback
-	// language
-	if (!translation) {
-		logger.error(`Missing translation of i18nKey "${i18nKey}"`);
-		return i18nKey;
-	}
+    // Log error and return `i18nKey` if translation string is missing both in current and fallback
+    // language
+    if (!translation) {
+        logger.error(`Missing translation of i18nKey "${i18nKey}"`);
+        return i18nKey;
+    }
 
-	// Return translation if no `substitutions` object is provided
-	if (!substitutions) {
-		return translation;
-	}
+    // Return translation if no `substitutions` object is provided
+    if (!substitutions) {
+        return translation;
+    }
 
-	// Perform string substitutions if `substitutions` object is provided
-	// Example:
-	//   Translation definition: { test: 'Hello {var}' }
-	//   Function call: translate('test', { var: 'World' })
-	//   Result: 'Hello World'
-	Object.entries(substitutions).forEach(([toReplace, replacement]): void => {
-		translation = (translation as string).replace(new RegExp(`{${toReplace}}`, "g"), replacement);
-	});
-	return translation;
+    // Perform string substitutions if `substitutions` object is provided
+    // Example:
+    //   Translation definition: { test: 'Hello {var}' }
+    //   Function call: translate('test', { var: 'World' })
+    //   Result: 'Hello World'
+    Object.entries(substitutions).forEach(([toReplace, replacement]): void => {
+        translation = (translation as string).replace(new RegExp(`{${toReplace}}`, "g"), replacement);
+    });
+    return translation;
 }
 
 /**
  * Return all translations for the detected language
  */
 export function getTranslations(): Partial<Translations> {
-	return translations;
+    return translations;
 }
