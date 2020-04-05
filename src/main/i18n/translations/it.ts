@@ -3,7 +3,7 @@ import { Translations } from "../../../shared/types";
 // prettier-ignore
 const translationsIt: Translations = {
     // Menu (defined by macOS)
-    "about-app": "Informazioni su {appName}",
+"about-app": "Informazioni su {appName}",
     "bring-all-to-front": "Porta tutto in primo piano",
     "close": "Chiudi",
     "copy": "Copia",

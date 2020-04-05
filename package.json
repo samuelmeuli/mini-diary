@@ -1,271 +1,271 @@
 {
-    "name": "mini-diary",
-    "productName": "Mini Diary",
-    "version": "3.0.2",
-    "description": "Simple and secure journal app",
-    "main": "./bundle/main.js",
-    "author": {
-        "name": "Samuel Meuli",
-        "email": "me@samuelmeuli.com",
-        "url": "https://samuelmeuli.com"
-    },
-    "repository": "github:samuelmeuli/mini-diary",
-    "homepage": "https://minidiary.app",
-    "license": "MIT",
-    "private": true,
-    "scripts": {
-        "postinstall": "electron-builder install-app-deps",
-        "start": "npm-run-all build:ts --parallel start:*",
-        "start:ts": "run-p start:ts:*",
-        "start:ts:main": "webpack --config ./webpack.main.ts --mode development --watch",
-        "start:ts:renderer": "webpack --config ./webpack.renderer.ts --mode development --watch",
-        "start:app": "electron .",
-        "build": "run-s build:*",
-        "build:clean": "rm -rf ./bundle ./dist",
-        "build:ts": "run-p build:ts:*",
-        "build:ts:main": "webpack --config ./webpack.main.ts --mode production",
-        "build:ts:renderer": "webpack --config ./webpack.renderer.ts --mode production",
-        "website:start": "npm-run-all website:build:css --parallel website:start:*",
-        "website:start:serve": "serve ./website --listen 3000",
-        "website:start:ts": "tsc --project ./website --watch",
-        "website:build": "run-p website:build:*",
-        "website:build:css": "cp ./node_modules/minireset.css/minireset.min.css ./website/styles/",
-        "website:build:ts": "tsc --project ./website",
-        "test": "run-s test:*",
-        "test:jest": "cross-env TZ=GMT jest",
-        "test:types": "tsc --project ./website --noEmit",
-        "lint:css": "stylelint --fix --max-warnings 0",
-        "lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0",
-        "format": "prettier --write"
-    },
-    "dependencies": {
-        "@svgr/webpack": "^5.3.0",
-        "@types/draft-js": "^0.10.36",
-        "@types/electron-settings": "^3.1.1",
-        "@types/lodash.debounce": "^4.0.6",
-        "@types/node": "^12.12.31",
-        "@types/react": "^16.9.25",
-        "@types/react-dom": "^16.9.1",
-        "@types/react-redux": "^7.1.7",
-        "@types/redux-logger": "^3.0.7",
-        "@types/semver": "^7.1.0",
-        "draft-js": "^0.11.3",
-        "draft-js-list-plugin": "^1.0.2",
-        "draft-js-plugins-editor": "^3.0.0",
-        "electron-context-menu": "^0.16.0",
-        "electron-debug": "^3.0.0",
-        "electron-log": "^4.1.0",
-        "electron-md-to-pdf": "^2.2.0",
-        "electron-settings": "^3.2.0",
-        "electron-unhandled": "^3.0.1",
-        "electron-updater": "^4.2.5",
-        "electron-util": "^0.14.0",
-        "feather-icons": "^4.26.0",
-        "lodash.debounce": "^4.0.8",
-        "markdown-draft-js": "^2.2.0",
-        "minireset.css": "^0.0.6",
-        "minisearch": "^2.1.4",
-        "moment": "^2.22.2",
-        "move-file": "^1.2.0",
-        "react": "^16.13.1",
-        "react-day-picker": "github:samuelmeuli/react-day-picker",
-        "react-dom": "^16.13.1",
-        "react-redux": "^7.2.0",
-        "redux": "^4.0.5",
-        "redux-logger": "^3.0.6",
-        "redux-thunk": "^2.3.0",
-        "remark": "^11.0.0",
-        "remark-stringify": "^7.0.3",
-        "semver": "^7.1.3",
-        "strip-markdown": "^3.1.2",
-        "word-count": "github:samuelmeuli/word-count"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/preset-env": "^7.9.0",
-        "@babel/preset-react": "^7.9.4",
-        "@babel/preset-typescript": "^7.9.0",
-        "@samuelmeuli/eslint-config": "^6.0.0",
-        "@samuelmeuli/prettier-config": "^1.0.0",
-        "@samuelmeuli/stylelint-config": "^3.0.0",
-        "@samuelmeuli/tsconfig": "^1.0.0",
-        "@types/html-webpack-plugin": "^3.2.2",
-        "@types/jest": "^25.1.4",
-        "@types/license-checker-webpack-plugin": "^0.0.2",
-        "@types/webpack": "^4.41.5",
-        "@types/webpack-merge": "^4.1.5",
-        "@typescript-eslint/eslint-plugin": "^2.25.0",
-        "@typescript-eslint/parser": "^2.25.0",
-        "babel-loader": "^8.1.0",
-        "cross-env": "^7.0.2",
-        "css-loader": "^3.4.0",
-        "electron": "^8.2.0",
-        "electron-builder": "^22.4.1",
-        "electron-builder-notarize": "^1.1.1",
-        "eslint": "6.8.0",
-        "eslint-config-airbnb": "18.1.0",
-        "eslint-config-prettier": "^6.10.1",
-        "eslint-plugin-import": "^2.20.1",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.19.0",
-        "eslint-plugin-react-hooks": "^2.5.1",
-        "file-loader": "^6.0.0",
-        "html-webpack-plugin": "^4.0.1",
-        "husky": "^4.2.3",
-        "jest": "^25.1.0",
-        "license-checker-webpack-plugin": "^0.1.4",
-        "lint-staged": "^10.0.9",
-        "mockdate": "^2.0.3",
-        "npm-run-all": "^4.1.3",
-        "prettier": "^1.18.2",
-        "sass": "^1.26.3",
-        "sass-loader": "^8.0.0",
-        "serve": "^11.3.0",
-        "style-loader": "^1.1.2",
-        "stylelint": "^12.0.1",
-        "ts-node": "^8.8.1",
-        "typescript": "^3.8.3",
-        "webpack": "^4.41.6",
-        "webpack-cli": "^3.3.11",
-        "webpack-merge": "^4.2.2"
-    },
-    "browserslist": [
-        "electron 7.0"
-    ],
-    "babel": {
-        "presets": [
-            "@babel/preset-env",
-            "@babel/preset-react",
-            "@babel/preset-typescript"
-        ],
-        "plugins": [
-            "@babel/plugin-proposal-class-properties"
-        ]
-    },
-    "jest": {
-        "moduleNameMapper": {
-            "electron": "<rootDir>/test/setup/electron-mock.ts"
-        },
-        "setupFiles": [
-            "<rootDir>/test/setup/setup.ts"
-        ]
-    },
-    "eslintConfig": {
-        "root": true,
-        "extends": [
-            "@samuelmeuli/eslint-config/typescript-react",
-            "plugin:import/electron"
-        ],
-        "env": {
-            "browser": true,
-            "node": true,
-            "jest": true
-        },
-        "rules": {
-            "import/no-extraneous-dependencies": [
-                "error",
-                {
-                    "devDependencies": [
-                        "scripts/**/*",
-                        "test/**/*",
-                        "webpack.*.ts"
-                    ]
-                }
-            ]
-        }
-    },
-    "stylelint": {
-        "extends": "@samuelmeuli/stylelint-config"
-    },
-    "prettier": "@samuelmeuli/prettier-config",
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "yarn lint:ts",
-            "yarn format"
-        ],
-        "*.{css,sass,scss}": [
-            "yarn lint:css",
-            "yarn format"
-        ],
-        "*.{html,js,json,jsx,md,vue,yaml,yml}": [
-            "yarn format"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn test && lint-staged"
-        }
-    },
-    "build": {
-        "appId": "com.samuelmeuli.minidiary",
-        "files": [
-            "!**/*",
-            "./bundle/**/*"
-        ],
-        "extraResources": [
-            {
-                "from": "./bundle/licenses-main.txt",
-                "to": "./licenses-main.txt"
-            },
-            {
-                "from": "./bundle/licenses-renderer.txt",
-                "to": "./licenses-renderer.txt"
-            }
-        ],
-        "afterPack": "./scripts/after-pack.js",
-        "afterSign": "electron-builder-notarize",
-        "mac": {
-            "target": [
-                "dmg",
-                "mas",
-                "zip"
-            ],
-            "category": "public.app-category.lifestyle",
-            "darkModeSupport": true,
-            "electronLanguages": [
-                "de",
-                "de_AT",
-                "de_CH",
-                "de_DE",
-                "el",
-                "en",
-                "en_AU",
-                "en_CA",
-                "en_GB",
-                "en_NZ",
-                "en_US",
-                "en_ZA",
-                "es",
-                "es_419",
-                "fr",
-                "fr_CA",
-                "fr_CH",
-                "fr_FR",
-                "is",
-                "pt",
-                "pt_BR",
-                "pt_PT",
-                "tr",
-                "uk",
-                "zh",
-                "zh_CN",
-                "zh_TW"
-            ],
-            "entitlements": "./build/entitlements.mac.plist",
-            "entitlementsInherit": "./build/entitlements.mac.plist",
-            "hardenedRuntime": true
-        },
-        "mas": {
-            "entitlements": "./build/entitlements.mas.plist",
-            "entitlementsInherit": "./build/entitlements.mas.inherit.plist",
-            "hardenedRuntime": false
-        },
-        "linux": {
-            "category": "Utility"
-        },
-        "dmg": {
-            "icon": false
-        }
-    }
+	"name": "mini-diary",
+	"productName": "Mini Diary",
+	"version": "3.0.2",
+	"description": "Simple and secure journal app",
+	"main": "./bundle/main.js",
+	"author": {
+		"name": "Samuel Meuli",
+		"email": "me@samuelmeuli.com",
+		"url": "https://samuelmeuli.com"
+	},
+	"repository": "github:samuelmeuli/mini-diary",
+	"homepage": "https://minidiary.app",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
+		"start": "npm-run-all build:ts --parallel start:*",
+		"start:ts": "run-p start:ts:*",
+		"start:ts:main": "webpack --config ./webpack.main.ts --mode development --watch",
+		"start:ts:renderer": "webpack --config ./webpack.renderer.ts --mode development --watch",
+		"start:app": "electron .",
+		"build": "run-s build:*",
+		"build:clean": "rm -rf ./bundle ./dist",
+		"build:ts": "run-p build:ts:*",
+		"build:ts:main": "webpack --config ./webpack.main.ts --mode production",
+		"build:ts:renderer": "webpack --config ./webpack.renderer.ts --mode production",
+		"website:start": "npm-run-all website:build:css --parallel website:start:*",
+		"website:start:serve": "serve ./website --listen 3000",
+		"website:start:ts": "tsc --project ./website --watch",
+		"website:build": "run-p website:build:*",
+		"website:build:css": "cp ./node_modules/minireset.css/minireset.min.css ./website/styles/",
+		"website:build:ts": "tsc --project ./website",
+		"test": "run-s test:*",
+		"test:jest": "cross-env TZ=GMT jest",
+		"test:types": "tsc --project ./website --noEmit",
+		"lint:css": "stylelint --fix --max-warnings 0",
+		"lint:ts": "eslint --ext .ts,.tsx --fix --max-warnings 0",
+		"format": "prettier --write"
+	},
+	"dependencies": {
+		"@svgr/webpack": "^5.3.0",
+		"@types/draft-js": "^0.10.36",
+		"@types/electron-settings": "^3.1.1",
+		"@types/lodash.debounce": "^4.0.6",
+		"@types/node": "^12.12.31",
+		"@types/react": "^16.9.25",
+		"@types/react-dom": "^16.9.1",
+		"@types/react-redux": "^7.1.7",
+		"@types/redux-logger": "^3.0.7",
+		"@types/semver": "^7.1.0",
+		"draft-js": "^0.11.3",
+		"draft-js-list-plugin": "^1.0.2",
+		"draft-js-plugins-editor": "^3.0.0",
+		"electron-context-menu": "^0.16.0",
+		"electron-debug": "^3.0.0",
+		"electron-log": "^4.1.0",
+		"electron-md-to-pdf": "^2.2.0",
+		"electron-settings": "^3.2.0",
+		"electron-unhandled": "^3.0.1",
+		"electron-updater": "^4.2.5",
+		"electron-util": "^0.14.0",
+		"feather-icons": "^4.26.0",
+		"lodash.debounce": "^4.0.8",
+		"markdown-draft-js": "^2.2.0",
+		"minireset.css": "^0.0.6",
+		"minisearch": "^2.1.4",
+		"moment": "^2.22.2",
+		"move-file": "^1.2.0",
+		"react": "^16.13.1",
+		"react-day-picker": "github:samuelmeuli/react-day-picker",
+		"react-dom": "^16.13.1",
+		"react-redux": "^7.2.0",
+		"redux": "^4.0.5",
+		"redux-logger": "^3.0.6",
+		"redux-thunk": "^2.3.0",
+		"remark": "^11.0.0",
+		"remark-stringify": "^7.0.3",
+		"semver": "^7.1.3",
+		"strip-markdown": "^3.1.2",
+		"word-count": "github:samuelmeuli/word-count"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.9.0",
+		"@babel/plugin-proposal-class-properties": "^7.7.4",
+		"@babel/preset-env": "^7.9.0",
+		"@babel/preset-react": "^7.9.4",
+		"@babel/preset-typescript": "^7.9.0",
+		"@samuelmeuli/eslint-config": "^6.0.0",
+		"@samuelmeuli/prettier-config": "^1.0.0",
+		"@samuelmeuli/stylelint-config": "^3.0.0",
+		"@samuelmeuli/tsconfig": "^1.0.0",
+		"@types/html-webpack-plugin": "^3.2.2",
+		"@types/jest": "^25.1.4",
+		"@types/license-checker-webpack-plugin": "^0.0.2",
+		"@types/webpack": "^4.41.5",
+		"@types/webpack-merge": "^4.1.5",
+		"@typescript-eslint/eslint-plugin": "^2.25.0",
+		"@typescript-eslint/parser": "^2.25.0",
+		"babel-loader": "^8.1.0",
+		"cross-env": "^7.0.2",
+		"css-loader": "^3.4.0",
+		"electron": "^8.2.0",
+		"electron-builder": "^22.4.1",
+		"electron-builder-notarize": "^1.1.1",
+		"eslint": "6.8.0",
+		"eslint-config-airbnb": "18.1.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-plugin-import": "^2.20.1",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.19.0",
+		"eslint-plugin-react-hooks": "^2.5.1",
+		"file-loader": "^6.0.0",
+		"html-webpack-plugin": "^4.0.1",
+		"husky": "^4.2.3",
+		"jest": "^25.1.0",
+		"license-checker-webpack-plugin": "^0.1.4",
+		"lint-staged": "^10.0.9",
+		"mockdate": "^2.0.3",
+		"npm-run-all": "^4.1.3",
+		"prettier": "^1.18.2",
+		"sass": "^1.26.3",
+		"sass-loader": "^8.0.0",
+		"serve": "^11.3.0",
+		"style-loader": "^1.1.2",
+		"stylelint": "^12.0.1",
+		"ts-node": "^8.8.1",
+		"typescript": "^3.8.3",
+		"webpack": "^4.41.6",
+		"webpack-cli": "^3.3.11",
+		"webpack-merge": "^4.2.2"
+	},
+	"browserslist": [
+		"electron 7.0"
+	],
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react",
+			"@babel/preset-typescript"
+		],
+		"plugins": [
+			"@babel/plugin-proposal-class-properties"
+		]
+	},
+	"jest": {
+		"moduleNameMapper": {
+			"electron": "<rootDir>/test/setup/electron-mock.ts"
+		},
+		"setupFiles": [
+			"<rootDir>/test/setup/setup.ts"
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"extends": [
+			"@samuelmeuli/eslint-config/typescript-react",
+			"plugin:import/electron"
+		],
+		"env": {
+			"browser": true,
+			"node": true,
+			"jest": true
+		},
+		"rules": {
+			"import/no-extraneous-dependencies": [
+				"error",
+				{
+					"devDependencies": [
+						"scripts/**/*",
+						"test/**/*",
+						"webpack.*.ts"
+					]
+				}
+			]
+		}
+	},
+	"stylelint": {
+		"extends": "@samuelmeuli/stylelint-config"
+	},
+	"prettier": "@samuelmeuli/prettier-config",
+	"lint-staged": {
+		"*.{ts,tsx}": [
+			"yarn lint:ts",
+			"yarn format"
+		],
+		"*.{css,sass,scss}": [
+			"yarn lint:css",
+			"yarn format"
+		],
+		"*.{html,js,json,jsx,md,vue,yaml,yml}": [
+			"yarn format"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn test && lint-staged"
+		}
+	},
+	"build": {
+		"appId": "com.samuelmeuli.minidiary",
+		"files": [
+			"!**/*",
+			"./bundle/**/*"
+		],
+		"extraResources": [
+			{
+				"from": "./bundle/licenses-main.txt",
+				"to": "./licenses-main.txt"
+			},
+			{
+				"from": "./bundle/licenses-renderer.txt",
+				"to": "./licenses-renderer.txt"
+			}
+		],
+		"afterPack": "./scripts/after-pack.js",
+		"afterSign": "electron-builder-notarize",
+		"mac": {
+			"target": [
+				"dmg",
+				"mas",
+				"zip"
+			],
+			"category": "public.app-category.lifestyle",
+			"darkModeSupport": true,
+			"electronLanguages": [
+				"de",
+				"de_AT",
+				"de_CH",
+				"de_DE",
+				"el",
+				"en",
+				"en_AU",
+				"en_CA",
+				"en_GB",
+				"en_NZ",
+				"en_US",
+				"en_ZA",
+				"es",
+				"es_419",
+				"fr",
+				"fr_CA",
+				"fr_CH",
+				"fr_FR",
+				"is",
+				"pt",
+				"pt_BR",
+				"pt_PT",
+				"tr",
+				"uk",
+				"zh",
+				"zh_CN",
+				"zh_TW"
+			],
+			"entitlements": "./build/entitlements.mac.plist",
+			"entitlementsInherit": "./build/entitlements.mac.plist",
+			"hardenedRuntime": true
+		},
+		"mas": {
+			"entitlements": "./build/entitlements.mas.plist",
+			"entitlementsInherit": "./build/entitlements.mas.inherit.plist",
+			"hardenedRuntime": false
+		},
+		"linux": {
+			"category": "Utility"
+		},
+		"dmg": {
+			"icon": false
+		}
+	}
 }
