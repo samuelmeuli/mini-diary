@@ -55,9 +55,8 @@ export function initI18n(): void {
 	logger.log(`System language is "${systemLang}" ("${systemLangNoRegion}" without region)`);
 
 	if (systemLang in ALL_TRANSLATIONS) {
-		// This if-else statement can ensure that if there is any region-specified localizations
-		// found, the system will detect and choose the regional localization, instead of
-		// the more general one
+		// This if-else statement can ensure that if there is any region-specified localizations found,
+		// the system will detect and choose the regional localization, instead of the more general one
 		lang = systemLang;
 		translations = {
 			...defaultTranslations,
