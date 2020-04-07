@@ -1,23 +1,23 @@
-import moment from "moment";
+import { Moment } from "moment";
 import React, { PureComponent, ReactNode } from "react";
 import DayPicker from "react-day-picker";
 import MomentLocaleUtils from "react-day-picker/moment";
 
 import { Entries, Weekday } from "../../../../types";
-import { toIndexDate } from "../../../../utils/dateFormat";
+import { createDate, parseDate, toIndexDate } from "../../../../utils/dateFormat";
 import { lang } from "../../../../utils/i18n";
 import CalendarNavContainer from "../calendar-nav/CalendarNavContainer";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
-	dateSelected: Date;
+	dateSelected: Moment;
 	entries: Entries;
 	firstDayOfWeek: Weekday | null;
-	monthSelected: Date;
+	monthSelected: Moment;
 }
 
 export interface DispatchProps {
-	setDateSelected: (date: Date) => void;
+	setDateSelected: (date: Moment) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -32,28 +32,31 @@ export default class Calendar extends PureComponent<Props, {}> {
 
 	onDateSelection(date: Date): void {
 		const { allowFutureEntries, setDateSelected } = this.props;
+		const parsedDate = parseDate(date);
+		const today = createDate();
 
-		if (allowFutureEntries || moment(date).isSameOrBefore(moment(), "day")) {
-			setDateSelected(date);
+		if (allowFutureEntries || parseDate(date).isSameOrBefore(today, "day")) {
+			setDateSelected(parsedDate);
 		}
 	}
 
 	render(): ReactNode {
 		const { allowFutureEntries, dateSelected, entries, firstDayOfWeek, monthSelected } = this.props;
 
-		const today = new Date();
+		const today = createDate();
 		const daysWithEntries = Object.keys(entries);
-		const hasEntry = (day: Date): boolean => {
-			const indexDate = toIndexDate(day);
+
+		const hasEntry = (date: Date): boolean => {
+			const indexDate = toIndexDate(parseDate(date));
 			return daysWithEntries.includes(indexDate);
 		};
 
 		return (
 			<DayPicker
-				selectedDays={dateSelected}
-				disabledDays={allowFutureEntries ? null : { after: today }}
-				month={monthSelected}
-				toMonth={today}
+				selectedDays={dateSelected.toDate()}
+				disabledDays={allowFutureEntries ? null : { after: today.toDate() }}
+				month={monthSelected.toDate()}
+				toMonth={today.toDate()}
 				captionElement={(): null => null}
 				modifiers={{ hasEntry }}
 				firstDayOfWeek={firstDayOfWeek ?? undefined}

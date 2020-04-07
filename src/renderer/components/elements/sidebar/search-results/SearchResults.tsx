@@ -1,18 +1,19 @@
+import { Moment } from "moment";
 import React, { PureComponent, ReactNode } from "react";
 
 import { Entries } from "../../../../types";
-import { momentIndex, toDateString } from "../../../../utils/dateFormat";
+import { fromIndexDate, toDateString } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import Banner from "../../general/banner/Banner";
 
 export interface StateProps {
-	dateSelected: Date;
+	dateSelected: Moment;
 	entries: Entries;
 	searchResults: string[];
 }
 
 export interface DispatchProps {
-	setDateSelected: (date: Date) => void;
+	setDateSelected: (date: Moment) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -36,7 +37,7 @@ export default class SearchResults extends PureComponent<Props, {}> {
 				// Create search result element if a corresponding diary entry exists
 				// (When deleting a diary entry after a search, it is still part of the search results
 				// until a new search is performed. That's why it needs to be filtered out here)
-				const date = momentIndex(searchResult);
+				const date = fromIndexDate(searchResult);
 				const { title } = entries[searchResult];
 				const isSelected = date.isSame(dateSelected, "day");
 				r.push(
@@ -44,7 +45,7 @@ export default class SearchResults extends PureComponent<Props, {}> {
 						<button
 							type="button"
 							className={`button ${isSelected ? "button-main" : ""}`}
-							onClick={(): void => setDateSelected(date.toDate())}
+							onClick={(): void => setDateSelected(date)}
 						>
 							<p className="search-date text-faded">{toDateString(date)}</p>
 							<p className={`search-title ${!title ? "text-faded" : ""}`}>

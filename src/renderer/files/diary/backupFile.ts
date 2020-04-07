@@ -2,7 +2,7 @@ import { remote } from "electron";
 import fs from "fs";
 import path from "path";
 
-import { toFilenameDate } from "../../utils/dateFormat";
+import { createDate, toFileNameDate } from "../../utils/dateFormat";
 import { copyFile } from "../fileAccess";
 import { getDiaryFilePath } from "./diaryFile";
 
@@ -23,7 +23,7 @@ function createBackupDir(dir: string): void {
  * Create a backup of the diary by copying the diary file to the backup directory
  */
 function createBackupFile(dir: string): void {
-	const dateTime = toFilenameDate(new Date());
+	const dateTime = toFileNameDate(createDate());
 	const diaryFilePath = getDiaryFilePath();
 	const backupPath = path.join(dir, `backup-${dateTime}.txt`);
 	copyFile(diaryFilePath, backupPath);

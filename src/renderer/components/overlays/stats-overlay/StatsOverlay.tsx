@@ -1,10 +1,9 @@
-import moment from "moment";
 import React, { PureComponent, ReactNode } from "react";
 import countWords from "word-count";
 
 import { getLang } from "../../../electron/ipcRenderer/senders";
 import { Entries } from "../../../types";
-import { momentIndex } from "../../../utils/dateFormat";
+import { createDate, fromIndexDate } from "../../../utils/dateFormat";
 import { translations } from "../../../utils/i18n";
 import OverlayContainer from "../overlay-hoc/OverlayContainer";
 
@@ -40,19 +39,19 @@ export default class StatsOverlay extends PureComponent<Props, {}> {
 	static calcStats(entries: Entries): Stats {
 		const indexDatesSorted = Object.keys(entries).sort();
 		const nrEntries = indexDatesSorted.length;
-		const today = moment();
+		const today = createDate();
 
 		let currentStreak = 1;
 		let longestStreak = 0;
 		let nrWords = 0;
-		let prevDate = momentIndex("1970/01/01");
+		let prevDate = fromIndexDate("1970/01/01");
 
 		// Loop over sorted indices and find corresponding diary entry. Update stats variables using its
 		// content
 		indexDatesSorted.forEach((indexDate): void => {
 			const entry = entries[indexDate];
 			const { title, text } = entry;
-			const date = momentIndex(indexDate);
+			const date = fromIndexDate(indexDate);
 
 			// Check if the current date is one day after the previous one. If so, increase
 			// `currentStreak`. If not, update `longestStreak` if necessary and reset `currentStreak`

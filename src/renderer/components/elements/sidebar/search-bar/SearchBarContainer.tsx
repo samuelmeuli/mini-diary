@@ -1,3 +1,4 @@
+import { Moment } from "moment";
 import { connect } from "react-redux";
 
 import { search, setDateSelected } from "../../../../store/diary/actionCreators";
@@ -13,7 +14,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
 	search: (searchKey: string): void => dispatch(search(searchKey)),
-	setDateSelected: (date: Date): SetDateSelectedAction => dispatch(setDateSelected(date)),
+	setDateSelected: (date: Moment): SetDateSelectedAction => dispatch(setDateSelected(date)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

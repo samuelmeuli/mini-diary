@@ -14,6 +14,7 @@ import createListPlugin from "draft-js-list-plugin";
 import PluginEditor from "draft-js-plugins-editor";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
+import { Moment } from "moment";
 import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
 
 import { Entries, IndexDate } from "../../../../types";
@@ -30,7 +31,7 @@ const listPlugin = createListPlugin();
 const plugins = [listPlugin];
 
 export interface StateProps {
-	dateSelected: Date;
+	dateSelected: Moment;
 	entries: Entries;
 }
 
@@ -41,7 +42,7 @@ export interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 interface State {
-	dateSelected: Date;
+	dateSelected: Moment;
 	textEditorState: EditorState;
 	titleEditorState: EditorState;
 }
@@ -63,7 +64,7 @@ export default class Editor extends PureComponent<Props, State> {
 
 	static getStateFromEntry(
 		entries: Entries,
-		date: Date,
+		date: Moment,
 	): { textEditorState: EditorState; titleEditorState: EditorState } {
 		const indexDate = toIndexDate(date);
 		const entry = entries[indexDate];

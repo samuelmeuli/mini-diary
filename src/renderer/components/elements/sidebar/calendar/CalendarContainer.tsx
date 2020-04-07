@@ -1,3 +1,4 @@
+import { Moment } from "moment";
 import { connect } from "react-redux";
 
 import { setDateSelected } from "../../../../store/diary/actionCreators";
@@ -14,7 +15,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
-	setDateSelected: (date: Date): SetDateSelectedAction => dispatch(setDateSelected(date)),
+	setDateSelected: (date: Moment): SetDateSelectedAction => dispatch(setDateSelected(date)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

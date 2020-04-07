@@ -2,16 +2,16 @@
 	"metadata": {
 		"application": "Mini Diary",
 		"version": "v0.0.0",
-		"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000 (Greenwich Mean Time)"
+		"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000"
 	},
 	"entries": {
 		"2019-01-01": {
-			"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000 (Greenwich Mean Time)",
+			"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000",
 			"title": "Diary Entry 1",
 			"text": "This text is **bold** and _italic_."
 		},
 		"2019-01-02": {
-			"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000 (Greenwich Mean Time)",
+			"dateUpdated": "Tue Jan 01 2019 00:00:00 GMT+0000",
 			"title": "Diary Entry 2",
 			"text": "Here's a bulleted list:\n\n- One\n- Two\n- Three\n\nAnd here's a numbered list:\n\n1. One\n2. Two\n3. Three"
 		}

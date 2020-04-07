@@ -1,3 +1,4 @@
+import { createDate } from "../../utils/dateFormat";
 import {
 	DiaryAction,
 	DiaryState,
@@ -6,7 +7,7 @@ import {
 	SET_SEARCH_RESULTS,
 } from "./types";
 
-const today = new Date();
+const today = createDate();
 
 const initialState: DiaryState = {
 	dateSelected: today,

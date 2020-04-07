@@ -1,21 +1,22 @@
 import ClearIcon from "feather-icons/dist/icons/x.svg";
 import debounce from "lodash.debounce";
-import moment from "moment";
+import { Moment } from "moment";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 
 import TodayIcon from "../../../../assets/icons/today.svg";
+import { createDate, parseDate } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import { iconProps } from "../../../../utils/icons";
 
 export interface StateProps {
-	dateSelected: Date;
-	monthSelected: Date;
+	dateSelected: Moment;
+	monthSelected: Moment;
 	searchKey: string;
 }
 
 export interface DispatchProps {
 	search: (searchKey: string) => void;
-	setDateSelected: (date: Date) => void;
+	setDateSelected: (date: Moment) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -56,7 +57,7 @@ export default class SearchBar extends PureComponent<Props, State> {
 	onTodaySelection(): void {
 		const { setDateSelected } = this.props;
 
-		const today = new Date();
+		const today = createDate();
 		setDateSelected(today);
 	}
 
@@ -77,9 +78,9 @@ export default class SearchBar extends PureComponent<Props, State> {
 		const { dateSelected, monthSelected } = this.props;
 		const { newSearchKey } = this.state;
 
-		const today = moment();
-		const isToday = moment(dateSelected).isSame(today, "day");
-		const isCurrentMonth = moment(monthSelected).isSame(today, "month");
+		const today = createDate();
+		const isToday = parseDate(dateSelected).isSame(today, "day");
+		const isCurrentMonth = parseDate(monthSelected).isSame(today, "month");
 
 		return (
 			<div className="view-selector">

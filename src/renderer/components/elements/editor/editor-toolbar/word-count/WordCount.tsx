@@ -1,3 +1,4 @@
+import { Moment } from "moment";
 import React, { ReactElement } from "react";
 import countWords from "word-count";
 
@@ -5,7 +6,7 @@ import { Entries } from "../../../../../types";
 import { toIndexDate } from "../../../../../utils/dateFormat";
 
 export interface StateProps {
-	dateSelected: Date;
+	dateSelected: Moment;
 	entries: Entries;
 }
 

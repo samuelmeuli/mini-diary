@@ -1,16 +1,16 @@
 import PrevIcon from "feather-icons/dist/icons/chevron-left.svg";
 import NextIcon from "feather-icons/dist/icons/chevron-right.svg";
-import moment from "moment";
+import { Moment } from "moment";
 import React, { ReactElement } from "react";
 
 import { MAX_DATE, MIN_DATE } from "../../../../constants";
-import { toMonthYear } from "../../../../utils/dateFormat";
+import { createDate, parseDate, toMonthYear } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import { iconProps } from "../../../../utils/icons";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
-	monthSelected: Date;
+	monthSelected: Moment;
 }
 
 export interface DispatchProps {
@@ -28,11 +28,11 @@ export default function CalendarNav(props: Props): ReactElement {
 		setMonthSelectedPrevious,
 	} = props;
 
-	const today = moment();
+	const today = createDate();
 
 	// Check if buttons for switching to previous/next month should be enabled. Determined based on
 	// the min/max dates and whether future diary entries are allowed
-	const month = moment(monthSelected);
+	const month = parseDate(monthSelected);
 	const canClickPrev = month.isAfter(MIN_DATE, "month");
 	const canClickNext =
 		month.isBefore(MAX_DATE, "month") && (allowFutureEntries || month.isBefore(today, "month"));

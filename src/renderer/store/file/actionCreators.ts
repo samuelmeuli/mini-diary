@@ -12,7 +12,8 @@ import {
 	writeEncryptedFile,
 } from "../../files/fileAccess";
 import mergeEntries from "../../files/import/mergeEntries";
-import { Entries, MiniDiaryJson, IndexDate } from "../../types";
+import { Entries, IndexDate, MiniDiaryJson } from "../../types";
+import { createDate } from "../../utils/dateFormat";
 import { translations } from "../../utils/i18n";
 import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
 import { ThunkActionT } from "../store";
@@ -256,7 +257,7 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
 	} else if (!(entryDate in entries)) {
 		// Entry doesn't exist yet
 		const entryAdded = {
-			dateUpdated: new Date().toString(),
+			dateUpdated: createDate().toString(),
 			title,
 			text,
 		};
@@ -269,7 +270,7 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
 		// Entry has been updated
 		const entryOld = entries[entryDate];
 		const entryUpdated = {
-			dateUpdated: new Date().toString(),
+			dateUpdated: createDate().toString(),
 			title,
 			text,
 		};

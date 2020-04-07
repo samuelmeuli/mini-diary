@@ -1,5 +1,5 @@
 import { Entries } from "../../types";
-import { momentIndex, toLocaleWeekday } from "../../utils/dateFormat";
+import { fromIndexDate, toLocaleWeekday } from "../../utils/dateFormat";
 import sortEntries from "./sortEntries";
 
 /**
@@ -22,7 +22,7 @@ export function convertToMd(entries: Entries): Promise<string> {
 			const { text, title } = entry;
 
 			// Format date
-			const dateStr = toLocaleWeekday(momentIndex(indexDate));
+			const dateStr = toLocaleWeekday(fromIndexDate(indexDate));
 
 			// Build Markdown string
 			md += `## ${dateStr}\n\n`; // Date

@@ -2,6 +2,7 @@ import { remote } from "electron";
 import path from "path";
 
 import { Metadata } from "../../types";
+import { createDate } from "../../utils/dateFormat";
 import { loadDirPref } from "../preferences/preferences";
 
 export const FILE_NAME = "mini-diary.txt";
@@ -26,6 +27,6 @@ export function getDiaryFilePath(): string {
 export function getMetadata(): Metadata {
 	return {
 		...METADATA,
-		dateUpdated: new Date().toString(),
+		dateUpdated: createDate().toString(),
 	};
 }

@@ -1,18 +1,19 @@
 import logger from "electron-log";
+import { Moment } from "moment";
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
 
-import { momentIndex, toIndexDate } from "../../../utils/dateFormat";
+import { createDate, fromIndexDate, toIndexDate } from "../../../utils/dateFormat";
 import { translations } from "../../../utils/i18n";
 import OverlayContainer from "../overlay-hoc/OverlayContainer";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
-	dateSelected: Date;
+	dateSelected: Moment;
 }
 
 export interface DispatchProps {
 	closeOverlay: () => void;
-	setDateSelected: (date: Date) => void;
+	setDateSelected: (date: Moment) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -23,7 +24,7 @@ type Props = StateProps & DispatchProps;
 export default function GoToDateOverlay(props: Props): ReactElement {
 	const { allowFutureEntries, closeOverlay, dateSelected, setDateSelected } = props;
 
-	const todayFormatted = toIndexDate(new Date());
+	const todayFormatted = toIndexDate(createDate());
 	const dateSelectedFormatted = toIndexDate(dateSelected);
 
 	// `date` can become `undefined` when the user's date input is incomplete (e.g. year not filled in
@@ -37,7 +38,7 @@ export default function GoToDateOverlay(props: Props): ReactElement {
 		if (!date) {
 			logger.error("Cannot go to date: Date is not defined");
 		} else {
-			setDateSelected(momentIndex(date).toDate());
+			setDateSelected(fromIndexDate(date));
 			closeOverlay();
 		}
 	};

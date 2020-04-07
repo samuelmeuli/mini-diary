@@ -1,10 +1,11 @@
+import { Moment } from "moment";
 import { Action } from "redux";
 
 // State
 
 export interface DiaryState {
-	dateSelected: Date;
-	monthSelected: Date;
+	dateSelected: Moment;
+	monthSelected: Moment;
 	searchKey: string;
 	searchResults: string[];
 }
@@ -20,7 +21,7 @@ export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export interface SetDateSelectedAction extends Action {
 	type: typeof SET_DATE_SELECTED;
 	payload: {
-		dateSelected: Date;
+		dateSelected: Moment;
 	};
 }
 
