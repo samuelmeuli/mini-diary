@@ -33,7 +33,7 @@
 		"website:build:ts": "tsc --project ./website",
 		"test": "run-s test:*",
 		"test:jest": "cross-env TZ=GMT jest",
-		"test:types": "tsc --project ./website --noEmit",
+		"test:types": "tsc --noEmit && tsc --project ./website --noEmit",
 		"lint:css": "stylelint --fix --ignore-path ./.gitignore --max-warnings 0 '**/*.{css,sass,scss}'",
 		"lint:ts": "eslint --ext .ts,.tsx --fix --ignore-path ./.gitignore --max-warnings 0 '**/*.{ts,tsx}'",
 		"format": "prettier --ignore-path ./.gitignore --write '**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}'"
