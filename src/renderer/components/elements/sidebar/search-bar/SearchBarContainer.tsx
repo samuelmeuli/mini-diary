@@ -8,7 +8,6 @@ import SearchBar, { DispatchProps, StateProps } from "./SearchBar";
 
 const mapStateToProps = (state: RootState): StateProps => ({
 	dateSelected: state.diary.dateSelected,
-	monthSelected: state.diary.monthSelected,
 	searchKey: state.diary.searchKey,
 });
 

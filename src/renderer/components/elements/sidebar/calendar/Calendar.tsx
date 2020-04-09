@@ -13,7 +13,6 @@ export interface StateProps {
 	dateSelected: Moment;
 	entries: Entries;
 	firstDayOfWeek: Weekday | null;
-	monthSelected: Moment;
 }
 
 export interface DispatchProps {
@@ -41,7 +40,7 @@ export default class Calendar extends PureComponent<Props, {}> {
 	}
 
 	render(): ReactNode {
-		const { allowFutureEntries, dateSelected, entries, firstDayOfWeek, monthSelected } = this.props;
+		const { allowFutureEntries, dateSelected, entries, firstDayOfWeek } = this.props;
 
 		const today = createDate();
 		const daysWithEntries = Object.keys(entries);
@@ -51,12 +50,14 @@ export default class Calendar extends PureComponent<Props, {}> {
 			return daysWithEntries.includes(indexDate);
 		};
 
+		const dateSelectedObj = dateSelected.toDate();
+		const todayObj = today.toDate();
+
 		return (
 			<DayPicker
-				selectedDays={dateSelected.toDate()}
-				disabledDays={allowFutureEntries ? null : { after: today.toDate() }}
-				month={monthSelected.toDate()}
-				toMonth={today.toDate()}
+				month={dateSelectedObj}
+				selectedDays={dateSelectedObj}
+				disabledDays={allowFutureEntries ? null : { after: todayObj }}
 				captionElement={(): null => null}
 				modifiers={{ hasEntry }}
 				firstDayOfWeek={firstDayOfWeek ?? undefined}

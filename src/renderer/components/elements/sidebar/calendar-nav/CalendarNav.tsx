@@ -4,13 +4,13 @@ import { Moment } from "moment";
 import React, { ReactElement } from "react";
 
 import { MAX_DATE, MIN_DATE } from "../../../../constants";
-import { createDate, parseDate, toMonthYear } from "../../../../utils/dateFormat";
+import { createDate, toMonthYear } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import { iconProps } from "../../../../utils/icons";
 
 export interface StateProps {
 	allowFutureEntries: boolean;
-	monthSelected: Moment;
+	dateSelected: Moment;
 }
 
 export interface DispatchProps {
@@ -23,7 +23,7 @@ type Props = StateProps & DispatchProps;
 export default function CalendarNav(props: Props): ReactElement {
 	const {
 		allowFutureEntries,
-		monthSelected,
+		dateSelected,
 		setMonthSelectedNext,
 		setMonthSelectedPrevious,
 	} = props;
@@ -32,10 +32,10 @@ export default function CalendarNav(props: Props): ReactElement {
 
 	// Check if buttons for switching to previous/next month should be enabled. Determined based on
 	// the min/max dates and whether future diary entries are allowed
-	const month = parseDate(monthSelected);
-	const canClickPrev = month.isAfter(MIN_DATE, "month");
+	const canClickPrev = dateSelected.isAfter(MIN_DATE, "month");
 	const canClickNext =
-		month.isBefore(MAX_DATE, "month") && (allowFutureEntries || month.isBefore(today, "month"));
+		dateSelected.isBefore(MAX_DATE, "month") &&
+		(allowFutureEntries || dateSelected.isBefore(today, "month"));
 
 	return (
 		<div className="calendar-nav">
@@ -47,7 +47,7 @@ export default function CalendarNav(props: Props): ReactElement {
 			>
 				<PrevIcon {...iconProps} title={translations["previous-month"]} />
 			</button>
-			<h1 className="month-name">{toMonthYear(month)}</h1>
+			<h1 className="month-name">{toMonthYear(dateSelected)}</h1>
 			<button
 				type="button"
 				className="button button-invisible"

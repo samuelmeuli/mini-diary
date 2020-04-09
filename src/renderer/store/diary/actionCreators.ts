@@ -81,20 +81,17 @@ export const setDaySelectedToday = (): ThunkActionT => (dispatch): void => {
 export const setMonthSelectedNext = (): ThunkActionT => (dispatch, getState): void => {
 	const { app, diary } = getState();
 	const { allowFutureEntries } = app;
-	const { monthSelected } = diary;
-	const nextMonth = parseDate(monthSelected)
-		.startOf("month")
-		.add(1, "months");
+	const { dateSelected } = diary;
 	const today = createDate();
-	if (allowFutureEntries || nextMonth.isSameOrBefore(today, "month")) {
-		dispatch(setDateSelected(nextMonth));
+	let newDateSelected = parseDate(dateSelected).add(1, "months");
+	if (!allowFutureEntries && newDateSelected.isAfter(today)) {
+		newDateSelected = today;
 	}
+	dispatch(setDateSelected(newDateSelected));
 };
 
 export const setMonthSelectedPrevious = (): ThunkActionT => (dispatch, getState): void => {
-	const { monthSelected } = getState().diary;
-	const previousMonth = parseDate(monthSelected)
-		.startOf("month")
-		.subtract(1, "months");
+	const { dateSelected } = getState().diary;
+	const previousMonth = parseDate(dateSelected).subtract(1, "months");
 	dispatch(setDateSelected(previousMonth));
 };

@@ -10,7 +10,6 @@ const mapStateToProps = (state: RootState): StateProps => ({
 	allowFutureEntries: state.app.allowFutureEntries,
 	dateSelected: state.diary.dateSelected,
 	firstDayOfWeek: state.app.firstDayOfWeek,
-	monthSelected: state.diary.monthSelected,
 	entries: state.file.entries,
 });
 
