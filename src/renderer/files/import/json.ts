@@ -61,8 +61,7 @@ export function parseJrnlJson(jsonStr: string): Entries {
 		entry: DiaryEntry;
 	} => {
 		const parsedEntryCast = parsedEntry as JrnlEntry;
-		const { date, title, body } = parsedEntryCast;
-		const indexDate = toIndexDate(date);
+		const { date: indexDate, title, body } = parsedEntryCast;
 
 		const entry = { dateUpdated: now, title: title.trim(), text: body.trim() };
 		return { indexDate, entry };

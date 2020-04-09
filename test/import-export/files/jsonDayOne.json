@@ -4,14 +4,14 @@
 	},
 	"entries": [
 		{
-			"modifiedDate": "2019-01-01T00:00:00Z",
+			"modifiedDate": "2019-01-03T00:00:00-08:00",
 			"text": "# Diary Entry 1\n\nThis text is **bold** and _italic_.",
-			"creationDate": "2019-01-01T00:00:00Z"
+			"creationDate": "2019-01-01T00:00:00-08:00"
 		},
 		{
-			"modifiedDate": "2019-01-01T00:00:00Z",
+			"modifiedDate": "2019-01-03T00:00:00-08:00",
 			"text": "# Diary Entry 2\n\nHere's a bulleted list:\n\n- One\n- Two\n- Three\n\nAnd here's a numbered list:\n\n1. One\n2. Two\n3. Three",
-			"creationDate": "2019-01-02T00:00:00Z"
+			"creationDate": "2019-01-02T00:00:00-08:00"
 		}
 	]
 }

@@ -4,7 +4,7 @@ import { Moment } from "moment";
 import React, { ChangeEvent, PureComponent, ReactNode } from "react";
 
 import TodayIcon from "../../../../assets/icons/today.svg";
-import { createDate, parseDate } from "../../../../utils/dateFormat";
+import { createDate } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import { iconProps } from "../../../../utils/icons";
 
@@ -78,7 +78,7 @@ export default class SearchBar extends PureComponent<Props, State> {
 		const { newSearchKey } = this.state;
 
 		const today = createDate();
-		const isToday = parseDate(dateSelected).isSame(today, "day");
+		const isToday = dateSelected.isSame(today, "day");
 
 		return (
 			<div className="view-selector">

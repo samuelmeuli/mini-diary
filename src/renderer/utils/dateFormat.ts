@@ -13,7 +13,7 @@ const MONTH_YEAR_FORMAT = "MMMM YYYY"; // E.g. "January 2019"
  * Creates a Moment object instance for the current date and time
  */
 export function createDate(): Moment {
-	return moment.utc();
+	return moment();
 }
 
 /**
@@ -23,7 +23,7 @@ export function parseDate(
 	date: Date | Moment | string,
 	format?: MomentFormatSpecification,
 ): Moment {
-	return moment.utc(date, format);
+	return moment(date, format);
 }
 
 /**
