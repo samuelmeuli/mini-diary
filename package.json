@@ -34,9 +34,12 @@
 		"test": "run-s test:*",
 		"test:jest": "jest",
 		"test:types": "tsc --noEmit && tsc --project ./website --noEmit",
-		"lint:css": "stylelint --fix --ignore-path ./.gitignore --max-warnings 0 '**/*.{css,sass,scss}'",
-		"lint:ts": "eslint --ext .ts,.tsx --fix --ignore-path ./.gitignore --max-warnings 0 '**/*.{ts,tsx}'",
-		"format": "prettier --ignore-path ./.gitignore --write '**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}'"
+		"lint:css": "stylelint --ignore-path ./.gitignore --max-warnings 0 '**/*.{css,sass,scss}'",
+		"lint:css:fix": "yarn lint:css --fix",
+		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 '**/*.{ts,tsx}'",
+		"lint:ts:fix": "yarn lint:ts --fix",
+		"format": "prettier --ignore-path ./.gitignore --list-different '**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}'",
+		"format:fix": "yarn format --write"
 	},
 	"dependencies": {
 		"@svgr/webpack": "^5.3.1",
