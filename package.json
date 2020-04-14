@@ -55,7 +55,7 @@
 		"draft-js": "^0.11.5",
 		"draft-js-list-plugin": "^1.0.2",
 		"draft-js-plugins-editor": "^3.0.0",
-		"electron-context-menu": "^0.16.0",
+		"electron-context-menu": "^1.0.0",
 		"electron-debug": "^3.0.0",
 		"electron-log": "^4.1.1",
 		"electron-md-to-pdf": "^2.2.0",
