@@ -31,6 +31,8 @@ const translationsZh: Partial<Translations> = {
 	// Menu (app-specific)
 	"export": "导出",
 	"export-to-format": "导出为{format}",
+	"go-to-date": "跳转到",
+	"go-to-today": "回到今天",
 	"import": "导入",
 	"import-from-format": "从{format}导入",
 	"license": "许可协议",
@@ -40,6 +42,7 @@ const translationsZh: Partial<Translations> = {
 	"previous-day": "向前1天",
 	"previous-month": "向前1月",
 	"privacy-policy": "隐私条款",
+	"statistics": "统计数据",
 	"website": "官网",
 
 	// Weekdays
@@ -77,7 +80,13 @@ const translationsZh: Partial<Translations> = {
 	"allow-future-entries": "允许创建将来的条目",
 	"auto": "自动",
 	"diary-entries": "日记条目",
-	"first-day-of-week": "一周的第一天",
+	"first-day-of-week": "一周的首日",
+	"no": "No",
+	"ok": "OK",
+	"reset-diary": "重置日记本",
+	"reset-diary-confirm": "是的，我确定",
+	"reset-diary-msg": "你确定要重置日记本吗？重置将会删除你的所有内容，并且不能被恢复！",
+
 
 	// Password and directory
 	"change-directory": "更改路径",
