@@ -80,6 +80,8 @@ const translationsEn: Translations = {
 	"allow-future-entries": "Allow entries in the future",
 	"auto": "Auto",
 	"diary-entries": "Diary entries",
+	"diary-entry-titles": "Diary entry titles",
+	"disable-titles": "Disable titles for diary entries",
 	"first-day-of-week": "First day of the week",
 	"no": "No",
 	"ok": "OK",

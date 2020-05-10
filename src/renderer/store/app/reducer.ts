@@ -2,6 +2,7 @@ import {
 	loadFirstDayOfWeekPref,
 	loadFutureEntriesPref,
 	loadThemePref,
+	loadDisableTitlesPref,
 } from "../../files/preferences/preferences";
 import { getThemeFromPref } from "../../utils/native-theme";
 import {
@@ -12,6 +13,7 @@ import {
 	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
+	SET_DISABLE_TITLES,
 } from "./types";
 
 const themePref = loadThemePref();
@@ -20,6 +22,7 @@ const theme = getThemeFromPref(themePref);
 const initialState: AppState = {
 	allowFutureEntries: loadFutureEntriesPref(),
 	firstDayOfWeek: loadFirstDayOfWeekPref(),
+	disableTitles: loadDisableTitlesPref(),
 	overlay: "none",
 	theme,
 	themePref,
@@ -33,6 +36,12 @@ function appReducer(state = initialState, action: AppAction): AppState {
 				allowFutureEntries: action.payload.allowFutureEntries,
 			};
 		}
+		case SET_DISABLE_TITLES: {
+			return {
+				...state,
+				disableTitles: action.payload.disableTitles,
+			};
+		};
 		case SET_FIRST_DAY_OF_WEEK: {
 			return {
 				...state,

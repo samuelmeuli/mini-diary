@@ -7,6 +7,7 @@ import { Weekday, Theme, ThemePref } from "../../types";
 
 export interface AppState {
 	allowFutureEntries: boolean;
+	disableTitles: boolean;
 	firstDayOfWeek: Weekday | null;
 	overlay: OverlayType;
 	theme: Theme;
@@ -16,6 +17,7 @@ export interface AppState {
 // Action types
 
 export const SET_ALLOW_FUTURE_ENTRIES = "SET_ALLOW_FUTURE_ENTRIES";
+export const SET_DISABLE_TITLES = "SET_DISABLE_TITLES";
 export const SET_FIRST_DAY_OF_WEEK = "SET_FIRST_DAY_OF_WEEK";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const SET_THEME = "SET_THEME";
@@ -28,6 +30,13 @@ export interface SetAllowFutureEntriesAction extends Action {
 	payload: {
 		allowFutureEntries: boolean;
 	};
+}
+
+export interface SetDisableTitlesAction extends Action {
+	type: typeof SET_DISABLE_TITLES;
+	payload: {
+		disableTitles: boolean;
+	}
 }
 
 export interface SetFirstDayOfWeekAction extends Action {
@@ -60,6 +69,7 @@ export interface SetThemePrefAction extends Action {
 
 export type AppAction =
 	| SetAllowFutureEntriesAction
+	| SetDisableTitlesAction
 	| SetFirstDayOfWeekAction
 	| SetOverlayAction
 	| SetThemeAction
