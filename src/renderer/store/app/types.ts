@@ -7,8 +7,8 @@ import { Weekday, Theme, ThemePref } from "../../types";
 
 export interface AppState {
 	allowFutureEntries: boolean;
-	hideTitles: boolean;
 	firstDayOfWeek: Weekday | null;
+	hideTitles: boolean;
 	overlay: OverlayType;
 	theme: Theme;
 	themePref: ThemePref;

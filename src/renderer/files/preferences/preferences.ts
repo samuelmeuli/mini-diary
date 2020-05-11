@@ -65,7 +65,6 @@ export function saveFirstDayOfWeekPref(firstDayOfWeek: Weekday | null): void {
 	setPref("firstDayOfWeek", firstDayOfWeek);
 }
 
-
 // Future entries
 
 /**
