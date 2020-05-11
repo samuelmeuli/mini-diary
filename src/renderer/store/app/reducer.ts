@@ -41,7 +41,7 @@ function appReducer(state = initialState, action: AppAction): AppState {
 				...state,
 				hideTitles: action.payload.hideTitles,
 			};
-		};
+		}
 		case SET_FIRST_DAY_OF_WEEK: {
 			return {
 				...state,
