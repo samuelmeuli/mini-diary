@@ -164,6 +164,7 @@ export default class Editor extends PureComponent<Props, State> {
 
 	render = (): ReactNode => {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
+		const { hideTitles } = this.props;
 
 		// Detect active inline/block styles
 		const blockType = RichUtils.getCurrentBlockType(textEditorState);
@@ -175,17 +176,18 @@ export default class Editor extends PureComponent<Props, State> {
 			<form className="editor">
 				<div className="editor-scrollable">
 					<p className="text-faded">{weekdayDate}</p>
-					<div className="editor-title-wrapper">
-						<PluginEditor
-							editorState={titleEditorState}
-							handleKeyCommand={this.handleTitleKeyCommand}
-							keyBindingFn={Editor.titleKeyBindingFn}
-							onBlur={this.saveEntry}
-							onChange={this.onTitleChange}
-							placeholder={translations["add-a-title"]}
-							spellCheck
-						/>
-					</div>
+					{!hideTitles &&
+						<div className="editor-title-wrapper">
+							<PluginEditor
+								editorState={titleEditorState}
+								handleKeyCommand={this.handleTitleKeyCommand}
+								keyBindingFn={Editor.titleKeyBindingFn}
+								onBlur={this.saveEntry}
+								onChange={this.onTitleChange}
+								placeholder={translations["add-a-title"]}
+								spellCheck
+							/>
+						</div>}
 					<div className="editor-text-wrapper">
 						<PluginEditor
 							editorState={textEditorState}
