@@ -31,7 +31,7 @@ const listPlugin = createListPlugin();
 const plugins = [listPlugin];
 
 export interface StateProps {
-	disableTitles: boolean;
+	hideTitles: boolean;
 	dateSelected: Moment;
 	entries: Entries;
 }
@@ -142,7 +142,7 @@ export default class Editor extends PureComponent<Props, State> {
 
 	handleTitleKeyCommand = (command: DraftEditorCommandExtended): DraftHandleValue => {
 		// Move focus to text editor when enter key is pressed in title editor
-		if (!disableTitles && command === "enter") {
+		if (command === "enter") {
 			this.textEditor.focus();
 			return "handled";
 		}

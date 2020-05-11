@@ -5,7 +5,7 @@ import OverlayContainer from "../overlay-hoc/OverlayContainer";
 import FileDirPrefContainer from "./file-dir-pref/FileDirPrefContainer";
 import FirstDayOfWeekPrefContainer from "./first-day-of-week-pref/FirstDayOfWeekPrefContainer";
 import FutureEntriesPrefContainer from "./future-entries-pref/FutureEntriesPrefContainer";
-import DisableTitlesPrefContainer from "./disable-titles-pref/DisableTitlesContainer";
+import HideTitlesContainer from "./hide-titles-pref/HideTitlesContainer";
 import PasswordPrefContainer from "./password-pref/PasswordPrefContainer";
 import ThemePrefContainer from "./theme-pref/ThemePrefContainer";
 
@@ -30,7 +30,7 @@ export default function PrefOverlay(props: Props): ReactElement {
 				<ThemePrefContainer />
 				{!isLocked && <FirstDayOfWeekPrefContainer />}
 				{!isLocked && <FutureEntriesPrefContainer />}
-				{!isLocked && <DisableTitlesPrefContainer />}
+				{!isLocked && <HideTitlesContainer />}
 				<FileDirPrefContainer />
 				{!isLocked && <PasswordPrefContainer />}
 			</form>

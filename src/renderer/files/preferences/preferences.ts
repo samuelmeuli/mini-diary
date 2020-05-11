@@ -6,9 +6,9 @@ import { JsonValue } from "../../../shared/types";
 import { ThemePref, Weekday } from "../../types";
 import { supportsNativeTheme } from "../../utils/native-theme";
 
-const DEFAULT_DISABLE_TITLES = false;
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
 const DEFAULT_FIRST_DAY_OF_WEEK = null; // Let the system locale determine the first day of the week
+const DEFAULT_HIDE_TITLES = false;
 const DEFAULT_THEME_PREF: ThemePref = "light";
 const PREF_DIR = remote.app.getPath("userData");
 
@@ -65,21 +65,6 @@ export function saveFirstDayOfWeekPref(firstDayOfWeek: Weekday | null): void {
 	setPref("firstDayOfWeek", firstDayOfWeek);
 }
 
-// Disable titles of diary entries
-
-/**
- * Return the preference for whether titles are disabled for diary entries
- */
-export function loadDisableTitlesPref(): boolean {
-	return getPref("disableTitles", DEFAULT_DISABLE_TITLES);
-}
-
-/**
- * Update the preference for disabling diary entry titles
- */
-export function saveDisableTitlesPref(disabledTitles: boolean): void {
-	setPref("disableTitles", disabledTitles);
-}
 
 // Future entries
 
@@ -95,6 +80,22 @@ export function loadFutureEntriesPref(): boolean {
  */
 export function saveFutureEntriesPref(allowFutureEntries: boolean): void {
 	setPref("allowFutureEntries", allowFutureEntries);
+}
+
+// Hide titles of diary entries
+
+/**
+ * Return the preference for whether titles are hidden for diary entries
+ */
+export function loadHideTitlesPref(): boolean {
+	return getPref("hideTitles", DEFAULT_HIDE_TITLES);
+}
+
+/**
+ * Update the preference for hiding diary entry titles
+ */
+export function saveHideTitlesPref(hideTitles: boolean): void {
+	setPref("hideTitles", hideTitles);
 }
 
 // Theme

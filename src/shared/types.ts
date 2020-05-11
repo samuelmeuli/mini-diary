@@ -93,7 +93,7 @@ export interface Translations {
 	"auto": string,
 	"diary-entries": string,
 	"diary-entry-titles": string,
-	"disable-titles": string,
+	"hide-titles": string,
 	"first-day-of-week": string,
 	"no": string,
 	"ok": string,
