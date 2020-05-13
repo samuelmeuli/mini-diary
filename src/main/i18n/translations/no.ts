@@ -1,6 +1,6 @@
 import { Translations } from "../../../shared/types";
 
-const translationsNo: Translations = {
+const translationsNo: Partial<Translations> = {
 	// Menu (defined by macOS)
 	"about-app": "Om {appName}",
 	"bring-all-to-front": "Vis Alle Foran",
