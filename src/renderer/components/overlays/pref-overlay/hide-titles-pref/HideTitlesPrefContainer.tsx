@@ -9,8 +9,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatchT): DispatchProps => ({
-	updateHideTitlesPref: (hideTitles: boolean): void =>
-		dispatch(updateHideTitlesPref(hideTitles)),
+	updateHideTitlesPref: (hideTitles: boolean): void => dispatch(updateHideTitlesPref(hideTitles)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HideTitlesPref);

@@ -43,7 +43,7 @@ export interface SetHideTitlesAction extends Action {
 	type: typeof SET_HIDE_TITLES;
 	payload: {
 		hideTitles: boolean;
-	}
+	};
 }
 
 export interface SetOverlayAction extends Action {

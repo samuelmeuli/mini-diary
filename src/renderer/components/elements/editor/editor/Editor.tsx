@@ -176,7 +176,7 @@ export default class Editor extends PureComponent<Props, State> {
 			<form className="editor">
 				<div className="editor-scrollable">
 					<p className="text-faded">{weekdayDate}</p>
-					{!hideTitles &&
+					{!hideTitles && (
 						<div className="editor-title-wrapper">
 							<PluginEditor
 								editorState={titleEditorState}
@@ -187,7 +187,8 @@ export default class Editor extends PureComponent<Props, State> {
 								placeholder={translations["add-a-title"]}
 								spellCheck
 							/>
-						</div>}
+						</div>
+					)}
 					<div className="editor-text-wrapper">
 						<PluginEditor
 							editorState={textEditorState}

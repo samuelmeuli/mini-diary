@@ -39,7 +39,7 @@ function setHideTitles(hideTitles: boolean): SetHideTitlesAction {
 		type: SET_HIDE_TITLES,
 		payload: {
 			hideTitles,
-		}
+		},
 	};
 }
 
@@ -97,12 +97,10 @@ export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActio
 	saveFutureEntriesPref(allowFutureEntries);
 };
 
-export const updateHideTitlesPref = (hideTitles: boolean): ThunkActionT => (
-	dispatch,
-): void => {
+export const updateHideTitlesPref = (hideTitles: boolean): ThunkActionT => (dispatch): void => {
 	dispatch(setHideTitles(hideTitles));
 	saveHideTitlesPref(hideTitles);
-}
+};
 
 export const updateFirstDayOfWeekPref = (firstDayOfWeek: Weekday | null): ThunkActionT => (
 	dispatch,
