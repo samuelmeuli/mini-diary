@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 
-import { translations } from "../../../../utils/i18n";
+import { translations } from "../../../../../utils/i18n";
 
 export interface StateProps {
 	hideTitles: boolean;
@@ -21,20 +21,15 @@ export default function HideTitlesPref(props: Props): ReactElement {
 	const toggleHideTitles = (): void => updateHideTitlesPref(!hideTitles);
 
 	return (
-		<fieldset className="fieldset-hide-titles">
-			<legend>{translations["diary-entry-titles"]}</legend>
-			<div className="fieldset-content">
-				<label htmlFor="checkbox-hide-titles">
-					<input
-						type="checkbox"
-						name="checkbox-hide-titles"
-						id="checkbox-hide-titles"
-						checked={hideTitles}
-						onChange={toggleHideTitles}
-					/>
-					{translations["hide-titles"]}
-				</label>
-			</div>
-		</fieldset>
+		<label htmlFor="checkbox-hide-titles">
+			<input
+				type="checkbox"
+				name="checkbox-hide-titles"
+				id="checkbox-hide-titles"
+				checked={hideTitles}
+				onChange={toggleHideTitles}
+			/>
+			{translations["hide-titles"]}
+		</label>
 	);
 }

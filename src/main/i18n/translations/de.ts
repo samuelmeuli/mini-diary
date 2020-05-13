@@ -79,7 +79,6 @@ const translationsDe: Partial<Translations> = {
 	"allow-future-entries": "Einträge in der Zukunft erlauben",
 	auto: "Automatisch",
 	"diary-entries": "Tagebucheinträge",
-	"diary-entry-titles": "Titel",
 	"first-day-of-week": "Erster Wochentag",
 	"hide-titles": "Titel ausblenden",
 	no: "Nein",
