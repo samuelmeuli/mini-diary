@@ -7,7 +7,7 @@ legend {
 	font-weight: $font-weight-bold;
 }
 
-.fieldset-content {
+.form-group {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -15,7 +15,7 @@ legend {
 	margin-bottom: -$spacing-abs-small;
 }
 
-.fieldset-content > * {
+.form-group > * {
 	margin-right: $spacing-abs-small;
 	margin-bottom: $spacing-abs-small;
 }

@@ -92,6 +92,7 @@ export interface Translations {
 	auto: string;
 	"diary-entries": string;
 	"first-day-of-week": string;
+	"hide-titles": string;
 	no: string;
 	ok: string;
 	"reset-diary": string;

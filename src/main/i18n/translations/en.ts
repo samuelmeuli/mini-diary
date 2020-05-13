@@ -80,6 +80,7 @@ const translationsEn: Translations = {
 	auto: "Auto",
 	"diary-entries": "Diary entries",
 	"first-day-of-week": "First day of the week",
+	"hide-titles": "Hide titles",
 	no: "No",
 	ok: "OK",
 	"reset-diary": "Reset diary",

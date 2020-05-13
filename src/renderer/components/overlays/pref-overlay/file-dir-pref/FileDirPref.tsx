@@ -86,19 +86,21 @@ export default function FileDirPref(props: Props): ReactElement {
 		<fieldset className="fieldset-file-dir">
 			<legend>{translations["diary-file"]}</legend>
 			<div className="fieldset-content">
-				{!is.macAppStore && (
-					<>
-						<p className="file-dir">{fileDir}</p>
-						<button
-							type="button"
-							className="button button-main"
-							onClick={isLocked ? selectDir : selectMoveDir}
-						>
-							{isLocked ? translations["change-directory"] : translations["move-file"]}
-						</button>
-					</>
-				)}
-				<DiaryResetButtonContainer />
+				<div className="form-group">
+					{!is.macAppStore && (
+						<>
+							<p className="file-dir">{fileDir}</p>
+							<button
+								type="button"
+								className="button button-main"
+								onClick={isLocked ? selectDir : selectMoveDir}
+							>
+								{isLocked ? translations["change-directory"] : translations["move-file"]}
+							</button>
+						</>
+					)}
+					<DiaryResetButtonContainer />
+				</div>
 			</div>
 		</fieldset>
 	);

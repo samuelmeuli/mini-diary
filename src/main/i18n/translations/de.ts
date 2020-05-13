@@ -80,6 +80,7 @@ const translationsDe: Partial<Translations> = {
 	auto: "Automatisch",
 	"diary-entries": "Tagebucheinträge",
 	"first-day-of-week": "Erster Wochentag",
+	"hide-titles": "Titel ausblenden",
 	no: "Nein",
 	ok: "OK",
 	"reset-diary": "Tagebuch zurücksetzen",

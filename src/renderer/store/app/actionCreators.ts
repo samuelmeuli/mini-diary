@@ -2,6 +2,7 @@ import { OverlayType } from "../../../shared/types";
 import {
 	saveFirstDayOfWeekPref,
 	saveFutureEntriesPref,
+	saveHideTitlesPref,
 	saveThemePref,
 } from "../../files/preferences/preferences";
 import { Weekday, Theme, ThemePref } from "../../types";
@@ -9,6 +10,7 @@ import { getThemeFromPref } from "../../utils/native-theme";
 import { ThunkActionT } from "../store";
 import {
 	SET_ALLOW_FUTURE_ENTRIES,
+	SET_HIDE_TITLES,
 	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
@@ -18,6 +20,7 @@ import {
 	SetOverlayAction,
 	SetThemeAction,
 	SetThemePrefAction,
+	SetHideTitlesAction,
 } from "./types";
 
 // Action creators
@@ -27,6 +30,15 @@ function setAllowFutureEntries(allowFutureEntries: boolean): SetAllowFutureEntri
 		type: SET_ALLOW_FUTURE_ENTRIES,
 		payload: {
 			allowFutureEntries,
+		},
+	};
+}
+
+function setHideTitles(hideTitles: boolean): SetHideTitlesAction {
+	return {
+		type: SET_HIDE_TITLES,
+		payload: {
+			hideTitles,
 		},
 	};
 }
@@ -83,6 +95,11 @@ export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActio
 ): void => {
 	dispatch(setAllowFutureEntries(allowFutureEntries));
 	saveFutureEntriesPref(allowFutureEntries);
+};
+
+export const updateHideTitlesPref = (hideTitles: boolean): ThunkActionT => (dispatch): void => {
+	dispatch(setHideTitles(hideTitles));
+	saveHideTitlesPref(hideTitles);
 };
 
 export const updateFirstDayOfWeekPref = (firstDayOfWeek: Weekday | null): ThunkActionT => (

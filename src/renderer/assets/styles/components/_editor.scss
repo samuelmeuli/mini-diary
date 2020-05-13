@@ -11,9 +11,9 @@ $editor-padding-large: 2 * $spacing-abs-large;
 }
 
 .editor-scrollable {
-	display: grid;
+	display: flex;
 	flex: 1;
-	grid-template-rows: auto auto 1fr;
+	flex-direction: column;
 	overflow-y: auto;
 
 	@media (max-width: $screen-desktop) {
@@ -28,6 +28,11 @@ $editor-padding-large: 2 * $spacing-abs-large;
 .editor-title-wrapper {
 	font-weight: $font-weight-bold;
 	font-size: 150%;
+}
+
+// Fill editor height
+.editor-text-wrapper {
+	flex: 1;
 }
 
 .editor-toolbar {

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import { updateFutureEntriesPref } from "../../../../store/app/actionCreators";
-import { RootState, ThunkDispatchT } from "../../../../store/store";
+import { updateFutureEntriesPref } from "../../../../../store/app/actionCreators";
+import { RootState, ThunkDispatchT } from "../../../../../store/store";
 import FutureEntriesPref, { DispatchProps, StateProps } from "./FutureEntriesPref";
 
 const mapStateToProps = (state: RootState): StateProps => ({
