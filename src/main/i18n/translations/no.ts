@@ -1,91 +1,91 @@
 import { Translations } from "../../../shared/types";
 
-// prettier-ignore
-const translationsNo: Translations = {
+const translationsNo: Partial<Translations> = {
 	// Menu (defined by macOS)
 	"about-app": "Om {appName}",
 	"bring-all-to-front": "Vis Alle Foran",
-	"close": "Lukk",
-	"copy": "Kopier",
-	"cut": "Klipp",
-	"edit": "Endre",
-	"file": "Fil",
-	"help": "Hjelp",
+	close: "Lukk",
+	copy: "Kopier",
+	cut: "Klipp",
+	edit: "Endre",
+	file: "Fil",
+	help: "Hjelp",
 	"hide-app": "Skjul {appName}",
 	"hide-others": "Skjul Andre",
-	"minimize": "Minimer",
-	"paste": "Lim inn",
-	"preferences": "Preferanser",
+	minimize: "Minimer",
+	paste: "Lim inn",
+	preferences: "Preferanser",
 	"quit-app": "Avslutt {appName}",
-	"redo": "Omgjør",
+	redo: "Omgjør",
 	"select-all": "Velg Alle",
 	"show-all": "Vis Alle",
-	"speech": "Tale",
+	speech: "Tale",
 	"start-speaking": "Start å Tale",
 	"stop-speaking": "Stopp å Tale",
-	"undo": "Angre",
-	"view": "Visning",
-	"window": "Vindu",
-	"zoom": "Zoom",
+	undo: "Angre",
+	view: "Visning",
+	window: "Vindu",
+	zoom: "Zoom",
 
 	// Menu (app-specific)
-	"export": "Eksporter",
+	export: "Eksporter",
 	"export-to-format": "Eksporter til {format}",
 	"go-to-date": "Gå til Dato",
 	"go-to-today": "Gå til I Dag",
-	"import": "Importer",
+	import: "Importer",
 	"import-from-format": "Importer fra {format}",
-	"license": "Lisens",
+	license: "Lisens",
 	"lock-diary": "Lås Dagbok",
 	"next-day": "Neste Dag",
 	"next-month": "Neste Måned",
 	"previous-day": "Forrige Dag",
 	"previous-month": "Forrige Måned",
 	"privacy-policy": "Personvern-erklæring",
-	"statistics": "Statistikk",
-	"website": "Nettside",
+	statistics: "Statistikk",
+	website: "Nettside",
 
 	// Weekdays
-	"sunday": "Søndag",
-	"monday": "Mandag",
-	"tuesday": "Tirsdag",
-	"wednesday": "Onsdag",
-	"thursday": "Torsdag",
-	"friday": "Fredag",
-	"saturday": "Lørdag",
+	sunday: "Søndag",
+	monday: "Mandag",
+	tuesday: "Tirsdag",
+	wednesday: "Onsdag",
+	thursday: "Torsdag",
+	friday: "Fredag",
+	saturday: "Lørdag",
 
 	// Theme
-	"dark": "Mørk",
-	"light": "Lys",
-	"theme": "Tema",
+	dark: "Mørk",
+	light: "Lys",
+	theme: "Tema",
 
 	// Calendar
-	"today": "I Dag",
+	today: "I Dag",
 
 	// Editor
 	"add-a-title": "Legg til tittel",
-	"bold": "Fet",
-	"bullets": "Punkt",
-	"italic": "Kursiv",
-	"list": "Liste",
+	bold: "Fet",
+	bullets: "Punkt",
+	italic: "Kursiv",
+	list: "Liste",
 	"write-something": "Skriv noe",
 
 	// Search
-	"clear": "Tøm",
+	clear: "Tøm",
 	"no-results": "Ingen resultater",
 	"no-title": "Ingen tittel",
-	"search": "Søk",
+	search: "Søk",
 
 	// Preferences
 	"allow-future-entries": "Tillat innlegg i fremtiden",
-	"auto": "Auto",
+	auto: "Auto",
 	"diary-entries": "Dagbok innlegg",
 	"first-day-of-week": "Første dag i uken",
-	"no": "Nei",
-	"ok": "OK",
+	no: "Nei",
+	ok: "OK",
 	"reset-diary": "Nullstill dagbok",
 	"reset-diary-confirm": "Ja, jeg er sikker",
-	"reset-diary-msg": "Er du sikker på at du vil nullstille dagboken din? Dette vil slette alt innhold. Innholdet kan ikke gjenopprettes.",
+	"reset-diary-msg":
+		"Er du sikker på at du vil nullstille dagboken din? Dette vil slette alt innhold. Innholdet kan ikke gjenopprettes.",
 
 	// Password and directory
 	"change-directory": "Endre mappe",
@@ -98,13 +98,13 @@ const translationsNo: Translations = {
 	"move-error-title": "Flyttefeil",
 	"move-file": "Flytt fil",
 	"new-password": "Nytt passord",
-	"password": "Passord",
+	password: "Passord",
 	"passwords-no-match": "Passords stemmer ikke overens",
 	"repeat-new-password": "Gjenta nytt passord",
 	"repeat-password": "Gjenta passord",
 	"select-directory": "Velg mappe",
 	"set-password": "Sett passord",
-	"unlock": "Lås opp",
+	unlock: "Lås opp",
 	"wrong-password": "Feil passord",
 
 	// Statistics
@@ -118,9 +118,12 @@ const translationsNo: Translations = {
 	// Import
 	"import-error-msg": "En feil oppstod under importering",
 	"import-error-title": "Importfeil",
-	"import-instructions-day-one": "Åpne Day One appen og eksporter dagbokfilen under Fil → Eksorter → {format}. Unzip den lagde filen. Velg resulterende {format} fil i det neste steget for å importere den inn i {appName}.",
-	"import-instructions-jrnl": "For å eksportere din jrnl dagbok, kjør {command}. Velg den opprettede JSON filen i neste steg for å importere den inn i {appName}.",
-	"import-instructions-mini-diary": "Du kan importere innhold fra en tidligere {appName} JSON eksport eller fra en annen JSON fil som er satt opp på samme måte.",
+	"import-instructions-day-one":
+		"Åpne Day One appen og eksporter dagbokfilen under Fil → Eksorter → {format}. Unzip den lagde filen. Velg resulterende {format} fil i det neste steget for å importere den inn i {appName}.",
+	"import-instructions-jrnl":
+		"For å eksportere din jrnl dagbok, kjør {command}. Velg den opprettede JSON filen i neste steg for å importere den inn i {appName}.",
+	"import-instructions-mini-diary":
+		"Du kan importere innhold fra en tidligere {appName} JSON eksport eller fra en annen JSON fil som er satt opp på samme måte.",
 	"start-import": "Start import",
 
 	// Export
@@ -128,7 +131,7 @@ const translationsNo: Translations = {
 	"export-error-title": "Eksportfeil",
 
 	// Other
-	"loading": "Laster",
+	loading: "Laster",
 };
 
 export default translationsNo;

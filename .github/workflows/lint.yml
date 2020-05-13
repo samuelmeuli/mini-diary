@@ -1,8 +1,8 @@
 name: Lint
 
 on:
-  - pull_request
   - push
+  - pull_request
 
 jobs:
   lint:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint
+      - name: Run linters
         run: |
           yarn lint:css
           yarn lint:ts

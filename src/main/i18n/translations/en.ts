@@ -1,93 +1,93 @@
 import { Translations } from "../../../shared/types";
 
-// prettier-ignore
 const translationsEn: Translations = {
 	// Menu (defined by macOS)
 	"about-app": "About {appName}",
 	"bring-all-to-front": "Bring All to Front",
-	"close": "Close",
-	"copy": "Copy",
-	"cut": "Cut",
-	"edit": "Edit",
-	"file": "File",
-	"help": "Help",
+	close: "Close",
+	copy: "Copy",
+	cut: "Cut",
+	edit: "Edit",
+	file: "File",
+	help: "Help",
 	"hide-app": "Hide {appName}",
 	"hide-others": "Hide Others",
-	"minimize": "Minimize",
-	"paste": "Paste",
-	"preferences": "Preferences",
+	minimize: "Minimize",
+	paste: "Paste",
+	preferences: "Preferences",
 	"quit-app": "Quit {appName}",
-	"redo": "Redo",
+	redo: "Redo",
 	"select-all": "Select All",
 	"show-all": "Show All",
-	"speech": "Speech",
+	speech: "Speech",
 	"start-speaking": "Start Speaking",
 	"stop-speaking": "Stop Speaking",
-	"undo": "Undo",
-	"view": "View",
-	"window": "Window",
-	"zoom": "Zoom",
+	undo: "Undo",
+	view: "View",
+	window: "Window",
+	zoom: "Zoom",
 
 	// Menu (app-specific)
-	"export": "Export",
+	export: "Export",
 	"export-to-format": "Export to {format}",
 	"go-to-date": "Go to Date",
 	"go-to-today": "Go to Today",
-	"import": "Import",
+	import: "Import",
 	"import-from-format": "Import from {format}",
-	"license": "License",
+	license: "License",
 	"lock-diary": "Lock Diary",
 	"next-day": "Next Day",
 	"next-month": "Next Month",
 	"previous-day": "Previous Day",
 	"previous-month": "Previous Month",
 	"privacy-policy": "Privacy Policy",
-	"statistics": "Statistics",
-	"website": "Website",
+	statistics: "Statistics",
+	website: "Website",
 
 	// Weekdays
-	"sunday": "Sunday",
-	"monday": "Monday",
-	"tuesday": "Tuesday",
-	"wednesday": "Wednesday",
-	"thursday": "Thursday",
-	"friday": "Friday",
-	"saturday": "Saturday",
+	sunday: "Sunday",
+	monday: "Monday",
+	tuesday: "Tuesday",
+	wednesday: "Wednesday",
+	thursday: "Thursday",
+	friday: "Friday",
+	saturday: "Saturday",
 
 	// Theme
-	"dark": "Dark",
-	"light": "Light",
-	"theme": "Theme",
+	dark: "Dark",
+	light: "Light",
+	theme: "Theme",
 
 	// Calendar
-	"today": "Today",
+	today: "Today",
 
 	// Editor
 	"add-a-title": "Add a title",
-	"bold": "Bold",
-	"bullets": "Bullets",
-	"italic": "Italic",
-	"list": "List",
+	bold: "Bold",
+	bullets: "Bullets",
+	italic: "Italic",
+	list: "List",
 	"write-something": "Write something",
 
 	// Search
-	"clear": "Clear",
+	clear: "Clear",
 	"no-results": "No results",
 	"no-title": "No title",
-	"search": "Search",
+	search: "Search",
 
 	// Preferences
 	"allow-future-entries": "Allow entries in the future",
-	"auto": "Auto",
+	auto: "Auto",
 	"diary-entries": "Diary entries",
 	"diary-entry-titles": "Diary entry titles",
 	"first-day-of-week": "First day of the week",
 	"hide-titles": "Hide titles for diary entries",
-	"no": "No",
-	"ok": "OK",
+	no: "No",
+	ok: "OK",
 	"reset-diary": "Reset diary",
 	"reset-diary-confirm": "Yes, I am sure",
-	"reset-diary-msg": "Are you sure you want to reset your diary? This will delete all of your content. The data cannot be restored.",
+	"reset-diary-msg":
+		"Are you sure you want to reset your diary? This will delete all of your content. The data cannot be restored.",
 
 	// Password and directory
 	"change-directory": "Change directory",
@@ -100,13 +100,13 @@ const translationsEn: Translations = {
 	"move-error-title": "Move error",
 	"move-file": "Move file",
 	"new-password": "New password",
-	"password": "Password",
+	password: "Password",
 	"passwords-no-match": "Passwords do not match",
 	"repeat-new-password": "Repeat new password",
 	"repeat-password": "Repeat password",
 	"select-directory": "Select directory",
 	"set-password": "Set password",
-	"unlock": "Unlock",
+	unlock: "Unlock",
 	"wrong-password": "Wrong password",
 
 	// Statistics
@@ -120,9 +120,12 @@ const translationsEn: Translations = {
 	// Import
 	"import-error-msg": "An error occurred during the import",
 	"import-error-title": "Import error",
-	"import-instructions-day-one": "Open the Day One app and export your diary under File → Export → {format}. Unzip the created file. Select the resulting {format} file in the next step to import it into {appName}.",
-	"import-instructions-jrnl": "To export your jrnl diary, run {command}. Select the created JSON file in the next step to import it into {appName}.",
-	"import-instructions-mini-diary": "You can import your data from a previous {appName} JSON export or from another JSON file that is formatted the same way.",
+	"import-instructions-day-one":
+		"Open the Day One app and export your diary under File → Export → {format}. Unzip the created file. Select the resulting {format} file in the next step to import it into {appName}.",
+	"import-instructions-jrnl":
+		"To export your jrnl diary, run {command}. Select the created JSON file in the next step to import it into {appName}.",
+	"import-instructions-mini-diary":
+		"You can import your data from a previous {appName} JSON export or from another JSON file that is formatted the same way.",
 	"start-import": "Start import",
 
 	// Export
@@ -130,7 +133,7 @@ const translationsEn: Translations = {
 	"export-error-title": "Export error",
 
 	// Other
-	"loading": "Loading",
+	loading: "Loading",
 };
 
 export default translationsEn;
