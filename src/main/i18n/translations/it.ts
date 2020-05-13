@@ -1,91 +1,91 @@
 import { Translations } from "../../../shared/types";
 
-// prettier-ignore
 const translationsIt: Translations = {
 	// Menu (defined by macOS)
 	"about-app": "Informazioni su {appName}",
 	"bring-all-to-front": "Porta tutto in primo piano",
-	"close": "Chiudi",
-	"copy": "Copia",
-	"cut": "Taglia",
-	"edit": "Modifica",
-	"file": "File",
-	"help": "Aiuto",
+	close: "Chiudi",
+	copy: "Copia",
+	cut: "Taglia",
+	edit: "Modifica",
+	file: "File",
+	help: "Aiuto",
 	"hide-app": "Nascondi {appName}",
 	"hide-others": "Nascondi altri",
-	"minimize": "Contrai",
-	"paste": "Incolla",
-	"preferences": "Preferenze",
+	minimize: "Contrai",
+	paste: "Incolla",
+	preferences: "Preferenze",
 	"quit-app": "Esci da {appName}",
-	"redo": "Ripristina originale",
+	redo: "Ripristina originale",
 	"select-all": "Seleziona tutto",
 	"show-all": "Mostra tutto",
-	"speech": "Voce",
+	speech: "Voce",
 	"start-speaking": "Avvia riproduzione vocale",
 	"stop-speaking": "Interrompi riproduzione",
-	"undo": "Annulla",
-	"view": "Vista",
-	"window": "Finestra",
-	"zoom": "Ridimensiona",
+	undo: "Annulla",
+	view: "Vista",
+	window: "Finestra",
+	zoom: "Ridimensiona",
 
 	// Menu (app-specific)
-	"export": "Esporta",
+	export: "Esporta",
 	"export-to-format": "Esporta come {format}",
 	"go-to-date": "Vai al giorno",
 	"go-to-today": "Vai a oggi",
-	"import": "Importa",
+	import: "Importa",
 	"import-from-format": "Importa da {format}",
-	"license": "Licenza",
+	license: "Licenza",
 	"lock-diary": "Blocca diario",
 	"next-day": "Giorno successivo",
 	"next-month": "Mese successivo",
 	"previous-day": "Giorno precedente",
 	"previous-month": "Mese precedente",
 	"privacy-policy": "Informativa sulla privacy",
-	"statistics": "Statistiche",
-	"website": "Sito Web",
+	statistics: "Statistiche",
+	website: "Sito Web",
 
 	// Weekdays
-	"sunday": "Domenica",
-	"monday": "Lunedì",
-	"tuesday": "Martedì",
-	"wednesday": "Mercoledì",
-	"thursday": "Giovedì",
-	"friday": "Venerdì",
-	"saturday": "Sabato",
+	sunday: "Domenica",
+	monday: "Lunedì",
+	tuesday: "Martedì",
+	wednesday: "Mercoledì",
+	thursday: "Giovedì",
+	friday: "Venerdì",
+	saturday: "Sabato",
 
 	// Theme
-	"dark": "Scuro",
-	"light": "Chiaro",
-	"theme": "Tema",
+	dark: "Scuro",
+	light: "Chiaro",
+	theme: "Tema",
 
 	// Calendar
-	"today": "Oggi",
+	today: "Oggi",
 
 	// Editor
 	"add-a-title": "Aggiungi un titolo",
-	"bold": "Grassetto",
-	"bullets": "Elenco puntato",
-	"italic": "Corsivo",
-	"list": "Elenco numerato",
+	bold: "Grassetto",
+	bullets: "Elenco puntato",
+	italic: "Corsivo",
+	list: "Elenco numerato",
 	"write-something": "Scrivi qualcosa",
 
 	// Search
-	"clear": "Cancella ricerca",
+	clear: "Cancella ricerca",
 	"no-results": "Nessun risultato",
 	"no-title": "Nessun titolo",
-	"search": "Cerca",
+	search: "Cerca",
 
 	// Preferences
 	"allow-future-entries": "Consenti l'inserimento di note nel futuro",
-	"auto": "Auto",
+	auto: "Auto",
 	"diary-entries": "Note",
 	"first-day-of-week": "Primo giorno della settimana",
-	"no": "No",
-	"ok": "OK",
+	no: "No",
+	ok: "OK",
 	"reset-diary": "Reset diario",
 	"reset-diary-confirm": "Si, sono sicuro",
-	"reset-diary-msg": "Sei sicuro di voler eseguire il reset del diario? Questa operazione eliminerà tutti i tuoi contenuti. I dati non potranno essere recuperati.",
+	"reset-diary-msg":
+		"Sei sicuro di voler eseguire il reset del diario? Questa operazione eliminerà tutti i tuoi contenuti. I dati non potranno essere recuperati.",
 
 	// Password and directory
 	"change-directory": "Cambia cartella",
@@ -98,13 +98,13 @@ const translationsIt: Translations = {
 	"move-error-title": "Errore di spostamento",
 	"move-file": "Sposta file",
 	"new-password": "Nuova password",
-	"password": "Password",
+	password: "Password",
 	"passwords-no-match": "Le password non corrispondono",
 	"repeat-new-password": "Reinserisci la nuova password",
 	"repeat-password": "Reinserisci password",
 	"select-directory": "Seleziona cartella",
 	"set-password": "Imposta password",
-	"unlock": "Sblocca",
+	unlock: "Sblocca",
 	"wrong-password": "Password sbagliata",
 
 	// Statistics
@@ -118,9 +118,12 @@ const translationsIt: Translations = {
 	// Import
 	"import-error-msg": "Si è verificato un errore durante l'import",
 	"import-error-title": "Errore di import",
-	"import-instructions-day-one": "Apri l'app Day One ed esporta il tuo diario cliccando su File → Export → {format}. Decomprimi il file generato. Al passo successivo seleziona il file {format} ottenuto per importarlo in {appName}.",
-	"import-instructions-jrnl": "Per esportare il tuo diario jrnl, lancia il comando {command}. Al passo successivo seleziona il file JSON ottenuto per importarlo in {appName}.",
-	"import-instructions-mini-diary": "Puoi importare i tuoi dati da un {appName} JSON precedentemente esportato o da un altro file JSON formattato allo stesso modo.",
+	"import-instructions-day-one":
+		"Apri l'app Day One ed esporta il tuo diario cliccando su File → Export → {format}. Decomprimi il file generato. Al passo successivo seleziona il file {format} ottenuto per importarlo in {appName}.",
+	"import-instructions-jrnl":
+		"Per esportare il tuo diario jrnl, lancia il comando {command}. Al passo successivo seleziona il file JSON ottenuto per importarlo in {appName}.",
+	"import-instructions-mini-diary":
+		"Puoi importare i tuoi dati da un {appName} JSON precedentemente esportato o da un altro file JSON formattato allo stesso modo.",
 	"start-import": "Inizia l'import",
 
 	// Export
@@ -128,7 +131,7 @@ const translationsIt: Translations = {
 	"export-error-title": "Errore di export",
 
 	// Other
-	"loading": "Caricamento in corso",
+	loading: "Caricamento in corso",
 };
 
 export default translationsIt;
