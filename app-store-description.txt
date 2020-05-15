@@ -1,0 +1,11 @@
+SIMPLE AND INTUITIVE
+Mini Diary features a beautiful and clean design with no distractions, letting you fully focus on your writing.
+
+PRIVATE AND SECURE
+You're in control of your data. The journal is encrypted with a password and stored locally on your device.
+
+PORTABLE
+Mini Diary makes it easy to import your existing journal from other apps or export your data in various file formats.
+
+COMPLETELY FREE AND OPEN SOURCE
+The app is and always will be free. Its source code is publicly accessible.
