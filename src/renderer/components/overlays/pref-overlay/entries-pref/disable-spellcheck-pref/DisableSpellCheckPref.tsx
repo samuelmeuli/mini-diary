@@ -19,7 +19,7 @@ export default function DisableSpellCheckPref(props: Props): ReactElement {
 	const { disableSpellCheck, updateDisableSpellCheckPref } = props;
 
 	const toggleDisableSpellCheck = (): void => updateDisableSpellCheckPref(!disableSpellCheck);
-    
+
 	return (
 		<label htmlFor="checkbox-disable-spellcheck">
 			<input
@@ -27,7 +27,7 @@ export default function DisableSpellCheckPref(props: Props): ReactElement {
 				name="checkbox-disable-spellcheck"
 				id="checkbox-disable-spellcheck"
 				checked={disableSpellCheck}
-                onChange={toggleDisableSpellCheck}
+				onChange={toggleDisableSpellCheck}
 			/>
 			{translations["disable-spellcheck"]}
 		</label>
