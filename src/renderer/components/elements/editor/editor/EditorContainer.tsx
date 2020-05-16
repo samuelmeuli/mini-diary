@@ -6,6 +6,7 @@ import { IndexDate } from "../../../../types";
 import Editor, { DispatchProps, StateProps } from "./Editor";
 
 const mapStateToProps = (state: RootState): StateProps => ({
+	disableSpellCheck: state.app.disableSpellCheck,
 	hideTitles: state.app.hideTitles,
 	dateSelected: state.diary.dateSelected,
 	entries: state.file.entries,

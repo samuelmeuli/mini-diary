@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 
 import { translations } from "../../../../utils/i18n";
+import DisableSpellCheckPrefContainer from "./disable-spellcheck-pref/DisableSpellCheckPrefContainer";
 import FutureEntriesPrefContainer from "./future-entries-pref/FutureEntriesPrefContainer";
 import HideTitlesPrefContainer from "./hide-titles-pref/HideTitlesPrefContainer";
 
@@ -15,6 +16,8 @@ export default function EntriesPref(): ReactElement {
 				<HideTitlesPrefContainer />
 				<br />
 				<FutureEntriesPrefContainer />
+				<br />
+				<DisableSpellCheckPrefContainer />
 			</div>
 		</fieldset>
 	);

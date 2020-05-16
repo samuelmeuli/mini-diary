@@ -9,6 +9,7 @@ import { supportsNativeTheme } from "../../utils/native-theme";
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
 const DEFAULT_FIRST_DAY_OF_WEEK = null; // Let the system locale determine the first day of the week
 const DEFAULT_HIDE_TITLES = false;
+const DEFAULT_DISABLE_SPELLCHECK = false;
 const DEFAULT_THEME_PREF: ThemePref = "light";
 const PREF_DIR = remote.app.getPath("userData");
 
@@ -95,6 +96,22 @@ export function loadHideTitlesPref(): boolean {
  */
 export function saveHideTitlesPref(hideTitles: boolean): void {
 	setPref("hideTitles", hideTitles);
+}
+
+// SpellCheck
+
+/**
+ * Return the preference for whether spell check should be disabled
+ */
+export function loadDisableSpellCheckPref(): boolean {
+	return getPref("disableSpellCheck", DEFAULT_DISABLE_SPELLCHECK)
+}
+
+/**
+ * Update the preference for disabling spell check
+ */
+export function saveDisableSpellCheckPref(disableSpellCheck: boolean): void {
+	setPref("disableSpellCheck", disableSpellCheck);
 }
 
 // Theme

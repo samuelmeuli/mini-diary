@@ -4,18 +4,21 @@ import {
 	saveFutureEntriesPref,
 	saveHideTitlesPref,
 	saveThemePref,
+	saveDisableSpellCheckPref,
 } from "../../files/preferences/preferences";
 import { Weekday, Theme, ThemePref } from "../../types";
 import { getThemeFromPref } from "../../utils/native-theme";
 import { ThunkActionT } from "../store";
 import {
 	SET_ALLOW_FUTURE_ENTRIES,
+	SET_DISABLE_SPELLCHECK,
 	SET_HIDE_TITLES,
 	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
 	SET_THEME_PREF,
 	SetAllowFutureEntriesAction,
+	SetDisableSpellCheckAction,
 	SetFirstDayOfWeekAction,
 	SetOverlayAction,
 	SetThemeAction,
@@ -30,6 +33,15 @@ function setAllowFutureEntries(allowFutureEntries: boolean): SetAllowFutureEntri
 		type: SET_ALLOW_FUTURE_ENTRIES,
 		payload: {
 			allowFutureEntries,
+		},
+	};
+}
+
+function setDisableSpellCheck(disableSpellCheck: boolean): SetDisableSpellCheckAction {
+	return {
+		type: SET_DISABLE_SPELLCHECK,
+		payload: {
+			disableSpellCheck,
 		},
 	};
 }
@@ -89,6 +101,13 @@ export function setThemePref(themePref: ThemePref): SetThemePrefAction {
 }
 
 // Thunks
+
+export const updateDisableSpellCheckPref = (disableSpellCheck: boolean): ThunkActionT => (
+	dispatch,
+): void => {
+	dispatch(setDisableSpellCheck(disableSpellCheck));
+	saveDisableSpellCheckPref(disableSpellCheck);
+};
 
 export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActionT => (
 	dispatch,
