@@ -79,7 +79,7 @@ const translationsEn: Translations = {
 	"allow-future-entries": "Allow entries in the future",
 	auto: "Auto",
 	"diary-entries": "Diary entries",
-	"disable-spellcheck": "Disable spellcheck",
+	"enable-spellcheck": "Check spelling",
 	"first-day-of-week": "First day of the week",
 	"hide-titles": "Hide titles",
 	no: "No",

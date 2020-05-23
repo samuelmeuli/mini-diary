@@ -91,7 +91,7 @@ export interface Translations {
 	"allow-future-entries": string;
 	auto: string;
 	"diary-entries": string;
-	"disable-spellcheck": string;
+	"enable-spellcheck": string;
 	"first-day-of-week": string;
 	"hide-titles": string;
 	no: string;

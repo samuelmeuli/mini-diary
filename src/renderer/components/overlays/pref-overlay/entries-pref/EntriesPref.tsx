@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 
 import { translations } from "../../../../utils/i18n";
-import DisableSpellCheckPrefContainer from "./disable-spellcheck-pref/DisableSpellCheckPrefContainer";
 import FutureEntriesPrefContainer from "./future-entries-pref/FutureEntriesPrefContainer";
 import HideTitlesPrefContainer from "./hide-titles-pref/HideTitlesPrefContainer";
+import SpellcheckPrefContainer from "./spellcheck-pref/SpellcheckPrefContainer";
 
 /**
  * Preference fieldset for options related to diary entries
@@ -17,7 +17,7 @@ export default function EntriesPref(): ReactElement {
 				<br />
 				<FutureEntriesPrefContainer />
 				<br />
-				<DisableSpellCheckPrefContainer />
+				<SpellcheckPrefContainer />
 			</div>
 		</fieldset>
 	);
