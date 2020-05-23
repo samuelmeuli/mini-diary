@@ -1,5 +1,6 @@
 import {
 	loadFirstDayOfWeekPref,
+	loadSpellcheckPref,
 	loadFutureEntriesPref,
 	loadThemePref,
 	loadHideTitlesPref,
@@ -9,6 +10,7 @@ import {
 	AppAction,
 	AppState,
 	SET_ALLOW_FUTURE_ENTRIES,
+	SET_ENABLE_SPELLCHECK,
 	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
@@ -21,6 +23,7 @@ const theme = getThemeFromPref(themePref);
 
 const initialState: AppState = {
 	allowFutureEntries: loadFutureEntriesPref(),
+	enableSpellcheck: loadSpellcheckPref(),
 	firstDayOfWeek: loadFirstDayOfWeekPref(),
 	hideTitles: loadHideTitlesPref(),
 	overlay: "none",
@@ -34,6 +37,12 @@ function appReducer(state = initialState, action: AppAction): AppState {
 			return {
 				...state,
 				allowFutureEntries: action.payload.allowFutureEntries,
+			};
+		}
+		case SET_ENABLE_SPELLCHECK: {
+			return {
+				...state,
+				enableSpellcheck: action.payload.enableSpellcheck,
 			};
 		}
 		case SET_HIDE_TITLES: {
