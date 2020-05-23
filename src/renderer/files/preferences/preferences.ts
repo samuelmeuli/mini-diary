@@ -101,14 +101,14 @@ export function saveHideTitlesPref(hideTitles: boolean): void {
 // Spellcheck
 
 /**
- * Return the preference for whether spell check should be disabled
+ * Return the preference for whether spellcheck should be enabled/disabled
  */
 export function loadSpellcheckPref(): boolean {
 	return getPref("enableSpellcheck", DEFAULT_ENABLE_SPELLCHECK);
 }
 
 /**
- * Update the preference for disabling spell check
+ * Update the preference for enabling/disabling spellcheck
  */
 export function saveSpellcheckPref(enableSpellcheck: boolean): void {
 	setPref("enableSpellcheck", enableSpellcheck);
