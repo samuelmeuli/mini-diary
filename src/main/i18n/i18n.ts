@@ -25,6 +25,7 @@ const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	fr: translationsFr,
 	is: translationsIs,
 	it: translationsIt,
+	nb: translationsNo,
 	no: translationsNo,
 	pt: translationsPt,
 	tr: translationsTr,
