@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 
 import { Translations } from "../../shared/types";
 import { getLang, getTranslation, getTranslations } from "../electron/ipcRenderer/senders";

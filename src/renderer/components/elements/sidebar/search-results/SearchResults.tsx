@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { PureComponent, ReactNode } from "react";
 
 import { Entries } from "../../../../types";

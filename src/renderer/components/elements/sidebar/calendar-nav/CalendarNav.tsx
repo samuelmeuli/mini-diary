@@ -1,6 +1,6 @@
 import PrevIcon from "feather-icons/dist/icons/chevron-left.svg";
 import NextIcon from "feather-icons/dist/icons/chevron-right.svg";
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { ReactElement } from "react";
 
 import { MAX_DATE, MIN_DATE } from "../../../../constants";

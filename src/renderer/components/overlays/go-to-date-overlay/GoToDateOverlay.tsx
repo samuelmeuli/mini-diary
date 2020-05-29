@@ -1,5 +1,5 @@
 import logger from "electron-log";
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
 
 import { createDate, fromIndexDate, toIndexDate } from "../../../utils/dateFormat";

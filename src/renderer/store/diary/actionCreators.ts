@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 
 import { MAX_DATE, MIN_DATE } from "../../constants";
 import { createDate, parseDate } from "../../utils/dateFormat";

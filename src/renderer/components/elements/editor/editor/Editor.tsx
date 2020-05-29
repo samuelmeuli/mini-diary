@@ -14,7 +14,7 @@ import createListPlugin from "draft-js-list-plugin";
 import PluginEditor from "draft-js-plugins-editor";
 import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
 
 import { Entries, IndexDate } from "../../../../types";

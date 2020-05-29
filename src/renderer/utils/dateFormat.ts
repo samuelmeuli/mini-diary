@@ -1,4 +1,4 @@
-import moment, { Moment, MomentFormatSpecification } from "moment";
+import moment, { Moment, MomentFormatSpecification } from "moment-timezone";
 
 import { IndexDate } from "../types";
 

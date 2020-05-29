@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import { connect } from "react-redux";
 
 import { setDateSelected } from "../../../../store/diary/actionCreators";

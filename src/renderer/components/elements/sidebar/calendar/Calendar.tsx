@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { PureComponent, ReactNode } from "react";
 import DayPicker from "react-day-picker";
 import MomentLocaleUtils from "react-day-picker/moment";

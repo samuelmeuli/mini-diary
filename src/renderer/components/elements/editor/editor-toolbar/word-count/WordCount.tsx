@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import { Moment } from "moment-timezone";
 import React, { ReactElement } from "react";
 import countWords from "word-count";
 
