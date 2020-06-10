@@ -3,6 +3,7 @@ import {
 	saveFirstDayOfWeekPref,
 	saveFutureEntriesPref,
 	saveHideTitlesPref,
+	saveReadOnlyPref,
 	saveThemePref,
 	saveSpellcheckPref,
 } from "../../files/preferences/preferences";
@@ -13,6 +14,7 @@ import {
 	SET_ALLOW_FUTURE_ENTRIES,
 	SET_ENABLE_SPELLCHECK,
 	SET_HIDE_TITLES,
+	SET_READ_ONLY,
 	SET_FIRST_DAY_OF_WEEK,
 	SET_OVERLAY,
 	SET_THEME,
@@ -24,6 +26,7 @@ import {
 	SetThemeAction,
 	SetThemePrefAction,
 	SetHideTitlesAction,
+	SetReadOnlyAction,
 } from "./types";
 
 // Action creators
@@ -52,6 +55,15 @@ function setHideTitles(hideTitles: boolean): SetHideTitlesAction {
 		payload: {
 			hideTitles,
 		},
+	};
+}
+
+function setReadOnly(readOnly: boolean): SetReadOnlyAction {
+	return {
+		type: SET_READ_ONLY,
+		payload: {
+			readOnly,
+		}
 	};
 }
 
@@ -119,6 +131,11 @@ export const updateFutureEntriesPref = (allowFutureEntries: boolean): ThunkActio
 export const updateHideTitlesPref = (hideTitles: boolean): ThunkActionT => (dispatch): void => {
 	dispatch(setHideTitles(hideTitles));
 	saveHideTitlesPref(hideTitles);
+};
+
+export const updateReadOnlyPref = (readOnly: boolean): ThunkActionT => (dispatch): void => {
+	dispatch(setReadOnly(readOnly));
+	saveReadOnlyPref(readOnly);
 };
 
 export const updateFirstDayOfWeekPref = (firstDayOfWeek: Weekday | null): ThunkActionT => (

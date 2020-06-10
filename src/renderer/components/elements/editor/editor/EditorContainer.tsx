@@ -8,6 +8,7 @@ import Editor, { DispatchProps, StateProps } from "./Editor";
 const mapStateToProps = (state: RootState): StateProps => ({
 	enableSpellcheck: state.app.enableSpellcheck,
 	hideTitles: state.app.hideTitles,
+	readOnly: state.app.readOnly,
 	dateSelected: state.diary.dateSelected,
 	entries: state.file.entries,
 });

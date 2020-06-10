@@ -9,6 +9,7 @@ import { supportsNativeTheme } from "../../utils/native-theme";
 const DEFAULT_ALLOW_FUTURE_ENTRIES = false;
 const DEFAULT_FIRST_DAY_OF_WEEK = null; // Let the system locale determine the first day of the week
 const DEFAULT_HIDE_TITLES = false;
+const DEFAULT_READ_ONLY = false;
 const DEFAULT_ENABLE_SPELLCHECK = true;
 const DEFAULT_THEME_PREF: ThemePref = "light";
 const PREF_DIR = remote.app.getPath("userData");
@@ -92,10 +93,24 @@ export function loadHideTitlesPref(): boolean {
 }
 
 /**
+ * Return the preference if the editor should be read only
+ */
+export function loadReadOnlyPref(): boolean {
+	return getPref("readOnly", DEFAULT_READ_ONLY);
+}
+
+/**
  * Update the preference for hiding diary entry titles
  */
 export function saveHideTitlesPref(hideTitles: boolean): void {
 	setPref("hideTitles", hideTitles);
+}
+
+/**
+ * Update the preference for enabling read only mode
+ */
+export function saveReadOnlyPref(readOnly: boolean): void {
+	setPref("readOnly", readOnly);
 }
 
 // Spellcheck
