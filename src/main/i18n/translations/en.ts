@@ -88,6 +88,7 @@ const translationsEn: Translations = {
 	"reset-diary-confirm": "Yes, I am sure",
 	"reset-diary-msg":
 		"Are you sure you want to reset your diary? This will delete all of your content. The data cannot be restored.",
+	"read-only": "Read only",
 
 	// Password and directory
 	"change-directory": "Change directory",

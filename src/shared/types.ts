@@ -99,6 +99,7 @@ export interface Translations {
 	"reset-diary": string;
 	"reset-diary-confirm": string;
 	"reset-diary-msg": string;
+	"read-only": string;
 
 	// Password and directory
 	"change-directory": string;

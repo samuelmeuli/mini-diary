@@ -10,6 +10,7 @@ export interface AppState {
 	enableSpellcheck: boolean;
 	firstDayOfWeek: Weekday | null;
 	hideTitles: boolean;
+	readOnly: boolean;
 	overlay: OverlayType;
 	theme: Theme;
 	themePref: ThemePref;
@@ -21,6 +22,7 @@ export const SET_ALLOW_FUTURE_ENTRIES = "SET_ALLOW_FUTURE_ENTRIES";
 export const SET_ENABLE_SPELLCHECK = "SET_ENABLE_SPELLCHECK";
 export const SET_FIRST_DAY_OF_WEEK = "SET_FIRST_DAY_OF_WEEK";
 export const SET_HIDE_TITLES = "SET_HIDE_TITLES";
+export const SET_READ_ONLY = "SET_READ_ONLY";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const SET_THEME = "SET_THEME";
 export const SET_THEME_PREF = "SET_THEME_PREF";
@@ -55,6 +57,13 @@ export interface SetHideTitlesAction extends Action {
 	};
 }
 
+export interface SetReadOnlyAction extends Action {
+	type: typeof SET_READ_ONLY;
+	payload: {
+		readOnly: boolean;
+	};
+}
+
 export interface SetOverlayAction extends Action {
 	type: typeof SET_OVERLAY;
 	payload: {
@@ -81,6 +90,7 @@ export type AppAction =
 	| SetEnableSpellcheckAction
 	| SetFirstDayOfWeekAction
 	| SetHideTitlesAction
+	| SetReadOnlyAction
 	| SetOverlayAction
 	| SetThemeAction
 	| SetThemePrefAction;

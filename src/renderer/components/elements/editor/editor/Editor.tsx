@@ -33,6 +33,7 @@ const plugins = [listPlugin];
 export interface StateProps {
 	enableSpellcheck: boolean;
 	hideTitles: boolean;
+	readOnly: boolean;
 	dateSelected: Moment;
 	entries: Entries;
 }
@@ -165,7 +166,7 @@ export default class Editor extends PureComponent<Props, State> {
 
 	render = (): ReactNode => {
 		const { dateSelected, textEditorState, titleEditorState } = this.state;
-		const { enableSpellcheck, hideTitles } = this.props;
+		const { enableSpellcheck, hideTitles, readOnly } = this.props;
 
 		// Detect active inline/block styles
 		const blockType = RichUtils.getCurrentBlockType(textEditorState);
@@ -187,6 +188,7 @@ export default class Editor extends PureComponent<Props, State> {
 								onChange={this.onTitleChange}
 								placeholder={translations["add-a-title"]}
 								spellCheck={enableSpellcheck}
+								readOnly={readOnly}
 							/>
 						</div>
 					)}
@@ -202,10 +204,11 @@ export default class Editor extends PureComponent<Props, State> {
 							placeholder={isOl || isUl ? "" : `${translations["write-something"]}…`}
 							plugins={plugins}
 							spellCheck={enableSpellcheck}
+							readOnly={readOnly}
 						/>
 					</div>
 				</div>
-				<EditorToolbar onTextChange={this.onTextChange} textEditorState={textEditorState} />
+				{!readOnly && (<EditorToolbar onTextChange={this.onTextChange} textEditorState={textEditorState} />)}
 			</form>
 		);
 	};

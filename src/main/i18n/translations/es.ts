@@ -77,6 +77,7 @@ const translationsEs: Partial<Translations> = {
 	auto: "Automático",
 	"diary-entries": "Entradas del diario",
 	"first-day-of-week": "Primer día de la semana",
+	"read-only": "Solo lectura",
 
 	// Password and directory
 	"change-directory": "Cambiar carpeta",

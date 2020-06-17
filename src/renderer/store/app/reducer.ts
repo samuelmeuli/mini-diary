@@ -4,6 +4,7 @@ import {
 	loadFutureEntriesPref,
 	loadThemePref,
 	loadHideTitlesPref,
+	loadReadOnlyPref,
 } from "../../files/preferences/preferences";
 import { getThemeFromPref } from "../../utils/native-theme";
 import {
@@ -16,6 +17,7 @@ import {
 	SET_THEME,
 	SET_THEME_PREF,
 	SET_HIDE_TITLES,
+	SET_READ_ONLY,
 } from "./types";
 
 const themePref = loadThemePref();
@@ -26,6 +28,7 @@ const initialState: AppState = {
 	enableSpellcheck: loadSpellcheckPref(),
 	firstDayOfWeek: loadFirstDayOfWeekPref(),
 	hideTitles: loadHideTitlesPref(),
+	readOnly: loadReadOnlyPref(),
 	overlay: "none",
 	theme,
 	themePref,
@@ -49,6 +52,12 @@ function appReducer(state = initialState, action: AppAction): AppState {
 			return {
 				...state,
 				hideTitles: action.payload.hideTitles,
+			};
+		}
+		case SET_READ_ONLY: {
+			return {
+				...state,
+				readOnly: action.payload.readOnly,
 			};
 		}
 		case SET_FIRST_DAY_OF_WEEK: {
