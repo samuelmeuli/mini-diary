@@ -6,14 +6,20 @@ const MULTILINE_SEPARATOR = "\n\n––––––––––\n\n";
 /**
  * Merge the contents of two diary entries and split old and new text using separators
  */
-export default function mergeEntries(entryOld: DiaryEntry, entryNew: DiaryEntry): DiaryEntry {
+export default function mergeEntries(
+	entriesOld: Array<DiaryEntry>,
+	entriesNew: Array<DiaryEntry>,
+): Array<DiaryEntry> {
 	// Add title and text to existing entry if there already is one for the same day
-	const entryMerged = { ...entryOld };
-	if (entryOld.title) {
-		entryMerged.title = `${entryOld.title}${INLINE_SEPARATOR}${entryNew.title}`;
-	}
-	if (entryOld.text) {
-		entryMerged.text = `${entryOld.text}${MULTILINE_SEPARATOR}${entryNew.text}`;
-	}
-	return entryMerged;
+	const entriesMerged = [...entriesOld];
+	entriesNew.forEach(entryNew => {
+		const entryToBeUpdated = entriesMerged.find(e => e.id === entryNew.id);
+		if (entryToBeUpdated) {
+			entryToBeUpdated.title = `${entryToBeUpdated.title}${INLINE_SEPARATOR}${entryNew.title}`;
+			entryToBeUpdated.text = `${entryToBeUpdated.text}${MULTILINE_SEPARATOR}${entryNew.text}`;
+		} else {
+			entriesMerged.push(entryNew);
+		}
+	});
+	return entriesMerged;
 }

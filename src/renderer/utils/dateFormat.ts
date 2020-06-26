@@ -1,7 +1,5 @@
 import moment, { Moment, MomentFormatSpecification } from "moment-timezone";
 
-import { IndexDate } from "../types";
-
 const DAY_ONE_DATE_FORMAT = "DD MMMM YYYY [at 00:00:00 GMT]"; // E.g. "01 January 2019 at 00:00:00 GMT"
 const DATE_STRING_FORMAT = "LL"; // E.g. "January 1, 2019"
 const FILE_NAME_DATE_FORMAT = "YYYY-MM-DD-HH[h]mm"; // E.g. "2019-01-01-12h30"
@@ -57,7 +55,7 @@ export function toFileNameDate(date: Moment | string): string {
 /**
  * Format date as diary index string
  */
-export function toIndexDate(date: Moment | string): IndexDate {
+export function toIndexDate(date: Moment | string): string {
 	return parseDate(date).format(INDEX_DATE_FORMAT);
 }
 

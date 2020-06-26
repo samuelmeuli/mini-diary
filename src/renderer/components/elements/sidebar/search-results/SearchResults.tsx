@@ -2,18 +2,19 @@ import { Moment } from "moment-timezone";
 import React, { PureComponent, ReactNode } from "react";
 
 import { Entries } from "../../../../types";
-import { fromIndexDate, toDateString } from "../../../../utils/dateFormat";
+import { fromIndexDate } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
+import { SearchResult } from "../../../../utils/searchIndex";
 import Banner from "../../general/banner/Banner";
 
 export interface StateProps {
-	dateSelected: Moment;
 	entries: Entries;
-	searchResults: string[];
+	searchResults: SearchResult[];
+	entryIdSelected: string | null;
 }
 
 export interface DispatchProps {
-	setDateSelected: (date: Moment) => void;
+	setEntrySelected: (id: string, date: Moment) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -30,24 +31,26 @@ export default class SearchResults extends PureComponent<Props, {}> {
 	 * Generate list of search result elements
 	 */
 	generateSearchResults(): ReactNode[] {
-		const { dateSelected, entries, searchResults, setDateSelected } = this.props;
-
+		const { entries, searchResults, setEntrySelected, entryIdSelected } = this.props;
 		return searchResults.reduce((r: ReactNode[], searchResult): ReactNode[] => {
-			if (searchResult in entries) {
+			const entry =
+				entries[searchResult.indexDate] &&
+				entries[searchResult.indexDate].find(e => e.id === searchResult.id);
+			if (entry) {
 				// Create search result element if a corresponding diary entry exists
 				// (When deleting a diary entry after a search, it is still part of the search results
 				// until a new search is performed. That's why it needs to be filtered out here)
-				const date = fromIndexDate(searchResult);
-				const { title } = entries[searchResult];
-				const isSelected = date.isSame(dateSelected, "day");
+				const date = fromIndexDate(searchResult.indexDate);
+				const { title } = entry;
+				const isSelected = searchResult.id === entryIdSelected;
 				r.push(
-					<li key={searchResult} className="search-result">
+					<li key={searchResult.id} className="search-result">
 						<button
 							type="button"
 							className={`button ${isSelected ? "button-main" : ""}`}
-							onClick={(): void => setDateSelected(date)}
+							onClick={(): void => setEntrySelected(searchResult.id, date)}
 						>
-							<p className="search-date text-faded">{toDateString(date)}</p>
+							<p className="search-date text-faded">{searchResult.indexDate}</p>
 							<p className={`search-title ${!title ? "text-faded" : ""}`}>
 								{title || translations["no-title"]}
 							</p>

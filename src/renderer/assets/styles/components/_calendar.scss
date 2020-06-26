@@ -26,7 +26,7 @@
 
 .DayPicker-Body {
 	display: grid;
-	grid-template-rows: repeat(6, $input-height);
+	grid-template-rows: repeat(5, $input-height);
 }
 
 .DayPicker-Months {
@@ -97,4 +97,30 @@
 	&:hover {
 		@include background-color("main-hover");
 	}
+}
+
+.day-entries {
+	flex: 1;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	padding: 1px;
+	overflow-y: auto;
+}
+
+.entry {
+	.button {
+		width: 100%;
+		height: 100%;
+		padding: $spacing-abs-small $spacing-abs-medium;
+		font-weight: $font-weight-normal;
+		line-height: $line-height;
+	}
+
+	.button-main * {
+		@include color("text-button");
+	}
+}
+
+.entry + .entry {
+	margin-top: $spacing-abs-medium;
 }

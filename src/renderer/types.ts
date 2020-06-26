@@ -1,14 +1,15 @@
 // Diary
 
-export type IndexDate = string;
+export type IndexId = string;
 
 export interface DiaryEntry {
 	dateUpdated: string;
 	title: string;
 	text: string;
+	id: string;
 }
 
-export type Entries = Record<IndexDate, DiaryEntry>;
+export type Entries = Record<string, Array<DiaryEntry>>;
 
 export interface MiniDiaryJson {
 	metadata: Metadata;

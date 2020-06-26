@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 import {
 	DayOneEntry,
 	DayOneJson,
@@ -10,6 +12,7 @@ import {
 	MiniDiaryJson,
 } from "../../types";
 import { createDate, parseDate, toIndexDate } from "../../utils/dateFormat";
+import { performMigrations } from "../diary/migrations";
 import buildEntries from "./buildEntries";
 
 /**
@@ -44,7 +47,7 @@ export function parseDayOneJson(jsonStr: string): Entries {
 			title = title.substring(2);
 		}
 
-		const entry = { dateUpdated, title, text };
+		const entry = { dateUpdated, title, text, id: v4() };
 		return { indexDate, entry };
 	});
 }
@@ -63,7 +66,7 @@ export function parseJrnlJson(jsonStr: string): Entries {
 		const parsedEntryCast = parsedEntry as JrnlEntry;
 		const { date: indexDate, title, body } = parsedEntryCast;
 
-		const entry = { dateUpdated: now, title: title.trim(), text: body.trim() };
+		const entry = { dateUpdated: now, title: title.trim(), text: body.trim(), id: v4() };
 		return { indexDate, entry };
 	});
 }
@@ -72,10 +75,14 @@ export function parseJrnlJson(jsonStr: string): Entries {
  * Parse the Mini Diary JSON file and format it as an Entries object
  */
 export function parseMiniDiaryJson(jsonStr: string): Entries {
-	const parsedJson: MiniDiaryJson = JSON.parse(jsonStr);
-	const parsedEntries = Object.entries(parsedJson.entries).map(
-		([indexDate, entry]): ListDiaryEntry => ({ ...entry, indexDate }),
-	);
+	const parsedJson: MiniDiaryJson = performMigrations(JSON.parse(jsonStr));
+
+	const parsedEntries: ListDiaryEntry[] = Object.entries(parsedJson.entries)
+		.map(([indexDate, entriesForTheDay]) =>
+			entriesForTheDay.map(entry => ({ indexDate, ...entry })),
+		)
+		.flat();
+
 	const now = createDate().toString();
 
 	return buildEntries(parsedEntries, (parsedEntry: ImportEntry): {
@@ -83,7 +90,7 @@ export function parseMiniDiaryJson(jsonStr: string): Entries {
 		entry: DiaryEntry;
 	} => {
 		const parsedEntryCast = parsedEntry as ListDiaryEntry;
-		const { indexDate, text, title } = parsedEntryCast;
+		const { indexDate, text, title, id } = parsedEntryCast;
 
 		// Use dateUpdated if defined, otherwise set it to now
 		let { dateUpdated } = parsedEntryCast;
@@ -91,7 +98,7 @@ export function parseMiniDiaryJson(jsonStr: string): Entries {
 			dateUpdated = now;
 		}
 
-		const entry = { dateUpdated, title: title.trim(), text: text.trim() };
+		const entry = { dateUpdated, title: title.trim(), text: text.trim(), id: id || v4() };
 		return { indexDate, entry };
 	});
 }

@@ -1,7 +1,7 @@
 {
 	"name": "mini-diary",
 	"productName": "Mini Diary",
-	"version": "3.3.0",
+	"version": "3.4.0",
 	"description": "Simple and secure journal app",
 	"main": "./bundle/main.js",
 	"author": {
@@ -53,6 +53,7 @@
 		"@types/react-redux": "^7.1.9",
 		"@types/redux-logger": "^3.0.7",
 		"@types/semver": "^7.2.0",
+		"@types/uuid": "^8.0.0",
 		"draft-js": "^0.11.5",
 		"draft-js-list-plugin": "^1.0.2",
 		"draft-js-plugins-editor": "^3.0.0",
@@ -74,6 +75,7 @@
 		"react": "^16.13.1",
 		"react-day-picker": "github:samuelmeuli/react-day-picker",
 		"react-dom": "^16.13.1",
+		"react-lines-ellipsis": "^0.14.1",
 		"react-redux": "^7.2.0",
 		"redux": "^4.0.5",
 		"redux-logger": "^3.0.6",
@@ -82,6 +84,7 @@
 		"remark-stringify": "^8.0.0",
 		"semver": "^7.3.2",
 		"strip-markdown": "^3.1.2",
+		"uuid": "^8.2.0",
 		"word-count": "github:samuelmeuli/word-count"
 	},
 	"devDependencies": {

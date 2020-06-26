@@ -22,8 +22,8 @@ async function createWindow(): Promise<BrowserWindow> {
 	const win = new BrowserWindow({
 		width: 1100,
 		minWidth: 500,
-		height: 600,
-		minHeight: 500,
+		height: 650,
+		minHeight: 550,
 		show: false,
 		titleBarStyle: "hiddenInset",
 		webPreferences: {

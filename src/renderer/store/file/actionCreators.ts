@@ -1,4 +1,5 @@
 import logger from "electron-log";
+import { Action } from "redux";
 
 import { disableMenuItems, enableMenuItems } from "../../electron/ipcRenderer/senders";
 import createBackup from "../../files/diary/backupFile";
@@ -12,10 +13,11 @@ import {
 	writeEncryptedFile,
 } from "../../files/fileAccess";
 import mergeEntries from "../../files/import/mergeEntries";
-import { Entries, IndexDate, MiniDiaryJson } from "../../types";
+import { Entries, MiniDiaryJson } from "../../types";
 import { createDate } from "../../utils/dateFormat";
 import { translations } from "../../utils/i18n";
 import { addIndexDoc, createIndex, removeIndexDoc, updateIndexDoc } from "../../utils/searchIndex";
+import { setEntrySelected } from "../diary/actionCreators";
 import { ThunkActionT } from "../store";
 import {
 	CLEAR_FILE_STATE,
@@ -234,10 +236,12 @@ export const updatePassword = (newPassword: string): ThunkActionT => (dispatch, 
  * Update the diary entry in the state. Remove the entry if it is empty. Then write the diary to the
  * encrypted diary file and update the index
  */
-export const updateEntry = (entryDate: IndexDate, title: string, text: string): ThunkActionT => (
-	dispatch,
-	getState,
-): void => {
+export const updateEntry = (
+	entryDate: string,
+	title: string,
+	text: string,
+	id: string,
+): ThunkActionT => (dispatch, getState): void => {
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
@@ -246,41 +250,55 @@ export const updateEntry = (entryDate: IndexDate, title: string, text: string): 
 		return;
 	}
 
-	if (title === "" && text === "") {
-		// Empty entry
-		if (entryDate in entries) {
-			// If existing entry: Delete entry from file and index
-			const entryRemoved = entriesUpdated[entryDate];
-			delete entriesUpdated[entryDate];
-			removeIndexDoc(entryDate, entryRemoved);
+	const entryToBeUpdated = entries[entryDate] && entries[entryDate].find(e => e.id === id);
+	let deferred = null;
+	if (entryToBeUpdated) {
+		// Updating existing entry
+		if (title === "" && text === "") {
+			// deleting
+			if (entriesUpdated[entryDate].length === 1) {
+				delete entriesUpdated[entryDate];
+			} else {
+				entriesUpdated[entryDate].splice(entriesUpdated[entryDate].indexOf(entryToBeUpdated), 1);
+			}
+			removeIndexDoc(entryDate, entryToBeUpdated);
+		} else {
+			const entryUpdated = {
+				dateUpdated: createDate().toString(),
+				title,
+				text,
+				id,
+			};
+			entriesUpdated[entryDate][entriesUpdated[entryDate].indexOf(entryToBeUpdated)] = entryUpdated;
+			updateIndexDoc(entryDate, entryToBeUpdated, entryUpdated);
 		}
-	} else if (!(entryDate in entries)) {
+	} else {
 		// Entry doesn't exist yet
+		if (title === "" && text === "") {
+			return;
+		}
+
 		const entryAdded = {
 			dateUpdated: createDate().toString(),
 			title,
 			text,
+			id,
 		};
-		entriesUpdated[entryDate] = entryAdded;
+
+		if (entriesUpdated[entryDate]) {
+			entriesUpdated[entryDate].push(entryAdded);
+		} else {
+			entriesUpdated[entryDate] = [entryAdded];
+		}
 		addIndexDoc(entryDate, entryAdded);
-	} else if (
-		title !== entries[entryDate].title || // Title has changed
-		text !== entries[entryDate].text // Text has changed
-	) {
-		// Entry has been updated
-		const entryOld = entries[entryDate];
-		const entryUpdated = {
-			dateUpdated: createDate().toString(),
-			title,
-			text,
-		};
-		entriesUpdated[entryDate] = entryUpdated;
-		updateIndexDoc(entryDate, entryOld, entryUpdated);
-	} else {
-		return;
+		deferred = (): Action => setEntrySelected(entryAdded.id);
 	}
+
 	// Write entries to disk
 	dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));
+	if (deferred) {
+		dispatch(deferred());
+	}
 };
 
 /**
@@ -294,14 +312,14 @@ export const mergeUpdateFile = (newEntries: Entries): ThunkActionT => (
 	const { entries, hashedPassword } = getState().file;
 	const entriesUpdated = { ...entries };
 
-	Object.entries(newEntries).forEach(([indexDate, newEntry]): void => {
+	Object.entries(newEntries).forEach(([indexDate, newEntriesOfTheDay]): void => {
 		if (indexDate in entriesUpdated) {
 			// Entry exists -> merge
-			const oldEntry = entriesUpdated[indexDate];
-			entriesUpdated[indexDate] = mergeEntries(oldEntry, newEntry);
+			const oldEntries = entriesUpdated[indexDate];
+			entriesUpdated[indexDate] = mergeEntries(oldEntries, newEntriesOfTheDay);
 		} else {
 			// Entry does not exist yet -> add
-			entriesUpdated[indexDate] = newEntry;
+			entriesUpdated[indexDate] = newEntriesOfTheDay;
 		}
 	});
 	dispatch(writeEntriesEncrypted(entriesUpdated, hashedPassword));

@@ -16,8 +16,9 @@ import debounce from "lodash.debounce";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 import { Moment } from "moment-timezone";
 import React, { KeyboardEvent, PureComponent, ReactNode } from "react";
+import { v4 } from "uuid";
 
-import { Entries, IndexDate } from "../../../../types";
+import { Entries } from "../../../../types";
 import { toIndexDate, toLocaleWeekday } from "../../../../utils/dateFormat";
 import { translations } from "../../../../utils/i18n";
 import EditorToolbar from "../editor-toolbar/editor-toolbar/EditorToolbar";
@@ -35,10 +36,11 @@ export interface StateProps {
 	hideTitles: boolean;
 	dateSelected: Moment;
 	entries: Entries;
+	entryIdSelected: string | null;
 }
 
 export interface DispatchProps {
-	updateEntry: (entryDate: IndexDate, title: string, text: string) => void;
+	updateEntry: (entryDate: string, title: string, text: string, id: string) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -47,38 +49,37 @@ interface State {
 	dateSelected: Moment;
 	textEditorState: EditorState;
 	titleEditorState: EditorState;
+	entryIdSelected: string | null;
 }
 
 export default class Editor extends PureComponent<Props, State> {
-	static getDerivedStateFromProps(props: Props, state: State): State | null {
-		const { dateSelected: dateProps, entries } = props;
-		const { dateSelected: dateState } = state;
-
-		if (dateProps === dateState) {
-			return null;
-		}
-		const entryState = Editor.getStateFromEntry(entries, dateProps);
-		return {
-			...entryState,
-			dateSelected: dateProps,
-		};
-	}
-
 	static getStateFromEntry(
 		entries: Entries,
 		date: Moment,
-	): { textEditorState: EditorState; titleEditorState: EditorState } {
+		entryIdSelected: string | null,
+	): {
+		textEditorState: EditorState;
+		titleEditorState: EditorState;
+		entryIdSelected: string | null;
+	} {
 		const indexDate = toIndexDate(date);
-		const entry = entries[indexDate];
 		let text = "";
 		let title = "";
-		if (entry) {
-			({ text, title } = entry);
+		let entryId = entryIdSelected;
+		if (entryId) {
+			const entry = entries[indexDate] && entries[indexDate].find(e => e.id === entryId);
+
+			if (entry) {
+				({ text, title } = entry);
+			}
+		} else {
+			entryId = v4();
 		}
 
 		return {
 			textEditorState: EditorState.createWithContent(convertFromRaw(markdownToDraft(text))),
 			titleEditorState: EditorState.createWithContent(ContentState.createFromText(title)),
+			entryIdSelected: entryId,
 		};
 	}
 
@@ -93,9 +94,8 @@ export default class Editor extends PureComponent<Props, State> {
 
 	constructor(props: Props) {
 		super(props);
-		const { dateSelected, entries } = props;
-
-		const entryState = Editor.getStateFromEntry(entries, dateSelected);
+		const { dateSelected, entries, entryIdSelected } = props;
+		const entryState = Editor.getStateFromEntry(entries, dateSelected, entryIdSelected);
 		this.state = {
 			...entryState,
 			dateSelected,
@@ -152,20 +152,27 @@ export default class Editor extends PureComponent<Props, State> {
 
 	saveEntry = (): void => {
 		const { dateSelected, updateEntry } = this.props;
-		const { textEditorState, titleEditorState } = this.state;
+		const { textEditorState, titleEditorState, entryIdSelected } = this.state;
 
 		const indexDate = toIndexDate(dateSelected);
 		const title = titleEditorState.getCurrentContent().getPlainText();
 		const text = draftToMarkdown(convertToRaw(textEditorState.getCurrentContent()));
-		updateEntry(indexDate, title.trim(), text.trim());
+		if (entryIdSelected) {
+			updateEntry(indexDate, title.trim(), text.trim(), entryIdSelected);
+		}
 	};
 
 	// eslint-disable-next-line react/sort-comp
 	saveEntryDebounced = debounce(this.saveEntry.bind(this), AUTOSAVE_INTERVAL);
 
 	render = (): ReactNode => {
-		const { dateSelected, textEditorState, titleEditorState } = this.state;
-		const { enableSpellcheck, hideTitles } = this.props;
+		const {
+			textEditorState,
+			titleEditorState,
+			dateSelected: dateInState,
+			entryIdSelected: entryIdInState,
+		} = this.state;
+		const { enableSpellcheck, hideTitles, entries, entryIdSelected, dateSelected } = this.props;
 
 		// Detect active inline/block styles
 		const blockType = RichUtils.getCurrentBlockType(textEditorState);
@@ -173,6 +180,14 @@ export default class Editor extends PureComponent<Props, State> {
 		const isUl = blockType === "unordered-list-item";
 
 		const weekdayDate = toLocaleWeekday(dateSelected);
+
+		if (dateInState !== dateSelected || (entryIdSelected && entryIdInState !== entryIdSelected)) {
+			const entryState = Editor.getStateFromEntry(entries, dateSelected, entryIdSelected);
+			this.setState({
+				...entryState,
+				dateSelected,
+			});
+		}
 		return (
 			<form className="editor">
 				<div className="editor-scrollable">

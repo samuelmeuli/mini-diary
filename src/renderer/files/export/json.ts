@@ -8,7 +8,7 @@ import sortEntries from "./sortEntries";
 export function convertToMiniDiaryJson(entries: Entries): Promise<string> {
 	return new Promise(resolve => {
 		const entriesSorted = sortEntries(entries);
-		const entriesJson: Entries = {};
+		const entriesJson: Entries = { ...entries };
 
 		// Convert sorted array back to object
 		entriesSorted.forEach(([indexDate, entry]) => {

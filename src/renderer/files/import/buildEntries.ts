@@ -1,5 +1,4 @@
 import { ImportEntry, DiaryEntry, Entries } from "../../types";
-import mergeEntries from "./mergeEntries";
 
 /**
  * Loop over all entries of the provided parsedEntries array, apply the provided getContent function
@@ -13,14 +12,12 @@ export default function buildEntries(
 	const entriesToImport: Entries = {};
 
 	parsedEntries.forEach((parsedEntry: ImportEntry): void => {
-		// Get date, title and text from entry
 		const { indexDate, entry: entryNew } = getContent(parsedEntry);
 
 		if (indexDate in entriesToImport) {
-			const entryOld = entriesToImport[indexDate];
-			entriesToImport[indexDate] = mergeEntries(entryOld, entryNew);
+			entriesToImport[indexDate].push(entryNew);
 		} else {
-			entriesToImport[indexDate] = entryNew;
+			entriesToImport[indexDate] = [entryNew];
 		}
 	});
 
