@@ -49,25 +49,26 @@ export default class StatsOverlay extends PureComponent<Props, {}> {
 		// Loop over sorted indices and find corresponding diary entry. Update stats variables using its
 		// content
 		indexDatesSorted.forEach((indexDate): void => {
-			const entry = entries[indexDate];
-			const { title, text } = entry;
-			const date = fromIndexDate(indexDate);
+			entries[indexDate].forEach(entry => {
+				const { title, text } = entry;
+				const date = fromIndexDate(indexDate);
 
-			// Check if the current date is one day after the previous one. If so, increase
-			// `currentStreak`. If not, update `longestStreak` if necessary and reset `currentStreak`
-			if (date.diff(prevDate, "days") === 1) {
-				currentStreak += 1;
-			} else {
-				if (currentStreak > longestStreak) {
-					longestStreak = currentStreak;
+				// Check if the current date is one day after the previous one. If so, increase
+				// `currentStreak`. If not, update `longestStreak` if necessary and reset `currentStreak`
+				if (date.diff(prevDate, "days") === 1) {
+					currentStreak += 1;
+				} else {
+					if (currentStreak > longestStreak) {
+						longestStreak = currentStreak;
+					}
+					currentStreak = 1;
 				}
-				currentStreak = 1;
-			}
 
-			// Count number of words in title and text, add to total
-			nrWords += countWords(`${title}\n${text}`);
+				// Count number of words in title and text, add to total
+				nrWords += countWords(`${title}\n${text}`);
 
-			prevDate = date;
+				prevDate = date;
+			});
 		});
 
 		// If no diary entry has been written in the last day, reset `currentStreak`

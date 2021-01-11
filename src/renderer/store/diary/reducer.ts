@@ -5,6 +5,7 @@ import {
 	SET_DATE_SELECTED,
 	SET_SEARCH_KEY,
 	SET_SEARCH_RESULTS,
+	SET_ENTRY_SELECTED,
 } from "./types";
 
 const today = createDate();
@@ -13,6 +14,7 @@ const initialState: DiaryState = {
 	dateSelected: today,
 	searchKey: "",
 	searchResults: [],
+	entryIdSelected: null,
 };
 
 function diaryReducer(state = initialState, action: DiaryAction): DiaryState {
@@ -21,6 +23,7 @@ function diaryReducer(state = initialState, action: DiaryAction): DiaryState {
 			return {
 				...state,
 				dateSelected: action.payload.dateSelected,
+				entryIdSelected: null,
 			};
 		}
 		case SET_SEARCH_KEY: {
@@ -33,6 +36,15 @@ function diaryReducer(state = initialState, action: DiaryAction): DiaryState {
 			return {
 				...state,
 				searchResults: action.payload.searchResults,
+			};
+		}
+		case SET_ENTRY_SELECTED: {
+			return {
+				...state,
+				entryIdSelected: action.payload.id,
+				dateSelected: action.payload.dateSelected
+					? action.payload.dateSelected
+					: state.dateSelected,
 			};
 		}
 		default:

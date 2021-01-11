@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 import { DiaryEntry, Entries, ImportEntry } from "../../types";
 import { createDate, parseDate, toIndexDate } from "../../utils/dateFormat";
 import buildEntries from "./buildEntries";
@@ -37,7 +39,7 @@ export function parseDayOneTxt(dayOneTxt: string): Entries {
 		const title = titleLine ? titleLine.trim() : ""; // Use first line as title
 		const text = lines.join("\n").trim(); // Use rest as entry text
 
-		const entry = { dateUpdated: now, title, text };
+		const entry = { dateUpdated: now, title, text, id: v4() };
 		return { indexDate, entry };
 	});
 }

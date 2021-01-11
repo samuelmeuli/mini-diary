@@ -17,23 +17,26 @@ export async function convertToDayOneTxt(entries: Entries): Promise<string> {
 	let txt = "";
 
 	for (let i = 0; i < entriesSorted.length; i += 1) {
-		const [indexDate, entry] = entriesSorted[i];
-		const { text, title } = entry;
+		const [indexDate, entriesOfTheDay] = entriesSorted[i];
+		// txt += await mdToTxt(indexDate)
+		for (let j = 0; j < entriesOfTheDay.length; j += 1) {
+			const { text, title } = entriesOfTheDay[j];
 
-		// Format date
-		const dayOneDate = toDayOneDate(fromIndexDate(indexDate));
+			// Format date
+			const dayOneDate = toDayOneDate(fromIndexDate(indexDate));
 
-		// Build TXT string
-		txt += `\tDate:\t${dayOneDate}\n\n`; // Date
-		if (title) {
-			txt += `${title}\n\n`; // Title
+			// Build TXT string
+			txt += `\tDate:\t${dayOneDate}\n\n`; // Date
+			if (title) {
+				txt += `${title}\n\n`; // Title
+			}
+			if (text) {
+				// eslint-disable-next-line no-await-in-loop
+				const textTxt = await mdToTxt(text);
+				txt += `${textTxt}\n\n`; // Text
+			}
+			txt += "\n";
 		}
-		if (text) {
-			// eslint-disable-next-line no-await-in-loop
-			const textTxt = await mdToTxt(text);
-			txt += `${textTxt}\n\n`; // Text
-		}
-		txt += "\n";
 	}
 
 	return txt;

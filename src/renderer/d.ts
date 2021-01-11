@@ -11,3 +11,5 @@ declare module "*.svg" {
 declare module "markdown-draft-js";
 
 declare module "strip-markdown";
+
+declare module "react-lines-ellipsis";

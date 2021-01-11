@@ -1,12 +1,18 @@
-import MiniSearch, { SearchResult } from "minisearch";
+import MiniSearch, { SearchResult as MiniSearchResult } from "minisearch";
 
-import { DiaryEntry, Entries, IndexDate } from "../types";
+import { DiaryEntry, Entries } from "../types";
 import mdToTxt from "./mdToTxt";
 
 interface IndexDoc {
-	indexDate: string;
+	id: string;
 	title: string;
 	text: string;
+	indexDate: string;
+}
+
+export interface SearchResult {
+	id: string;
+	indexDate: string;
 }
 
 let index: MiniSearch;
@@ -19,9 +25,10 @@ const SPACE_OR_PUNCTUATION = /[\n\r -"%-*,-/:;?[-\]_{}\u00A0\u00A1\u00A7\u00AB\u
  */
 async function createIndexDoc(indexDate: string, entry: DiaryEntry): Promise<IndexDoc> {
 	return {
-		indexDate,
+		id: entry.id,
 		title: entry.title,
 		text: await mdToTxt(entry.text),
+		indexDate,
 	};
 }
 
@@ -32,16 +39,18 @@ export async function createIndex(entries: Entries): Promise<void> {
 	// Define index structure
 	index = new MiniSearch({
 		fields: ["title", "text"],
-		idField: "indexDate",
+		storeFields: ["indexDate"],
 		// Function for splitting fields into individual terms
 		tokenize: (str: string): string[] => str.split(SPACE_OR_PUNCTUATION),
 	});
 
 	// Index all existing diary entries
 	const indexDocs = await Promise.all(
-		Object.entries(entries).map(
-			async ([indexDate, entry]): Promise<IndexDoc> => createIndexDoc(indexDate, entry),
-		),
+		Object.entries(entries)
+			.map(([indexDate, entriesForTheDay]) =>
+				entriesForTheDay.map(entry => createIndexDoc(indexDate, entry)),
+			)
+			.flat(),
 	);
 	await index.addAllAsync(indexDocs);
 }
@@ -49,7 +58,7 @@ export async function createIndex(entries: Entries): Promise<void> {
 /**
  * Add the specified entry to the index if it doesn't exist. If it exists, update it
  */
-export async function addIndexDoc(indexDate: IndexDate, entry: DiaryEntry): Promise<void> {
+export async function addIndexDoc(indexDate: string, entry: DiaryEntry): Promise<void> {
 	const doc = await createIndexDoc(indexDate, entry);
 	index.add(doc);
 }
@@ -57,7 +66,7 @@ export async function addIndexDoc(indexDate: IndexDate, entry: DiaryEntry): Prom
 /**
  * Remove the specified entry from the index
  */
-export async function removeIndexDoc(indexDate: IndexDate, entry: DiaryEntry): Promise<void> {
+export async function removeIndexDoc(indexDate: string, entry: DiaryEntry): Promise<void> {
 	const doc = await createIndexDoc(indexDate, entry);
 	index.remove(doc);
 }
@@ -66,7 +75,7 @@ export async function removeIndexDoc(indexDate: IndexDate, entry: DiaryEntry): P
  * Update the specified index entry
  */
 export async function updateIndexDoc(
-	indexDate: IndexDate,
+	indexDate: string,
 	entryOld: DiaryEntry,
 	entryUpdated: DiaryEntry,
 ): Promise<void> {
@@ -77,10 +86,15 @@ export async function updateIndexDoc(
 /**
  * Search index for the provided key and return the sorted results' indexDates
  */
-export function searchIndex(key: string): string[] {
+export function searchIndex(key: string): SearchResult[] {
 	const res = index
 		.search(key, { prefix: true })
-		.map((searchResult: SearchResult): string => searchResult.id)
+		.map(
+			(searchResult: MiniSearchResult): SearchResult => ({
+				id: searchResult.id,
+				indexDate: searchResult.indexDate,
+			}),
+		)
 		.sort()
 		.reverse();
 	return res;
