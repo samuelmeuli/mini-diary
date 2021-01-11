@@ -19,14 +19,14 @@ export function convertToMd(entries: Entries): Promise<string> {
 		let md = "# Mini Diary\n\n";
 
 		entriesSorted.forEach(([indexDate, entriesOfTheDay]): void => {
+			// Format date
+			const dateStr = toLocaleWeekday(fromIndexDate(indexDate));
+			// Build Markdown string
+			md += `## ${dateStr}\n\n`; // Date
+
 			entriesOfTheDay.forEach(entry => {
 				const { text, title } = entry;
 
-				// Format date
-				const dateStr = toLocaleWeekday(fromIndexDate(indexDate));
-
-				// Build Markdown string
-				md += `## ${dateStr}\n\n`; // Date
 				if (title) {
 					md += `**${title}**\n\n`; // Title
 				}
