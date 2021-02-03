@@ -12,11 +12,11 @@ import translationsIs from "./translations/is";
 import translationsIt from "./translations/it";
 import translationsNo from "./translations/no";
 import translationsPt from "./translations/pt";
+import translationsSi from "./translations/si";
 import translationsTr from "./translations/tr";
 import translationsUk from "./translations/uk";
 import translationsZh from "./translations/zh";
 import translationsZhTw from "./translations/zhTw";
-import translationsSi from "./translations/si";
 
 const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	de: translationsDe,
@@ -29,10 +29,10 @@ const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	nb: translationsNo,
 	no: translationsNo,
 	pt: translationsPt,
+	si: translationsSi,
 	tr: translationsTr,
 	uk: translationsUk,
 	zh: translationsZh,
-	si: translationsSi,
 	"zh-TW": translationsZhTw,
 };
 let translations: Partial<Translations>; // String translations for langNoRegion
