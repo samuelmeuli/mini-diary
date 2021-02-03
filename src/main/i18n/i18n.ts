@@ -16,6 +16,7 @@ import translationsTr from "./translations/tr";
 import translationsUk from "./translations/uk";
 import translationsZh from "./translations/zh";
 import translationsZhTw from "./translations/zhTw";
+import translationsSi from "./translations/si";
 
 const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	de: translationsDe,
@@ -31,6 +32,7 @@ const ALL_TRANSLATIONS: Record<string, Partial<Translations>> = {
 	tr: translationsTr,
 	uk: translationsUk,
 	zh: translationsZh,
+	si: translationsSi,
 	"zh-TW": translationsZhTw,
 };
 let translations: Partial<Translations>; // String translations for langNoRegion
