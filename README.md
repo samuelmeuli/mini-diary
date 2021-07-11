@@ -5,11 +5,11 @@
   <img src="website/img/screenshot-1.png" width="100%" alt="Screenshot">
 </div>
 
-## Download
+**Mini Diary is no longer maintained. Please use a different journal app instead.**
 
-**Features and download links can be found on the website:**
+## Website
 
-→ [**minidiary.app**](https://minidiary.app)
+Features and FAQs can be found on the website: [**minidiary.app**](https://minidiary.app)
 
 ## Development
 

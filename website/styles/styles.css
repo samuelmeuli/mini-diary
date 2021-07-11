@@ -144,9 +144,13 @@ main a:hover {
 	color: var(--color-text);
 }
 
-footer a {
+.text-with-icon {
 	display: inline-flex;
 	align-items: center;
+}
+
+.text-with-icon svg {
+	margin-right: 7px;
 }
 
 ::selection {
@@ -174,9 +178,14 @@ footer a {
 	background: var(--color-main-hover);
 }
 
-.button svg,
-footer svg {
-	margin-right: 7px;
+/* Maintenance notice */
+
+.section-maintenance-notice {
+	text-align: center;
+}
+
+.maintenance-notice-title {
+	font-weight: var(--font-weight-semibold);
 }
 
 /* Screenshots */
